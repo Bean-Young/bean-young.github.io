@@ -1,0 +1,114 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Yuezhe Yang</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="{{ '/css/fontawesome.all.min.css' | relative_url }}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet">
+  <link href="{{ '/css/bulma.min.css' | relative_url }}" rel="stylesheet">
+  <link href="{{ '/css/index.css' | relative_url }}" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script defer src="{{ '/js/fontawesome.all.min.js' | relative_url }}"></script>
+  <script src="{{ '/js/index.js' | relative_url }}"></script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body container is-max-desktop">
+      <div class="columns is-vcentered">
+        <div class="column is-4">
+          <div class="portrait">
+            <img src="{{ '/images/portrait.jpg' | relative_url }}" />
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">
+            <b>Yuezhe Yang</b>
+          </h1>
+          <div class="content has-text-justified">
+            <p> I am currently an undergraduate student at the School of Artificial Intelligence, Anhui University. I am also a member of the              Anhui Provincial International Joint Research Center for Advanced Technology in Medical Imaging. My research is dedicated to the application of artificial intelligence in medical imaging. </p>
+            <div class="buttons">
+              <a class="external-link button is-light" href="cv.html">
+                <span class="icon"><i class="fas fa-file"></i></span>
+                <span>CV</span>
+              </a>
+              <a class="external-link button is-light" href="https://scholar.google.com/citations?user={{ site.google_scholar }}">
+                <span class="icon"><i class="ai ai-google-scholar"></i></span>
+                <span>Scholar</span>
+              </a>
+              <a class="external-link button is-light" href="https://github.com/{{ site.github_username }}">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Github</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hr">
+    <div class="container">
+      <hr>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Publications & Projects</h2>
+      {% for publication in site.data.publications %}
+      <div class="publication-block columns">
+        <div class="column is-2">
+          <img alt="{{ publication.title }}" src="./images/{{ publication.image }}" />
+        </div>
+        <div class="column">
+          <h3 class="publication-title"><a href="{{ publication.project_page }}">{{ publication.title }}</a></h3>
+          <p class="publication-description">{{ publication.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Education & Experiences</h2>
+      <div class="content">
+        <ul>
+          <li><b>Ph.D. in Computer Science</b>, University Name, Year</li>
+          <li><b>M.Sc. in Artificial Intelligence</b>, University Name, Year</li>
+          <li><b>B.Sc. in Computer Science</b>, University Name, Year</li>
+          <li><b>Researcher at XYZ Institute</b>, 20XX - Present</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content footer-links has-text-centered">
+        <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+        <a class="external-link" href="https://github.com/{{ site.github_username }}"><i class="fab fa-github"></i></a>
+        <a class="external-link" href="https://scholar.google.com/citations?user={{ site.google_scholar }}"><i class="ai ai-google-scholar"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
