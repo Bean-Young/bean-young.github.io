@@ -44,17 +44,21 @@ layout: null
           <div class="content has-text-justified">
             <p> I am currently an undergraduate student at the School of Artificial Intelligence, Anhui University. I am also a member of the              Anhui Provincial International Joint Research Center for Advanced Technology in Medical Imaging. My research is dedicated to the application of artificial intelligence in medical imaging. </p>
             <div class="buttons">
+              <!-- 修改为可展开的CV选择窗口 -->
               <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
-                  <button class="button is-light" aria-haspopup="true" aria-controls="cv-menu">
+                  <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu-cv">
                     <span class="icon"><i class="fas fa-file"></i></span>
                     <span>CV</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
                   </button>
                 </div>
-                <div class="dropdown-menu" id="cv-menu" role="menu">
+                <div class="dropdown-menu" id="dropdown-menu-cv" role="menu">
                   <div class="dropdown-content">
-                    <a href="https://bean-young.github.io/document/CV-E.pdf" class="dropdown-item">CV (English)</a>
-                    <a href="https://bean-young.github.io/document/CV-C.pdf" class="dropdown-item">CV (中文)</a>
+                    <a href="bean-young.github.io/document/CV-E.pdf" class="dropdown-item">English CV</a>
+                    <a href="bean-young.github.io/document/CV-C.pdf" class="dropdown-item">Chinese CV</a>
                   </div>
                 </div>
               </div>
@@ -79,6 +83,37 @@ layout: null
     </div>
   </div>
 
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Publications & Projects</h2>
+      {% for publication in site.data.publications %}
+      <div class="publication-block columns">
+        <div class="column is-2">
+          <img alt="{{ publication.title }}" src="./images/{{ publication.image }}" />
+        </div>
+        <div class="column">
+          <h3 class="publication-title"><a href="{{ publication.project_page }}">{{ publication.title }}</a></h3>
+          <p class="publication-description">{{ publication.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Education & Experiences</h2>
+      <div class="content">
+        <ul>
+          <li><b>Ph.D. in Computer Science</b>, University Name, Year</li>
+          <li><b>M.Sc. in Artificial Intelligence</b>, University Name, Year</li>
+          <li><b>B.Sc. in Computer Science</b>, University Name, Year</li>
+          <li><b>Researcher at XYZ Institute</b>, 20XX - Present</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container">
       <div class="content footer-links has-text-centered">
@@ -89,4 +124,5 @@ layout: null
     </div>
   </footer>
 </body>
+
 </html>
