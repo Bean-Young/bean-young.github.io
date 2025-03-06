@@ -1,2 +1,2 @@
-# youngbean.github.io
+# bean-young.github.io
 Homepage
