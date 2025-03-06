@@ -8,7 +8,7 @@ layout: null
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <title>Yuezhe Yang</title>
-  
+
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -26,6 +26,11 @@ layout: null
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script defer src="{{ '/js/fontawesome.all.min.js' | relative_url }}"></script>
   <script src="{{ '/js/index.js' | relative_url }}"></script>
+  <style>
+   .buttons a {
+      margin-right: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -34,7 +39,7 @@ layout: null
       <div class="columns is-vcentered">
         <div class="column is-4">
           <div class="portrait">
-            <img src="{{ '/images/portrait.jpg' | relative_url }}" />
+            <img src="/document/Photo.jpg" />
           </div>
         </div>
         <div class="column">
@@ -56,8 +61,8 @@ layout: null
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu-cv" role="menu">
                   <div class="dropdown-content">
-                    <a href="/document/CV-E.pdf" class="dropdown-item">English CV</a>
-                    <a href="/document/CV-C.pdf" class="dropdown-item">Chinese CV</a>
+                    <a href="/document/CV-E.pdf" class="dropdown-item">English</a>
+                    <a href="/document/CV-C.pdf" class="dropdown-item">Chinese</a>
                   </div>
                 </div>
               </div>
@@ -93,11 +98,14 @@ layout: null
           </div>
         </div>
         <div class="column">
-          <h3 class="publication-title">An annotated heterogeneous ultrasound database</h3>
+          <h3 class="publication-title">
+            <a href="https://www.nature.com/articles/s41597-025-04464-4">An annotated heterogeneous ultrasound database</a>
+          </h3>
           <p class="publication-description">
             <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup>, Xingbo Dong<sup>†</sup>, Junning Zhang, Chihui Long, Zhe Jin, Yong Dai<br>
-            Publication date: 2025/1/25<br>
-            Journal: Scientific Data<br>
+            Scientific Data, 2025<br>
+            <a href="https://www.nature.com/articles/s41597-025-04464-4">paper</a> |
+            <a href="https://github.com/Bean-Young/AHU-Database">github</a><br>
             <small>Collect a large - scale public ultrasound database to improve AI - assisted ultrasound diagnosis performance.</small>
           </p>
         </div>
@@ -110,10 +118,14 @@ layout: null
           </div>
         </div>
         <div class="column">
-          <h3 class="publication-title">Em-Net: Effective and Morphology-Aware Network for Skin Lesion Segmentation</h3>
+          <h3 class="publication-title">
+            <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4939564">Em-Net: Effective and Morphology-Aware Network for Skin Lesion Segmentation</a>
+          </h3>
           <p class="publication-description">
             Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, Xuewen Wang<br>
-            Journal: Available at SSRN 4939564<br>
+            SSRN, 2024<br>
+            <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4939564">pdf</a> |
+            <a href="https://github.com/Bean-Young/EM-Net">github</a><br>
             <small>Propose a high - precision model for skin lesion segmentation in dermoscopic images.</small>
           </p>
         </div>
