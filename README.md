@@ -1,5 +1,5 @@
-# [bean-young.github.io](https://bean-young.github.io)
-Homepage
+# bean-young.github.io
+[Homepage](https://bean-young.github.io)
 
 ## ***References***
 1) [**Keunhong**](https://github.com/keunhong/keunhong.github.io)
