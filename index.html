@@ -321,16 +321,6 @@ layout: null
   </div>
 </div>
 
-<script>
-  function toggleTranslation(icon) {
-    const chineseTitle = icon.previousElementSibling;
-    if (chineseTitle.style.display === 'none') {
-      chineseTitle.style.display = 'block';
-    } else {
-      chineseTitle.style.display = 'none';
-    }
-  }
-</script>
 
 <div class="hr">
   <div class="container is-max-desktop">
@@ -346,13 +336,14 @@ layout: null
         <div class="column">
           <h3 class="publication-title">
             <a href="https://petahu.github.io">DeepPET: An Intelligent Brain PET Device with Low Radiation and High Imaging Quality</a>
-            <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">DeepPET:低放射高成像质量的智能脑PET设备</span>\
-            <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">基于学习的脑PET图像重建方法及可解释性研究</span>\
+            <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">DeepPET:低放射高成像质量的智能脑PET设备</span>
+            <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">DeepPET:基于深度学习的脑 PET 图像重建算法及设备</span>
+            <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">基于学习的脑PET图像重建方法及可解释性研究</span>
             <i class="fas fa-language translate-icon" onclick="toggleTranslation(this)"></i>
           </h3>
           <p class="publication-description">
             <b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, et al.<br>
-            Chinese College Students' Innovation and Entrepreneurship Program 2024<br>
+            Chinese College Students' Innovation and Entrepreneurship Program, 2024<br>
             <small>Integrate physical models with deep learning to achieve efficient high-quality low-dose PET image reconstruction.</small>
           </p>
           <!-- Publication Links. -->
@@ -376,7 +367,18 @@ layout: null
     </div>
   </div>
 
-
+<script>
+  function toggleTranslation(icon) {
+    const chineseTitles = icon.parentNode.querySelectorAll('.chinese-title');
+    chineseTitles.forEach(title => {
+      if (title.style.display === 'none') {
+        title.style.display = 'block';
+      } else {
+        title.style.display = 'none';
+      }
+    });
+  }
+</script>
   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Education & Experiences</h2>
