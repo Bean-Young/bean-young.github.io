@@ -275,9 +275,11 @@ layout: null
   <div class="column">
     <h3 class="publication-title">
       <a href="https://patents.google.com/patent/CN118411435A/">PET image reconstruction method based on prior image and PET image 3D perception method</a>
+      <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">基于先验图像的PET图像重建方法及PET图像3D感知方法</span>
+      <i class="fas fa-language translate-icon" onclick="toggleTranslation(this)"></i>
     </h3>
     <p class="publication-description">
-      Xingbo Dong,<b>Yuezhe Yang</b>, Xingguo Lv, Liwen Wang, Hui Zhang, Yonglin Chen,Dailei Zhang,Zhe Jin <br>
+      Xingbo Dong, <b>Yuezhe Yang</b>, Xingguo Lv, Liwen Wang, Hui Zhang, Yonglin Chen, Dailei Zhang, Zhe Jin <br>
       CN118411435A 2024 (Substantive Examination)<br>
       <small>Proposes a deep learning-based PET reconstruction and 3D perception method using prior images and NeRF to enhance quality while reducing scan time and dose.</small>
     </p>
@@ -301,11 +303,11 @@ layout: null
   <div class="column">
     <h3 class="publication-title">
       <a href="https://patents.google.com/patent/CN119625190A">3D Gaussian model generation and rendering method for low-dose PET image processing</a>
-      <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">低剂量PET图像处理的3D高斯模型生成与渲染方法</span>
+      <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">一种用于低剂量pet图像处理的3D高斯模型生成和渲染方法</span>
       <i class="fas fa-language translate-icon" onclick="toggleTranslation(this)"></i>
     </h3>
     <p class="publication-description">
-      <b>Yuezhe Yang</b>,Xingbo Dong, Wenjie Cai, Dexin Yang, Zhe Jin <br>
+      <b>Yuezhe Yang</b>, Xingbo Dong, Wenjie Cai, Dexin Yang, Zhe Jin <br>
       CN119625190A 2025 <br>
       <small>Proposes a 3D Gaussian model generation and rendering method for low-dose brain PET imaging to reduce noise and enhance resolution.</small>
     </p>
@@ -318,6 +320,17 @@ layout: null
         </div>
   </div>
 </div>
+
+<script>
+  function toggleTranslation(icon) {
+    const chineseTitle = icon.previousElementSibling;
+    if (chineseTitle.style.display === 'none') {
+      chineseTitle.style.display = 'block';
+    } else {
+      chineseTitle.style.display = 'none';
+    }
+  }
+</script>
 
 <div class="hr">
   <div class="container is-max-desktop">
@@ -336,6 +349,7 @@ layout: null
           </h3>
           <p class="publication-description">
             <b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, et al.<br>
+            Chinese College Students' Innovation and Entrepreneurship Program 2024<br>
             <small>Integrate physical models with deep learning to achieve efficient high-quality low-dose PET image reconstruction.</small>
           </p>
           <!-- Publication Links. -->
