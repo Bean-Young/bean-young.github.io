@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bean-young.github.io/sitemap.xml
