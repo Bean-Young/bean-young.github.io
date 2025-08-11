@@ -66,6 +66,7 @@ layout: null
     #world-map {
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 1;
     }
     
     .travel-marker {
@@ -90,6 +91,29 @@ layout: null
     /* Province label styles */
     .province-label {
       pointer-events: none;
+    }
+    
+    /* Fix z-index issues */
+    .leaflet-container {
+      z-index: 1 !important;
+    }
+    
+    .leaflet-popup {
+      z-index: 1000 !important;
+    }
+    
+    .leaflet-tooltip {
+      z-index: 1000 !important;
+    }
+    
+    /* Ensure navbar stays on top */
+    .navbar {
+      z-index: 1001 !important;
+    }
+    
+    /* Modal z-index */
+    .modal {
+      z-index: 1002 !important;
     }
     
     /* Modal styles */
@@ -981,14 +1005,14 @@ layout: null
       <h2 class="title is-3">Others</h2>
       <div class="content has-text-justified">
         <h3 class="title is-4">Languages</h3>
-        <p><strong>Chinese (Native):</strong> Mother tongue, fluent in all aspects of communication</p>
+        <p><strong>Chinese:</strong> Mother tongue, fluent in all aspects of communication</p>
         <p><strong>English:</strong> Proficient in academic listening, speaking, reading, and writing</p>
-        <p><strong>Japanese:</strong> Basic understanding and interest in learning</p>
+        <p><strong>Japanese:</strong> A little bit, interest in learning</p>
         
         <h3 class="title is-4">Hobbies</h3>
         <p>I enjoy traveling and exploring new places. Traveling allows me to experience different cultures, meet new people, and gain fresh perspectives that often inspire my research and creative thinking.</p>
         
-        <div id="world-map-container" style="width: 100%; height: 600px; margin: 20px 0;">
+        <div id="world-map-container" style="width: 100%; height: 600px; margin: 20px 0; position: relative; z-index: 1;">
           <div id="world-map" style="width: 100%; height: 100%;"></div>
         </div>
         
@@ -1146,6 +1170,13 @@ layout: null
         description: "Known for its beautiful West Lake in Hangzhou and rich cultural heritage, a perfect blend of nature and history."
       },
       {
+        name: "Anhui Province, China",
+        provinceName: "Anhui",
+        country: "China",
+        image: "/document/ahu.png",
+        description: "My home province where I study at Anhui University, known for its beautiful mountains and rich culture."
+      },
+      {
         name: "Alberta Province, Canada",
         provinceName: "Alberta",
         country: "Canada",
@@ -1175,35 +1206,38 @@ layout: null
       });
     });
 
-    // Create province polygons function
+    // Create province markers function
     function createProvincePolygons(map) {
-        // Simplified province boundaries for China and Canada
+        // Province locations with coordinates (only major provinces, no cities)
         const provinces = [
-          // China provinces
-          { name: "Beijing", coords: [[39.0, 115.5], [40.5, 115.5], [40.5, 117.5], [39.0, 117.5]], visited: true },
-          { name: "Shanghai", coords: [[30.5, 120.5], [31.5, 120.5], [31.5, 122.0], [30.5, 122.0]], visited: true },
-          { name: "Zhejiang", coords: [[27.5, 118.0], [30.5, 118.0], [30.5, 122.5], [27.5, 122.5]], visited: true },
-          { name: "Guangdong", coords: [[20.0, 109.0], [25.5, 109.0], [25.5, 117.5], [20.0, 117.5]], visited: false },
-          { name: "Sichuan", coords: [[26.0, 97.0], [33.5, 97.0], [33.5, 110.5], [26.0, 110.5]], visited: false },
-          { name: "Xinjiang", coords: [[34.0, 73.0], [49.5, 73.0], [49.5, 96.5], [34.0, 96.5]], visited: false },
+          // China provinces - only major ones
+          { name: "Beijing", coords: [39.9, 116.4], visited: true },
+          { name: "Shanghai", coords: [31.2, 121.5], visited: true },
+          { name: "Zhejiang", coords: [30.3, 120.2], visited: true },
+          { name: "Anhui", coords: [31.8, 117.3], visited: true },
+          { name: "Guangdong", coords: [23.1, 113.3], visited: false },
+          { name: "Sichuan", coords: [30.7, 104.1], visited: false },
+          { name: "Xinjiang", coords: [43.8, 87.6], visited: false },
           // Canada provinces
-          { name: "Alberta", coords: [[49.0, -120.5], [60.5, -120.5], [60.5, -109.5], [49.0, -109.5]], visited: true },
-          { name: "Ontario", coords: [[41.0, -95.5], [57.5, -95.5], [57.5, -73.5], [41.0, -73.5]], visited: false },
-          { name: "Quebec", coords: [[45.0, -80.5], [62.5, -80.5], [62.5, -56.5], [45.0, -56.5]], visited: false }
+          { name: "Alberta", coords: [55.0, -115.0], visited: true },
+          { name: "Ontario", coords: [49.3, -84.3], visited: false },
+          { name: "Quebec", coords: [52.9, -73.5], visited: false }
         ];
         
         provinces.forEach(province => {
-          const polygon = L.polygon(province.coords, {
-            fillColor: province.visited ? '#FFF3CD' : '#FFFFFF', // Light yellow for visited, white for not visited
-            color: '#666666',
-            weight: 1,
-            opacity: 0.8,
-            fillOpacity: 0.6
-          }).addTo(map);
-          
           if (province.visited) {
+            // For visited provinces, add interactive markers
+            const marker = L.marker(province.coords, {
+              icon: L.divIcon({
+                className: 'travel-marker',
+                html: `<div style="background: #FF6B6B; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">📍</div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+              })
+            }).addTo(map);
+            
             // Add click event for visited provinces
-            polygon.on('click', function() {
+            marker.on('click', function() {
               const location = travelLocations.find(loc => 
                 loc.provinceName === province.name || 
                 loc.country === "Canada" && province.name === "Alberta"
@@ -1214,37 +1248,28 @@ layout: null
             });
             
             // Add hover effect
-            polygon.on('mouseover', function() {
-              this.setStyle({ fillOpacity: 0.8, weight: 2 });
+            marker.on('mouseover', function() {
+              this.getElement().style.transform = 'scale(1.3)';
             });
             
-            polygon.on('mouseout', function() {
-              this.setStyle({ fillOpacity: 0.6, weight: 1 });
+            marker.on('mouseout', function() {
+              this.getElement().style.transform = 'scale(1)';
             });
           }
           
-          // Add province labels with better positioning
-          const center = getPolygonCenter(province.coords);
-          L.marker(center, {
+          // Add province name labels (only province names, no cities)
+          const label = L.marker(province.coords, {
             icon: L.divIcon({
               className: 'province-label',
-              html: `<div style="background: rgba(255,255,255,0.9); padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; color: #333; border: 1px solid #ddd; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">${province.name}</div>`,
-              iconSize: [80, 25],
-              iconAnchor: [40, 12]
+              html: `<div style="background: rgba(255,255,255,0.95); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; color: #333; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;">${province.name}</div>`,
+              iconSize: [100, 30],
+              iconAnchor: [50, 15]
             })
           }).addTo(map);
         });
       }
     
-    // Helper function to get polygon center
-    function getPolygonCenter(coords) {
-      let lat = 0, lng = 0;
-      coords.forEach(coord => {
-        lat += coord[0];
-        lng += coord[1];
-      });
-      return [lat / coords.length, lng / coords.length];
-    }
+
 
     // Show travel modal
     function showTravelModal(location) {
