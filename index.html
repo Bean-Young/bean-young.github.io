@@ -126,6 +126,8 @@ layout: null
       font-size: 12px !important;
       font-weight: bold !important;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+      pointer-events: none !important;
+      z-index: 1000 !important;
     }
     
     .province-tooltip::before {
@@ -1267,12 +1269,13 @@ layout: null
             marker.on('mouseover', function() {
               this.getElement().style.transform = 'scale(1.3)';
               
-              // Show province name tooltip
+              // Show province name tooltip above the marker
               this.bindTooltip(province.name, {
                 permanent: false,
                 direction: 'top',
                 className: 'province-tooltip',
-                offset: [0, -10]
+                offset: [0, -30],
+                sticky: false
               }).openTooltip();
             });
             
@@ -1295,12 +1298,13 @@ layout: null
             marker.on('mouseover', function() {
               this.getElement().style.transform = 'scale(1.2)';
               
-              // Show province name tooltip
+              // Show province name tooltip above the marker
               this.bindTooltip(province.name, {
                 permanent: false,
                 direction: 'top',
                 className: 'province-tooltip',
-                offset: [0, -10]
+                offset: [0, -25],
+                sticky: false
               }).openTooltip();
             });
             
