@@ -77,6 +77,21 @@ layout: null
       transform: scale(1.2);
     }
     
+    /* Province polygon styles */
+    .leaflet-interactive {
+      transition: all 0.3s ease;
+    }
+    
+    .leaflet-interactive:hover {
+      fill-opacity: 0.8 !important;
+      stroke-width: 2 !important;
+    }
+    
+    /* Province label styles */
+    .province-label {
+      pointer-events: none;
+    }
+    
     /* Modal styles */
     .modal-card {
       max-width: 800px;
@@ -164,8 +179,42 @@ layout: null
   <section class="section" id="publications">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Publications & Projects</h2>
+      
+      <!-- Filter Section -->
+      <div class="filter-section" style="margin-bottom: 2rem;">
+        <div class="columns is-multiline is-vcentered">
+          <div class="column is-narrow">
+            <label class="label">Year:</label>
+            <div class="select">
+                          <select id="year-filter">
+              <option value="all">All Years</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+            </select>
+            </div>
+          </div>
+          <div class="column is-narrow">
+            <label class="label">Type:</label>
+            <div class="select">
+              <select id="type-filter">
+                <option value="all">All Types</option>
+                <option value="paper">Paper</option>
+                <option value="conference">Conference</option>
+                <option value="preprint">Preprint</option>
+                <option value="patent">Patent</option>
+                <option value="project">Project</option>
+              </select>
+            </div>
+          </div>
+          <div class="column is-narrow">
+            <button class="button is-light" onclick="clearFilters()">Clear Filters</button>
+          </div>
+        </div>
+      </div>
+      
       <!-- An annotated heterogeneous ultrasound database -->
-      <div class="publication-block columns">
+      <div class="publication-block columns" data-year="2025" data-type="paper">
         <div class="column is-2">
           <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
             <img src="/document/AHUdataset.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -230,7 +279,7 @@ layout: null
   </div>
 </div>
 <!-- Depth-Aware Gaussian Splatting with Propagation Properties for Ultrasound Rendering -->
-<div class="publication-block columns">
+      <div class="publication-block columns" data-year="2025" data-type="preprint">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/3DUS.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -252,7 +301,7 @@ layout: null
   </div>
 </div>
 <!-- Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection -->
-<div class="publication-block columns">
+<div class="publication-block columns" data-year="2025" data-type="preprint">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/Gout.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -275,7 +324,7 @@ layout: null
 </div>
 
 <!--   Explicit and Implicit Representations in AI-based 3D Reconstruction for Radiology: A Systematic Review -->
-<div class="publication-block columns">
+<div class="publication-block columns" data-year="2025" data-type="preprint">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/Survey.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -305,7 +354,7 @@ layout: null
 </div>
 
 <!--   Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs -->
-<div class="publication-block columns">
+<div class="publication-block columns" data-year="2025" data-type="preprint">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/AutoUS.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -327,8 +376,8 @@ layout: null
   </div>
 </div>
 
-<!--   Prompting the Abnormality: Test-Time Adaptation for Breast Ultrasound Segmentation -->
-<div class="publication-block columns">
+      <!--   Prompting the Abnormality: Test-Time Adaptation for Breast Ultrasound Segmentation -->
+      <div class="publication-block columns" data-year="2025" data-type="preprint">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/A3PT.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -357,7 +406,7 @@ layout: null
   </div>
 </div>
 <!--   PET image reconstruction method based on prior image and PET image 3D perception method -->
-<div class="publication-block columns">
+<div class="publication-block columns" data-year="2024" data-type="patent">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/NerfP.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -385,7 +434,7 @@ layout: null
 </div>
 
 <!--   3D Gaussian model generation and rendering method for low-dose PET image processing -->
-<div class="publication-block columns">
+<div class="publication-block columns" data-year="2025" data-type="patent">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/3dgsp.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -418,7 +467,7 @@ layout: null
     <hr style="width: 100%;">
   </div>
 </div>
-      <div class="publication-block columns">
+      <div class="publication-block columns" data-year="2024" data-type="project">
         <div class="column is-2">
           <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
             <img src="document/PET.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -593,6 +642,47 @@ layout: null
   </section>
 
   <script>
+    // Publication filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const yearFilter = document.getElementById('year-filter');
+      const typeFilter = document.getElementById('type-filter');
+      
+      if (yearFilter && typeFilter) {
+        yearFilter.addEventListener('change', filterPublications);
+        typeFilter.addEventListener('change', filterPublications);
+      }
+    });
+    
+    function filterPublications() {
+      const yearFilter = document.getElementById('year-filter').value;
+      const typeFilter = document.getElementById('type-filter').value;
+      const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
+      
+      publications.forEach(pub => {
+        const year = pub.getAttribute('data-year');
+        const type = pub.getAttribute('data-type');
+        
+        const yearMatch = yearFilter === 'all' || year === yearFilter;
+        const typeMatch = typeFilter === 'all' || type === typeFilter;
+        
+        if (yearMatch && typeMatch) {
+          pub.style.display = 'flex';
+        } else {
+          pub.style.display = 'none';
+        }
+      });
+    }
+    
+    function clearFilters() {
+      document.getElementById('year-filter').value = 'all';
+      document.getElementById('type-filter').value = 'all';
+      
+      const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
+      publications.forEach(pub => {
+        pub.style.display = 'flex';
+      });
+    }
+
     // Travel locations data with province information
     const travelLocations = [
       {
@@ -646,66 +736,66 @@ layout: null
       });
     });
 
-    // Create province polygons
-    function createProvincePolygons() {
-      // Simplified province boundaries for China and Canada
-      const provinces = [
-        // China provinces
-        { name: "Beijing", coords: [[39.4, 116.0], [40.4, 116.0], [40.4, 117.0], [39.4, 117.0]], visited: true },
-        { name: "Shanghai", coords: [[30.7, 120.8], [31.7, 120.8], [31.7, 121.8], [30.7, 121.8]], visited: true },
-        { name: "Zhejiang", coords: [[28.0, 118.0], [30.5, 118.0], [30.5, 122.0], [28.0, 122.0]], visited: true },
-        { name: "Guangdong", coords: [[20.0, 109.0], [25.0, 109.0], [25.0, 117.0], [20.0, 117.0]], visited: false },
-        { name: "Sichuan", coords: [[26.0, 97.0], [33.0, 97.0], [33.0, 110.0], [26.0, 110.0]], visited: false },
-        { name: "Xinjiang", coords: [[34.0, 73.0], [49.0, 73.0], [49.0, 96.0], [34.0, 96.0]], visited: false },
-        // Canada provinces
-        { name: "Alberta", coords: [[49.0, -120.0], [60.0, -120.0], [60.0, -110.0], [49.0, -110.0]], visited: true },
-        { name: "Ontario", coords: [[41.0, -95.0], [57.0, -95.0], [57.0, -74.0], [41.0, -74.0]], visited: false },
-        { name: "Quebec", coords: [[45.0, -80.0], [62.0, -80.0], [62.0, -57.0], [45.0, -57.0]], visited: false }
-      ];
-      
-      provinces.forEach(province => {
-        const polygon = L.polygon(province.coords, {
-          fillColor: province.visited ? '#FFF3CD' : '#FFFFFF', // Light yellow for visited, white for not visited
-          color: '#666666',
-          weight: 1,
-          opacity: 0.8,
-          fillOpacity: 0.6
-        }).addTo(map);
+          // Create province polygons
+      function createProvincePolygons() {
+        // Simplified province boundaries for China and Canada
+        const provinces = [
+          // China provinces
+          { name: "Beijing", coords: [[39.4, 116.0], [40.4, 116.0], [40.4, 117.0], [39.4, 117.0]], visited: true },
+          { name: "Shanghai", coords: [[30.7, 120.8], [31.7, 120.8], [31.7, 121.8], [30.7, 121.8]], visited: true },
+          { name: "Zhejiang", coords: [[28.0, 118.0], [30.5, 118.0], [30.5, 122.0], [28.0, 122.0]], visited: true },
+          { name: "Guangdong", coords: [[20.0, 109.0], [25.0, 109.0], [25.0, 117.0], [20.0, 117.0]], visited: false },
+          { name: "Sichuan", coords: [[26.0, 97.0], [33.0, 97.0], [33.0, 110.0], [26.0, 110.0]], visited: false },
+          { name: "Xinjiang", coords: [[34.0, 73.0], [49.0, 73.0], [49.0, 96.0], [34.0, 96.0]], visited: false },
+          // Canada provinces
+          { name: "Alberta", coords: [[49.0, -120.0], [60.0, -120.0], [60.0, -110.0], [49.0, -110.0]], visited: true },
+          { name: "Ontario", coords: [[41.0, -95.0], [57.0, -95.0], [57.0, -74.0], [41.0, -74.0]], visited: false },
+          { name: "Quebec", coords: [[45.0, -80.0], [62.0, -80.0], [62.0, -57.0], [45.0, -57.0]], visited: false }
+        ];
         
-        if (province.visited) {
-          // Add click event for visited provinces
-          polygon.on('click', function() {
-            const location = travelLocations.find(loc => 
-              loc.provinceName === province.name || 
-              loc.country === "Canada" && province.name === "Alberta"
-            );
-            if (location) {
-              showTravelModal(location);
-            }
-          });
+        provinces.forEach(province => {
+          const polygon = L.polygon(province.coords, {
+            fillColor: province.visited ? '#FFF3CD' : '#FFFFFF', // Light yellow for visited, white for not visited
+            color: '#666666',
+            weight: 1,
+            opacity: 0.8,
+            fillOpacity: 0.6
+          }).addTo(map);
           
-          // Add hover effect
-          polygon.on('mouseover', function() {
-            this.setStyle({ fillOpacity: 0.8, weight: 2 });
-          });
+          if (province.visited) {
+            // Add click event for visited provinces
+            polygon.on('click', function() {
+              const location = travelLocations.find(loc => 
+                loc.provinceName === province.name || 
+                loc.country === "Canada" && province.name === "Alberta"
+              );
+              if (location) {
+                showTravelModal(location);
+              }
+            });
+            
+            // Add hover effect
+            polygon.on('mouseover', function() {
+              this.setStyle({ fillOpacity: 0.8, weight: 2 });
+            });
+            
+            polygon.on('mouseout', function() {
+              this.setStyle({ fillOpacity: 0.6, weight: 1 });
+            });
+          }
           
-          polygon.on('mouseout', function() {
-            this.setStyle({ fillOpacity: 0.6, weight: 1 });
-          });
-        }
-        
-        // Add province labels
-        const center = getPolygonCenter(province.coords);
-        L.marker(center, {
-          icon: L.divIcon({
-            className: 'province-label',
-            html: `<div style="background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; color: #333;">${province.name}</div>`,
-            iconSize: [60, 20],
-            iconAnchor: [30, 10]
-          })
-        }).addTo(map);
-      });
-    }
+          // Add province labels with better positioning
+          const center = getPolygonCenter(province.coords);
+          L.marker(center, {
+            icon: L.divIcon({
+              className: 'province-label',
+              html: `<div style="background: rgba(255,255,255,0.9); padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; color: #333; border: 1px solid #ddd; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">${province.name}</div>`,
+              iconSize: [80, 25],
+              iconAnchor: [40, 12]
+            })
+          }).addTo(map);
+        });
+      }
     
     // Helper function to get polygon center
     function getPolygonCenter(coords) {
