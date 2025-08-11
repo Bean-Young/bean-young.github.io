@@ -98,6 +98,55 @@ layout: null
       width: 90%;
     }
     
+    /* Unified image container styles */
+    .unified-image-container {
+      width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      position: relative;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .unified-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 8px;
+    }
+    
+    .unified-image-container img[src*="Review.png"] {
+      object-fit: contain;
+      background-color: #ffffff;
+    }
+    
+    /* Publication image container styles */
+    .publication-image-container {
+      width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      position: relative;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .publication-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 8px;
+    }
+    
     .modal-card-body img {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
@@ -249,8 +298,8 @@ layout: null
       <!-- An annotated heterogeneous ultrasound database -->
       <div class="publication-block columns" data-year="2025" data-type="paper" data-visible="true">
         <div class="column is-2">
-          <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-            <img src="/document/AHUdataset.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+          <div class="publication-image-container">
+            <img src="/document/AHUdataset.png">
           </div>
         </div>
         <div class="column">
@@ -284,8 +333,8 @@ layout: null
 <!-- EM-Net: Effective and morphology-aware network for skin lesion segmentation -->
 <div class="publication-block columns" data-year="2025" data-type="paper" data-visible="true">
   <div class="column is-2">
-    <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-      <img src="document/EMnet.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+    <div class="publication-image-container">
+      <img src="document/EMnet.png">
     </div>
   </div>
   <div class="column">
@@ -314,8 +363,8 @@ layout: null
 <!-- Depth-Aware Gaussian Splatting with Propagation Properties for Ultrasound Rendering -->
       <div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="true">
   <div class="column is-2">
-    <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-      <img src="document/3DUS.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+    <div class="publication-image-container">
+      <img src="document/3DUS.png">
     </div>
   </div>
   <div class="column">
@@ -336,8 +385,8 @@ layout: null
 <!-- Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection -->
 <div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="true">
   <div class="column is-2">
-    <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-      <img src="document/Gout.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+    <div class="publication-image-container">
+      <img src="document/Gout.png">
     </div>
   </div>
   <div class="column">
@@ -359,8 +408,8 @@ layout: null
 <!--   Explicit and Implicit Representations in AI-based 3D Reconstruction for Radiology: A Systematic Review -->
 <div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="true">
   <div class="column is-2">
-    <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-      <img src="document/Survey.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+    <div class="publication-image-container">
+      <img src="document/Survey.png">
     </div>
   </div>
   <div class="column">
@@ -389,8 +438,8 @@ layout: null
 <!--   Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs -->
 <div class="publication-block columns" data-year="2025" data-type="preprint">
   <div class="column is-2">
-    <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-      <img src="document/AutoUS.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+    <div class="publication-image-container">
+      <img src="document/AutoUS.png">
     </div>
   </div>
   <div class="column">
@@ -412,8 +461,8 @@ layout: null
       <!--   Prompting the Abnormality: Test-Time Adaptation for Breast Ultrasound Segmentation -->
       <div class="publication-block columns" data-year="2025" data-type="preprint">
   <div class="column is-2">
-    <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-      <img src="document/A3PT.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+    <div class="publication-image-container">
+      <img src="document/A3PT.png">
     </div>
   </div>
   <div class="column">
@@ -441,8 +490,8 @@ layout: null
 <!--   PET image reconstruction method based on prior image and PET image 3D perception method -->
 <div class="publication-block columns" data-year="2024" data-type="patent">
   <div class="column is-2">
-    <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-      <img src="document/NerfP.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+    <div class="publication-image-container">
+      <img src="document/NerfP.png">
     </div>
   </div>
   <div class="column">
@@ -469,8 +518,8 @@ layout: null
 <!--   3D Gaussian model generation and rendering method for low-dose PET image processing -->
 <div class="publication-block columns" data-year="2025" data-type="patent">
   <div class="column is-2">
-    <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-      <img src="document/3dgsp.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+    <div class="publication-image-container">
+      <img src="document/3dgsp.png">
     </div>
   </div>
   <div class="column">
@@ -502,8 +551,8 @@ layout: null
 </div>
       <div class="publication-block columns" data-year="2024" data-type="project">
         <div class="column is-2">
-          <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-            <img src="document/PET.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+          <div class="publication-image-container">
+            <img src="document/PET.jpg">
           </div>
         </div>
         <div class="column">
@@ -550,8 +599,8 @@ layout: null
       <!-- 本科教育经历 -->
       <div class="education-block columns">
         <div class="column is-2">
-          <div class="image-container" style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-            <img src="/document/ahu.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+          <div class="unified-image-container">
+            <img src="/document/ahu.png">
           </div>
         </div>
         <div class="column">
@@ -571,8 +620,8 @@ layout: null
       <!-- 安徽大学实习经历 -->
       <div class="education-block columns">
         <div class="column is-2">
-          <div class="image-container" style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-            <img src="/document/ahu-mi.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+          <div class="unified-image-container">
+            <img src="/document/ahu-mi.png">
           </div>
         </div>
         <div class="column">
@@ -587,8 +636,8 @@ layout: null
       <!-- 阿尔伯塔大学实习经历 -->
       <div class="education-block columns">
         <div class="column is-2">
-          <div class="image-container" style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-            <img src="/document/uoa.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+          <div class="unified-image-container">
+            <img src="/document/uoa.png">
           </div>
         </div>
         <div class="column">
@@ -610,8 +659,8 @@ layout: null
       <!-- 审稿人经历 -->
       <div class="education-block columns">
         <div class="column is-2">
-          <div class="image-container" style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-            <img src="/document/Review.png" style="width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; background-color: #ffffff;">
+          <div class="unified-image-container">
+            <img src="/document/Review.png">
           </div>
         </div>
         <div class="column">
@@ -669,13 +718,13 @@ layout: null
         <div class="award-item" data-category="scholarship" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/1.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/1.pdf">
               </div>
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/1.pdf" target="_blank" style="color: black;">The National Scholarship</a>
+                <a href="/document/1.pdf" target="_blank" style="color: black;">The Undergraduate National Scholarship</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
               <p class="is-italic has-text-grey">Top 0.4% nationwide, Highest Undergraduate Honors, CNY 10,000</p>
@@ -687,8 +736,8 @@ layout: null
         <div class="award-item" data-category="funding" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/12.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/12.pdf">
               </div>
             </div>
             <div class="column">
@@ -705,8 +754,8 @@ layout: null
         <div class="award-item" data-category="scholarship" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/3.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/3.pdf">
               </div>
             </div>
             <div class="column">
@@ -723,8 +772,8 @@ layout: null
         <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/2.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/2.pdf">
               </div>
             </div>
             <div class="column">
@@ -741,8 +790,8 @@ layout: null
         <div class="award-item" data-category="scholarship" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/2.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/2.pdf">
               </div>
             </div>
             <div class="column">
@@ -759,8 +808,8 @@ layout: null
         <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/3.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/3.pdf">
               </div>
             </div>
             <div class="column">
@@ -776,8 +825,8 @@ layout: null
         <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/4.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/4.pdf">
               </div>
             </div>
             <div class="column">
@@ -792,8 +841,8 @@ layout: null
         <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/5.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/5.pdf">
               </div>
             </div>
             <div class="column">
@@ -810,8 +859,8 @@ layout: null
         <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/6.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/6.pdf">
               </div>
             </div>
             <div class="column">
@@ -828,8 +877,8 @@ layout: null
         <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/7.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/7.pdf">
               </div>
             </div>
             <div class="column">
@@ -837,6 +886,7 @@ layout: null
                 <a href="/document/7.pdf" target="_blank" style="color: black;">College Students' Innovation Competition, Anhui University Silver Award</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
+              <p class="is-italic has-text-grey">Important university-level competition</p>
             </div>
           </div>
         </div>
@@ -845,8 +895,8 @@ layout: null
         <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/8.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/8.pdf">
               </div>
             </div>
             <div class="column">
@@ -863,8 +913,8 @@ layout: null
         <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/9.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/9.pdf">
               </div>
             </div>
             <div class="column">
@@ -881,8 +931,8 @@ layout: null
         <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/10.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/10.pdf">
               </div>
             </div>
             <div class="column">
@@ -899,8 +949,8 @@ layout: null
         <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/11.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/11.pdf">
               </div>
             </div>
             <div class="column">
@@ -917,8 +967,8 @@ layout: null
         <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/V.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              <div class="unified-image-container">
+                <img src="/document/V.pdf">
               </div>
             </div>
             <div class="column">
