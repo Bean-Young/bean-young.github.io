@@ -117,13 +117,13 @@ layout: null
     }
     
     /* Hidden items styles */
-    .publication-block.hidden,
-    .award-item.hidden {
+    .publication-block[data-visible="false"],
+    .award-item[data-visible="false"] {
       display: none !important;
     }
     
-    .publication-block:not(.hidden),
-    .award-item:not(.hidden) {
+    .publication-block[data-visible="true"],
+    .award-item[data-visible="true"] {
       display: flex !important;
     }
   </style>
@@ -955,7 +955,7 @@ layout: null
         const typeMatch = typeFilter === 'all' || type === typeFilter;
         
         if (yearMatch && typeMatch) {
-          // Only show publications that are marked as visible or are within first 5
+          // Only show publications that are marked as visible
           const isVisible = pub.getAttribute('data-visible') === 'true';
           if (isVisible) {
             pub.style.display = 'flex';
@@ -1000,6 +1000,7 @@ layout: null
         // Show all awards
         hiddenAwards.forEach(award => {
           award.style.display = 'flex';
+          award.setAttribute('data-visible', 'true');
         });
         icon.className = 'fas fa-chevron-up';
         text.textContent = 'Show Less';
@@ -1007,6 +1008,7 @@ layout: null
         // Hide awards after first 5
         hiddenAwards.forEach(award => {
           award.style.display = 'none';
+          award.setAttribute('data-visible', 'false');
         });
         icon.className = 'fas fa-chevron-down';
         text.textContent = 'Show More';
@@ -1029,6 +1031,7 @@ layout: null
         // Show all publications
         hiddenPublications.forEach(pub => {
           pub.style.display = 'flex';
+          pub.setAttribute('data-visible', 'true');
         });
         icon.className = 'fas fa-chevron-up';
         text.textContent = 'Show Less';
@@ -1036,6 +1039,7 @@ layout: null
         // Hide publications after first 5
         hiddenPublications.forEach(pub => {
           pub.style.display = 'none';
+          pub.setAttribute('data-visible', 'false');
         });
         icon.className = 'fas fa-chevron-down';
         text.textContent = 'Show More';
