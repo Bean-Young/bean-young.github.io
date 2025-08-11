@@ -993,7 +993,12 @@ layout: null
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      if (hiddenAwards.length > 0 && hiddenAwards[0] && hiddenAwards[0].style.display === 'none') {
+      // Check if any hidden awards are currently visible
+      const anyVisible = Array.from(hiddenAwards).some(award => 
+        award.style.display !== 'none' && award.style.display !== ''
+      );
+      
+      if (!anyVisible) {
         // Show all awards
         hiddenAwards.forEach(award => {
           award.style.display = 'flex';
@@ -1017,7 +1022,12 @@ layout: null
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      if (hiddenPublications.length > 0 && hiddenPublications[0] && hiddenPublications[0].style.display === 'none') {
+      // Check if any hidden publications are currently visible
+      const anyVisible = Array.from(hiddenPublications).some(pub => 
+        pub.style.display !== 'none' && pub.style.display !== ''
+      );
+      
+      if (!anyVisible) {
         // Show all publications
         hiddenPublications.forEach(pub => {
           pub.style.display = 'flex';
