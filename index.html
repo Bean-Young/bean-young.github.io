@@ -129,10 +129,22 @@ layout: null
       pointer-events: none !important;
       z-index: 1000 !important;
       white-space: nowrap !important;
+      position: absolute !important;
     }
     
     .simple-tooltip::before {
       border-top-color: rgba(0, 0, 0, 0.9) !important;
+    }
+    
+    /* Ensure coordinate markers are always visible */
+    .coordinate-marker {
+      z-index: 999 !important;
+      pointer-events: auto !important;
+    }
+    
+    .coordinate-marker div {
+      pointer-events: auto !important;
+      user-select: none !important;
     }
     
     /* Modal styles */
@@ -434,7 +446,7 @@ layout: null
     </h3>
     <p class="publication-description">
       <b>Yuezhe Yang</b>, Wenjie Cai, Dexin Yang, Yufang Dong, Qingqing Ruan, Xingbo Dong<sup>†</sup>, Zhe Jin<br>
-      Submit to WACV (2026)<br>
+      Submit to WACV, 2026<br>
       <small>The first to apply 3DGS to generate new ultrasound perspectives.</small>
     </p> 
          <!-- Publication Links. -->
@@ -532,7 +544,7 @@ layout: null
     </h3>
     <p class="publication-description">
       <b>Yuezhe Yang</b>, YongZhou Liu, Liwen Wang, Xingbo Dong<sup>†</sup>, Zhe Jin<br>
-      Submit to AAAI (2026)<br>
+      Submit to AAAI, 2026<br>
       <small>The first test-time adaptation method tailored for breast ultrasound imaging.</small>
     </p>
          <!-- Publication Links. -->
@@ -1244,13 +1256,13 @@ layout: null
         ];
         
         provinces.forEach(province => {
-          // Create a simple coordinate marker for all provinces
+          // Create coordinate markers (📍) for all provinces
           const marker = L.marker(province.coords, {
             icon: L.divIcon({
               className: 'coordinate-marker',
-              html: `<div style="background: #FF6B6B; color: white; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.3);"></div>`,
-              iconSize: [12, 12],
-              iconAnchor: [6, 6]
+              html: `<div style="font-size: 20px; color: #FF6B6B; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">📍</div>`,
+              iconSize: [20, 20],
+              iconAnchor: [10, 10]
             })
           }).addTo(map);
           
@@ -1268,14 +1280,14 @@ layout: null
             
             // Add hover effect
             marker.on('mouseover', function() {
-              this.getElement().style.transform = 'scale(1.5)';
+              this.getElement().style.transform = 'scale(1.3)';
               
-              // Show province name as a simple text above
+              // Show province name in a fixed position above
               const tooltip = L.tooltip({
                 permanent: false,
                 direction: 'top',
                 className: 'simple-tooltip',
-                offset: [0, -20]
+                offset: [0, -35]
               }).setContent(province.name);
               
               marker.bindTooltip(tooltip).openTooltip();
@@ -1288,14 +1300,14 @@ layout: null
           } else {
             // For unvisited provinces, just show hover effect
             marker.on('mouseover', function() {
-              this.getElement().style.transform = 'scale(1.3)';
+              this.getElement().style.transform = 'scale(1.2)';
               
-              // Show province name as a simple text above
+              // Show province name in a fixed position above
               const tooltip = L.tooltip({
                 permanent: false,
                 direction: 'top',
                 className: 'simple-tooltip',
-                offset: [0, -20]
+                offset: [0, -35]
               }).setContent(province.name);
               
               marker.bindTooltip(tooltip).openTooltip();
