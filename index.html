@@ -115,6 +115,25 @@ layout: null
       margin-bottom: 0;
       line-height: 1.6;
     }
+    
+    /* Ensure education section title is visible */
+    #education .title.is-3 {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    
+    /* Ensure show more button text is visible */
+    #show-more-publications span {
+      display: inline !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    
+    /* Ensure button text is not hidden */
+    .button span {
+      display: inline !important;
+    }
   </style>
 </head>
 
@@ -533,9 +552,9 @@ layout: null
       
       <!-- Show More Button for Publications -->
       <div class="has-text-centered" style="margin-top: 2rem;">
-        <button id="show-more-publications" class="button is-medium is-outlined" onclick="togglePublications()">
+        <button id="show-more-publications" class="button is-medium is-outlined" onclick="togglePublications()" style="color: #333 !important;">
           <span class="icon"><i class="fas fa-chevron-down"></span>
-          <span>Show More</span>
+          <span style="display: inline !important; color: inherit !important;">Show More</span>
         </button>
       </div>
     </div>
@@ -560,7 +579,7 @@ layout: null
 </script>
   <section class="section" id="education">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Education & Experiences</h2>
+      <h2 class="title is-3" style="display: block !important; visibility: visible !important; opacity: 1 !important;">Education & Experiences</h2>
       <!-- 本科教育经历 -->
       <div class="education-block columns">
         <div class="column is-2">
