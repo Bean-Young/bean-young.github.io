@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en-US">
 <title>Yuezhe Yang</title>
@@ -19,7 +22,7 @@
   <link href="{{ '/css/fontawesome.all.min.css' | relative_url }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet">
   <link href="{{ '/css/bulma.min.css' | relative_url }}" rel="stylesheet">
-  <link href="{{ '/css/index.scss' | relative_url }}" rel="stylesheet">
+  <link href="{{ '/css/index.css' | relative_url }}" rel="stylesheet">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script defer src="{{ '/js/fontawesome.all.min.js' | relative_url }}"></script>
@@ -968,28 +971,18 @@
     
     // Awards toggle functionality
     function toggleAwards() {
-      console.log('toggleAwards function called');
       const hiddenAwards = document.querySelectorAll('.award-item[data-visible="false"]');
       const showMoreBtn = document.getElementById('show-more-awards');
-      
-      if (!showMoreBtn) {
-        console.error('Show more button not found');
-        return;
-      }
-      
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      console.log('Hidden awards found:', hiddenAwards.length);
-      
-      if (hiddenAwards.length > 0 && hiddenAwards[0].style.display === 'none') {
+      if (hiddenAwards.length > 0 && hiddenAwards[0] && hiddenAwards[0].style.display === 'none') {
         // Show all awards
         hiddenAwards.forEach(award => {
           award.style.display = 'flex';
         });
         icon.className = 'fas fa-chevron-up';
         text.textContent = 'Show Less';
-        console.log('Showing all awards');
       } else {
         // Hide awards after first 5
         hiddenAwards.forEach(award => {
@@ -997,34 +990,23 @@
         });
         icon.className = 'fas fa-chevron-down';
         text.textContent = 'Show More';
-        console.log('Hiding awards after first 5');
       }
     }
     
     // Publications toggle functionality
     function togglePublications() {
-      console.log('togglePublications function called');
       const hiddenPublications = document.querySelectorAll('.publication-block[data-visible="false"]');
       const showMoreBtn = document.getElementById('show-more-publications');
-      
-      if (!showMoreBtn) {
-        console.error('Show more publications button not found');
-        return;
-      }
-      
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      console.log('Hidden publications found:', hiddenPublications.length);
-      
-      if (hiddenPublications.length > 0 && hiddenPublications[0].style.display === 'none') {
+      if (hiddenPublications.length > 0 && hiddenPublications[0] && hiddenPublications[0].style.display === 'none') {
         // Show all publications
         hiddenPublications.forEach(pub => {
           pub.style.display = 'flex';
         });
         icon.className = 'fas fa-chevron-up';
         text.textContent = 'Show Less';
-        console.log('Showing all publications');
       } else {
         // Hide publications after first 5
         hiddenPublications.forEach(pub => {
@@ -1032,7 +1014,6 @@
         });
         icon.className = 'fas fa-chevron-down';
         text.textContent = 'Show More';
-        console.log('Hiding publications after first 5');
       }
     }
 
@@ -1070,24 +1051,6 @@
 
     // Initialize map when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      // Debug: Check if elements are loaded
-      console.log('Page loaded, checking elements...');
-      
-      const showMoreAwardsBtn = document.getElementById('show-more-awards');
-      const showMorePublicationsBtn = document.getElementById('show-more-publications');
-      
-      if (showMoreAwardsBtn) {
-        console.log('Show more awards button found');
-      } else {
-        console.error('Show more awards button NOT found');
-      }
-      
-      if (showMorePublicationsBtn) {
-        console.log('Show more publications button found');
-      } else {
-        console.error('Show more publications button NOT found');
-      }
-      
       // Create map focused on China and surrounding areas
       const map = L.map('world-map').setView([35, 105], 5);
       
