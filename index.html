@@ -1058,17 +1058,11 @@ layout: null
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      console.log('toggleAwards called, found', allAwards.length, 'awards');
+      // Simple approach: check if button text contains "Show More"
+      const isCurrentlyShowingMore = text.textContent.includes('Show More');
       
-      // Check if we're currently showing all awards by looking at the last award
-      const lastAward = allAwards[allAwards.length - 1];
-      const showingAll = lastAward.style.display === 'flex';
-      
-      console.log('Last award display:', lastAward.style.display, 'showingAll:', showingAll);
-      
-      if (!showingAll) {
+      if (isCurrentlyShowingMore) {
         // Show all awards
-        console.log('Showing all awards');
         allAwards.forEach(award => {
           award.style.display = 'flex';
         });
@@ -1076,7 +1070,6 @@ layout: null
         text.textContent = 'Show Less';
       } else {
         // Hide awards after first 5
-        console.log('Hiding awards after first 5');
         allAwards.forEach((award, index) => {
           if (index < 5) {
             award.style.display = 'flex';
