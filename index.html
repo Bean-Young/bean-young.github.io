@@ -637,9 +637,36 @@ layout: null
         Scholarships & Funding
       </h2>
       
+      <!-- Awards Filter Section -->
+      <div class="filter-section" style="margin-bottom: 2rem;">
+        <div class="columns is-multiline is-vcentered">
+          <div class="column is-narrow">
+            <div class="field has-addons">
+              <div class="control">
+                <span class="button is-static">Category:</span>
+              </div>
+              <div class="control">
+                <div class="select">
+                  <select id="award-category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="scholarship">Scholarship</option>
+                    <option value="funding">Funding</option>
+                    <option value="award">Award</option>
+                    <option value="honor">Honor</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-narrow">
+            <button class="button is-light" onclick="clearAwardFilters()">Clear Filters</button>
+          </div>
+        </div>
+      </div>
+      
       <div class="awards-grid">
         <!-- National Scholarship -->
-        <div class="award-item" data-visible="true" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="scholarship" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -648,16 +675,16 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/1.pdf" target="_blank">The National Scholarship</a>
+                <a href="/document/1.pdf" target="_blank" style="color: black;">The National Scholarship</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
-              <p class="is-italic has-text-grey">Top 0.4% nationwide, Highest Undergraduate Honors</p>
+              <p class="is-italic has-text-grey">Top 0.4% nationwide, Highest Undergraduate Honors, CNY 10,000</p>
             </div>
           </div>
         </div>
 
         <!-- National College Students Innovation Training Program Excellent Completion -->
-        <div class="award-item" data-visible="true" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="funding" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -666,34 +693,16 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/12.pdf" target="_blank">National College Students Innovation Training Program Excellent Completion</a>
+                <a href="/document/12.pdf" target="_blank" style="color: black;">National College Students Innovation Training Program Excellent Completion</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2023-2025</p>
-              <p class="is-italic has-text-grey">Outstanding completion of national-level innovation training project</p>
+              <p class="is-italic has-text-grey">Outstanding completion of national-level innovation training project, CNY 6,000</p>
             </div>
           </div>
         </div>
 
-        <!-- CSC Government Scholarship -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
-          <div class="columns is-vcentered">
-            <div class="column is-2">
-              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <img src="/document/2.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
-              </div>
-            </div>
-            <div class="column">
-              <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/2.pdf" target="_blank">Undergraduate CSC Government Scholarship for Study Abroad</a>
-              </h4>
-              <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2025</p>
-              <p class="is-italic has-text-grey">Only 30 recipients nationwide</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Innovation Competition Gold Award -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <!-- Undergraduate CSC Government Scholarship for Study Abroad -->
+        <div class="award-item" data-category="scholarship" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -702,7 +711,61 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/3.pdf" target="_blank">China International College Students' Innovation Competition, Higher Education Track, Anhui Province Gold Award</a>
+                <a href="/document/3.pdf" target="_blank" style="color: black;">Undergraduate CSC Government Scholarship for Study Abroad</a>
+              </h4>
+              <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2025</p>
+              <p class="is-italic has-text-grey">Only 30 recipients nationwide, CAD 5,400</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- China International College Students Innovation Competition -->
+        <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
+          <div class="columns is-vcentered">
+            <div class="column is-2">
+              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <img src="/document/2.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              </div>
+            </div>
+            <div class="column">
+              <h4 class="title is-5" style="margin-bottom: 0.5rem;">
+                <a href="/document/2.pdf" target="_blank" style="color: black;">China International College Students Innovation Competition, Anhui Province Gold Award</a>
+              </h4>
+              <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
+              <p class="is-italic has-text-grey">Higher Education Track, Ministry of Education's Premier Competition, served as Team Leader</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSC Government Scholarship -->
+        <div class="award-item" data-category="scholarship" style="margin-bottom: 1.5rem;">
+          <div class="columns is-vcentered">
+            <div class="column is-2">
+              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <img src="/document/2.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              </div>
+            </div>
+            <div class="column">
+              <h4 class="title is-5" style="margin-bottom: 0.5rem;">
+                <a href="/document/2.pdf" target="_blank" style="color: black;">Undergraduate CSC Government Scholarship for Study Abroad</a>
+              </h4>
+              <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2025</p>
+              <p class="is-italic has-text-grey">Only 30 recipients nationwide</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Innovation Competition Gold Award -->
+        <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
+          <div class="columns is-vcentered">
+            <div class="column is-2">
+              <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <img src="/document/3.pdf" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;">
+              </div>
+            </div>
+            <div class="column">
+              <h4 class="title is-5" style="margin-bottom: 0.5rem;">
+                <a href="/document/3.pdf" target="_blank" style="color: black;">China International College Students' Innovation Competition, Higher Education Track, Anhui Province Gold Award</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
             </div>
@@ -710,7 +773,7 @@ layout: null
         </div>
 
         <!-- Innovation Star Team Award -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -726,7 +789,7 @@ layout: null
         </div>
 
         <!-- Lanqiao Cup Competition -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -735,15 +798,16 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/5.pdf" target="_blank">15th Lanqiao Cup National Software and Information Technology Professional Talent Competition, C/C++ Programming University Group A, Anhui Province Second Prize</a>
+                <a href="/document/5.pdf" target="_blank" style="color: black;">15th Lanqiao Cup National Software and Information Technology Professional Talent Competition, C/C++ Programming University Group A, Anhui Province Second Prize</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
+              <p class="is-italic has-text-grey">Important programming competition in C/C++</p>
             </div>
           </div>
         </div>
 
         <!-- University Innovation Competition Gold -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -752,15 +816,16 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/6.pdf" target="_blank">College Students' Innovation Competition, Anhui University Gold Award</a>
+                <a href="/document/6.pdf" target="_blank" style="color: black;">College Students' Innovation Competition, Anhui University Gold Award</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
+              <p class="is-italic has-text-grey">Important university-level competition</p>
             </div>
           </div>
         </div>
 
         <!-- University Innovation Competition Silver -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -769,7 +834,7 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/7.pdf" target="_blank">College Students' Innovation Competition, Anhui University Silver Award</a>
+                <a href="/document/7.pdf" target="_blank" style="color: black;">College Students' Innovation Competition, Anhui University Silver Award</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
             </div>
@@ -777,7 +842,7 @@ layout: null
         </div>
 
         <!-- Challenge Cup Competition -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="award" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -786,15 +851,16 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/8.pdf" target="_blank">14th "Challenge Cup" University Student Entrepreneurship Competition, Anhui University Bronze Award</a>
+                <a href="/document/8.pdf" target="_blank" style="color: black;">14th "Challenge Cup" University Student Entrepreneurship Competition, Anhui University Bronze Award</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
+              <p class="is-italic has-text-grey">Important university-level competition</p>
             </div>
           </div>
         </div>
 
         <!-- Academic Excellence Award -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -803,15 +869,16 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/9.pdf" target="_blank">First-Class Academic Excellence Award, Anhui University</a>
+                <a href="/document/9.pdf" target="_blank" style="color: black;">First-Class Academic Excellence Award, Anhui University</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2023</p>
+              <p class="is-italic has-text-grey">Awarded to top 5% students, CNY 2,000</p>
             </div>
           </div>
         </div>
 
         <!-- Mentor for Freshmen -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -820,15 +887,16 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/10.pdf" target="_blank">Mentor for Freshmen, Class of 2024, Anhui University</a>
+                <a href="/document/10.pdf" target="_blank" style="color: black;">Mentor for Freshmen, Class of 2024, Anhui University</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
+              <p class="is-italic has-text-grey">Served as freshman mentor, CNY 1,200</p>
             </div>
           </div>
         </div>
 
         <!-- Academic Association Award -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -837,15 +905,16 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/11.pdf" target="_blank">Third Prize, Academic and Scientific Association Award, Anhui University</a>
+                <a href="/document/11.pdf" target="_blank" style="color: black;">Third Prize, Academic and Scientific Association Award, Anhui University</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2024</p>
+              <p class="is-italic has-text-grey">Awarded to outstanding innovation and entrepreneurship teams, CNY 3,000, served as Team Leader</p>
             </div>
           </div>
         </div>
 
         <!-- Volunteer Services -->
-        <div class="award-item" style="margin-bottom: 1.5rem;">
+        <div class="award-item" data-category="honor" style="margin-bottom: 1.5rem;">
           <div class="columns is-vcentered">
             <div class="column is-2">
               <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -854,7 +923,7 @@ layout: null
             </div>
             <div class="column">
               <h4 class="title is-5" style="margin-bottom: 0.5rem;">
-                <a href="/document/V.pdf" target="_blank">Volunteer Services and Social Practice Activities</a>
+                <a href="/document/V.pdf" target="_blank" style="color: black;">Volunteer Services and Social Practice Activities</a>
               </h4>
               <p class="has-text-grey-dark" style="margin-bottom: 0.5rem;">2023–2025</p>
               <p class="is-italic has-text-grey">Actively participated in on-campus and off-campus volunteer services and social practice activities</p>
@@ -920,6 +989,12 @@ layout: null
         typeFilter.addEventListener('change', filterPublications);
       }
       
+      // Awards filtering functionality
+      const awardCategoryFilter = document.getElementById('award-category-filter');
+      if (awardCategoryFilter) {
+        awardCategoryFilter.addEventListener('change', filterAwards);
+      }
+      
       // Show all items by default since we removed Show More functionality
       const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
       publications.forEach(pub => {
@@ -965,8 +1040,34 @@ layout: null
       publications.forEach(pub => {
         pub.style.display = 'flex';
       });
+    }
+    
+    // Awards filtering functionality
+    function filterAwards() {
+      const categoryFilter = document.getElementById('award-category-filter').value;
+      const awards = document.querySelectorAll('.award-item[data-category]');
       
-
+      awards.forEach(award => {
+        const category = award.getAttribute('data-category');
+        
+        if (categoryFilter === 'all' || category === categoryFilter) {
+          // Show award if it matches filter criteria
+          award.style.display = 'flex';
+        } else {
+          // Hide award if it doesn't match filter criteria
+          award.style.display = 'none';
+        }
+      });
+    }
+    
+    function clearAwardFilters() {
+      document.getElementById('award-category-filter').value = 'all';
+      
+      // Show all awards when clearing filters
+      const awards = document.querySelectorAll('.award-item[data-category]');
+      awards.forEach(award => {
+        award.style.display = 'flex';
+      });
     }
     
 
