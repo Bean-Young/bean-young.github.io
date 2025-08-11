@@ -743,33 +743,30 @@ layout: null
         minZoom: 4
       }).addTo(map);
       
-      // Create province polygons (simplified representation)
-      createProvincePolygons();
-      
       // Create province polygons
-      createProvincePolygons();
+      createProvincePolygons(map);
       
       // Add click event to map for province interaction
       map.on('click', function(e) {
         // You can add province detection logic here if needed
       });
-    });
+    }
 
-          // Create province polygons
-      function createProvincePolygons() {
+    // Create province polygons function
+    function createProvincePolygons(map) {
         // Simplified province boundaries for China and Canada
         const provinces = [
           // China provinces
-          { name: "Beijing", coords: [[39.4, 116.0], [40.4, 116.0], [40.4, 117.0], [39.4, 117.0]], visited: true },
-          { name: "Shanghai", coords: [[30.7, 120.8], [31.7, 120.8], [31.7, 121.8], [30.7, 121.8]], visited: true },
-          { name: "Zhejiang", coords: [[28.0, 118.0], [30.5, 118.0], [30.5, 122.0], [28.0, 122.0]], visited: true },
-          { name: "Guangdong", coords: [[20.0, 109.0], [25.0, 109.0], [25.0, 117.0], [20.0, 117.0]], visited: false },
-          { name: "Sichuan", coords: [[26.0, 97.0], [33.0, 97.0], [33.0, 110.0], [26.0, 110.0]], visited: false },
-          { name: "Xinjiang", coords: [[34.0, 73.0], [49.0, 73.0], [49.0, 96.0], [34.0, 96.0]], visited: false },
+          { name: "Beijing", coords: [[39.0, 115.5], [40.5, 115.5], [40.5, 117.5], [39.0, 117.5]], visited: true },
+          { name: "Shanghai", coords: [[30.5, 120.5], [31.5, 120.5], [31.5, 122.0], [30.5, 122.0]], visited: true },
+          { name: "Zhejiang", coords: [[27.5, 118.0], [30.5, 118.0], [30.5, 122.5], [27.5, 122.5]], visited: true },
+          { name: "Guangdong", coords: [[20.0, 109.0], [25.5, 109.0], [25.5, 117.5], [20.0, 117.5]], visited: false },
+          { name: "Sichuan", coords: [[26.0, 97.0], [33.5, 97.0], [33.5, 110.5], [26.0, 110.5]], visited: false },
+          { name: "Xinjiang", coords: [[34.0, 73.0], [49.5, 73.0], [49.5, 96.5], [34.0, 96.5]], visited: false },
           // Canada provinces
-          { name: "Alberta", coords: [[49.0, -120.0], [60.0, -120.0], [60.0, -110.0], [49.0, -110.0]], visited: true },
-          { name: "Ontario", coords: [[41.0, -95.0], [57.0, -95.0], [57.0, -74.0], [41.0, -74.0]], visited: false },
-          { name: "Quebec", coords: [[45.0, -80.0], [62.0, -80.0], [62.0, -57.0], [45.0, -57.0]], visited: false }
+          { name: "Alberta", coords: [[49.0, -120.5], [60.5, -120.5], [60.5, -109.5], [49.0, -109.5]], visited: true },
+          { name: "Ontario", coords: [[41.0, -95.5], [57.5, -95.5], [57.5, -73.5], [41.0, -73.5]], visited: false },
+          { name: "Quebec", coords: [[45.0, -80.5], [62.5, -80.5], [62.5, -56.5], [45.0, -56.5]], visited: false }
         ];
         
         provinces.forEach(province => {
@@ -865,7 +862,7 @@ layout: null
           Last updated: <span id="last-updated"></span>
         </p>
         <p style="font-size: 0.8em; color: #999;">
-          © 2024-2026 Yuezhe Yang. All rights reserved.
+          © Yuezhe Yang. All rights reserved.
         </p>
       </div>
     </div>
