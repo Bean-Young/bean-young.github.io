@@ -116,6 +116,22 @@ layout: null
       z-index: 1002 !important;
     }
     
+    /* Province tooltip styles */
+    .province-tooltip {
+      background: rgba(0, 0, 0, 0.8) !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 6px !important;
+      padding: 6px 12px !important;
+      font-size: 12px !important;
+      font-weight: bold !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .province-tooltip::before {
+      border-top-color: rgba(0, 0, 0, 0.8) !important;
+    }
+    
     /* Modal styles */
     .modal-card {
       max-width: 800px;
@@ -1152,8 +1168,8 @@ layout: null
         name: "Beijing Province, China",
         provinceName: "Beijing",
         country: "China",
-        image: "/document/beijing.jpg",
-        description: "The capital province of China, where I experienced the rich history and modern development of this ancient civilization."
+        image: "/document/ahu.png",
+        description: "The capital province of China, where I experienced the rich history and modern development of this ancient civilization. I visited the Great Wall, Forbidden City, and experienced the blend of ancient culture and modern technology."
       },
       {
         name: "Shanghai Province, China", 
@@ -1247,25 +1263,52 @@ layout: null
               }
             });
             
-            // Add hover effect
+            // Add hover effect and show province name
             marker.on('mouseover', function() {
               this.getElement().style.transform = 'scale(1.3)';
+              
+              // Show province name tooltip
+              this.bindTooltip(province.name, {
+                permanent: false,
+                direction: 'top',
+                className: 'province-tooltip',
+                offset: [0, -10]
+              }).openTooltip();
             });
             
             marker.on('mouseout', function() {
               this.getElement().style.transform = 'scale(1)';
+              this.closeTooltip();
+            });
+          } else {
+            // For unvisited provinces, add non-interactive markers
+            const marker = L.marker(province.coords, {
+              icon: L.divIcon({
+                className: 'unvisited-marker',
+                html: `<div style="background: #CCCCCC; color: white; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2);">○</div>`,
+                iconSize: [16, 16],
+                iconAnchor: [8, 8]
+              })
+            }).addTo(map);
+            
+            // Add hover effect for unvisited provinces
+            marker.on('mouseover', function() {
+              this.getElement().style.transform = 'scale(1.2)';
+              
+              // Show province name tooltip
+              this.bindTooltip(province.name, {
+                permanent: false,
+                direction: 'top',
+                className: 'province-tooltip',
+                offset: [0, -10]
+              }).openTooltip();
+            });
+            
+            marker.on('mouseout', function() {
+              this.getElement().style.transform = 'scale(1)';
+              this.closeTooltip();
             });
           }
-          
-          // Add province name labels (only province names, no cities)
-          const label = L.marker(province.coords, {
-            icon: L.divIcon({
-              className: 'province-label',
-              html: `<div style="background: rgba(255,255,255,0.95); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; color: #333; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;">${province.name}</div>`,
-              iconSize: [100, 30],
-              iconAnchor: [50, 15]
-            })
-          }).addTo(map);
         });
       }
     
