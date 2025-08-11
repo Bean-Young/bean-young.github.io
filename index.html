@@ -542,13 +542,7 @@ layout: null
         </div>
       </div>
       
-      <!-- Show More Button for Publications -->
-      <div class="has-text-centered" style="margin-top: 2rem;">
-        <button id="show-more-publications" class="button is-medium is-outlined" onclick="togglePublications()">
-          <span class="icon"><i class="fas fa-chevron-down"></i></span>
-          <span>Show More</span>
-        </button>
-      </div>
+
     </div>
   </section>
   
@@ -877,13 +871,7 @@ layout: null
           </div>
         </div>
         
-        <!-- Show More Button -->
-        <div class="has-text-centered" style="margin-top: 2rem;">
-          <button id="show-more-awards" class="button is-medium is-outlined" onclick="toggleAwards()">
-            <span class="icon"><i class="fas fa-chevron-down"></span>
-            <span>Show More</span>
-          </button>
-        </div>
+
       </div>
     </div>
   </section>
@@ -941,50 +929,19 @@ layout: null
         typeFilter.addEventListener('change', filterPublications);
       }
       
-      // Initialize Show More functionality for both sections
-      initializeShowMore();
+      // Show all items by default since we removed Show More functionality
+      const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
+      publications.forEach(pub => {
+        pub.style.display = 'flex';
+      });
+      
+      const awards = document.querySelectorAll('.award-item');
+      awards.forEach(award => {
+        award.style.display = 'flex';
+      });
     });
     
-    // Initialize Show More functionality
-    function initializeShowMore() {
-      // Initialize Publications: show first 5, hide the rest
-      const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
-      publications.forEach((pub, index) => {
-        if (index < 5) {
-          pub.style.display = 'flex';
-        } else {
-          pub.style.display = 'none';
-        }
-      });
-      
-      // Initialize Awards: show first 5, hide the rest
-      const awards = document.querySelectorAll('.award-item');
-      awards.forEach((award, index) => {
-        if (index < 5) {
-          award.style.display = 'flex';
-        } else {
-          award.style.display = 'none';
-        }
-      });
-      
-      // Ensure buttons are in correct initial state
-      const publicationsBtn = document.getElementById('show-more-publications');
-      const awardsBtn = document.getElementById('show-more-awards');
-      
-      if (publicationsBtn) {
-        const icon = publicationsBtn.querySelector('.fas');
-        const text = publicationsBtn.querySelector('span:last-child');
-        icon.className = 'fas fa-chevron-down';
-        text.textContent = 'Show More';
-      }
-      
-      if (awardsBtn) {
-        const icon = awardsBtn.querySelector('.fas');
-        const text = awardsBtn.querySelector('span:last-child');
-        icon.className = 'fas fa-chevron-down';
-        text.textContent = 'Show More';
-      }
-    }
+
     
     function filterPublications() {
       const yearFilter = document.getElementById('year-filter').value;
@@ -1012,113 +969,16 @@ layout: null
       document.getElementById('year-filter').value = 'all';
       document.getElementById('type-filter').value = 'all';
       
-      // Restore original Show More state (first 5 visible, rest hidden)
+      // Show all publications when clearing filters
       const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
-      publications.forEach((pub, index) => {
-        if (index < 5) {
-          pub.style.display = 'flex';
-        } else {
-          pub.style.display = 'none';
-        }
+      publications.forEach(pub => {
+        pub.style.display = 'flex';
       });
       
-      // Reset Show More button to original state
-      const showMoreBtn = document.getElementById('show-more-publications');
-      if (showMoreBtn) {
-        const icon = showMoreBtn.querySelector('.fas');
-        const text = showMoreBtn.querySelector('span:last-child');
-        icon.className = 'fas fa-chevron-down';
-        text.textContent = 'Show More';
-      }
-      
-      // Also reset Awards Show More button to original state
-      const awardsShowMoreBtn = document.getElementById('show-more-awards');
-      if (awardsShowMoreBtn) {
-        const icon = awardsShowMoreBtn.querySelector('.fas');
-        const text = awardsShowMoreBtn.querySelector('span:last-child');
-        icon.className = 'fas fa-chevron-down';
-        text.textContent = 'Show More';
-        
-        // Restore original Awards state (first 5 visible, rest hidden)
-        const awards = document.querySelectorAll('.award-item');
-        awards.forEach((award, index) => {
-          if (index < 5) {
-            award.style.display = 'flex';
-          } else {
-            award.style.display = 'none';
-          }
-        });
-      }
+
     }
     
-    // Awards toggle functionality
-    function toggleAwards() {
-      const allAwards = document.querySelectorAll('.award-item');
-      const showMoreBtn = document.getElementById('show-more-awards');
-      const icon = showMoreBtn.querySelector('.fas');
-      const text = showMoreBtn.querySelector('span:last-child');
-      
-      // Simple approach: check if button text contains "Show More"
-      const isCurrentlyShowingMore = text.textContent.includes('Show More');
-      
-      if (isCurrentlyShowingMore) {
-        // Show all awards
-        allAwards.forEach(award => {
-          award.style.display = 'flex';
-        });
-        icon.className = 'fas fa-chevron-up';
-        text.textContent = 'Show Less';
-      } else {
-        // Hide awards after first 5
-        allAwards.forEach((award, index) => {
-          if (index < 5) {
-            award.style.display = 'flex';
-          } else {
-            award.style.display = 'none';
-          }
-        });
-        icon.className = 'fas fa-chevron-down';
-        text.textContent = 'Show More';
-      }
-    }
-    
-    // Publications toggle functionality
-    function togglePublications() {
-      const allPublications = document.querySelectorAll('.publication-block');
-      const showMoreBtn = document.getElementById('show-more-publications');
-      const icon = showMoreBtn.querySelector('.fas');
-      const text = showMoreBtn.querySelector('span:last-child');
-      
-      console.log('togglePublications called, found', allPublications.length, 'publications');
-      
-      // Check if we're currently showing all publications by looking at the last publication
-      const lastPublication = allPublications[allPublications.length - 1];
-      const showingAll = lastPublication.style.display === 'flex';
-      
-      console.log('Last publication display:', lastPublication.style.display, 'showingAll:', showingAll);
-      
-      if (!showingAll) {
-        // Show all publications
-        console.log('Showing all publications');
-        allPublications.forEach(pub => {
-          pub.style.display = 'flex';
-        });
-        icon.className = 'fas fa-chevron-up';
-        text.textContent = 'Show Less';
-      } else {
-        // Hide publications after first 5
-        console.log('Hiding publications after first 5');
-        allPublications.forEach((pub, index) => {
-          if (index < 5) {
-            pub.style.display = 'flex';
-          } else {
-            pub.style.display = 'none';
-          }
-        });
-        icon.className = 'fas fa-chevron-down';
-        text.textContent = 'Show More';
-      }
-    }
+
     
     // Translation toggle functionality
     function toggleTranslation(icon) {
