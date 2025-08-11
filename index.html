@@ -27,15 +27,84 @@ layout: null
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script defer src="{{ '/js/fontawesome.all.min.js' | relative_url }}"></script>
   <script src="{{ '/js/index.js' | relative_url }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     .buttons a {
       margin-right: 10px;
+    }
+    
+    /* Navigation bar styles */
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 1rem;
+    }
+    
+    .navbar-end .buttons {
+      margin-bottom: 0;
+    }
+    
+    .navbar-end .button {
+      margin-left: 0.5rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+    
+    /* Add top margin to hero section to account for fixed navbar */
+    .hero {
+      margin-top: 60px;
+    }
+    
+    /* Smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Map styles */
+    #world-map {
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .travel-marker {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .travel-marker:hover {
+      transform: scale(1.2);
+    }
+    
+    /* Modal styles */
+    .modal-card {
+      max-width: 800px;
+      width: 90%;
+    }
+    
+    .modal-card-body img {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
 
 <body>
-  <section class="hero">
+  <!-- Navigation Bar -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a href="#home" class="button is-light is-small">Home</a>
+          <a href="#publications" class="button is-light is-small">Publications & Projects</a>
+          <a href="#education" class="button is-light is-small">Education & Experiences</a>
+          <a href="#others" class="button is-light is-small">Others</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
     <div class="hero-body container is-max-desktop">
       <div class="columns is-vcentered">
         <div class="column is-4">
@@ -92,7 +161,7 @@ layout: null
     </div>
   </div>
 
-  <section class="section">
+  <section class="section" id="publications">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Publications & Projects</h2>
       <!-- An annotated heterogeneous ultrasound database -->
@@ -148,7 +217,7 @@ layout: null
     </p>
     <!-- Publication Links. -->
     <div class="publication-links buttons field has-addons">
-      <a class="external-link button is-small is-ghost" href="https://cdn.jsdelivr.net/gh/Bean-Young/bean-young.github.io@main/document/EM-Net.pdf">
+      <a class="external-link button is-small is-ghost" href="https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904">
         <span class="icon"><i class="fas fa-file-pdf"></i></span>
         <span>Paper</span>
       </a>
@@ -160,9 +229,8 @@ layout: null
     <!--/ Publication Links. -->
   </div>
 </div>
-
 <!-- Depth-Aware Gaussian Splatting with Propagation Properties for Ultrasound Rendering -->
-<!--  <div class="publication-block columns">
+<div class="publication-block columns">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/3DUS.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -174,16 +242,15 @@ layout: null
     </h3>
     <p class="publication-description">
       <b>Yuezhe Yang</b>, Wenjie Cai, Dexin Yang, Yufang Dong, Qingqing Ruan, Xingbo Dong<sup>†</sup>, Zhe Jin<br>
-      Submit to BMVC (2025)<br>
+      Submit to WACV (2026)<br>
       <small>The first to apply 3DGS to generate new ultrasound perspectives.</small>
     </p> 
-              --><!-- Publication Links. -->
-          <!--   <div class="publication-links buttons field has-addons">
-              <small>Coming Soon...</small>
-             </div>
+         <!-- Publication Links. -->
+         <div class="publication-links buttons field has-addons">
+            <small>Coming Soon...</small>
+           </div>
   </div>
-</div>  
- -->
+</div>
 <!-- Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection -->
 <div class="publication-block columns">
   <div class="column is-2">
@@ -260,8 +327,8 @@ layout: null
   </div>
 </div>
 
-<!--   Abnormality-aware Prompting for Test-Time Adaptation in Breast Ultrasound Segmentation -->
-<!-- <div class="publication-block columns">
+<!--   Prompting the Abnormality: Test-Time Adaptation for Breast Ultrasound Segmentation -->
+<div class="publication-block columns">
   <div class="column is-2">
     <div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
       <img src="document/A3PT.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
@@ -269,19 +336,19 @@ layout: null
   </div>
   <div class="column">
     <h3 class="publication-title">
-      Abnormality-aware Prompting for Test-Time Adaptation in Breast Ultrasound Segmentation
+      Prompting the Abnormality: Test-Time Adaptation for Breast Ultrasound Segmentation
     </h3>
     <p class="publication-description">
       <b>Yuezhe Yang</b>, YongZhou Liu, Liwen Wang, Xingbo Dong<sup>†</sup>, Zhe Jin<br>
-      Submit to NeurIPS (2025)<br>
+      Submit to AAAI (2026)<br>
       <small>The first test-time adaptation method tailored for breast ultrasound imaging.</small>
     </p>
-   --> <!-- Publication Links. -->
-    <!-- <div class="publication-links buttons field has-addons">
-      <small>Coming Soon...</small>
-    </div>
+         <!-- Publication Links. -->
+         <div class="publication-links buttons field has-addons">
+          <small>Coming Soon...</small>
+        </div>
   </div>
-</div>  -->
+</div>
 
 
 <div class="hr">
@@ -403,7 +470,7 @@ layout: null
     });
   }
 </script>
-  <section class="section">
+  <section class="section" id="education">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Education & Experiences</h2>
       <!-- 本科教育经历 -->
@@ -459,7 +526,143 @@ layout: null
           </p>
         </div>
       </div>
+      
+      <div class="hr">
+        <div class="container is-max-desktop">
+          <hr style="width: 100%;">
+        </div>
+      </div>
+      
+      <!-- 审稿人经历 -->
+      <div class="publication-block columns">
+        <div class="column">
+          <p class="publication-description">
+            <b>Reviewer</b><br>
+            <b>AAAI 2026, BIBE 2025</b>
+          </p>
+        </div>
+      </div>
     </div>
   </section>
+
+  <div class="hr">
+    <div class="container">
+      <hr>
+    </div>
+  </div>
+
+  <section class="section" id="others">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Others</h2>
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Hobbies</h3>
+        <p>I enjoy traveling and exploring new places. Traveling allows me to experience different cultures, meet new people, and gain fresh perspectives that often inspire my research and creative thinking.</p>
+        
+        <h3 class="title is-4">Travel Map</h3>
+        <div id="world-map-container" style="width: 100%; height: 500px; margin: 20px 0;">
+          <div id="world-map" style="width: 100%; height: 100%;"></div>
+        </div>
+        
+        <!-- Travel Modal -->
+        <div id="travel-modal" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title" id="modal-title">Travel Location</p>
+              <button class="delete" aria-label="close" onclick="closeTravelModal()"></button>
+            </header>
+            <section class="modal-card-body">
+              <div class="columns">
+                <div class="column is-6">
+                  <img id="modal-image" src="" alt="Travel Photo" style="width: 100%; height: auto; border-radius: 8px;">
+                </div>
+                <div class="column is-6">
+                  <p id="modal-description" class="has-text-justified"></p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Travel locations data
+    const travelLocations = [
+      {
+        name: "Beijing, China",
+        lat: 39.9042,
+        lng: 116.4074,
+        image: "/document/beijing.jpg",
+        description: "The capital of China, where I experienced the rich history and modern development of this ancient civilization."
+      },
+      {
+        name: "Shanghai, China", 
+        lat: 31.2304,
+        lng: 121.4737,
+        image: "/document/shanghai.jpg",
+        description: "A vibrant metropolis that perfectly blends traditional Chinese culture with cutting-edge technology."
+      },
+      {
+        name: "Hangzhou, China",
+        lat: 30.2741,
+        lng: 120.1551,
+        image: "/document/hangzhou.jpg",
+        description: "Known for its beautiful West Lake and rich cultural heritage, a perfect blend of nature and history."
+      },
+      {
+        name: "Edmonton, Canada",
+        lat: 53.5461,
+        lng: -113.4938,
+        image: "/document/edmonton.jpg",
+        description: "During my research internship at the University of Alberta, I explored this beautiful Canadian city."
+      }
+    ];
+
+    // Initialize map when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create map
+      const map = L.map('world-map').setView([35, 105], 4);
+      
+      // Add OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+      
+      // Add travel markers
+      travelLocations.forEach(location => {
+        const marker = L.marker([location.lat, location.lng])
+          .addTo(map)
+          .bindPopup(`<b>${location.name}</b><br><small>Click to view details</small>`);
+        
+        marker.on('click', function() {
+          showTravelModal(location);
+        });
+      });
+    });
+
+    // Show travel modal
+    function showTravelModal(location) {
+      document.getElementById('modal-title').textContent = location.name;
+      document.getElementById('modal-image').src = location.image;
+      document.getElementById('modal-description').textContent = location.description;
+      document.getElementById('travel-modal').classList.add('is-active');
+    }
+
+    // Close travel modal
+    function closeTravelModal() {
+      document.getElementById('travel-modal').classList.remove('is-active');
+    }
+
+    // Close modal when clicking background
+    document.addEventListener('click', function(e) {
+      {
+        if (e.target.classList.contains('modal-background')) {
+          closeTravelModal();
+        }
+      }
+    });
+  </script>
 
 </html>
