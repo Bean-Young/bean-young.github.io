@@ -940,7 +940,33 @@ layout: null
         yearFilter.addEventListener('change', filterPublications);
         typeFilter.addEventListener('change', filterPublications);
       }
+      
+      // Initialize Show More functionality for both sections
+      initializeShowMore();
     });
+    
+    // Initialize Show More functionality
+    function initializeShowMore() {
+      // Initialize Publications: show first 5, hide the rest
+      const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
+      publications.forEach((pub, index) => {
+        if (index < 5) {
+          pub.style.display = 'flex';
+        } else {
+          pub.style.display = 'none';
+        }
+      });
+      
+      // Initialize Awards: show first 5, hide the rest
+      const awards = document.querySelectorAll('.award-item');
+      awards.forEach((award, index) => {
+        if (index < 5) {
+          award.style.display = 'flex';
+        } else {
+          award.style.display = 'none';
+        }
+      });
+    }
     
     function filterPublications() {
       const yearFilter = document.getElementById('year-filter').value;
@@ -955,12 +981,11 @@ layout: null
         const typeMatch = typeFilter === 'all' || type === typeFilter;
         
         if (yearMatch && typeMatch) {
-          // Only show publications that are marked as visible
-          const isVisible = pub.getAttribute('data-visible') === 'true';
-          if (isVisible) {
+          // Show publications based on their current display state
+          // Don't change the display if it's already set by Show More functionality
+          if (pub.style.display === 'none' && pub.style.display !== '') {
+            // Only show if it was previously hidden by filters
             pub.style.display = 'flex';
-          } else {
-            pub.style.display = 'none';
           }
         } else {
           pub.style.display = 'none';
@@ -972,43 +997,70 @@ layout: null
       document.getElementById('year-filter').value = 'all';
       document.getElementById('type-filter').value = 'all';
       
+      // Restore original Show More state (first 5 visible, rest hidden)
       const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
-      publications.forEach(pub => {
-        // Restore original visibility based on data-visible attribute
-        const isVisible = pub.getAttribute('data-visible') === 'true';
-        if (isVisible) {
+      publications.forEach((pub, index) => {
+        if (index < 5) {
           pub.style.display = 'flex';
         } else {
           pub.style.display = 'none';
         }
       });
+      
+      // Reset Show More button to original state
+      const showMoreBtn = document.getElementById('show-more-publications');
+      if (showMoreBtn) {
+        const icon = showMoreBtn.querySelector('.fas');
+        const text = showMoreBtn.querySelector('span:last-child');
+        icon.className = 'fas fa-chevron-down';
+        text.textContent = 'Show More';
+      }
+      
+      // Also reset Awards Show More button to original state
+      const awardsShowMoreBtn = document.getElementById('show-more-awards');
+      if (awardsShowMoreBtn) {
+        const icon = awardsShowMoreBtn.querySelector('.fas');
+        const text = awardsShowMoreBtn.querySelector('span:last-child');
+        icon.className = 'fas fa-chevron-down';
+        text.textContent = 'Show More';
+        
+        // Restore original Awards state (first 5 visible, rest hidden)
+        const awards = document.querySelectorAll('.award-item');
+        awards.forEach((award, index) => {
+          if (index < 5) {
+            award.style.display = 'flex';
+          } else {
+            award.style.display = 'none';
+          }
+        });
+      }
     }
     
     // Awards toggle functionality
     function toggleAwards() {
-      const hiddenAwards = document.querySelectorAll('.award-item[data-visible="false"]');
+      const allAwards = document.querySelectorAll('.award-item');
       const showMoreBtn = document.getElementById('show-more-awards');
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      // Check if any hidden awards are currently visible
-      const anyVisible = Array.from(hiddenAwards).some(award => 
-        award.style.display !== 'none' && award.style.display !== ''
-      );
+      // Check if we're currently showing all awards
+      const showingAll = showMoreBtn.textContent.includes('Show Less');
       
-      if (!anyVisible) {
+      if (!showingAll) {
         // Show all awards
-        hiddenAwards.forEach(award => {
+        allAwards.forEach(award => {
           award.style.display = 'flex';
-          award.setAttribute('data-visible', 'true');
         });
         icon.className = 'fas fa-chevron-up';
         text.textContent = 'Show Less';
       } else {
         // Hide awards after first 5
-        hiddenAwards.forEach(award => {
-          award.style.display = 'none';
-          award.setAttribute('data-visible', 'false');
+        allAwards.forEach((award, index) => {
+          if (index < 5) {
+            award.style.display = 'flex';
+          } else {
+            award.style.display = 'none';
+          }
         });
         icon.className = 'fas fa-chevron-down';
         text.textContent = 'Show More';
@@ -1017,29 +1069,29 @@ layout: null
     
     // Publications toggle functionality
     function togglePublications() {
-      const hiddenPublications = document.querySelectorAll('.publication-block[data-visible="false"]');
+      const allPublications = document.querySelectorAll('.publication-block');
       const showMoreBtn = document.getElementById('show-more-publications');
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      // Check if any hidden publications are currently visible
-      const anyVisible = Array.from(hiddenPublications).some(pub => 
-        pub.style.display !== 'none' && pub.style.display !== ''
-      );
+      // Check if we're currently showing all publications
+      const showingAll = showMoreBtn.textContent.includes('Show Less');
       
-      if (!anyVisible) {
+      if (!showingAll) {
         // Show all publications
-        hiddenPublications.forEach(pub => {
+        allPublications.forEach(pub => {
           pub.style.display = 'flex';
-          pub.setAttribute('data-visible', 'true');
         });
         icon.className = 'fas fa-chevron-up';
         text.textContent = 'Show Less';
       } else {
         // Hide publications after first 5
-        hiddenPublications.forEach(pub => {
-          pub.style.display = 'none';
-          pub.setAttribute('data-visible', 'false');
+        allPublications.forEach((pub, index) => {
+          if (index < 5) {
+            pub.style.display = 'flex';
+          } else {
+            pub.style.display = 'none';
+          }
         });
         icon.className = 'fas fa-chevron-down';
         text.textContent = 'Show More';
