@@ -966,6 +966,24 @@ layout: null
           award.style.display = 'none';
         }
       });
+      
+      // Ensure buttons are in correct initial state
+      const publicationsBtn = document.getElementById('show-more-publications');
+      const awardsBtn = document.getElementById('show-more-awards');
+      
+      if (publicationsBtn) {
+        const icon = publicationsBtn.querySelector('.fas');
+        const text = publicationsBtn.querySelector('span:last-child');
+        icon.className = 'fas fa-chevron-down';
+        text.textContent = 'Show More';
+      }
+      
+      if (awardsBtn) {
+        const icon = awardsBtn.querySelector('.fas');
+        const text = awardsBtn.querySelector('span:last-child');
+        icon.className = 'fas fa-chevron-down';
+        text.textContent = 'Show More';
+      }
     }
     
     function filterPublications() {
@@ -981,13 +999,10 @@ layout: null
         const typeMatch = typeFilter === 'all' || type === typeFilter;
         
         if (yearMatch && typeMatch) {
-          // Show publications based on their current display state
-          // Don't change the display if it's already set by Show More functionality
-          if (pub.style.display === 'none' && pub.style.display !== '') {
-            // Only show if it was previously hidden by filters
-            pub.style.display = 'flex';
-          }
+          // Show publication if it matches filter criteria
+          pub.style.display = 'flex';
         } else {
+          // Hide publication if it doesn't match filter criteria
           pub.style.display = 'none';
         }
       });
@@ -1043,11 +1058,17 @@ layout: null
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      // Check if we're currently showing all awards
-      const showingAll = showMoreBtn.textContent.includes('Show Less');
+      console.log('toggleAwards called, found', allAwards.length, 'awards');
+      
+      // Check if we're currently showing all awards by looking at the last award
+      const lastAward = allAwards[allAwards.length - 1];
+      const showingAll = lastAward.style.display === 'flex';
+      
+      console.log('Last award display:', lastAward.style.display, 'showingAll:', showingAll);
       
       if (!showingAll) {
         // Show all awards
+        console.log('Showing all awards');
         allAwards.forEach(award => {
           award.style.display = 'flex';
         });
@@ -1055,6 +1076,7 @@ layout: null
         text.textContent = 'Show Less';
       } else {
         // Hide awards after first 5
+        console.log('Hiding awards after first 5');
         allAwards.forEach((award, index) => {
           if (index < 5) {
             award.style.display = 'flex';
@@ -1074,11 +1096,17 @@ layout: null
       const icon = showMoreBtn.querySelector('.fas');
       const text = showMoreBtn.querySelector('span:last-child');
       
-      // Check if we're currently showing all publications
-      const showingAll = showMoreBtn.textContent.includes('Show Less');
+      console.log('togglePublications called, found', allPublications.length, 'publications');
+      
+      // Check if we're currently showing all publications by looking at the last publication
+      const lastPublication = allPublications[allPublications.length - 1];
+      const showingAll = lastPublication.style.display === 'flex';
+      
+      console.log('Last publication display:', lastPublication.style.display, 'showingAll:', showingAll);
       
       if (!showingAll) {
         // Show all publications
+        console.log('Showing all publications');
         allPublications.forEach(pub => {
           pub.style.display = 'flex';
         });
@@ -1086,6 +1114,7 @@ layout: null
         text.textContent = 'Show Less';
       } else {
         // Hide publications after first 5
+        console.log('Hiding publications after first 5');
         allPublications.forEach((pub, index) => {
           if (index < 5) {
             pub.style.display = 'flex';
