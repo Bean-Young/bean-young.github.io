@@ -1176,9 +1176,9 @@ layout: null
         award.style.display = 'flex';
       });
     }
-    
+  </script>
 
-    
+  <script>
     // Translation toggle functionality
     function toggleTranslation(icon) {
       const chineseTitles = icon.parentNode.querySelectorAll('.chinese-title');
@@ -1244,102 +1244,76 @@ layout: null
       
       // Create province polygons
       createProvincePolygons(map);
-      
-      // Add click event to map for province interaction
-      map.on('click', function(e) {
-        // You can add province detection logic here if needed
-      });
     });
 
     // Create province markers function
     function createProvincePolygons(map) {
-        // Province locations with coordinates (only major provinces, no cities)
-        const provinces = [
-          // China provinces - only major ones
-          { name: "Beijing", coords: [39.9, 116.4], visited: true },
-          { name: "Shanghai", coords: [31.2, 121.5], visited: true },
-          { name: "Zhejiang", coords: [30.3, 120.2], visited: true },
-          { name: "Anhui", coords: [31.8, 117.3], visited: true },
-          { name: "Guangdong", coords: [23.1, 113.3], visited: false },
-          { name: "Sichuan", coords: [30.7, 104.1], visited: false },
-          { name: "Xinjiang", coords: [43.8, 87.6], visited: false },
-          // Canada provinces
-          { name: "Alberta", coords: [55.0, -115.0], visited: true },
-          { name: "Ontario", coords: [49.3, -84.3], visited: false },
-          { name: "Quebec", coords: [52.9, -73.5], visited: false }
-        ];
+      // Province locations with coordinates (only major provinces, no cities)
+      const provinces = [
+        { name: "Beijing", coords: [39.9, 116.4], visited: true },
+        { name: "Shanghai", coords: [31.2, 121.5], visited: true },
+        { name: "Zhejiang", coords: [30.3, 120.2], visited: true },
+        { name: "Anhui", coords: [31.8, 117.3], visited: true },
+        { name: "Guangdong", coords: [23.1, 113.3], visited: false },
+        { name: "Sichuan", coords: [30.7, 104.1], visited: false },
+        { name: "Xinjiang", coords: [43.8, 87.6], visited: false },
+        { name: "Alberta", coords: [55.0, -115.0], visited: true },
+        { name: "Ontario", coords: [49.3, -84.3], visited: false },
+        { name: "Quebec", coords: [52.9, -73.5], visited: false }
+      ];
+      
+      provinces.forEach(province => {
+        // Create coordinate markers (📍) for all provinces
+        const marker = L.marker(province.coords, {
+          icon: L.divIcon({
+            className: 'coordinate-marker',
+            html: `<div style="font-size: 20px; color: #FF6B6B; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">📍</div>`,
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+          })
+        }).addTo(map);
         
-        provinces.forEach(province => {
-          // Create coordinate markers (📍) for all provinces
-          const marker = L.marker(province.coords, {
-            icon: L.divIcon({
-              className: 'coordinate-marker',
-              html: `<div style="font-size: 20px; color: #FF6B6B; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">📍</div>`,
-              iconSize: [20, 20],
-              iconAnchor: [10, 10]
-            })
-          }).addTo(map);
+        // Create custom tooltip element
+        const tooltipElement = document.createElement('div');
+        tooltipElement.className = 'custom-province-tooltip';
+        tooltipElement.textContent = province.name;
+        tooltipElement.style.display = 'none';
+        tooltipElement.style.position = 'absolute';
+        tooltipElement.style.zIndex = '1000';
+        tooltipElement.style.pointerEvents = 'none';
+        document.body.appendChild(tooltipElement);
+        
+        // Add hover effect and tooltips for visited provinces
+        marker.on('mouseover', function(e) {
+          this.getElement().style.transform = 'scale(1.3)';
           
-          // Create custom tooltip element
-          const tooltipElement = document.createElement('div');
-          tooltipElement.className = 'custom-province-tooltip';
-          tooltipElement.textContent = province.name;
-          tooltipElement.style.display = 'none';
-          tooltipElement.style.position = 'absolute';
-          tooltipElement.style.zIndex = '1000';
-          tooltipElement.style.pointerEvents = 'none';
-          document.body.appendChild(tooltipElement);
-          
-          if (province.visited) {
-            // Add click event for visited provinces
-            marker.on('click', function() {
-              const location = travelLocations.find(loc => 
-                loc.provinceName === province.name || 
-                loc.country === "Canada" && province.name === "Alberta"
-              );
-              if (location) {
-                showTravelModal(location);
-              }
-            });
-            
-            // Add hover effect
-            marker.on('mouseover', function(e) {
-              this.getElement().style.transform = 'scale(1.3)';
-              
-              // Show custom tooltip
-              const markerElement = this.getElement();
-              const rect = markerElement.getBoundingClientRect();
-              tooltipElement.style.left = (rect.left + rect.width / 2 - tooltipElement.offsetWidth / 2) + 'px';
-              tooltipElement.style.top = (rect.top - tooltipElement.offsetHeight - 10) + 'px';
-              tooltipElement.style.display = 'block';
-            });
-            
-            marker.on('mouseout', function() {
-              this.getElement().style.transform = 'scale(1)';
-              tooltipElement.style.display = 'none';
-            });
-          } else {
-            // For unvisited provinces, just show hover effect
-            marker.on('mouseover', function(e) {
-              this.getElement().style.transform = 'scale(1.2)';
-              
-              // Show custom tooltip
-              const markerElement = this.getElement();
-              const rect = markerElement.getBoundingClientRect();
-              tooltipElement.style.left = (rect.left + rect.width / 2 - tooltipElement.offsetWidth / 2) + 'px';
-              tooltipElement.style.top = (rect.top - tooltipElement.offsetHeight - 10) + 'px';
-              tooltipElement.style.display = 'block';
-            });
-            
-            marker.on('mouseout', function() {
-              this.getElement().style.transform = 'scale(1)';
-              tooltipElement.style.display = 'none';
-            });
-          }
+          // Show custom tooltip
+          const markerElement = this.getElement();
+          const rect = markerElement.getBoundingClientRect();
+          tooltipElement.style.left = (rect.left + rect.width / 2 - tooltipElement.offsetWidth / 2) + 'px';
+          tooltipElement.style.top = (rect.top - tooltipElement.offsetHeight - 10) + 'px';
+          tooltipElement.style.display = 'block';
         });
-      }
-    
-
+        
+        marker.on('mouseout', function() {
+          this.getElement().style.transform = 'scale(1)';
+          tooltipElement.style.display = 'none';
+        });
+        
+        // Add click event for visited provinces
+        if (province.visited) {
+          marker.on('click', function() {
+            const location = travelLocations.find(loc => 
+              loc.provinceName === province.name || 
+              loc.country === "Canada" && province.name === "Alberta"
+            );
+            if (location) {
+              showTravelModal(location);
+            }
+          });
+        }
+      });
+    }
 
     // Show travel modal
     function showTravelModal(location) {
@@ -1368,7 +1342,7 @@ layout: null
       <hr>
     </div>
   </div>
-  
+
   <footer class="footer" style="padding: 2rem 0; background-color: #f5f5f5;">
     <div class="container">
       <div class="content has-text-centered">
