@@ -1541,13 +1541,12 @@ layout: null
           <strong>Yuezhe Yang</strong> - Personal Academic Website
         </p>
         <p style="font-size: 0.9em; color: #666;">
-          <span id="visitor-count">Loading...</span> visitors | 
           Last updated: <span id="last-updated"></span>
         </p>
-        <p style="font-size: 0.8em; color: #666; margin-top: 10px;">
+        <p style="font-size: 0.8em; color: #666; margin-top: 15px;">
           <!-- Flag Counter for real visitor display -->
           <a href="https://info.flagcounter.com/BXaM" target="_blank" style="text-decoration: none;">
-            <img src="https://s01.flagcounter.com/count2/BXaM/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0" style="border: 1px solid #ddd; border-radius: 4px;">
+            <img src="https://s01.flagcounter.com/count2/BXaM/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0" style="border: 2px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 8px; background: white;">
           </a>
         </p>
 
@@ -1562,7 +1561,7 @@ layout: null
   <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   
   <script>
-    // Simple visitor counter and date update
+    // Simple date update
     document.addEventListener('DOMContentLoaded', function() {
       // Set last updated date
       const lastUpdated = new Date().toLocaleDateString('en-US', {
@@ -1571,25 +1570,6 @@ layout: null
         day: 'numeric'
       });
       document.getElementById('last-updated').textContent = lastUpdated;
-      
-      // Simple visitor counter logic
-      const visitorElement = document.getElementById('visitor-count');
-      
-      // Check if we're in development
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        visitorElement.textContent = 'Development Mode';
-        return;
-      }
-
-      // Show that Flag Counter is tracking real visitors
-      visitorElement.textContent = 'Flag Counter Active';
-      
-      // Make it clickable to go to your Flag Counter
-      visitorElement.style.cursor = 'pointer';
-      visitorElement.style.textDecoration = 'underline';
-      visitorElement.onclick = function() {
-        window.open('https://info.flagcounter.com/BXaM', '_blank');
-      };
     });
   </script>
 </html>
