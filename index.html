@@ -764,7 +764,7 @@ layout: null
         </div>
         <div class="column">
           <p class="education-description">
-            <b>Bachelor’s Degree in AI</b><br>
+            <b>Bachelor's Degree in AI</b><br>
             <b><a href="https://ai.ahu.edu.cn" style="color: black;">School of Artificial Intelligence</a></b>, <a href="https://www.ahu.edu.cn" style="color: black;">Anhui University</a><br>
             2022.09 - 2026.06 (Expected)<br>
             Supervisor: <a href="https://sites.google.com/site/jinzhe/home?authuser=0">Zhe Jin</a>
@@ -1554,14 +1554,6 @@ layout: null
   <script>
     // Visitor counter and last updated
     document.addEventListener('DOMContentLoaded', function() {
-      // Get visitor count from localStorage or set default
-      let visitorCount = localStorage.getItem('visitorCount') || 0;
-      visitorCount = parseInt(visitorCount) + 1;
-      localStorage.setItem('visitorCount', visitorCount);
-      
-      // Display visitor count
-      document.getElementById('visitor-count').textContent = visitorCount.toLocaleString();
-      
       // Set last updated date
       const lastUpdated = new Date().toLocaleDateString('en-US', {
         year: 'numeric',
@@ -1569,7 +1561,122 @@ layout: null
         day: 'numeric'
       });
       document.getElementById('last-updated').textContent = lastUpdated;
+      
+      // Initialize visitor counter
+      initializeVisitorCounter();
     });
+
+    // Function to initialize visitor counter
+    function initializeVisitorCounter() {
+      const visitorElement = document.getElementById('visitor-count');
+      
+      // Check if we're in a development environment
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        visitorElement.textContent = 'Development Mode';
+        return;
+      }
+
+      // Option 1: Use Google Analytics (already integrated)
+      if (typeof gtag !== 'undefined') {
+        visitorElement.textContent = 'Analytics Active';
+        
+        // Send a page view event to GA4
+        gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: window.location.href
+        });
+      } 
+      // Option 2: Use Plausible Analytics (privacy-friendly alternative)
+      else if (window.plausible) {
+        visitorElement.textContent = 'Privacy Analytics';
+      }
+      // Option 3: Show a static message
+      else {
+        visitorElement.textContent = 'Website Analytics';
+      }
+    }
+
+    // Alternative: Simple static visitor display
+    // function showStaticVisitorMessage() {
+    //   const visitorElement = document.getElementById('visitor-count');
+    //   visitorElement.textContent = 'Website Analytics';
+    // }
   </script>
 
+  <!-- Optional: Add Plausible Analytics for privacy-friendly visitor tracking -->
+  <!-- Uncomment the following lines if you want to use Plausible Analytics -->
+  <!--
+  <script defer data-domain="your-domain.com" src="https://plausible.io/js/script.js"></script>
+  -->
+
+  <!-- Optional: Add Firebase for real-time visitor tracking -->
+  <!-- Uncomment the following lines if you want to use Firebase -->
+  <!--
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      // Your Firebase config here
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    
+    // Function to update visitor count
+    async function updateVisitorCount() {
+      try {
+        const docRef = db.collection('stats').doc('visitors');
+        const doc = await docRef.get();
+        
+        if (doc.exists) {
+          const currentCount = doc.data().count || 0;
+          const newCount = currentCount + 1;
+          
+          await docRef.set({
+            count: newCount,
+            lastUpdated: new Date()
+          });
+          
+          document.getElementById('visitor-count').textContent = newCount.toLocaleString();
+        } else {
+          await docRef.set({
+            count: 1,
+            lastUpdated: new Date()
+          });
+          
+          document.getElementById('visitor-count').textContent = '1';
+        }
+      } catch (error) {
+        console.error('Error updating visitor count:', error);
+        document.getElementById('visitor-count').textContent = 'Analytics Error';
+      }
+    }
+    
+    // Call the function when page loads
+    updateVisitorCount();
+  </script>
+  -->
+
+  <!-- Recommended: Add GoatCounter for free, privacy-friendly visitor tracking -->
+  <!-- Uncomment and configure the following lines for GoatCounter -->
+  <!--
+  <script data-goatcounter="https://your-counter.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script>
+    // Wait for GoatCounter to load and then display the count
+    window.addEventListener('load', function() {
+      if (window.goatcounter) {
+        // GoatCounter is loaded, we can access the data
+        setTimeout(function() {
+          // Try to get visitor count from GoatCounter
+          const visitorElement = document.getElementById('visitor-count');
+          if (visitorElement) {
+            visitorElement.textContent = 'GoatCounter Active';
+          }
+        }, 1000);
+      }
+    });
+  </script>
+  -->
 </html>
