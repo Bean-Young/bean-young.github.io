@@ -1541,7 +1541,7 @@ layout: null
           <strong>Yuezhe Yang</strong> - Personal Academic Website
         </p>
         <p style="font-size: 0.9em; color: #666;">
-          <span id="visitor-count">Loading...</span> | 
+          <span id="visitor-count">Loading...</span> visitors | 
           Last updated: <span id="last-updated"></span>
         </p>
         <p style="font-size: 0.8em; color: #666; margin-top: 10px;">
@@ -1558,8 +1558,11 @@ layout: null
     </div>
   </footer>
 
+  <!-- GoatCounter Integration -->
+  <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  
   <script>
-    // Simple date update
+    // Simple visitor counter and date update
     document.addEventListener('DOMContentLoaded', function() {
       // Set last updated date
       const lastUpdated = new Date().toLocaleDateString('en-US', {
@@ -1568,17 +1571,8 @@ layout: null
         day: 'numeric'
       });
       document.getElementById('last-updated').textContent = lastUpdated;
-    });
-  </script>
-
-  <!-- GoatCounter Integration -->
-  <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  
-
-  
-  <script>
-    // Function to display real visitor count
-    function displayRealVisitorCount() {
+      
+      // Simple visitor counter logic
       const visitorElement = document.getElementById('visitor-count');
       
       // Check if we're in development
@@ -1587,29 +1581,8 @@ layout: null
         return;
       }
 
-      // Show that Flag Counter is tracking
+      // Show that Flag Counter is tracking real visitors
       visitorElement.textContent = 'Flag Counter Active';
-      
-      // Make it clickable to go to Flag Counter
-      visitorElement.style.cursor = 'pointer';
-      visitorElement.style.textDecoration = 'underline';
-      visitorElement.onclick = function() {
-        window.open('https://flagcounter.com/', '_blank');
-      };
-    }
-
-    // Simple date update
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set last updated date
-      const lastUpdated = new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      document.getElementById('last-updated').textContent = lastUpdated;
-      
-      // Initialize visitor counter
-      displayRealVisitorCount();
     });
   </script>
 </html>
