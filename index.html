@@ -571,8 +571,8 @@ layout: null
 </div>
 
       <!-- Show More Button for Publications -->
-      <div class="has-text-centered" style="margin: 2rem 0;">
-        <button id="publications-show-more" class="button is-primary" onclick="togglePublicationsShowMore()">
+      <div id="publications-show-more-container" class="has-text-centered" style="margin: 2rem 0; display: none;">
+        <button id="publications-show-more" class="button is-white has-text-black" onclick="togglePublicationsShowMore()">
           <span class="icon">
             <i class="fas fa-chevron-down"></i>
           </span>
@@ -581,11 +581,11 @@ layout: null
       </div>
 
 
-<div class="hr">
+<!-- <div class="hr">
   <div class="container is-max-desktop">
     <hr style="width: 100%;">
   </div>
-</div>
+</div> -->
 <!--   PET image reconstruction method based on prior image and PET image 3D perception method -->
 <div class="publication-block columns" data-year="2024" data-type="patent">
   <div class="column is-2">
@@ -643,10 +643,10 @@ layout: null
 </div>
 
 
-<div class="hr">
+<!-- <div class="hr">
   <div class="container is-max-desktop">
     <hr style="width: 100%;">
-  </div>
+  </div> -->
 </div>
       <div class="publication-block columns" data-year="2024" data-type="project">
         <div class="column is-2">
@@ -813,8 +813,8 @@ layout: null
       </div>
       
       <!-- Show More Button for Awards -->
-      <div class="has-text-centered" style="margin-bottom: 2rem;">
-        <button id="awards-show-more" class="button is-primary" onclick="toggleAwardsShowMore()">
+      <div id="awards-show-more-container" class="has-text-centered" style="margin: 2rem 0; display: none;">
+        <button id="awards-show-more" class="button is-white has-text-black" onclick="toggleAwardsShowMore()">
           <span class="icon">
             <i class="fas fa-chevron-down"></i>
           </span>
@@ -1164,23 +1164,33 @@ layout: null
         return yearMatch && typeMatch;
       });
       
-      allPublications.forEach((pub, index) => {
-        const isVisible = visiblePublications.includes(pub);
-        if (isVisible) {
-          if (visiblePublications.indexOf(pub) < ITEMS_TO_SHOW) {
-            pub.style.display = 'flex';
-          } else {
-            pub.style.display = publicationsShowAll ? 'flex' : 'none';
-          }
+      // Hide all publications first
+      allPublications.forEach(pub => {
+        pub.style.display = 'none';
+      });
+      
+      // Show publications based on limit
+      visiblePublications.forEach((pub, index) => {
+        if (index < ITEMS_TO_SHOW) {
+          pub.style.display = 'flex';
         } else {
-          pub.style.display = 'none';
+          pub.style.display = publicationsShowAll ? 'flex' : 'none';
         }
       });
       
-      // Hide show more button if less than 5 visible items
-      const showMoreBtn = document.getElementById('publications-show-more');
-      if (showMoreBtn) {
-        showMoreBtn.style.display = visiblePublications.length <= ITEMS_TO_SHOW ? 'none' : 'block';
+      // Position show more button after the last visible publication
+      const showMoreContainer = document.getElementById('publications-show-more-container');
+      if (showMoreContainer && visiblePublications.length > ITEMS_TO_SHOW) {
+        showMoreContainer.style.display = 'block';
+        
+        // Find the last visible publication
+        const lastVisiblePub = visiblePublications[ITEMS_TO_SHOW - 1];
+        if (lastVisiblePub) {
+          // Insert button after the last visible publication
+          lastVisiblePub.parentNode.insertBefore(showMoreContainer, lastVisiblePub.nextSibling);
+        }
+      } else if (showMoreContainer) {
+        showMoreContainer.style.display = 'none';
       }
     }
     
@@ -1195,23 +1205,33 @@ layout: null
         return categoryFilter === 'all' || category === categoryFilter;
       });
       
-      allAwards.forEach((award, index) => {
-        const isVisible = visibleAwards.includes(award);
-        if (isVisible) {
-          if (visibleAwards.indexOf(award) < ITEMS_TO_SHOW) {
-            award.style.display = 'flex';
-          } else {
-            award.style.display = awardsShowAll ? 'flex' : 'none';
-          }
+      // Hide all awards first
+      allAwards.forEach(award => {
+        award.style.display = 'none';
+      });
+      
+      // Show awards based on limit
+      visibleAwards.forEach((award, index) => {
+        if (index < ITEMS_TO_SHOW) {
+          award.style.display = 'flex';
         } else {
-          award.style.display = 'none';
+          award.style.display = awardsShowAll ? 'flex' : 'none';
         }
       });
       
-      // Hide show more button if less than 5 visible items
-      const showMoreBtn = document.getElementById('awards-show-more');
-      if (showMoreBtn) {
-        showMoreBtn.style.display = visibleAwards.length <= ITEMS_TO_SHOW ? 'none' : 'block';
+      // Position show more button after the last visible award
+      const showMoreContainer = document.getElementById('awards-show-more-container');
+      if (showMoreContainer && visibleAwards.length > ITEMS_TO_SHOW) {
+        showMoreContainer.style.display = 'block';
+        
+        // Find the last visible award
+        const lastVisibleAward = visibleAwards[ITEMS_TO_SHOW - 1];
+        if (lastVisibleAward) {
+          // Insert button after the last visible award
+          lastVisibleAward.parentNode.insertBefore(showMoreContainer, lastVisibleAward.nextSibling);
+        }
+      } else if (showMoreContainer) {
+        showMoreContainer.style.display = 'none';
       }
     }
     
