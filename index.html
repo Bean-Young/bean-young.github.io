@@ -1544,6 +1544,12 @@ layout: null
           <span id="visitor-count">Loading...</span> visitors | 
           Last updated: <span id="last-updated"></span>
         </p>
+        <p style="font-size: 0.8em; color: #666; margin-top: 10px;">
+          <!-- Flag Counter for visitor display -->
+          <a href="https://flagcounter.com/" target="_blank" style="text-decoration: none;">
+            <img src="https://flagcounter.com/count/bean-young-website/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" style="border: 1px solid #ddd; border-radius: 4px;">
+          </a>
+        </p>
         <p style="font-size: 0.8em; color: #999;">
           © Yuezhe Yang. All rights reserved.
         </p>
@@ -1570,30 +1576,21 @@ layout: null
     function initializeVisitorCounter() {
       const visitorElement = document.getElementById('visitor-count');
       
-      // Check if we're in a development environment
+      // Check if we're in development environment
       if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         visitorElement.textContent = 'Development Mode';
         return;
       }
 
-      // Option 1: Use Google Analytics (already integrated)
-      if (typeof gtag !== 'undefined') {
-        visitorElement.textContent = 'Analytics Active';
-        
-        // Send a page view event to GA4
-        gtag('event', 'page_view', {
-          page_title: document.title,
-          page_location: window.location.href
-        });
-      } 
-      // Option 2: Use Plausible Analytics (privacy-friendly alternative)
-      else if (window.plausible) {
-        visitorElement.textContent = 'Privacy Analytics';
-      }
-      // Option 3: Show a static message
-      else {
-        visitorElement.textContent = 'Website Analytics';
-      }
+      // Show visitor count from Flag Counter
+      visitorElement.textContent = 'View Counter Below';
+      
+      // Make it clickable to go to Flag Counter
+      visitorElement.style.cursor = 'pointer';
+      visitorElement.style.textDecoration = 'underline';
+      visitorElement.onclick = function() {
+        window.open('https://flagcounter.com/', '_blank');
+      };
     }
 
     // Alternative: Simple static visitor display
@@ -1682,8 +1679,16 @@ layout: null
 
   <!-- GoatCounter Integration - Replace 'your-counter' with your actual counter name -->
   <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  
+  <!-- Simple visitor counter using Flag Counter -->
+  <div style="text-align: center; margin: 10px 0;">
+    <a href="https://flagcounter.com/">
+      <img src="https://flagcounter.com/count/bean-young-website/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter">
+    </a>
+  </div>
+  
   <script>
-    // Function to display visitor count from GoatCounter
+    // Function to display visitor count
     function displayVisitorCount() {
       const visitorElement = document.getElementById('visitor-count');
       
@@ -1693,33 +1698,15 @@ layout: null
         return;
       }
 
-      // Try to get data from GoatCounter
-      if (window.goatcounter) {
-        // GoatCounter is available
-        visitorElement.textContent = 'Loading...';
-        
-        // Try to get visitor count from GoatCounter API
-        fetch('https://youngbean.goatcounter.com/api/v0/stats/total')
-          .then(response => response.json())
-          .then(data => {
-            if (data && data.count) {
-              visitorElement.textContent = data.count.toLocaleString() + ' visitors';
-            } else {
-              visitorElement.textContent = 'GoatCounter Active';
-            }
-          })
-          .catch(error => {
-            console.log('GoatCounter API not accessible, showing status');
-            visitorElement.textContent = 'GoatCounter Active';
-          });
-      } else {
-        // Fallback to Google Analytics
-        if (typeof gtag !== 'undefined') {
-          visitorElement.textContent = 'Google Analytics Active';
-        } else {
-          visitorElement.textContent = 'Analytics Enabled';
-        }
-      }
+      // Show visitor count from Flag Counter
+      visitorElement.textContent = 'View Counter Above';
+      
+      // Make it clickable to go to GoatCounter dashboard
+      visitorElement.style.cursor = 'pointer';
+      visitorElement.style.textDecoration = 'underline';
+      visitorElement.onclick = function() {
+        window.open('https://youngbean.goatcounter.com', '_blank');
+      };
     }
 
     // Call the function when page loads
