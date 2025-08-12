@@ -1679,4 +1679,50 @@ layout: null
     });
   </script>
   -->
+
+  <!-- GoatCounter Integration - Replace 'your-counter' with your actual counter name -->
+  <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script>
+    // Function to display visitor count from GoatCounter
+    function displayVisitorCount() {
+      const visitorElement = document.getElementById('visitor-count');
+      
+      // Check if we're in development
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        visitorElement.textContent = 'Development Mode';
+        return;
+      }
+
+      // Try to get data from GoatCounter
+      if (window.goatcounter) {
+        // GoatCounter is available
+        visitorElement.textContent = 'Loading...';
+        
+        // Try to get visitor count from GoatCounter API
+        fetch('https://youngbean.goatcounter.com/api/v0/stats/total')
+          .then(response => response.json())
+          .then(data => {
+            if (data && data.count) {
+              visitorElement.textContent = data.count.toLocaleString() + ' visitors';
+            } else {
+              visitorElement.textContent = 'GoatCounter Active';
+            }
+          })
+          .catch(error => {
+            console.log('GoatCounter API not accessible, showing status');
+            visitorElement.textContent = 'GoatCounter Active';
+          });
+      } else {
+        // Fallback to Google Analytics
+        if (typeof gtag !== 'undefined') {
+          visitorElement.textContent = 'Google Analytics Active';
+        } else {
+          visitorElement.textContent = 'Analytics Enabled';
+        }
+      }
+    }
+
+    // Call the function when page loads
+    window.addEventListener('load', displayVisitorCount);
+  </script>
 </html>
