@@ -572,12 +572,16 @@ layout: null
 
       <!-- Show More Button for Publications -->
       <div id="publications-show-more-container" class="has-text-centered" style="margin: 2rem 0; display: none;">
-        <button id="publications-show-more" class="button is-white has-text-black" onclick="togglePublicationsShowMore()">
-          <span class="icon">
-            <i class="fas fa-chevron-down"></i>
-          </span>
-          <span>Show More</span>
-        </button>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+          <div style="flex: 1; height: 1px; background-color: #dbdbdb;"></div>
+          <button id="publications-show-more" class="button is-white has-text-black" onclick="togglePublicationsShowMore()">
+            <span class="icon">
+              <i class="fas fa-chevron-down"></i>
+            </span>
+            <span>Show More</span>
+          </button>
+          <div style="flex: 1; height: 1px; background-color: #dbdbdb;"></div>
+        </div>
       </div>
 
 
@@ -647,7 +651,6 @@ layout: null
   <div class="container is-max-desktop">
     <hr style="width: 100%;">
   </div> -->
-</div>
       <div class="publication-block columns" data-year="2024" data-type="project">
         <div class="column is-2">
           <div class="publication-image-container">
@@ -814,12 +817,16 @@ layout: null
       
       <!-- Show More Button for Awards -->
       <div id="awards-show-more-container" class="has-text-centered" style="margin: 2rem 0; display: none;">
-        <button id="awards-show-more" class="button is-white has-text-black" onclick="toggleAwardsShowMore()">
-          <span class="icon">
-            <i class="fas fa-chevron-down"></i>
-          </span>
-          <span>Show More</span>
-        </button>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+          <div style="flex: 1; height: 1px; background-color: #dbdbdb;"></div>
+          <button id="awards-show-more" class="button is-white has-text-black" onclick="toggleAwardsShowMore()">
+            <span class="icon">
+              <i class="fas fa-chevron-down"></i>
+            </span>
+            <span>Show More</span>
+          </button>
+          <div style="flex: 1; height: 1px; background-color: #dbdbdb;"></div>
+        </div>
       </div>
       
       <div class="awards-grid">
@@ -1183,8 +1190,16 @@ layout: null
       if (showMoreContainer && visiblePublications.length > ITEMS_TO_SHOW) {
         showMoreContainer.style.display = 'block';
         
-        // Find the last visible publication
-        const lastVisiblePub = visiblePublications[ITEMS_TO_SHOW - 1];
+        // Find the last visible publication (either 5th or last one if showing all)
+        let lastVisiblePub;
+        if (publicationsShowAll) {
+          // If showing all, button goes after the last visible publication
+          lastVisiblePub = visiblePublications[visiblePublications.length - 1];
+        } else {
+          // If showing limited, button goes after the 5th publication
+          lastVisiblePub = visiblePublications[ITEMS_TO_SHOW - 1];
+        }
+        
         if (lastVisiblePub) {
           // Insert button after the last visible publication
           lastVisiblePub.parentNode.insertBefore(showMoreContainer, lastVisiblePub.nextSibling);
@@ -1224,8 +1239,16 @@ layout: null
       if (showMoreContainer && visibleAwards.length > ITEMS_TO_SHOW) {
         showMoreContainer.style.display = 'block';
         
-        // Find the last visible award
-        const lastVisibleAward = visibleAwards[ITEMS_TO_SHOW - 1];
+        // Find the last visible award (either 5th or last one if showing all)
+        let lastVisibleAward;
+        if (awardsShowAll) {
+          // If showing all, button goes after the last visible award
+          lastVisibleAward = visibleAwards[visibleAwards.length - 1];
+        } else {
+          // If showing limited, button goes after the 5th award
+          lastVisibleAward = visibleAwards[ITEMS_TO_SHOW - 1];
+        }
+        
         if (lastVisibleAward) {
           // Insert button after the last visible award
           lastVisibleAward.parentNode.insertBefore(showMoreContainer, lastVisibleAward.nextSibling);
