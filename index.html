@@ -382,15 +382,7 @@ layout: null
         </div>
       </div>
       
-      <!-- Show More Button for Publications -->
-      <div class="has-text-centered" style="margin-bottom: 2rem;">
-        <button id="publications-show-more" class="button is-primary" onclick="togglePublicationsShowMore()">
-          <span class="icon">
-            <i class="fas fa-chevron-down"></i>
-          </span>
-          <span>Show More</span>
-        </button>
-      </div>
+
       
       <!-- An annotated heterogeneous ultrasound database -->
       <div class="publication-block columns" data-year="2025" data-type="paper" data-visible="true">
@@ -577,6 +569,16 @@ layout: null
         </div>
   </div>
 </div>
+
+      <!-- Show More Button for Publications -->
+      <div class="has-text-centered" style="margin: 2rem 0;">
+        <button id="publications-show-more" class="button is-primary" onclick="togglePublicationsShowMore()">
+          <span class="icon">
+            <i class="fas fa-chevron-down"></i>
+          </span>
+          <span>Show More</span>
+        </button>
+      </div>
 
 
 <div class="hr">
@@ -805,7 +807,7 @@ layout: null
             </div>
           </div>
           <div class="column is-narrow">
-            <button class="button is-light" onclick="clearAwardFilters()">Clear Filters</button>
+            <button class="button is-light" onclick="clearAwardsFilters()">Clear Filters</button>
           </div>
         </div>
       </div>
@@ -1147,18 +1149,35 @@ layout: null
     
     // Apply display limit to publications
     function applyPublicationsDisplayLimit() {
-      const visiblePublications = Array.from(document.querySelectorAll('.publication-block[data-year][data-type]'))
-        .filter(pub => pub.style.display !== 'none');
+      const allPublications = document.querySelectorAll('.publication-block[data-year][data-type]');
+      const visiblePublications = Array.from(allPublications).filter(pub => {
+        // Check if publication matches current filter criteria
+        const yearFilter = document.getElementById('year-filter').value;
+        const typeFilter = document.getElementById('type-filter').value;
+        
+        const year = pub.getAttribute('data-year');
+        const type = pub.getAttribute('data-type');
+        
+        const yearMatch = yearFilter === 'all' || year === yearFilter;
+        const typeMatch = typeFilter === 'all' || type === typeFilter;
+        
+        return yearMatch && typeMatch;
+      });
       
-      visiblePublications.forEach((pub, index) => {
-        if (index < ITEMS_TO_SHOW) {
-          pub.style.display = 'flex';
+      allPublications.forEach((pub, index) => {
+        const isVisible = visiblePublications.includes(pub);
+        if (isVisible) {
+          if (visiblePublications.indexOf(pub) < ITEMS_TO_SHOW) {
+            pub.style.display = 'flex';
+          } else {
+            pub.style.display = publicationsShowAll ? 'flex' : 'none';
+          }
         } else {
-          pub.style.display = publicationsShowAll ? 'flex' : 'none';
+          pub.style.display = 'none';
         }
       });
       
-      // Hide show more button if less than 5 items
+      // Hide show more button if less than 5 visible items
       const showMoreBtn = document.getElementById('publications-show-more');
       if (showMoreBtn) {
         showMoreBtn.style.display = visiblePublications.length <= ITEMS_TO_SHOW ? 'none' : 'block';
@@ -1167,18 +1186,29 @@ layout: null
     
     // Apply display limit to awards
     function applyAwardsDisplayLimit() {
-      const visibleAwards = Array.from(document.querySelectorAll('.award-item[data-category]'))
-        .filter(award => award.style.display !== 'none');
+      const allAwards = document.querySelectorAll('.award-item[data-category]');
+      const visibleAwards = Array.from(allAwards).filter(award => {
+        // Check if award matches current filter criteria
+        const categoryFilter = document.getElementById('award-category-filter').value;
+        const category = award.getAttribute('data-category');
+        
+        return categoryFilter === 'all' || category === categoryFilter;
+      });
       
-      visibleAwards.forEach((award, index) => {
-        if (index < ITEMS_TO_SHOW) {
-          award.style.display = 'flex';
+      allAwards.forEach((award, index) => {
+        const isVisible = visibleAwards.includes(award);
+        if (isVisible) {
+          if (visibleAwards.indexOf(award) < ITEMS_TO_SHOW) {
+            award.style.display = 'flex';
+          } else {
+            award.style.display = awardsShowAll ? 'flex' : 'none';
+          }
         } else {
-          award.style.display = awardsShowAll ? 'flex' : 'none';
+          award.style.display = 'none';
         }
       });
       
-      // Hide show more button if less than 5 items
+      // Hide show more button if less than 5 visible items
       const showMoreBtn = document.getElementById('awards-show-more');
       if (showMoreBtn) {
         showMoreBtn.style.display = visibleAwards.length <= ITEMS_TO_SHOW ? 'none' : 'block';
@@ -1222,26 +1252,6 @@ layout: null
     }
     
     function filterPublications() {
-      const yearFilter = document.getElementById('year-filter').value;
-      const typeFilter = document.getElementById('type-filter').value;
-      const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
-      
-      publications.forEach(pub => {
-        const year = pub.getAttribute('data-year');
-        const type = pub.getAttribute('data-type');
-        
-        const yearMatch = yearFilter === 'all' || year === yearFilter;
-        const typeMatch = typeFilter === 'all' || type === typeFilter;
-        
-        if (yearMatch && typeMatch) {
-          // Show publication if it matches filter criteria
-          pub.style.display = 'flex';
-        } else {
-          // Hide publication if it doesn't match filter criteria
-          pub.style.display = 'none';
-        }
-      });
-      
       // Reset show more state and apply display limit after filtering
       publicationsShowAll = false;
       applyPublicationsDisplayLimit();
@@ -1252,12 +1262,6 @@ layout: null
       document.getElementById('year-filter').value = 'all';
       document.getElementById('type-filter').value = 'all';
       
-      // Show all publications when clearing filters
-      const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
-      publications.forEach(pub => {
-        pub.style.display = 'flex';
-      });
-      
       // Reset show more state and apply display limit
       publicationsShowAll = false;
       applyPublicationsDisplayLimit();
@@ -1266,35 +1270,14 @@ layout: null
     
     // Awards filtering functionality
     function filterAwards() {
-      const categoryFilter = document.getElementById('award-category-filter').value;
-      const awards = document.querySelectorAll('.award-item[data-category]');
-      
-      awards.forEach(award => {
-        const category = award.getAttribute('data-category');
-        
-        if (categoryFilter === 'all' || category === categoryFilter) {
-          // Show award if it matches filter criteria
-          award.style.display = 'flex';
-        } else {
-          // Hide award if it doesn't match filter criteria
-          award.style.display = 'none';
-        }
-      });
-      
       // Reset show more state and apply display limit after filtering
       awardsShowAll = false;
       applyAwardsDisplayLimit();
       updateShowMoreButtonText();
     }
     
-    function clearAwardFilters() {
+    function clearAwardsFilters() {
       document.getElementById('award-category-filter').value = 'all';
-      
-      // Show all awards when clearing filters
-      const awards = document.querySelectorAll('.award-item[data-category]');
-      awards.forEach(award => {
-        award.style.display = 'flex';
-      });
       
       // Reset show more state and apply display limit
       awardsShowAll = false;
