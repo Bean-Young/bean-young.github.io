@@ -337,7 +337,7 @@ layout: null
     <div class="container is-max-desktop">
       <h2 class="title is-3">Publications & Projects</h2>
       
-            <!-- Filter Section -->
+      <!-- Filter Section -->
       <div class="filter-section" style="margin-bottom: 2rem;">
         <div class="columns is-multiline is-vcentered">
           <div class="column is-narrow">
@@ -380,6 +380,16 @@ layout: null
             <button class="button is-light" onclick="clearFilters()">Clear Filters</button>
           </div>
         </div>
+      </div>
+      
+      <!-- Show More Button for Publications -->
+      <div class="has-text-centered" style="margin-bottom: 2rem;">
+        <button id="publications-show-more" class="button is-primary" onclick="togglePublicationsShowMore()">
+          <span class="icon">
+            <i class="fas fa-chevron-down"></i>
+          </span>
+          <span>Show More</span>
+        </button>
       </div>
       
       <!-- An annotated heterogeneous ultrasound database -->
@@ -800,6 +810,16 @@ layout: null
         </div>
       </div>
       
+      <!-- Show More Button for Awards -->
+      <div class="has-text-centered" style="margin-bottom: 2rem;">
+        <button id="awards-show-more" class="button is-primary" onclick="toggleAwardsShowMore()">
+          <span class="icon">
+            <i class="fas fa-chevron-down"></i>
+          </span>
+          <span>Show More</span>
+        </button>
+      </div>
+      
       <div class="awards-grid">
         <!-- National Scholarship -->
         <div class="award-item" data-category="scholarship" style="margin-bottom: 1.5rem;">
@@ -1086,6 +1106,11 @@ layout: null
   </section>
 
   <script>
+    // Global variables for show more state
+    let publicationsShowAll = false;
+    let awardsShowAll = false;
+    const ITEMS_TO_SHOW = 5;
+
     // Publication filtering functionality
     document.addEventListener('DOMContentLoaded', function() {
       const yearFilter = document.getElementById('year-filter');
@@ -1102,19 +1127,99 @@ layout: null
         awardCategoryFilter.addEventListener('change', filterAwards);
       }
       
-      // Show all items by default since we removed Show More functionality
-      const publications = document.querySelectorAll('.publication-block[data-year][data-type]');
-      publications.forEach(pub => {
-        pub.style.display = 'flex';
-      });
-      
-      const awards = document.querySelectorAll('.award-item');
-      awards.forEach(award => {
-        award.style.display = 'flex';
-      });
+      // Initialize display with limited items
+      initializeLimitedDisplay();
     });
     
-
+    // Initialize limited display for both sections
+    function initializeLimitedDisplay() {
+      // Reset show more state
+      publicationsShowAll = false;
+      awardsShowAll = false;
+      
+      // Apply initial limited display
+      applyPublicationsDisplayLimit();
+      applyAwardsDisplayLimit();
+      
+      // Update button text
+      updateShowMoreButtonText();
+    }
+    
+    // Apply display limit to publications
+    function applyPublicationsDisplayLimit() {
+      const visiblePublications = Array.from(document.querySelectorAll('.publication-block[data-year][data-type]'))
+        .filter(pub => pub.style.display !== 'none');
+      
+      visiblePublications.forEach((pub, index) => {
+        if (index < ITEMS_TO_SHOW) {
+          pub.style.display = 'flex';
+        } else {
+          pub.style.display = publicationsShowAll ? 'flex' : 'none';
+        }
+      });
+      
+      // Hide show more button if less than 5 items
+      const showMoreBtn = document.getElementById('publications-show-more');
+      if (showMoreBtn) {
+        showMoreBtn.style.display = visiblePublications.length <= ITEMS_TO_SHOW ? 'none' : 'block';
+      }
+    }
+    
+    // Apply display limit to awards
+    function applyAwardsDisplayLimit() {
+      const visibleAwards = Array.from(document.querySelectorAll('.award-item[data-category]'))
+        .filter(award => award.style.display !== 'none');
+      
+      visibleAwards.forEach((award, index) => {
+        if (index < ITEMS_TO_SHOW) {
+          award.style.display = 'flex';
+        } else {
+          award.style.display = awardsShowAll ? 'flex' : 'none';
+        }
+      });
+      
+      // Hide show more button if less than 5 items
+      const showMoreBtn = document.getElementById('awards-show-more');
+      if (showMoreBtn) {
+        showMoreBtn.style.display = visibleAwards.length <= ITEMS_TO_SHOW ? 'none' : 'block';
+      }
+    }
+    
+    // Update show more button text
+    function updateShowMoreButtonText() {
+      const publicationsBtn = document.getElementById('publications-show-more');
+      const awardsBtn = document.getElementById('awards-show-more');
+      
+      if (publicationsBtn) {
+        if (publicationsShowAll) {
+          publicationsBtn.innerHTML = '<span class="icon"><i class="fas fa-chevron-up"></i></span><span>Show Less</span>';
+        } else {
+          publicationsBtn.innerHTML = '<span class="icon"><i class="fas fa-chevron-down"></i></span><span>Show More</span>';
+        }
+      }
+      
+      if (awardsBtn) {
+        if (awardsShowAll) {
+          awardsBtn.innerHTML = '<span class="icon"><i class="fas fa-chevron-up"></i></span><span>Show Less</span>';
+        } else {
+          awardsBtn.innerHTML = '<span class="icon"><i class="fas fa-chevron-down"></i></span><span>Show More</span>';
+        }
+      }
+    }
+    
+    // Toggle publications show more
+    function togglePublicationsShowMore() {
+      publicationsShowAll = !publicationsShowAll;
+      applyPublicationsDisplayLimit();
+      updateShowMoreButtonText();
+    }
+    
+    // Toggle awards show more
+    function toggleAwardsShowMore() {
+      awardsShowAll = !awardsShowAll;
+      applyAwardsDisplayLimit();
+      updateShowMoreButtonText();
+    }
     
     function filterPublications() {
       const yearFilter = document.getElementById('year-filter').value;
@@ -1136,6 +1241,11 @@ layout: null
           pub.style.display = 'none';
         }
       });
+      
+      // Reset show more state and apply display limit after filtering
+      publicationsShowAll = false;
+      applyPublicationsDisplayLimit();
+      updateShowMoreButtonText();
     }
     
     function clearFilters() {
@@ -1147,6 +1257,11 @@ layout: null
       publications.forEach(pub => {
         pub.style.display = 'flex';
       });
+      
+      // Reset show more state and apply display limit
+      publicationsShowAll = false;
+      applyPublicationsDisplayLimit();
+      updateShowMoreButtonText();
     }
     
     // Awards filtering functionality
@@ -1165,6 +1280,11 @@ layout: null
           award.style.display = 'none';
         }
       });
+      
+      // Reset show more state and apply display limit after filtering
+      awardsShowAll = false;
+      applyAwardsDisplayLimit();
+      updateShowMoreButtonText();
     }
     
     function clearAwardFilters() {
@@ -1175,6 +1295,11 @@ layout: null
       awards.forEach(award => {
         award.style.display = 'flex';
       });
+      
+      // Reset show more state and apply display limit
+      awardsShowAll = false;
+      applyAwardsDisplayLimit();
+      updateShowMoreButtonText();
     }
   </script>
 
