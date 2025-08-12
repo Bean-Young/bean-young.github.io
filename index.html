@@ -1541,15 +1541,16 @@ layout: null
           <strong>Yuezhe Yang</strong> - Personal Academic Website
         </p>
         <p style="font-size: 0.9em; color: #666;">
-          <span id="visitor-count">Loading...</span> visitors | 
+          <span id="visitor-count">Loading...</span> | 
           Last updated: <span id="last-updated"></span>
         </p>
         <p style="font-size: 0.8em; color: #666; margin-top: 10px;">
-          <!-- Flag Counter for visitor display -->
+          <!-- Flag Counter for real visitor display -->
           <a href="https://flagcounter.com/" target="_blank" style="text-decoration: none;">
-            <img src="https://flagcounter.com/count/bean-young-website/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" style="border: 1px solid #ddd; border-radius: 4px;">
+            <img src="https://flagcounter.com/count/bean-young-website/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_1/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" style="border: 1px solid #ddd; border-radius: 4px;">
           </a>
         </p>
+
         <p style="font-size: 0.8em; color: #999;">
           © Yuezhe Yang. All rights reserved.
         </p>
@@ -1558,7 +1559,46 @@ layout: null
   </footer>
 
   <script>
-    // Visitor counter and last updated
+    // Simple date update
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set last updated date
+      const lastUpdated = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      document.getElementById('last-updated').textContent = lastUpdated;
+    });
+  </script>
+
+  <!-- GoatCounter Integration -->
+  <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  
+
+  
+  <script>
+    // Function to display real visitor count
+    function displayRealVisitorCount() {
+      const visitorElement = document.getElementById('visitor-count');
+      
+      // Check if we're in development
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        visitorElement.textContent = 'Development Mode';
+        return;
+      }
+
+      // Show that Flag Counter is tracking
+      visitorElement.textContent = 'Flag Counter Active';
+      
+      // Make it clickable to go to Flag Counter
+      visitorElement.style.cursor = 'pointer';
+      visitorElement.style.textDecoration = 'underline';
+      visitorElement.onclick = function() {
+        window.open('https://flagcounter.com/', '_blank');
+      };
+    }
+
+    // Simple date update
     document.addEventListener('DOMContentLoaded', function() {
       // Set last updated date
       const lastUpdated = new Date().toLocaleDateString('en-US', {
@@ -1569,147 +1609,7 @@ layout: null
       document.getElementById('last-updated').textContent = lastUpdated;
       
       // Initialize visitor counter
-      initializeVisitorCounter();
+      displayRealVisitorCount();
     });
-
-    // Function to initialize visitor counter
-    function initializeVisitorCounter() {
-      const visitorElement = document.getElementById('visitor-count');
-      
-      // Check if we're in development environment
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        visitorElement.textContent = 'Development Mode';
-        return;
-      }
-
-      // Show visitor count from Flag Counter
-      visitorElement.textContent = 'View Counter Below';
-      
-      // Make it clickable to go to Flag Counter
-      visitorElement.style.cursor = 'pointer';
-      visitorElement.style.textDecoration = 'underline';
-      visitorElement.onclick = function() {
-        window.open('https://flagcounter.com/', '_blank');
-      };
-    }
-
-    // Alternative: Simple static visitor display
-    // function showStaticVisitorMessage() {
-    //   const visitorElement = document.getElementById('visitor-count');
-    //   visitorElement.textContent = 'Website Analytics';
-    // }
-  </script>
-
-  <!-- Optional: Add Plausible Analytics for privacy-friendly visitor tracking -->
-  <!-- Uncomment the following lines if you want to use Plausible Analytics -->
-  <!--
-  <script defer data-domain="your-domain.com" src="https://plausible.io/js/script.js"></script>
-  -->
-
-  <!-- Optional: Add Firebase for real-time visitor tracking -->
-  <!-- Uncomment the following lines if you want to use Firebase -->
-  <!--
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-  <script>
-    // Firebase configuration
-    const firebaseConfig = {
-      // Your Firebase config here
-    };
-    
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    
-    // Function to update visitor count
-    async function updateVisitorCount() {
-      try {
-        const docRef = db.collection('stats').doc('visitors');
-        const doc = await docRef.get();
-        
-        if (doc.exists) {
-          const currentCount = doc.data().count || 0;
-          const newCount = currentCount + 1;
-          
-          await docRef.set({
-            count: newCount,
-            lastUpdated: new Date()
-          });
-          
-          document.getElementById('visitor-count').textContent = newCount.toLocaleString();
-        } else {
-          await docRef.set({
-            count: 1,
-            lastUpdated: new Date()
-          });
-          
-          document.getElementById('visitor-count').textContent = '1';
-        }
-      } catch (error) {
-        console.error('Error updating visitor count:', error);
-        document.getElementById('visitor-count').textContent = 'Analytics Error';
-      }
-    }
-    
-    // Call the function when page loads
-    updateVisitorCount();
-  </script>
-  -->
-
-  <!-- Recommended: Add GoatCounter for free, privacy-friendly visitor tracking -->
-  <!-- Uncomment and configure the following lines for GoatCounter -->
-  <!--
-  <script data-goatcounter="https://your-counter.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  <script>
-    // Wait for GoatCounter to load and then display the count
-    window.addEventListener('load', function() {
-      if (window.goatcounter) {
-        // GoatCounter is loaded, we can access the data
-        setTimeout(function() {
-          // Try to get visitor count from GoatCounter
-          const visitorElement = document.getElementById('visitor-count');
-          if (visitorElement) {
-            visitorElement.textContent = 'GoatCounter Active';
-          }
-        }, 1000);
-      }
-    });
-  </script>
-  -->
-
-  <!-- GoatCounter Integration - Replace 'your-counter' with your actual counter name -->
-  <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  
-  <!-- Simple visitor counter using Flag Counter -->
-  <div style="text-align: center; margin: 10px 0;">
-    <a href="https://flagcounter.com/">
-      <img src="https://flagcounter.com/count/bean-young-website/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter">
-    </a>
-  </div>
-  
-  <script>
-    // Function to display visitor count
-    function displayVisitorCount() {
-      const visitorElement = document.getElementById('visitor-count');
-      
-      // Check if we're in development
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        visitorElement.textContent = 'Development Mode';
-        return;
-      }
-
-      // Show visitor count from Flag Counter
-      visitorElement.textContent = 'View Counter Above';
-      
-      // Make it clickable to go to GoatCounter dashboard
-      visitorElement.style.cursor = 'pointer';
-      visitorElement.style.textDecoration = 'underline';
-      visitorElement.onclick = function() {
-        window.open('https://youngbean.goatcounter.com', '_blank');
-      };
-    }
-
-    // Call the function when page loads
-    window.addEventListener('load', displayVisitorCount);
   </script>
 </html>
