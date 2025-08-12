@@ -1546,8 +1546,8 @@ layout: null
         </p>
         <p style="font-size: 0.8em; color: #666; margin-top: 10px;">
           <!-- Flag Counter for real visitor display -->
-          <a href="https://flagcounter.com/" target="_blank" style="text-decoration: none;">
-            <img src="https://flagcounter.com/count/bean-young-website/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_1/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" style="border: 1px solid #ddd; border-radius: 4px;">
+          <a href="https://info.flagcounter.com/BXaM" target="_blank" style="text-decoration: none;">
+            <img src="https://s01.flagcounter.com/count2/BXaM/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0" style="border: 1px solid #ddd; border-radius: 4px;">
           </a>
         </p>
 
@@ -1583,6 +1583,13 @@ layout: null
 
       // Show that Flag Counter is tracking real visitors
       visitorElement.textContent = 'Flag Counter Active';
+      
+      // Make it clickable to go to your Flag Counter
+      visitorElement.style.cursor = 'pointer';
+      visitorElement.style.textDecoration = 'underline';
+      visitorElement.onclick = function() {
+        window.open('https://info.flagcounter.com/BXaM', '_blank');
+      };
     });
   </script>
 </html>
