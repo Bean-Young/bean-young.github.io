@@ -181,6 +181,25 @@ layout: null
       font-family: 'Noto Sans', sans-serif !important;
     }
     
+    /* Province tooltip styles for map markers */
+    .province-tooltip {
+      background: rgba(0, 0, 0, 0.85) !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 6px !important;
+      padding: 6px 10px !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3) !important;
+      white-space: nowrap !important;
+      font-family: 'Noto Sans', sans-serif !important;
+      text-align: center !important;
+    }
+    
+    .province-tooltip::before {
+      border-top-color: rgba(0, 0, 0, 0.85) !important;
+    }
+    
     /* Modal styles */
     .modal-card {
       max-width: 800px;
@@ -1453,9 +1472,14 @@ layout: null
           })
         }).addTo(map);
         
-        // No tooltip needed - coordinates stay in place
-        
-        // No hover effects - coordinates stay in place
+        // Add tooltip showing province name on hover
+        marker.bindTooltip(province.name, {
+          className: 'province-tooltip',
+          direction: 'top',
+          offset: [0, -10],
+          permanent: false,
+          opacity: 0.9
+        });
         
         // Add click event for visited provinces
         if (province.visited) {
