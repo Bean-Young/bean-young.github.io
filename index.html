@@ -1632,9 +1632,9 @@ layout: null
         enemiesDestroyed: 0,
         lastTime: 0,
         spawnTimer: 0,
-        spawnInterval: 1000,
+        spawnInterval: 1500,
         difficultyTimer: 0,
-        difficultyInterval: 15000,
+        difficultyInterval: 25000,
         powerUpTimer: 0,
         powerUpDuration: 5000,
         isPoweredUp: false
@@ -1652,7 +1652,7 @@ layout: null
         shieldTimer: 0,
         shieldDuration: 3000,
         lastShot: 0,
-        fireRate: 200,
+        fireRate: 150,
         
         reset() {
           this.x = canvas.width / 2 - this.width / 2;
@@ -1871,31 +1871,31 @@ layout: null
           const enemyType = Math.random();
           let enemy;
           
-          if (enemyType < 0.7) {
+          if (enemyType < 0.8) {
             enemy = {
               x: Math.random() * (canvas.width - 30),
               y: -30,
               width: 30,
               height: 30,
-              speed: 1 + Math.random() * 2,
+              speed: 0.8 + Math.random() * 1.5,
               health: 1,
               color: '#EF4444',
               type: 'error',
               shootTimer: 0,
-              shootInterval: 2000 + Math.random() * 3000
+              shootInterval: 2500 + Math.random() * 3000
             };
-          } else if (enemyType < 0.9) {
+          } else if (enemyType < 0.95) {
             enemy = {
               x: Math.random() * (canvas.width - 25),
               y: -25,
               width: 25,
               height: 25,
-              speed: 2 + Math.random() * 2.5,
+              speed: 1.5 + Math.random() * 2,
               health: 1,
               color: '#F59E0B',
               type: 'warning',
               shootTimer: 0,
-              shootInterval: 1500 + Math.random() * 2000
+              shootInterval: 2000 + Math.random() * 2500
             };
           } else {
             enemy = {
@@ -1903,18 +1903,18 @@ layout: null
               y: -40,
               width: 40,
               height: 40,
-              speed: 0.8 + Math.random() * 1.5,
-              health: 3,
+              speed: 0.6 + Math.random() * 1.2,
+              health: 2,
               color: '#7C3AED',
               type: 'complex',
               shootTimer: 0,
-              shootInterval: 1000 + Math.random() * 1500
+              shootInterval: 1500 + Math.random() * 2000
             };
           }
           
           enemies.push(enemy);
           
-          if (Math.random() < 0.1) {
+          if (Math.random() < 0.2) {
             spawnPowerUp(enemy.x, enemy.y);
           }
         }
@@ -2317,8 +2317,8 @@ layout: null
         if (gameState.difficultyTimer >= gameState.difficultyInterval) {
           gameState.difficultyTimer = 0;
           
-          if (gameState.spawnInterval > 300) {
-            gameState.spawnInterval -= 100;
+          if (gameState.spawnInterval > 500) {
+            gameState.spawnInterval -= 50;
           }
           
           showMessage('System pressure increased!', 2000, '#F59E0B');
