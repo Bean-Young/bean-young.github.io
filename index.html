@@ -370,7 +370,7 @@ layout: null
                   </div>
                 </div>
               </div>
-              <a class="external-link button is-light" href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&hl=en">
+              <a class="external-link button is-light" href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&hl=en" style="margin-left: 10px;">
                 <span class="icon"><i class="ai ai-google-scholar"></i></span>
                 <span>Scholar</span>
               </a>
@@ -1303,6 +1303,12 @@ layout: null
         
         const year = pub.getAttribute('data-year');
         const type = pub.getAttribute('data-type');
+        const visible = pub.getAttribute('data-visible');
+        
+        // Hide publications with data-visible="false"
+        if (visible === 'false') {
+          return false;
+        }
         
         const yearMatch = yearFilter === 'all' || year === yearFilter;
         const typeMatch = typeFilter === 'all' || type === typeFilter;
