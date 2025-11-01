@@ -34,6 +34,11 @@ layout: null
       margin-right: 10px;
     }
     
+    .buttons {
+      flex-wrap: nowrap;
+      display: flex;
+    }
+    
     /* Navigation bar styles */
     .navbar {
       background-color: rgba(255, 255, 255, 0.95);
@@ -365,7 +370,7 @@ layout: null
                   </div>
                 </div>
               </div>
-              <a class="external-link button is-light" href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&hl=en" style="margin-left: 10px;">
+              <a class="external-link button is-light" href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&hl=en">
                 <span class="icon"><i class="ai ai-google-scholar"></i></span>
                 <span>Scholar</span>
               </a>
@@ -374,7 +379,9 @@ layout: null
                 <span>Github</span>
               </a>
               <a class="external-link button is-light" href="https://www.xiaohongshu.com/user/profile/62c7d04b000000000e00fe86">
-                <span class="icon"><i class="fas fa-heart"></i></span>
+                <span class="icon" style="width: 1em; height: 1em; display: inline-flex; align-items: center; justify-content: center;">
+                  <img src="/document/rednote.png" alt="RedNote" style="width: 1em; height: 1em; object-fit: contain;">
+                </span>
                 <span>RedNote</span>
               </a>
               <a class="external-link button is-light" href="https://www.linkedin.com/in/yuezhe-yang-524751355">
@@ -515,7 +522,7 @@ layout: null
   </div>
 </div>
 <!-- Depth-Aware Gaussian Splatting with Propagation Properties for Ultrasound Rendering -->
-      <div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="true">
+      <div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="false">
   <div class="column is-2">
     <div class="publication-image-container">
       <img src="document/3DUS.png">
@@ -537,7 +544,7 @@ layout: null
   </div>
 </div>
 <!-- Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection -->
-<div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="true">
+<div class="publication-block columns" data-year="2025" data-type="paper" data-visible="true">
   <div class="column is-2">
     <div class="publication-image-container">
       <img src="document/Gout.png">
@@ -545,16 +552,19 @@ layout: null
   </div>
   <div class="column">
     <h3 class="publication-title">
-      Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection
+      <a href="https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570">Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection</a>
     </h3>
     <p class="publication-description">
       Yufang Dong<sup>*</sup>, Min Liu<sup>*</sup>, Jiajun Feng<sup>*</sup>,  <b>Yuezhe Yang</b><sup>*</sup>, Yong Dai, Zhe Jin<sup>†</sup> <br>
-      Submit to Digital Health<br>
+      Digital Health, 2025<br>
       <small>Introduces a federated learning framework for low-cost virtual DECT image generation to support accurate gout diagnosis.</small>
     </p>
          <!-- Publication Links. -->
          <div class="publication-links buttons field has-addons">
-         <small>Coming Soon...</small>
+          <a class="external-link button is-small is-ghost" href="https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Paper</span>
+          </a>
         </div>
   </div>
 </div>
@@ -590,7 +600,7 @@ layout: null
 </div>
 
 <!--   Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs -->
-<div class="publication-block columns" data-year="2025" data-type="preprint">
+<div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="false">
   <div class="column is-2">
     <div class="publication-image-container">
       <img src="document/AutoUS.png">
@@ -613,7 +623,7 @@ layout: null
 </div>
 
       <!--   Prompting the Abnormality: Test-Time Adaptation for Breast Ultrasound Segmentation -->
-      <div class="publication-block columns" data-year="2025" data-type="preprint">
+      <div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="false">
   <div class="column is-2">
     <div class="publication-image-container">
       <img src="document/A3PT.png">
