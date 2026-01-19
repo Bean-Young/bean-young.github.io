@@ -417,7 +417,7 @@ layout: null
   <section class="section" id="research-interests">
     <div class="container is-max-desktop">
       <h2 class="title is-3">研究方向</h2>
-      <h3 class="title is-4 has-text-centered" style="margin-top: 2rem; margin-bottom: 1.5rem; font-weight: bold;">Medical AI</h3>
+      <h3 class="title is-4 has-text-centered" style="margin-top: 2rem; margin-bottom: 1.5rem; font-weight: bold;">医学人工智能</h3>
       <div class="columns" style="margin-top: 1.5rem;">
         <div class="column is-4">
           <div class="box" style="height: 100%; border: 1px solid #e8e8e8; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
@@ -1248,12 +1248,12 @@ layout: null
           <div class="modal-card">
             <header class="modal-card-head">
               <p class="modal-card-title" id="modal-title">旅行地点</p>
-              <button class="delete" aria-label="close" onclick="closeTravelModal()"></button>
+              <button class="delete" aria-label="关闭" onclick="closeTravelModal()"></button>
             </header>
             <section class="modal-card-body">
               <div class="columns">
                 <div class="column is-6">
-                  <img id="modal-image" src="" alt="Travel Photo" style="width: 100%; height: auto; border-radius: 8px;">
+                  <img id="modal-image" src="" alt="旅行照片" style="width: 100%; height: auto; border-radius: 8px;">
                 </div>
                 <div class="column is-6">
                   <p id="modal-description" class="has-text-justified"></p>
@@ -1278,26 +1278,26 @@ layout: null
         
         <!-- Start Screen -->
         <div id="startScreen" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(4px); z-index: 10;">
-          <h2 style="font-size: 2.5rem; font-weight: bold; color: #4f46e5; margin-bottom: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🎮 Mini Game: Code Defense Battle</h2>
+          <h2 style="font-size: 2.5rem; font-weight: bold; color: #4f46e5; margin-bottom: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🎮 小游戏：代码防御战</h2>
           
           <div style="color: white; text-align: center; max-width: 500px; margin-bottom: 2rem; line-height: 1.8;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">Control the cursor to defend against incoming error codes!</p>
-            <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem;"><strong style="color: rgb(255, 107, 107) !important;">Controls:</strong> Mouse or Arrow Keys | <strong style="color: rgb(255, 107, 107) !important;">Shoot:</strong> Space or Click</p>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.8rem;"><strong style="color: rgb(255, 107, 107) !important;">Tip:</strong> Destroy special codes to get temporary shields or super weapons!</p>
+            <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">控制光标防御来袭的错误代码！</p>
+            <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem;"><strong style="color: rgb(255, 107, 107) !important;">控制:</strong> 鼠标或方向键 | <strong style="color: rgb(255, 107, 107) !important;">射击:</strong> 空格或点击</p>
+            <p style="margin: 0 0 0.5rem 0; font-size: 0.8rem;"><strong style="color: rgb(255, 107, 107) !important;">提示:</strong> 摧毁特殊代码可获得临时护盾或超级武器！</p>
           </div>
           
           <button id="startBtn" style="background: #4f46e5; color: white; border: none; padding: 12px 32px; border-radius: 25px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; transform: scale(1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-            🚀 Start Game
+            🚀 开始游戏
           </button>
         </div>
         
         <!-- Game Over Screen -->
         <div id="endScreen" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: none; flex-direction: column; align-items: center; justify-content: center; background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(4px); z-index: 10;">
-          <h2 style="font-size: 2.5rem; font-weight: bold; color: #ef4444; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">System Crashed!</h2>
-          <p style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #e2e8f0;">Final Score: <span id="finalScore" style="color: #10b981; font-weight: bold;">0</span></p>
-          <p style="color: #94a3b8; margin-bottom: 2rem;">You destroyed <span id="enemiesDestroyed" style="color: #10b981; font-weight: bold;">0</span> error codes</p>
+          <h2 style="font-size: 2.5rem; font-weight: bold; color: #ef4444; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">系统崩溃！</h2>
+          <p style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #e2e8f0;">最终得分: <span id="finalScore" style="color: #10b981; font-weight: bold;">0</span></p>
+          <p style="color: #94a3b8; margin-bottom: 2rem;">你摧毁了 <span id="enemiesDestroyed" style="color: #10b981; font-weight: bold;">0</span> 个错误代码</p>
           <button id="restartBtn" style="background: #4f46e5; color: white; border: none; padding: 12px 32px; border-radius: 25px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; transform: scale(1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-            🔄 Play Again
+            🔄 再玩一次
           </button>
         </div>
         
@@ -1325,7 +1325,7 @@ layout: null
       <!-- Game Art Description -->
       <div style="margin-top: 2rem; text-align: left; color: #4a5568; font-size: 1rem; line-height: 1.6;">
         <p style="margin: 0;">
-          Games, the ninth art, captivate with their interactions and visuals, making them my pastime of choice.
+          游戏，作为第九艺术，以其互动性和视觉效果吸引着我，成为我选择的消遣方式。
         </p>
       </div>
     </div>
@@ -1584,39 +1584,39 @@ layout: null
     // Travel locations data with province information
     const travelLocations = [
       {
-        name: "Beijing Province, China",
+        name: "北京市, 中国",
         provinceName: "Beijing",
         country: "China",
         image: "/document/ahu.png",
-        description: "The capital province of China, where I experienced the rich history and modern development of this ancient civilization. I visited the Great Wall, Forbidden City, and experienced the blend of ancient culture and modern technology."
+        description: "中国的首都，我在这里体验了这个古老文明丰富的历史和现代发展。我参观了长城、故宫，体验了古代文化与现代技术的融合。"
       },
       {
-        name: "Shanghai Province, China", 
+        name: "上海市, 中国", 
         provinceName: "Shanghai",
         country: "China",
         image: "/document/shanghai.jpg",
-        description: "A vibrant metropolitan province that perfectly blends traditional Chinese culture with cutting-edge technology."
+        description: "一个充满活力的大都市，完美融合了传统中国文化和前沿技术。"
       },
       {
-        name: "Zhejiang Province, China",
+        name: "浙江省, 中国",
         provinceName: "Zhejiang",
         country: "China",
         image: "/document/hangzhou.jpg",
-        description: "Known for its beautiful West Lake in Hangzhou and rich cultural heritage, a perfect blend of nature and history."
+        description: "以杭州美丽的西湖和丰富的文化遗产而闻名，是自然与历史的完美融合。"
       },
       {
-        name: "Anhui Province, China",
+        name: "安徽省, 中国",
         provinceName: "Anhui",
         country: "China",
         image: "/document/ahu.png",
-        description: "My home province where I study at Anhui University, known for its beautiful mountains and rich culture."
+        description: "我的家乡省份，我在安徽大学学习，这里以美丽的山川和丰富的文化而闻名。"
       },
       {
-        name: "Alberta Province, Canada",
+        name: "阿尔伯塔省, 加拿大",
         provinceName: "Alberta",
         country: "Canada",
         image: "/document/edmonton.jpg",
-        description: "During my research internship at the University of Alberta, I explored this beautiful Canadian province."
+        description: "在阿尔伯塔大学研究实习期间，我探索了这个美丽的加拿大省份。"
       }
     ];
 
