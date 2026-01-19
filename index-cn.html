@@ -80,6 +80,191 @@ layout: null
         width: 28px !important;
         height: 28px !important;
       }
+      
+      /* 导航栏按钮适配 */
+      .navbar-end .buttons {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+      
+      .navbar-end .button {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.6rem !important;
+        margin-left: 0.25rem !important;
+        margin-bottom: 0.25rem;
+      }
+      
+      /* 个人简介区域 */
+      .hero-body {
+        padding: 1rem !important;
+      }
+      
+      .hero .columns {
+        flex-direction: column;
+      }
+      
+      .hero .column.is-4 {
+        width: 100%;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      
+      .portrait img {
+        max-width: 200px;
+        margin: 0 auto;
+      }
+      
+      /* 按钮组适配 */
+      .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .buttons .button {
+        margin: 0.25rem;
+        font-size: 0.85rem;
+      }
+      
+      /* 论文和项目卡片 */
+      .publication-block .columns {
+        flex-direction: column;
+      }
+      
+      .publication-block .column.is-2 {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto 1rem;
+      }
+      
+      .publication-title {
+        font-size: 1rem !important;
+        line-height: 1.4;
+      }
+      
+      .publication-description {
+        font-size: 0.9rem;
+      }
+      
+      /* 研究方向卡片 */
+      .columns.is-multiline .column.is-4 {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+      
+      /* 教育经历卡片 */
+      .education-block .columns {
+        flex-direction: column;
+      }
+      
+      .education-block .column.is-2 {
+        width: 100%;
+        max-width: 120px;
+        margin: 0 auto 1rem;
+      }
+      
+      /* 奖项卡片 */
+      .award-item .columns {
+        flex-direction: column;
+      }
+      
+      .award-item .column.is-2 {
+        width: 100%;
+        max-width: 120px;
+        margin: 0 auto 1rem;
+      }
+      
+      /* 筛选器适配 */
+      .filter-section .columns {
+        flex-direction: column;
+      }
+      
+      .filter-section .column {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      
+      /* 标题大小调整 */
+      .title.is-3 {
+        font-size: 1.5rem !important;
+      }
+      
+      .title.is-4 {
+        font-size: 1.25rem !important;
+      }
+      
+      .subtitle.is-5 {
+        font-size: 1rem !important;
+      }
+      
+      /* 游戏容器 */
+      .game-container {
+        max-width: 100% !important;
+        margin: 0 0.5rem !important;
+      }
+      
+      #gameCanvas {
+        height: 300px !important;
+      }
+      
+      /* 地图容器 */
+      #world-map-container {
+        height: 400px !important;
+      }
+      
+      /* 模态框适配 */
+      .modal-card {
+        margin: 0.5rem !important;
+        width: calc(100% - 1rem) !important;
+      }
+      
+      .modal-card-body .columns {
+        flex-direction: column;
+      }
+      
+      .modal-card-body .column.is-6 {
+        width: 100%;
+      }
+      
+      /* 其他部分 */
+      .content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      
+      /* 图片适配 */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* 表格和列表 */
+      table {
+        font-size: 0.85rem;
+      }
+    }
+    
+    /* 超小屏幕适配 */
+    @media (max-width: 480px) {
+      .navbar-end .button {
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.5rem !important;
+      }
+      
+      .title.is-3 {
+        font-size: 1.25rem !important;
+      }
+      
+      .publication-title {
+        font-size: 0.9rem !important;
+      }
+      
+      .hero-body {
+        padding: 0.75rem !important;
+      }
+      
+      .section {
+        padding: 1rem 0.75rem !important;
+      }
     }
     
     /* Add top margin to hero section to account for fixed navbar */

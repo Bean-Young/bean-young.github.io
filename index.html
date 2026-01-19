@@ -80,6 +80,191 @@ layout: null
         width: 28px !important;
         height: 28px !important;
       }
+      
+      /* Navigation buttons adaptation */
+      .navbar-end .buttons {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+      
+      .navbar-end .button {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.6rem !important;
+        margin-left: 0.25rem !important;
+        margin-bottom: 0.25rem;
+      }
+      
+      /* Hero section */
+      .hero-body {
+        padding: 1rem !important;
+      }
+      
+      .hero .columns {
+        flex-direction: column;
+      }
+      
+      .hero .column.is-4 {
+        width: 100%;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      
+      .portrait img {
+        max-width: 200px;
+        margin: 0 auto;
+      }
+      
+      /* Button groups */
+      .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .buttons .button {
+        margin: 0.25rem;
+        font-size: 0.85rem;
+      }
+      
+      /* Publication and project cards */
+      .publication-block .columns {
+        flex-direction: column;
+      }
+      
+      .publication-block .column.is-2 {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto 1rem;
+      }
+      
+      .publication-title {
+        font-size: 1rem !important;
+        line-height: 1.4;
+      }
+      
+      .publication-description {
+        font-size: 0.9rem;
+      }
+      
+      /* Research interests cards */
+      .columns.is-multiline .column.is-4 {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+      
+      /* Education cards */
+      .education-block .columns {
+        flex-direction: column;
+      }
+      
+      .education-block .column.is-2 {
+        width: 100%;
+        max-width: 120px;
+        margin: 0 auto 1rem;
+      }
+      
+      /* Award cards */
+      .award-item .columns {
+        flex-direction: column;
+      }
+      
+      .award-item .column.is-2 {
+        width: 100%;
+        max-width: 120px;
+        margin: 0 auto 1rem;
+      }
+      
+      /* Filter section */
+      .filter-section .columns {
+        flex-direction: column;
+      }
+      
+      .filter-section .column {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      
+      /* Title sizes */
+      .title.is-3 {
+        font-size: 1.5rem !important;
+      }
+      
+      .title.is-4 {
+        font-size: 1.25rem !important;
+      }
+      
+      .subtitle.is-5 {
+        font-size: 1rem !important;
+      }
+      
+      /* Game container */
+      .game-container {
+        max-width: 100% !important;
+        margin: 0 0.5rem !important;
+      }
+      
+      #gameCanvas {
+        height: 300px !important;
+      }
+      
+      /* Map container */
+      #world-map-container {
+        height: 400px !important;
+      }
+      
+      /* Modal adaptation */
+      .modal-card {
+        margin: 0.5rem !important;
+        width: calc(100% - 1rem) !important;
+      }
+      
+      .modal-card-body .columns {
+        flex-direction: column;
+      }
+      
+      .modal-card-body .column.is-6 {
+        width: 100%;
+      }
+      
+      /* Other sections */
+      .content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      
+      /* Image adaptation */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* Tables and lists */
+      table {
+        font-size: 0.85rem;
+      }
+    }
+    
+    /* Extra small screens */
+    @media (max-width: 480px) {
+      .navbar-end .button {
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.5rem !important;
+      }
+      
+      .title.is-3 {
+        font-size: 1.25rem !important;
+      }
+      
+      .publication-title {
+        font-size: 0.9rem !important;
+      }
+      
+      .hero-body {
+        padding: 0.75rem !important;
+      }
+      
+      .section {
+        padding: 1rem 0.75rem !important;
+      }
     }
     
     /* Add top margin to hero section to account for fixed navbar */
