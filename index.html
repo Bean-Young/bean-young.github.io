@@ -72,6 +72,19 @@ layout: null
     
     /* Responsive navigation */
     @media (max-width: 768px) {
+      /* Ensure navbar stays on one line */
+      .navbar {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        overflow: hidden;
+      }
+      
+      .navbar-brand {
+        flex-shrink: 0 !important;
+        min-width: auto;
+      }
+      
       .navbar-brand .navbar-item span {
         display: none;
       }
@@ -81,6 +94,22 @@ layout: null
         height: 28px !important;
       }
       
+      .navbar-brand .navbar-item {
+        padding: 0.5rem 0.5rem !important;
+      }
+      
+      /* Navigation buttons area */
+      .navbar-end {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+      }
+      
+      .navbar-end .navbar-item {
+        width: 100%;
+        padding: 0 !important;
+      }
+      
       /* Navigation buttons adaptation */
       .navbar-end .buttons {
         flex-wrap: nowrap;
@@ -88,6 +117,7 @@ layout: null
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none; /* IE and Edge */
+        width: 100%;
       }
       
       .navbar-end .buttons::-webkit-scrollbar {
