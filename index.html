@@ -83,15 +83,23 @@ layout: null
       
       /* Navigation buttons adaptation */
       .navbar-end .buttons {
-        flex-wrap: wrap;
-        gap: 0.25rem;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+      }
+      
+      .navbar-end .buttons::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
       }
       
       .navbar-end .button {
-        font-size: 0.75rem !important;
-        padding: 0.4rem 0.6rem !important;
-        margin-left: 0.25rem !important;
-        margin-bottom: 0.25rem;
+        font-size: 0.7rem !important;
+        padding: 0.35rem 0.5rem !important;
+        margin-left: 0.2rem !important;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
       
       /* Hero section */
@@ -246,8 +254,8 @@ layout: null
     /* Extra small screens */
     @media (max-width: 480px) {
       .navbar-end .button {
-        font-size: 0.7rem !important;
-        padding: 0.3rem 0.5rem !important;
+        font-size: 0.65rem !important;
+        padding: 0.3rem 0.4rem !important;
       }
       
       .title.is-3 {
