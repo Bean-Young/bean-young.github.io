@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Write stats.json from Google Scholar profile and GitHub public repos (non-fork)."""
+"""Update stats.json and Shields.io endpoint JSON (Scholar via scholarly + GitHub API)."""
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -11,9 +12,12 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-SCHOLAR_URL = "https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&hl=en"
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "stats.json"
+SHIELDS_DIR = ROOT / "shields"
+SCHOLAR_USER_ID = os.environ.get("GOOGLE_SCHOLAR_ID") or "SBZ_9bAAAAAJ"
+SCHOLAR_URL = f"https://scholar.google.com/citations?user={SCHOLAR_USER_ID}&hl=en"
 GITHUB_USER = "Bean-Young"
-OUT = Path(__file__).resolve().parent.parent / "stats.json"
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (compatible; Bean-Young-site-stats/1.0; +https://bean-young.github.io)"
@@ -31,12 +35,28 @@ def load_existing() -> dict:
         return {}
 
 
-def fetch_scholar_citations() -> int | None:
+def fetch_scholar_citations_scholarly() -> int | None:
+    """Same idea as acad-homepage google_scholar_crawler/main.py (scholarly library)."""
+    try:
+        from scholarly import scholarly
+
+        author = scholarly.search_author_id(SCHOLAR_USER_ID)
+        scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
+        cited = author.get("citedby")
+        if cited is None:
+            return None
+        return int(cited)
+    except Exception as exc:
+        print(f"Scholarly failed: {exc}", file=sys.stderr)
+        return None
+
+
+def fetch_scholar_citations_html() -> int | None:
     try:
         r = requests.get(SCHOLAR_URL, headers=HEADERS, timeout=45)
         r.raise_for_status()
     except requests.RequestException as exc:
-        print(f"Scholar request failed: {exc}", file=sys.stderr)
+        print(f"Scholar HTML request failed: {exc}", file=sys.stderr)
         return None
 
     soup = BeautifulSoup(r.text, "html.parser")
@@ -59,6 +79,13 @@ def fetch_scholar_citations() -> int | None:
 
     print("Could not parse Scholar citations from HTML", file=sys.stderr)
     return None
+
+
+def fetch_scholar_citations() -> int | None:
+    s = fetch_scholar_citations_scholarly()
+    if s is not None:
+        return s
+    return fetch_scholar_citations_html()
 
 
 def fetch_github_stars() -> int | None:
@@ -96,29 +123,84 @@ def fetch_github_stars() -> int | None:
         return None
 
 
+def write_shield(
+    path: Path,
+    label: str,
+    message: str,
+    color: str,
+    named_logo: str | None = None,
+) -> None:
+    data: dict = {
+        "schemaVersion": 1,
+        "label": label,
+        "message": message,
+        "color": color,
+    }
+    if named_logo:
+        data["namedLogo"] = named_logo
+    path.write_text(json.dumps(data, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     existing = load_existing()
-    citations = fetch_scholar_citations()
-    stars = fetch_github_stars()
+    citations_raw = fetch_scholar_citations()
+    stars_raw = fetch_github_stars()
 
-    cit_ok = citations is not None
-    star_ok = stars is not None
+    cit_ok = citations_raw is not None
+    star_ok = stars_raw is not None
+
+    citations = citations_raw if cit_ok else existing.get("citations")
+    stars = stars_raw if star_ok else existing.get("githubStars")
 
     out: dict = {
         "scholarProfile": SCHOLAR_URL,
         "githubRepos": f"https://github.com/{GITHUB_USER}?tab=repositories",
-        "citations": citations if cit_ok else existing.get("citations"),
-        "githubStars": stars if star_ok else existing.get("githubStars"),
+        "citations": citations,
+        "githubStars": stars,
     }
 
+    # Avoid committing every push when only the clock would change (prevents workflow loops).
+    metrics_changed = (cit_ok and citations_raw != existing.get("citations")) or (
+        star_ok and stars_raw != existing.get("githubStars")
+    )
     if cit_ok or star_ok:
-        out["updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        if metrics_changed or not existing.get("updated"):
+            out["updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        else:
+            out["updated"] = existing.get("updated")
     elif existing.get("updated"):
         out["updated"] = existing["updated"]
     else:
         out["updated"] = None
 
     OUT.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    SHIELDS_DIR.mkdir(parents=True, exist_ok=True)
+    cite_msg = (
+        f"{int(citations):,}"
+        if isinstance(citations, int)
+        else ("—" if citations is None else str(citations))
+    )
+    stars_msg = (
+        f"{int(stars):,}"
+        if isinstance(stars, int)
+        else ("—" if stars is None else str(stars))
+    )
+    write_shield(
+        SHIELDS_DIR / "scholar-citations.json",
+        "Scholar citations",
+        cite_msg,
+        "4285F4",
+        "googlescholar",
+    )
+    write_shield(
+        SHIELDS_DIR / "github-stars.json",
+        "GitHub stars",
+        stars_msg,
+        "181717",
+        "github",
+    )
+
     print(json.dumps(out, indent=2))
 
 

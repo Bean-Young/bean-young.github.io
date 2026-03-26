@@ -31,7 +31,6 @@ layout: null
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script defer src="{{ '/js/fontawesome.all.min.js' | relative_url }}"></script>
-  <script>window.__STATS_JSON__ = "{{ '/stats.json' | relative_url }}";</script>
   <script src="{{ '/js/index.js' | relative_url }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
@@ -45,19 +44,19 @@ layout: null
       display: flex;
     }
 
-    .profile-stats {
+    .profile-stat-badges {
       display: flex;
       flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.25rem 1.25rem;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
     }
-    .profile-stats a {
-      color: #4a4a4a;
-      text-decoration: underline;
-      text-decoration-color: rgba(74, 74, 74, 0.35);
+    .profile-stat-badges a {
+      line-height: 0;
+      text-decoration: none;
     }
-    .profile-stats a:hover {
-      color: #3273dc;
+    .profile-stat-badges img {
+      height: 22px;
+      vertical-align: middle;
     }
     
     /* Navigation bar styles */
@@ -640,19 +639,14 @@ layout: null
                 <span>Email</span>
               </a>
             </div>
-            <p class="profile-stats is-size-7 has-text-grey mt-3 mb-0" id="profile-stats" aria-live="polite">
-              <span>
-                <a href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&hl=en" target="_blank" rel="noopener">Scholar citations</a>:
-                <strong id="stat-citations" class="has-text-grey-dark">…</strong>
-              </span>
-              <span>
-                <a href="https://github.com/Bean-Young?tab=repositories" target="_blank" rel="noopener">GitHub stars</a>:
-                <strong id="stat-github-stars" class="has-text-grey-dark">…</strong>
-              </span>
-            </p>
-            <p class="is-size-7 has-text-grey-light mt-1 mb-0" id="stat-updated-wrap" style="display: none;">
-              <span id="stat-updated"></span>
-            </p>
+            <div class="profile-stat-badges mt-3" aria-label="Scholar citations and GitHub stars">
+              <a href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&amp;hl=en" target="_blank" rel="noopener" title="Google Scholar profile">
+                <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FBean-Young%2Fbean-young.github.io%2Fmain%2Fshields%2Fscholar-citations.json&amp;style=flat-square" alt="Google Scholar citations" height="22" loading="lazy">
+              </a>
+              <a href="https://github.com/Bean-Young?tab=repositories" target="_blank" rel="noopener" title="GitHub repositories">
+                <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FBean-Young%2Fbean-young.github.io%2Fmain%2Fshields%2Fgithub-stars.json&amp;style=flat-square" alt="Total GitHub stars on owned repositories" height="22" loading="lazy">
+              </a>
+            </div>
           </div>
         </div>
       </div>

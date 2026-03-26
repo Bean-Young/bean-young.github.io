@@ -1,9 +1,20 @@
+# Scholar: scholarly library (same approach as https://github.com/RayeRen/acad-homepage.github.io )
+# Optional repo secret GOOGLE_SCHOLAR_ID — defaults to SBZ_9bAAAAAJ if unset.
 name: Update site stats
 
 on:
+  push:
+    branches: [main, master]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/update-site-stats.yml"
   schedule:
-    - cron: "0 6 * * 1"
+    - cron: "0 8 * * *"
   workflow_dispatch:
+
+concurrency:
+  group: site-stats
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -11,6 +22,8 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
     steps:
       - uses: actions/checkout@v4
 
@@ -19,13 +32,16 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install -r scripts/requirements-stats.txt
 
       - name: Fetch Scholar citations and GitHub stars
         run: python scripts/fetch_site_stats.py
 
-      - name: Commit stats.json
+      - name: Commit stats and Shields endpoint JSON
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: refresh stats.json (Scholar + GitHub)"
-          file_pattern: stats.json
+          commit_message: "chore: refresh stats + shield badges (Scholar + GitHub)"
+          file_pattern: >-
+            stats.json
+            shields/scholar-citations.json
+            shields/github-stars.json
