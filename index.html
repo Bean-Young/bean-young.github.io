@@ -31,6 +31,7 @@ layout: null
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script defer src="{{ '/js/fontawesome.all.min.js' | relative_url }}"></script>
+  <script>window.__STATS_JSON__ = "{{ '/stats.json' | relative_url }}";</script>
   <script src="{{ '/js/index.js' | relative_url }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
@@ -42,6 +43,21 @@ layout: null
     .buttons {
       flex-wrap: nowrap;
       display: flex;
+    }
+
+    .profile-stats {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.25rem 1.25rem;
+    }
+    .profile-stats a {
+      color: #4a4a4a;
+      text-decoration: underline;
+      text-decoration-color: rgba(74, 74, 74, 0.35);
+    }
+    .profile-stats a:hover {
+      color: #3273dc;
     }
     
     /* Navigation bar styles */
@@ -624,6 +640,19 @@ layout: null
                 <span>Email</span>
               </a>
             </div>
+            <p class="profile-stats is-size-7 has-text-grey mt-3 mb-0" id="profile-stats" aria-live="polite">
+              <span>
+                <a href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&hl=en" target="_blank" rel="noopener">Scholar citations</a>:
+                <strong id="stat-citations" class="has-text-grey-dark">…</strong>
+              </span>
+              <span>
+                <a href="https://github.com/Bean-Young?tab=repositories" target="_blank" rel="noopener">GitHub stars</a>:
+                <strong id="stat-github-stars" class="has-text-grey-dark">…</strong>
+              </span>
+            </p>
+            <p class="is-size-7 has-text-grey-light mt-1 mb-0" id="stat-updated-wrap" style="display: none;">
+              <span id="stat-updated"></span>
+            </p>
           </div>
         </div>
       </div>
@@ -810,7 +839,7 @@ layout: null
       <a href="https://arxiv.org/abs/2511.07743">UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis</a>
     </h3>
     <p class="publication-description">
-      <b>Yuezhe Yang</b>, Qingqing Ruan, Wenjie Cai, Yudang Dong, Dexin Yang, Xingbo Dong<sup>†</sup>, Zhe Jin, and Yong Dai<br>
+      <b>Yuezhe Yang</b>, Qingqing Ruan, Wenjie Cai, Yudang Dong, Dexin Yang, Xingbo Dong<sup>†</sup>, Zhe Jin and Yong Dai<br>
       ICME, 2026<br>
       <small>The first to apply 3DGS to generate new ultrasound perspectives.</small>
     </p> 
@@ -895,7 +924,7 @@ layout: null
       <a href="https://arxiv.org/abs/2511.07748">Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs</a>
     </h3>
     <p class="publication-description">
-      <b>Yuezhe Yang</b>, Yiyue Guo, Wenjie Cai, Qingqing Ruan, Siying Wang, Xingbo Dong<sup>†</sup>, Zhe Jin, and Yong Dai<br>
+      <b>Yuezhe Yang</b>, Yiyue Guo, Wenjie Cai, Qingqing Ruan, Siying Wang, Xingbo Dong<sup>†</sup>, Zhe Jin and Yong Dai<br>
       arXiv, 2025<br>
       <small>The first multimodal ultrasound video diagnostic agent.</small>
     </p>
