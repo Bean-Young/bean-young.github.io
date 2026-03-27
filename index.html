@@ -55,7 +55,6 @@ layout: null
       text-decoration: none;
     }
     .profile-stat-badges img {
-      height: 22px;
       vertical-align: middle;
     }
     
@@ -639,12 +638,13 @@ layout: null
                 <span>Email</span>
               </a>
             </div>
+            <!-- Same pattern as AcadHomepage: jsDelivr raw from branch google-scholar-stats + shields.io/endpoint (no style= → default badge look) -->
             <div class="profile-stat-badges mt-3" aria-label="Scholar citations and GitHub stars">
               <a href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&amp;hl=en" target="_blank" rel="noopener" title="Google Scholar profile">
-                <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FBean-Young%2Fbean-young.github.io%2Fmain%2Fshields%2Fscholar-citations.json&amp;style=flat-square" alt="Google Scholar citations" height="22" loading="lazy">
+                <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBean-Young%2Fbean-young.github.io%40google-scholar-stats%2Fgs_data_shieldsio.json" alt="Google Scholar citations" loading="lazy">
               </a>
               <a href="https://github.com/Bean-Young?tab=repositories" target="_blank" rel="noopener" title="GitHub repositories">
-                <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FBean-Young%2Fbean-young.github.io%2Fmain%2Fshields%2Fgithub-stars.json&amp;style=flat-square" alt="Total GitHub stars on owned repositories" height="22" loading="lazy">
+                <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBean-Young%2Fbean-young.github.io%40google-scholar-stats%2Fgithub_stars_shieldsio.json" alt="Total GitHub stars on owned repositories" loading="lazy">
               </a>
             </div>
           </div>
