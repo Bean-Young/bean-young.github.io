@@ -23,19 +23,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Reqs
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-setuptools
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r google_scholar_crawler/requirements.txt
 
       - name: Run
         env:
           GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
         run: |
           cd ./google_scholar_crawler
-          pip3 install -r requirements.txt
-          python3 main.py
-          python3 github_stars.py
+          python main.py
+          python github_stars.py
           cd ./results
           git init
           git config --local user.name "github-actions[bot]"
