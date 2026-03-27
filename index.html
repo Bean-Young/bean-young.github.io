@@ -44,30 +44,24 @@ layout: null
       display: flex;
     }
 
-    /* Shields-style stats (flat-square + tight row, common on academic homepages) */
+    /* AcadHomepage _pages/about.md: flat + labelColor=f6f6f6 + color=9cf + logo=… */
     .profile-stat-badges {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.45rem 0.55rem;
+      gap: 0.35rem 0.5rem;
     }
     .profile-stat-badges a {
-      display: inline-flex;
-      line-height: 0;
+      line-height: 1;
       text-decoration: none;
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     }
     .profile-stat-badges a:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-      transition: opacity 0.15s ease, transform 0.15s ease;
+      opacity: 0.88;
     }
     .profile-stat-badges img {
-      display: block;
-      height: 22px;
-      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+      height: auto;
     }
     
     /* Navigation bar styles */
@@ -650,13 +644,13 @@ layout: null
                 <span>Email</span>
               </a>
             </div>
-            <!-- jsDelivr @ google-scholar-stats; style=flat-square matches typical Acad/minimal-mistakes badge rows -->
+            <!-- GitHub: total stars in JSON (CI); shields style=social like rayeren.github.io -->
             <div class="profile-stat-badges mt-3" aria-label="Google Scholar citations and GitHub stars">
-              <a href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&amp;hl=en" target="_blank" rel="noopener" title="Google Scholar">
-                <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBean-Young%2Fbean-young.github.io%40google-scholar-stats%2Fgs_data_shieldsio.json&amp;style=flat-square" alt="Google Scholar citations" height="22" loading="lazy">
+              <a href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+                <img src="https://img.shields.io/endpoint?logo=Google%20Scholar&amp;url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBean-Young%2Fbean-young.github.io%40google-scholar-stats%2Fgs_data_shieldsio.json&amp;labelColor=f6f6f6&amp;color=9cf&amp;style=flat&amp;label=citations" alt="Google Scholar citations" loading="lazy">
               </a>
-              <a href="https://github.com/Bean-Young?tab=repositories" target="_blank" rel="noopener" title="GitHub — stars on your public non-fork repos">
-                <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBean-Young%2Fbean-young.github.io%40google-scholar-stats%2Fgithub_stars_shieldsio.json&amp;style=flat-square" alt="GitHub stars" height="22" loading="lazy">
+              <a href="https://github.com/Bean-Young?tab=repositories" target="_blank" rel="noopener">
+                <img src="https://img.shields.io/endpoint?logo=github&amp;url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBean-Young%2Fbean-young.github.io%40google-scholar-stats%2Fgithub_stars_shieldsio.json&amp;style=social" alt="Total GitHub stars (all public repos)" loading="lazy">
               </a>
             </div>
           </div>
