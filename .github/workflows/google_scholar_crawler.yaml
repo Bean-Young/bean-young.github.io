@@ -31,6 +31,7 @@ jobs:
         run: |
           cd ./google_scholar_crawler
           python main.py
+          python github_stars.py
           cd ./results
           git init
           git config --local user.name "${GITHUB_ACTOR}"
