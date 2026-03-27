@@ -1,5 +1,6 @@
 # Mirrors https://github.com/RayeRen/acad-homepage.github.io/blob/main/.github/workflows/google_scholar_crawler.yaml
-# Pushes JSON to branch google-scholar-stats (not main). Set secret GOOGLE_SCHOLAR_ID = SBZ_9bAAAAAJ (or your id).
+# Pushes JSON to branch google-scholar-stats (not main).
+# Secrets: GOOGLE_SCHOLAR_ID. If Scholar returns 403 in CI, set Variable OPENALEX_ORCID (ORCID id, e.g. 0009-0002-0059-0365).
 name: Get Citation Data
 
 permissions:
@@ -33,6 +34,7 @@ jobs:
       - name: Run
         env:
           GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
+          OPENALEX_ORCID: ${{ vars.OPENALEX_ORCID }}
         run: |
           cd ./google_scholar_crawler
           python main.py
