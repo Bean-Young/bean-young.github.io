@@ -3,6 +3,7 @@
     {
       "id": "hub-medical",
       "title": "Medical AI",
+      "shortLabel": "Medical AI",
       "year": 2026,
       "venue": "Research Center",
       "url": "https://bean-young.github.io/#research-interests",
@@ -13,6 +14,7 @@
     {
       "id": "cat-3d",
       "title": "3D Reconstruction",
+      "shortLabel": "3D Recon",
       "year": 2026,
       "venue": "Research Pillar",
       "url": "https://bean-young.github.io/#research-interests",
@@ -23,6 +25,7 @@
     {
       "id": "cat-diag",
       "title": "Intelligent Diagnosis",
+      "shortLabel": "Diagnosis",
       "year": 2026,
       "venue": "Research Pillar",
       "url": "https://bean-young.github.io/#research-interests",
@@ -33,6 +36,7 @@
     {
       "id": "cat-trust",
       "title": "Trustworthy AI",
+      "shortLabel": "Trustworthy",
       "year": 2026,
       "venue": "Research Pillar",
       "url": "https://bean-young.github.io/#research-interests",
@@ -43,6 +47,8 @@
     {
       "id": "p-ahu",
       "title": "An annotated heterogeneous ultrasound database",
+      "shortLabel": "AHU-DB",
+      "scholarTitle": "An annotated heterogeneous ultrasound database",
       "year": 2025,
       "venue": "Scientific Data",
       "url": "https://www.nature.com/articles/s41597-025-04464-4",
@@ -54,6 +60,8 @@
     {
       "id": "p-emnet",
       "title": "EM-Net: Effective and morphology-aware network for skin lesion segmentation",
+      "shortLabel": "EM-Net",
+      "scholarTitle": "EM-Net: Effective and morphology-aware network for skin lesion segmentation",
       "year": 2025,
       "venue": "ESWA",
       "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904",
@@ -65,6 +73,8 @@
     {
       "id": "p-ultrags",
       "title": "UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis",
+      "shortLabel": "UltraGS",
+      "scholarTitle": "UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis",
       "year": 2026,
       "venue": "ICME",
       "url": "https://arxiv.org/abs/2511.07743",
@@ -76,6 +86,8 @@
     {
       "id": "p-3dreview",
       "title": "Explicit and Implicit Representations in AI-based 3D Reconstruction for Radiology: A Systematic Review",
+      "shortLabel": "AI4Radiology",
+      "scholarTitle": "Explicit and Implicit Representations in AI-based 3D Reconstruction for Radiology: A Systematic Review",
       "year": 2025,
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2504.11349",
@@ -87,6 +99,8 @@
     {
       "id": "p-vdect",
       "title": "Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection",
+      "shortLabel": "OneGout-FL",
+      "scholarTitle": "Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection",
       "year": 2025,
       "venue": "Digital Health",
       "url": "https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570",
@@ -98,6 +112,8 @@
     {
       "id": "p-autous",
       "title": "Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs",
+      "shortLabel": "Auto-US",
+      "scholarTitle": "Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs",
       "year": 2025,
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2511.07748",
@@ -109,6 +125,8 @@
     {
       "id": "p-hyper",
       "title": "HyperWalker: Dynamic Hypergraph-Based Deep Diagnosis for Multi-Hop Clinical Modeling across EHR and X-Ray in Medical VLMs",
+      "shortLabel": "HyperWalker",
+      "scholarTitle": "HyperWalker: Dynamic Hypergraph-Based Deep Diagnosis for Multi-Hop Clinical Modeling across EHR and X-Ray in Medical VLMs",
       "year": 2026,
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2601.13919",
@@ -118,23 +136,13 @@
       "pillarId": "cat-diag"
     },
     {
-      "id": "p-tta",
-      "title": "Prompting the Abnormality: Test-Time Adaptation for Breast Ultrasound Segmentation",
-      "year": 2026,
-      "venue": "AAAI (submitted)",
-      "url": "https://bean-young.github.io/#publications",
-      "citations": 3,
-      "field": "TTA · Robustness",
-      "role": "paper",
-      "pillarId": "cat-trust"
-    },
-    {
       "id": "pat-petnerf",
       "title": "PET image reconstruction and PET image 3D perception (prior-image NeRF)",
+      "shortLabel": "PET-NeRF Patent",
       "year": 2024,
       "venue": "Patent CN118411435A",
       "url": "https://patents.google.com/patent/CN118411435A/",
-      "citations": 6,
+      "citations": 0,
       "field": "PET · NeRF · 3D",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -142,10 +150,11 @@
     {
       "id": "pat-petgs",
       "title": "3D Gaussian model generation and rendering for low-dose PET image processing",
+      "shortLabel": "PET-3DGS Patent",
       "year": 2025,
       "venue": "Patent CN119625190A",
       "url": "https://patents.google.com/patent/CN119625190A",
-      "citations": 5,
+      "citations": 0,
       "field": "PET · 3D Gaussian Splatting",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -153,10 +162,11 @@
     {
       "id": "proj-deeppet",
       "title": "DeepPET: An Intelligent Brain PET Device with Low Radiation and High Imaging Quality",
+      "shortLabel": "DeepPET",
       "year": 2024,
       "venue": "National Innovation Project",
       "url": "https://bean-young.github.io/petahu/",
-      "citations": 10,
+      "citations": 0,
       "field": "PET · Low-dose reconstruction",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -179,7 +189,6 @@
     {"source": "cat-diag", "target": "p-hyper", "type": "similar"},
 
     {"source": "cat-trust", "target": "p-vdect", "type": "similar"},
-    {"source": "cat-trust", "target": "p-tta", "type": "similar"},
 
     {"source": "p-ultrags", "target": "p-3dreview", "type": "extends"},
     {"source": "p-ultrags", "target": "p-ahu", "type": "similar"},
@@ -190,9 +199,7 @@
 
     {"source": "p-ahu", "target": "p-autous", "type": "similar"},
     {"source": "p-autous", "target": "p-hyper", "type": "similar"},
-    {"source": "p-emnet", "target": "p-tta", "type": "similar"},
 
-    {"source": "p-vdect", "target": "p-tta", "type": "similar"},
     {"source": "p-vdect", "target": "p-hyper", "type": "similar"}
   ]
 }

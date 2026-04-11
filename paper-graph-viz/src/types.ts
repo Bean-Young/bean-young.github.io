@@ -6,11 +6,13 @@ export type PaperRole = 'hub' | 'pillar' | 'paper';
 export interface PaperNode {
   id: string;
   title: string;
+  shortLabel?: string;
   year: number;
   venue: string;
   url: string;
   citations: number;
   field: string;
+  scholarTitle?: string;
   role?: PaperRole;
   /** 支柱 id：cat-3d | cat-diag | cat-trust */
   pillarId?: string;

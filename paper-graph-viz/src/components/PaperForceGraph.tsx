@@ -48,6 +48,25 @@ export function PaperForceGraph({
     }, 0);
   }, []);
 
+  const clampNodeToViewport = useCallback(
+    (node: NodeObject<PaperNode>) => {
+      const fg = fgRef.current;
+      if (!fg) return;
+      const pad = 10;
+      const topLeft = fg.screen2GraphCoords(pad, pad);
+      const bottomRight = fg.screen2GraphCoords(width - pad, height - pad);
+      const minX = Math.min(topLeft.x, bottomRight.x);
+      const maxX = Math.max(topLeft.x, bottomRight.x);
+      const minY = Math.min(topLeft.y, bottomRight.y);
+      const maxY = Math.max(topLeft.y, bottomRight.y);
+      if (node.x !== undefined) node.x = Math.min(maxX, Math.max(minX, node.x));
+      if (node.y !== undefined) node.y = Math.min(maxY, Math.max(minY, node.y));
+      if (node.fx !== undefined) node.fx = Math.min(maxX, Math.max(minX, node.fx));
+      if (node.fy !== undefined) node.fy = Math.min(maxY, Math.max(minY, node.fy));
+    },
+    [width, height],
+  );
+
   useEffect(() => {
     if (!focusId) return;
     const id = focusId;
@@ -82,13 +101,14 @@ export function PaperForceGraph({
       minZoom={0.35}
       maxZoom={16}
       nodeLabel={() => ''}
+      nodeCanvasObjectMode={() => 'after'}
       nodeRelSize={1}
       nodeVal={(n: PaperNode) => nodeRadius(n)}
       nodeColor={(n: PaperNode) => nodeColorFor(n, focusId, hi)}
       nodeCanvasObject={(node, ctx, globalScale) => {
         const n = node as PaperNode;
-        const label = n.title;
-        const fontSize = Math.max(6, 12 / globalScale);
+        const label = n.shortLabel ?? n.title;
+        const fontSize = Math.max(5, 10 / globalScale);
         ctx.font = `${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -109,6 +129,12 @@ export function PaperForceGraph({
       linkDirectionalParticleWidth={0.9}
       linkDirectionalParticleSpeed={() => 0.008}
       onNodeClick={handleNodeClick}
+      onNodeDrag={(node) => {
+        clampNodeToViewport(node as NodeObject<PaperNode>);
+      }}
+      onNodeDragEnd={(node) => {
+        clampNodeToViewport(node as NodeObject<PaperNode>);
+      }}
       onBackgroundClick={() => {
         onFocus(null);
       }}
