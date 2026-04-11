@@ -49,7 +49,7 @@ export function PaperForceGraph({
   }, []);
 
   const clampNodeToViewport = useCallback(
-    (node: NodeObject<PaperNode>) => {
+    (node: NodeObject<PaperNode>, mode: 'soft' | 'hard') => {
       const fg = fgRef.current;
       if (!fg) return;
       const pad = 10;
@@ -59,10 +59,42 @@ export function PaperForceGraph({
       const maxX = Math.max(topLeft.x, bottomRight.x);
       const minY = Math.min(topLeft.y, bottomRight.y);
       const maxY = Math.max(topLeft.y, bottomRight.y);
-      if (node.x !== undefined) node.x = Math.min(maxX, Math.max(minX, node.x));
-      if (node.y !== undefined) node.y = Math.min(maxY, Math.max(minY, node.y));
-      if (node.fx !== undefined) node.fx = Math.min(maxX, Math.max(minX, node.fx));
-      if (node.fy !== undefined) node.fy = Math.min(maxY, Math.max(minY, node.fy));
+      if (node.x === undefined || node.y === undefined) return;
+
+      const damping = 0.22; // 越小阻力越强
+      let bounced = false;
+
+      if (mode === 'soft') {
+        if (node.x < minX) node.x = minX - (minX - node.x) * damping;
+        if (node.x > maxX) node.x = maxX + (node.x - maxX) * damping;
+        if (node.y < minY) node.y = minY - (minY - node.y) * damping;
+        if (node.y > maxY) node.y = maxY + (node.y - maxY) * damping;
+        return;
+      }
+
+      if (node.x < minX) {
+        node.x = minX;
+        node.vx = Math.abs(node.vx ?? 0) * 0.7 + 0.4;
+        bounced = true;
+      } else if (node.x > maxX) {
+        node.x = maxX;
+        node.vx = -Math.abs(node.vx ?? 0) * 0.7 - 0.4;
+        bounced = true;
+      }
+
+      if (node.y < minY) {
+        node.y = minY;
+        node.vy = Math.abs(node.vy ?? 0) * 0.7 + 0.4;
+        bounced = true;
+      } else if (node.y > maxY) {
+        node.y = maxY;
+        node.vy = -Math.abs(node.vy ?? 0) * 0.7 - 0.4;
+        bounced = true;
+      }
+
+      if (bounced) {
+        fg.d3ReheatSimulation();
+      }
     },
     [width, height],
   );
@@ -108,12 +140,15 @@ export function PaperForceGraph({
       nodeCanvasObject={(node, ctx, globalScale) => {
         const n = node as PaperNode;
         const label = n.shortLabel ?? n.title;
-        const fontSize = Math.max(5, 10 / globalScale);
-        ctx.font = `${fontSize}px sans-serif`;
+        const fontSize = Math.max(5, (nodeRadius(n) * 0.72) / globalScale);
+        ctx.font = `600 ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#1e293b';
-        ctx.fillText(label, node.x ?? 0, (node.y ?? 0) - nodeRadius(n) - 6);
+        ctx.fillStyle = '#0f172a';
+        const radius = nodeRadius(n);
+        const maxChars = Math.max(4, Math.floor(radius * 0.95));
+        const text = label.length > maxChars ? `${label.slice(0, maxChars - 1)}…` : label;
+        ctx.fillText(text, node.x ?? 0, node.y ?? 0);
       }}
       linkColor={(l: PaperLink) => linkColorFor(l, focusId, hi)}
       linkWidth={(l: PaperLink) => {
@@ -130,10 +165,10 @@ export function PaperForceGraph({
       linkDirectionalParticleSpeed={() => 0.008}
       onNodeClick={handleNodeClick}
       onNodeDrag={(node) => {
-        clampNodeToViewport(node as NodeObject<PaperNode>);
+        clampNodeToViewport(node as NodeObject<PaperNode>, 'soft');
       }}
       onNodeDragEnd={(node) => {
-        clampNodeToViewport(node as NodeObject<PaperNode>);
+        clampNodeToViewport(node as NodeObject<PaperNode>, 'hard');
       }}
       onBackgroundClick={() => {
         onFocus(null);

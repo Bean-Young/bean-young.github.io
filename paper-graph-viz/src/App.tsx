@@ -4,8 +4,6 @@ import rawPayload from './data/papers.json';
 import type { PaperGraphPayload, PaperNode } from './types';
 
 const payload = rawPayload as PaperGraphPayload;
-const GS_PAPER_CITATIONS_URL =
-  'https://cdn.jsdelivr.net/gh/Bean-Young/bean-young.github.io@google-scholar-stats/gs_publication_citations.json';
 
 function withAggregatedCitations(nodes: PaperNode[]): PaperNode[] {
   const paperNodes = nodes.filter((n) => n.role === 'paper');
@@ -30,7 +28,7 @@ export default function App() {
     }),
     [],
   );
-  const [graph, setGraph] = useState(initialGraph);
+  const graph = initialGraph;
   const [focusId, setFocusId] = useState<string | null>('hub-medical');
 
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -54,43 +52,6 @@ export default function App() {
 
   useEffect(() => {
     setFocusId('hub-medical');
-  }, []);
-
-  useEffect(() => {
-    let cancelled = false;
-    const loadCitations = async () => {
-      try {
-        const res = await fetch(`${GS_PAPER_CITATIONS_URL}?t=${Date.now()}`);
-        if (!res.ok) return;
-        const data = (await res.json()) as {
-          updated?: Array<{ id?: string; new?: number }>;
-        };
-        if (cancelled || !Array.isArray(data.updated)) return;
-        const map = new Map<string, number>();
-        for (const item of data.updated) {
-          if (item.id && typeof item.new === 'number') {
-            map.set(item.id, item.new);
-          }
-        }
-        if (map.size === 0) return;
-        setGraph((prev) => ({
-          ...prev,
-          nodes: withAggregatedCitations(
-            prev.nodes.map((n) =>
-              n.role === 'paper' && map.has(n.id)
-                ? { ...n, citations: map.get(n.id) ?? n.citations }
-                : n,
-            ),
-          ),
-        }));
-      } catch {
-        // ignore remote fetch failures, keep local fallback citations
-      }
-    };
-    loadCitations();
-    return () => {
-      cancelled = true;
-    };
   }, []);
 
   return (

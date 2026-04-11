@@ -52,7 +52,7 @@
       "year": 2025,
       "venue": "Scientific Data",
       "url": "https://www.nature.com/articles/s41597-025-04464-4",
-      "citations": 42,
+      "citations": 7,
       "field": "Ultrasound · Dataset",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -65,7 +65,7 @@
       "year": 2025,
       "venue": "ESWA",
       "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904",
-      "citations": 18,
+      "citations": 8,
       "field": "Dermoscopy · Segmentation",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -78,7 +78,7 @@
       "year": 2026,
       "venue": "ICME",
       "url": "https://arxiv.org/abs/2511.07743",
-      "citations": 8,
+      "citations": 2,
       "field": "3DGS · Ultrasound",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -91,7 +91,7 @@
       "year": 2025,
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2504.11349",
-      "citations": 25,
+      "citations": 11,
       "field": "3D Reconstruction · Survey",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -104,7 +104,7 @@
       "year": 2025,
       "venue": "Digital Health",
       "url": "https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570",
-      "citations": 12,
+      "citations": 2,
       "field": "Federated Learning · CT",
       "role": "paper",
       "pillarId": "cat-trust"
@@ -117,7 +117,7 @@
       "year": 2025,
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2511.07748",
-      "citations": 15,
+      "citations": 1,
       "field": "LLM · Ultrasound Agent",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -130,7 +130,7 @@
       "year": 2026,
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2601.13919",
-      "citations": 5,
+      "citations": 0,
       "field": "Medical VLM · Diagnosis",
       "role": "paper",
       "pillarId": "cat-diag"
