@@ -20,6 +20,11 @@ function withAggregatedCitations(nodes: PaperNode[]): PaperNode[] {
   });
 }
 
+function oneLineSummary(node: PaperNode, isZh: boolean): string {
+  if (isZh) return `该工作聚焦于 ${node.field}，并与 Medical AI 主线形成关联。`;
+  return `This work focuses on ${node.field} and connects to the Medical AI storyline.`;
+}
+
 export default function App() {
   const isZh =
     typeof window !== 'undefined' &&
@@ -84,8 +89,9 @@ export default function App() {
               <div className="paper-card__title">{selectedNode.title}</div>
               <div className="paper-card__meta">{selectedNode.venue}</div>
               <div className="paper-card__meta">
-                {selectedNode.year} · {isZh ? '引用' : 'Citations'} {selectedNode.citations}
+                {isZh ? '年份' : 'Year'} {selectedNode.year}
               </div>
+              <div className="paper-card__summary">{oneLineSummary(selectedNode, isZh)}</div>
               <a
                 className="paper-card__link"
                 href={selectedNode.url}

@@ -51,6 +51,25 @@ export function PaperForceGraph({
     }, 0);
   }, []);
 
+  const keepGraphInViewport = useCallback(() => {
+    const fg = fgRef.current;
+    if (!fg) return;
+    const bbox = fg.getGraphBbox();
+    if (!bbox) return;
+    const tl = fg.graph2ScreenCoords(bbox.x[0], bbox.y[0]);
+    const br = fg.graph2ScreenCoords(bbox.x[1], bbox.y[1]);
+    const margin = 14;
+    let shiftX = 0;
+    let shiftY = 0;
+    if (br.x < margin) shiftX = margin - br.x;
+    else if (tl.x > width - margin) shiftX = width - margin - tl.x;
+    if (br.y < margin) shiftY = margin - br.y;
+    else if (tl.y > height - margin) shiftY = height - margin - tl.y;
+    if (shiftX === 0 && shiftY === 0) return;
+    const target = fg.screen2GraphCoords(width / 2 - shiftX, height / 2 - shiftY);
+    fg.centerAt(target.x, target.y, 180);
+  }, [width, height]);
+
   const clampNodeToViewport = useCallback(
     (node: NodeObject<PaperNode>, mode: 'soft' | 'hard') => {
       const fg = fgRef.current;
@@ -143,8 +162,8 @@ export function PaperForceGraph({
       cooldownTicks={160}
       warmupTicks={90}
       d3VelocityDecay={0.35}
-      minZoom={0.35}
-      maxZoom={16}
+      minZoom={0.75}
+      maxZoom={3.4}
       nodeLabel={() => ''}
       nodeCanvasObjectMode={() => 'after'}
       onRenderFramePre={() => {
@@ -163,7 +182,7 @@ export function PaperForceGraph({
         let line = '';
         for (const w of words) {
           const next = line ? `${line} ${w}` : w;
-          const testSize = Math.max(4.5, (radius * 0.5) / globalScale);
+          const testSize = Math.max(3.7, (radius * 0.36) / globalScale);
           ctx.font = `600 ${testSize}px sans-serif`;
           if (ctx.measureText(next).width <= maxWidth || !line) {
             line = next;
@@ -173,8 +192,8 @@ export function PaperForceGraph({
           }
         }
         if (line) lines.push(line);
-        const limited = lines.slice(0, 3);
-        const fontSize = Math.max(4.8, (radius * 0.45) / globalScale);
+        const limited = lines.slice(0, 2);
+        const fontSize = Math.max(3.9, (radius * 0.34) / globalScale);
         const lineHeight = fontSize * 1.03;
         const startY = (node.y ?? 0) - ((limited.length - 1) * lineHeight) / 2;
         ctx.font = `600 ${fontSize}px sans-serif`;
@@ -205,16 +224,18 @@ export function PaperForceGraph({
       linkColor={(l: PaperLink) => linkColorFor(l, focusId, hi)}
       linkWidth={(l: PaperLink) => {
         const k = linkKey(l);
-        return focusId && hi.highlightLinkKeys.has(k) ? 1.8 : 0.5;
+        return focusId && hi.highlightLinkKeys.has(k) ? 2.8 : 1.05;
       }}
-      linkDirectionalArrowLength={2.5}
+      linkDirectionalArrowLength={3.6}
       linkDirectionalArrowRelPos={1}
       linkDirectionalParticles={(l: PaperLink) => {
         const k = linkKey(l);
         return focusId && hi.highlightLinkKeys.has(k) ? 1 : 0;
       }}
-      linkDirectionalParticleWidth={0.9}
+      linkDirectionalParticleWidth={1.2}
       linkDirectionalParticleSpeed={() => 0.008}
+      onZoomEnd={keepGraphInViewport}
+      onEngineStop={keepGraphInViewport}
       onNodeClick={handleNodeClick}
       onNodeDrag={(node) => {
         clampNodeToViewport(node as NodeObject<PaperNode>, 'soft');
