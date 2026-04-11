@@ -1,0 +1,198 @@
+{
+  "nodes": [
+    {
+      "id": "hub-medical",
+      "title": "Medical AI",
+      "year": 2026,
+      "venue": "Research Center",
+      "url": "https://bean-young.github.io/#research-interests",
+      "citations": 1200,
+      "field": "Medical AI",
+      "role": "hub"
+    },
+    {
+      "id": "cat-3d",
+      "title": "3D Reconstruction",
+      "year": 2026,
+      "venue": "Research Pillar",
+      "url": "https://bean-young.github.io/#research-interests",
+      "citations": 480,
+      "field": "3D Reconstruction",
+      "role": "pillar"
+    },
+    {
+      "id": "cat-diag",
+      "title": "Intelligent Diagnosis",
+      "year": 2026,
+      "venue": "Research Pillar",
+      "url": "https://bean-young.github.io/#research-interests",
+      "citations": 480,
+      "field": "Intelligent Diagnosis",
+      "role": "pillar"
+    },
+    {
+      "id": "cat-trust",
+      "title": "Trustworthy AI",
+      "year": 2026,
+      "venue": "Research Pillar",
+      "url": "https://bean-young.github.io/#research-interests",
+      "citations": 480,
+      "field": "Trustworthy AI",
+      "role": "pillar"
+    },
+    {
+      "id": "p-ahu",
+      "title": "An annotated heterogeneous ultrasound database",
+      "year": 2025,
+      "venue": "Scientific Data",
+      "url": "https://www.nature.com/articles/s41597-025-04464-4",
+      "citations": 42,
+      "field": "Ultrasound · Dataset",
+      "role": "paper",
+      "pillarId": "cat-diag"
+    },
+    {
+      "id": "p-emnet",
+      "title": "EM-Net: Effective and morphology-aware network for skin lesion segmentation",
+      "year": 2025,
+      "venue": "ESWA",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904",
+      "citations": 18,
+      "field": "Dermoscopy · Segmentation",
+      "role": "paper",
+      "pillarId": "cat-diag"
+    },
+    {
+      "id": "p-ultrags",
+      "title": "UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis",
+      "year": 2026,
+      "venue": "ICME",
+      "url": "https://arxiv.org/abs/2511.07743",
+      "citations": 8,
+      "field": "3DGS · Ultrasound",
+      "role": "paper",
+      "pillarId": "cat-3d"
+    },
+    {
+      "id": "p-3dreview",
+      "title": "Explicit and Implicit Representations in AI-based 3D Reconstruction for Radiology: A Systematic Review",
+      "year": 2025,
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2504.11349",
+      "citations": 25,
+      "field": "3D Reconstruction · Survey",
+      "role": "paper",
+      "pillarId": "cat-3d"
+    },
+    {
+      "id": "p-vdect",
+      "title": "Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection",
+      "year": 2025,
+      "venue": "Digital Health",
+      "url": "https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570",
+      "citations": 12,
+      "field": "Federated Learning · CT",
+      "role": "paper",
+      "pillarId": "cat-trust"
+    },
+    {
+      "id": "p-autous",
+      "title": "Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs",
+      "year": 2025,
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2511.07748",
+      "citations": 15,
+      "field": "LLM · Ultrasound Agent",
+      "role": "paper",
+      "pillarId": "cat-diag"
+    },
+    {
+      "id": "p-hyper",
+      "title": "HyperWalker: Dynamic Hypergraph-Based Deep Diagnosis for Multi-Hop Clinical Modeling across EHR and X-Ray in Medical VLMs",
+      "year": 2026,
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2601.13919",
+      "citations": 5,
+      "field": "Medical VLM · Diagnosis",
+      "role": "paper",
+      "pillarId": "cat-diag"
+    },
+    {
+      "id": "p-tta",
+      "title": "Prompting the Abnormality: Test-Time Adaptation for Breast Ultrasound Segmentation",
+      "year": 2026,
+      "venue": "AAAI (submitted)",
+      "url": "https://bean-young.github.io/#publications",
+      "citations": 3,
+      "field": "TTA · Robustness",
+      "role": "paper",
+      "pillarId": "cat-trust"
+    },
+    {
+      "id": "pat-petnerf",
+      "title": "PET image reconstruction and PET image 3D perception (prior-image NeRF)",
+      "year": 2024,
+      "venue": "Patent CN118411435A",
+      "url": "https://patents.google.com/patent/CN118411435A/",
+      "citations": 6,
+      "field": "PET · NeRF · 3D",
+      "role": "paper",
+      "pillarId": "cat-3d"
+    },
+    {
+      "id": "pat-petgs",
+      "title": "3D Gaussian model generation and rendering for low-dose PET image processing",
+      "year": 2025,
+      "venue": "Patent CN119625190A",
+      "url": "https://patents.google.com/patent/CN119625190A",
+      "citations": 5,
+      "field": "PET · 3D Gaussian Splatting",
+      "role": "paper",
+      "pillarId": "cat-3d"
+    },
+    {
+      "id": "proj-deeppet",
+      "title": "DeepPET: An Intelligent Brain PET Device with Low Radiation and High Imaging Quality",
+      "year": 2024,
+      "venue": "National Innovation Project",
+      "url": "https://bean-young.github.io/petahu/",
+      "citations": 10,
+      "field": "PET · Low-dose reconstruction",
+      "role": "paper",
+      "pillarId": "cat-3d"
+    }
+  ],
+  "links": [
+    {"source": "hub-medical", "target": "cat-3d", "type": "similar"},
+    {"source": "hub-medical", "target": "cat-diag", "type": "similar"},
+    {"source": "hub-medical", "target": "cat-trust", "type": "similar"},
+
+    {"source": "cat-3d", "target": "p-ultrags", "type": "similar"},
+    {"source": "cat-3d", "target": "p-3dreview", "type": "similar"},
+    {"source": "cat-3d", "target": "pat-petnerf", "type": "similar"},
+    {"source": "cat-3d", "target": "pat-petgs", "type": "similar"},
+    {"source": "cat-3d", "target": "proj-deeppet", "type": "similar"},
+
+    {"source": "cat-diag", "target": "p-ahu", "type": "similar"},
+    {"source": "cat-diag", "target": "p-emnet", "type": "similar"},
+    {"source": "cat-diag", "target": "p-autous", "type": "similar"},
+    {"source": "cat-diag", "target": "p-hyper", "type": "similar"},
+
+    {"source": "cat-trust", "target": "p-vdect", "type": "similar"},
+    {"source": "cat-trust", "target": "p-tta", "type": "similar"},
+
+    {"source": "p-ultrags", "target": "p-3dreview", "type": "extends"},
+    {"source": "p-ultrags", "target": "p-ahu", "type": "similar"},
+    {"source": "p-3dreview", "target": "pat-petnerf", "type": "similar"},
+    {"source": "pat-petgs", "target": "pat-petnerf", "type": "extends"},
+    {"source": "proj-deeppet", "target": "pat-petgs", "type": "similar"},
+    {"source": "proj-deeppet", "target": "p-vdect", "type": "similar"},
+
+    {"source": "p-ahu", "target": "p-autous", "type": "similar"},
+    {"source": "p-autous", "target": "p-hyper", "type": "similar"},
+    {"source": "p-emnet", "target": "p-tta", "type": "similar"},
+
+    {"source": "p-vdect", "target": "p-tta", "type": "similar"},
+    {"source": "p-vdect", "target": "p-hyper", "type": "similar"}
+  ]
+}
