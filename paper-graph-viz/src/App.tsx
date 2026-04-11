@@ -42,6 +42,15 @@ export default function App() {
   const graph = initialGraph;
   const [focusId, setFocusId] = useState<string | null>('hub-medical');
   const [selectedNode, setSelectedNode] = useState<PaperNode | null>(null);
+  const [resetTick, setResetTick] = useState(0);
+  const [cardPos, setCardPos] = useState({ x: 16, y: 16 });
+  const draggingRef = useRef<{
+    dragging: boolean;
+    startX: number;
+    startY: number;
+    baseX: number;
+    baseY: number;
+  }>({ dragging: false, startX: 0, startY: 0, baseX: 16, baseY: 16 });
 
   const wrapRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 800, h: 600 });
@@ -70,26 +79,66 @@ export default function App() {
     <div className="app">
       <div className="app__layout">
         <div className="app__canvas-wrap" ref={wrapRef}>
+          <button
+            type="button"
+            className="reset-btn"
+            onClick={() => {
+              setFocusId('hub-medical');
+              setSelectedNode(null);
+              setResetTick((t) => t + 1);
+            }}
+          >
+            RESET
+          </button>
           <PaperForceGraph
             graphData={graph}
             focusId={focusId}
             onFocus={setFocusId}
             onSelectNode={setSelectedNode}
             onOpenNode={(node) => {
+              if (node.role !== 'paper') return;
               if (!node.url) return;
               window.open(node.url, '_blank', 'noopener,noreferrer');
             }}
+            resetTick={resetTick}
             width={size.w}
             height={size.h}
           />
-        </div>
-        <aside className="paper-card">
-          {selectedNode?.role === 'paper' ? (
-            <>
+          {selectedNode?.role === 'paper' && (
+            <aside className="paper-card" style={{ left: `${cardPos.x}px`, top: `${cardPos.y}px` }}>
+              <div
+                className="paper-card__drag"
+                onMouseDown={(e) => {
+                  draggingRef.current = {
+                    dragging: true,
+                    startX: e.clientX,
+                    startY: e.clientY,
+                    baseX: cardPos.x,
+                    baseY: cardPos.y,
+                  };
+                  const move = (ev: MouseEvent) => {
+                    if (!draggingRef.current.dragging) return;
+                    const nx = draggingRef.current.baseX + (ev.clientX - draggingRef.current.startX);
+                    const ny = draggingRef.current.baseY + (ev.clientY - draggingRef.current.startY);
+                    setCardPos({
+                      x: Math.max(6, Math.min(nx, size.w - 245)),
+                      y: Math.max(6, Math.min(ny, size.h - 130)),
+                    });
+                  };
+                  const up = () => {
+                    draggingRef.current.dragging = false;
+                    window.removeEventListener('mousemove', move);
+                    window.removeEventListener('mouseup', up);
+                  };
+                  window.addEventListener('mousemove', move);
+                  window.addEventListener('mouseup', up);
+                }}
+              >
+                {isZh ? '论文详情' : 'Paper Details'}
+              </div>
               <div className="paper-card__title">{selectedNode.title}</div>
-              <div className="paper-card__meta">{selectedNode.venue}</div>
               <div className="paper-card__meta">
-                {isZh ? '年份' : 'Year'} {selectedNode.year}
+                {selectedNode.venue}, {selectedNode.year}
               </div>
               <div className="paper-card__summary">{oneLineSummary(selectedNode, isZh)}</div>
               <a
@@ -100,13 +149,9 @@ export default function App() {
               >
                 {isZh ? '打开页面' : 'Open Page'}
               </a>
-            </>
-          ) : (
-            <div className="paper-card__empty">
-              {isZh ? '单击论文节点查看详情' : 'Click a paper node to view details'}
-            </div>
+            </aside>
           )}
-        </aside>
+        </div>
       </div>
     </div>
   );

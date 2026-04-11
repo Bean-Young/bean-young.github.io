@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
 import type { ForceGraphMethods, LinkObject, NodeObject } from 'react-force-graph-2d';
 import type { PaperLink, PaperNode } from '../types';
@@ -16,6 +16,7 @@ type Props = {
   onFocus: (id: string | null) => void;
   onSelectNode: (node: PaperNode | null) => void;
   onOpenNode: (node: PaperNode) => void;
+  resetTick: number;
   width: number;
   height: number;
 };
@@ -26,6 +27,7 @@ export function PaperForceGraph({
   onFocus,
   onSelectNode,
   onOpenNode,
+  resetTick,
   width,
   height,
 }: Props) {
@@ -50,25 +52,6 @@ export function PaperForceGraph({
       }
     }, 0);
   }, []);
-
-  const keepGraphInViewport = useCallback(() => {
-    const fg = fgRef.current;
-    if (!fg) return;
-    const bbox = fg.getGraphBbox();
-    if (!bbox) return;
-    const tl = fg.graph2ScreenCoords(bbox.x[0], bbox.y[0]);
-    const br = fg.graph2ScreenCoords(bbox.x[1], bbox.y[1]);
-    const margin = 14;
-    let shiftX = 0;
-    let shiftY = 0;
-    if (br.x < margin) shiftX = margin - br.x;
-    else if (tl.x > width - margin) shiftX = width - margin - tl.x;
-    if (br.y < margin) shiftY = margin - br.y;
-    else if (tl.y > height - margin) shiftY = height - margin - tl.y;
-    if (shiftX === 0 && shiftY === 0) return;
-    const target = fg.screen2GraphCoords(width / 2 - shiftX, height / 2 - shiftY);
-    fg.centerAt(target.x, target.y, 180);
-  }, [width, height]);
 
   const clampNodeToViewport = useCallback(
     (node: NodeObject<PaperNode>, mode: 'soft' | 'hard') => {
@@ -149,6 +132,16 @@ export function PaperForceGraph({
     [onFocus, onSelectNode, onOpenNode, centerOn],
   );
 
+  // RESET: restore overview view without forcing node zoom on single click.
+  useEffect(() => {
+    if (!resetTick) return;
+    const fg = fgRef.current;
+    if (!fg) return;
+    window.setTimeout(() => {
+      fg.zoomToFit(420, 34);
+    }, 20);
+  }, [resetTick]);
+
   return (
     <ForceGraph2D
       ref={fgRef}
@@ -162,8 +155,8 @@ export function PaperForceGraph({
       cooldownTicks={160}
       warmupTicks={90}
       d3VelocityDecay={0.35}
-      minZoom={0.75}
-      maxZoom={3.4}
+      minZoom={0.72}
+      maxZoom={3.1}
       nodeLabel={() => ''}
       nodeCanvasObjectMode={() => 'after'}
       onRenderFramePre={() => {
@@ -234,8 +227,6 @@ export function PaperForceGraph({
       }}
       linkDirectionalParticleWidth={1.2}
       linkDirectionalParticleSpeed={() => 0.008}
-      onZoomEnd={keepGraphInViewport}
-      onEngineStop={keepGraphInViewport}
       onNodeClick={handleNodeClick}
       onNodeDrag={(node) => {
         clampNodeToViewport(node as NodeObject<PaperNode>, 'soft');
