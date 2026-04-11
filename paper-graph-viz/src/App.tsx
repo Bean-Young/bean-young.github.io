@@ -30,6 +30,7 @@ export default function App() {
   );
   const graph = initialGraph;
   const [focusId, setFocusId] = useState<string | null>('hub-medical');
+  const [selectedNode, setSelectedNode] = useState<PaperNode | null>(null);
 
   const wrapRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 800, h: 600 });
@@ -38,7 +39,7 @@ export default function App() {
     const el = wrapRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    setSize({ w: Math.max(320, r.width), h: Math.max(400, r.height) });
+    setSize({ w: Math.max(320, r.width), h: Math.max(180, r.height) });
   }, []);
 
   useEffect(() => {
@@ -61,9 +62,22 @@ export default function App() {
           graphData={graph}
           focusId={focusId}
           onFocus={setFocusId}
+          onSelectNode={setSelectedNode}
+          onOpenNode={(node) => {
+            if (!node.url) return;
+            window.open(node.url, '_blank', 'noopener,noreferrer');
+          }}
           width={size.w}
           height={size.h}
         />
+        {selectedNode?.role === 'paper' && (
+          <div className="paper-pop">
+            <div className="paper-pop__title">{selectedNode.title}</div>
+            <div className="paper-pop__meta">
+              {selectedNode.venue} · {selectedNode.year} · Citations {selectedNode.citations}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

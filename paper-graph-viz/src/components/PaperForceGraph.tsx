@@ -14,6 +14,8 @@ type Props = {
   graphData: { nodes: PaperNode[]; links: PaperLink[] };
   focusId: string | null;
   onFocus: (id: string | null) => void;
+  onSelectNode: (node: PaperNode | null) => void;
+  onOpenNode: (node: PaperNode) => void;
   width: number;
   height: number;
 };
@@ -22,12 +24,16 @@ export function PaperForceGraph({
   graphData,
   focusId,
   onFocus,
+  onSelectNode,
+  onOpenNode,
   width,
   height,
 }: Props) {
   const fgRef = useRef<
     ForceGraphMethods<NodeObject<PaperNode>, LinkObject<NodeObject<PaperNode>, PaperLink>> | undefined
   >(undefined);
+  const clickTimerRef = useRef<number | null>(null);
+  const lastClickRef = useRef<{ id: string; t: number }>({ id: '', t: 0 });
 
   const hi = useMemo(
     () => computeHighlight(focusId, graphData.links),
@@ -69,6 +75,8 @@ export function PaperForceGraph({
         if (node.x > maxX) node.x = maxX + (node.x - maxX) * damping;
         if (node.y < minY) node.y = minY - (minY - node.y) * damping;
         if (node.y > maxY) node.y = maxY + (node.y - maxY) * damping;
+        node.fx = node.x;
+        node.fy = node.y;
         return;
       }
 
@@ -92,6 +100,8 @@ export function PaperForceGraph({
         bounced = true;
       }
 
+      node.fx = node.x;
+      node.fy = node.y;
       if (bounced) {
         fg.d3ReheatSimulation();
       }
@@ -111,10 +121,25 @@ export function PaperForceGraph({
   const handleNodeClick = useCallback(
     (node: NodeObject<PaperNode>) => {
       const nid = String(node.id ?? '');
-      onFocus(nid);
-      centerOn(node);
+      const now = Date.now();
+      if (lastClickRef.current.id === nid && now - lastClickRef.current.t < 280) {
+        if (clickTimerRef.current) {
+          window.clearTimeout(clickTimerRef.current);
+          clickTimerRef.current = null;
+        }
+        onOpenNode(node as PaperNode);
+        lastClickRef.current = { id: '', t: 0 };
+        return;
+      }
+      lastClickRef.current = { id: nid, t: now };
+      if (clickTimerRef.current) window.clearTimeout(clickTimerRef.current);
+      clickTimerRef.current = window.setTimeout(() => {
+        onFocus(nid);
+        onSelectNode(node as PaperNode);
+        centerOn(node);
+      }, 220);
     },
-    [onFocus, centerOn],
+    [onFocus, onSelectNode, onOpenNode, centerOn],
   );
 
   return (
@@ -140,15 +165,34 @@ export function PaperForceGraph({
       nodeCanvasObject={(node, ctx, globalScale) => {
         const n = node as PaperNode;
         const label = n.shortLabel ?? n.title;
-        const fontSize = Math.max(5, (nodeRadius(n) * 0.72) / globalScale);
+        const radius = nodeRadius(n);
+        const maxWidth = radius * 1.55;
+        const words = label.split(/\s+/).filter(Boolean);
+        const lines: string[] = [];
+        let line = '';
+        for (const w of words) {
+          const next = line ? `${line} ${w}` : w;
+          const testSize = Math.max(4.5, (radius * 0.5) / globalScale);
+          ctx.font = `600 ${testSize}px sans-serif`;
+          if (ctx.measureText(next).width <= maxWidth || !line) {
+            line = next;
+          } else {
+            lines.push(line);
+            line = w;
+          }
+        }
+        if (line) lines.push(line);
+        const limited = lines.slice(0, 3);
+        const fontSize = Math.max(4.5, (radius * 0.5) / globalScale);
+        const lineHeight = fontSize * 1.03;
+        const startY = (node.y ?? 0) - ((limited.length - 1) * lineHeight) / 2;
         ctx.font = `600 ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = '#0f172a';
-        const radius = nodeRadius(n);
-        const maxChars = Math.max(4, Math.floor(radius * 0.95));
-        const text = label.length > maxChars ? `${label.slice(0, maxChars - 1)}…` : label;
-        ctx.fillText(text, node.x ?? 0, node.y ?? 0);
+        limited.forEach((ln, idx) => {
+          ctx.fillText(ln, node.x ?? 0, startY + idx * lineHeight);
+        });
       }}
       linkColor={(l: PaperLink) => linkColorFor(l, focusId, hi)}
       linkWidth={(l: PaperLink) => {
@@ -171,7 +215,12 @@ export function PaperForceGraph({
         clampNodeToViewport(node as NodeObject<PaperNode>, 'hard');
       }}
       onBackgroundClick={() => {
+        if (clickTimerRef.current) {
+          window.clearTimeout(clickTimerRef.current);
+          clickTimerRef.current = null;
+        }
         onFocus(null);
+        onSelectNode(null);
       }}
       enableNodeDrag
       enableZoomInteraction
