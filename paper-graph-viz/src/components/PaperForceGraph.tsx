@@ -16,10 +16,6 @@ type Props = {
   onFocus: (id: string | null) => void;
   width: number;
   height: number;
-  /** 搜索「Go」等外部操作触发重新居中 */
-  recenterTick: number;
-  /** 双击：由父级决定是否合并扩展子图 */
-  onNodeDouble: (node: PaperNode) => void;
 };
 
 export function PaperForceGraph({
@@ -28,13 +24,10 @@ export function PaperForceGraph({
   onFocus,
   width,
   height,
-  recenterTick,
-  onNodeDouble,
 }: Props) {
   const fgRef = useRef<
     ForceGraphMethods<NodeObject<PaperNode>, LinkObject<NodeObject<PaperNode>, PaperLink>> | undefined
   >(undefined);
-  const clickRef = useRef<{ id: string; time: number }>({ id: '', time: 0 });
 
   const hi = useMemo(
     () => computeHighlight(focusId, graphData.links),
@@ -56,36 +49,28 @@ export function PaperForceGraph({
   }, []);
 
   useEffect(() => {
-    if (!recenterTick || !focusId) return;
+    if (!focusId) return;
     const id = focusId;
     const t = window.setTimeout(() => {
       fgRef.current?.zoomToFit(500, 120, (n) => String(n.id) === id);
     }, 60);
     return () => clearTimeout(t);
-  }, [recenterTick, focusId]);
+  }, [focusId]);
 
   const handleNodeClick = useCallback(
     (node: NodeObject<PaperNode>) => {
-      const now = Date.now();
-      const { id, time } = clickRef.current;
       const nid = String(node.id ?? '');
-      if (nid === id && now - time < 340) {
-        onNodeDouble(node as PaperNode);
-        clickRef.current = { id: '', time: 0 };
-        return;
-      }
-      clickRef.current = { id: nid, time: now };
       onFocus(nid);
       centerOn(node);
     },
-    [onFocus, onNodeDouble, centerOn],
+    [onFocus, centerOn],
   );
 
   return (
     <ForceGraph2D
       ref={fgRef}
       graphData={graphData}
-      backgroundColor="#020617"
+      backgroundColor="#ffffff"
       width={width}
       height={height}
       nodeId="id"
@@ -96,26 +81,35 @@ export function PaperForceGraph({
       d3VelocityDecay={0.35}
       minZoom={0.35}
       maxZoom={16}
-      nodeLabel={(n: PaperNode) => n.title}
+      nodeLabel={() => ''}
       nodeRelSize={1}
       nodeVal={(n: PaperNode) => nodeRadius(n)}
       nodeColor={(n: PaperNode) => nodeColorFor(n, focusId, hi)}
+      nodeCanvasObject={(node, ctx, globalScale) => {
+        const n = node as PaperNode;
+        const label = n.title;
+        const fontSize = Math.max(6, 12 / globalScale);
+        ctx.font = `${fontSize}px sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#1e293b';
+        ctx.fillText(label, node.x ?? 0, (node.y ?? 0) - nodeRadius(n) - 6);
+      }}
       linkColor={(l: PaperLink) => linkColorFor(l, focusId, hi)}
       linkWidth={(l: PaperLink) => {
         const k = linkKey(l);
-        return focusId && hi.highlightLinkKeys.has(k) ? 2.2 : 0.7;
+        return focusId && hi.highlightLinkKeys.has(k) ? 1.8 : 0.5;
       }}
-      linkDirectionalArrowLength={3.5}
+      linkDirectionalArrowLength={2.5}
       linkDirectionalArrowRelPos={1}
       linkDirectionalParticles={(l: PaperLink) => {
         const k = linkKey(l);
-        return focusId && hi.highlightLinkKeys.has(k) ? 2 : 0;
+        return focusId && hi.highlightLinkKeys.has(k) ? 1 : 0;
       }}
-      linkDirectionalParticleWidth={1.2}
+      linkDirectionalParticleWidth={0.9}
       linkDirectionalParticleSpeed={() => 0.008}
       onNodeClick={handleNodeClick}
       onBackgroundClick={() => {
-        clickRef.current = { id: '', time: 0 };
         onFocus(null);
       }}
       enableNodeDrag
