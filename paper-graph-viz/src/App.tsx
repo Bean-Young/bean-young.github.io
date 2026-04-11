@@ -21,9 +21,15 @@ function withAggregatedCitations(nodes: PaperNode[]): PaperNode[] {
 }
 
 export default function App() {
+  const isZh =
+    typeof window !== 'undefined' &&
+    new URLSearchParams(window.location.search).get('lang') === 'zh';
+
   const initialGraph = useMemo(
     () => ({
-      nodes: withAggregatedCitations(payload.nodes.map((n) => ({ ...n }))),
+      nodes: withAggregatedCitations(payload.nodes.map((n) => ({ ...n }))).sort(
+        (a, b) => b.citations - a.citations,
+      ),
       links: payload.links.map((l) => ({ ...l })),
     }),
     [],
@@ -57,27 +63,44 @@ export default function App() {
 
   return (
     <div className="app">
-      <div className="app__canvas-wrap" ref={wrapRef}>
-        <PaperForceGraph
-          graphData={graph}
-          focusId={focusId}
-          onFocus={setFocusId}
-          onSelectNode={setSelectedNode}
-          onOpenNode={(node) => {
-            if (!node.url) return;
-            window.open(node.url, '_blank', 'noopener,noreferrer');
-          }}
-          width={size.w}
-          height={size.h}
-        />
-        {selectedNode?.role === 'paper' && (
-          <div className="paper-pop">
-            <div className="paper-pop__title">{selectedNode.title}</div>
-            <div className="paper-pop__meta">
-              {selectedNode.venue} · {selectedNode.year} · Citations {selectedNode.citations}
+      <div className="app__layout">
+        <div className="app__canvas-wrap" ref={wrapRef}>
+          <PaperForceGraph
+            graphData={graph}
+            focusId={focusId}
+            onFocus={setFocusId}
+            onSelectNode={setSelectedNode}
+            onOpenNode={(node) => {
+              if (!node.url) return;
+              window.open(node.url, '_blank', 'noopener,noreferrer');
+            }}
+            width={size.w}
+            height={size.h}
+          />
+        </div>
+        <aside className="paper-card">
+          {selectedNode?.role === 'paper' ? (
+            <>
+              <div className="paper-card__title">{selectedNode.title}</div>
+              <div className="paper-card__meta">{selectedNode.venue}</div>
+              <div className="paper-card__meta">
+                {selectedNode.year} · {isZh ? '引用' : 'Citations'} {selectedNode.citations}
+              </div>
+              <a
+                className="paper-card__link"
+                href={selectedNode.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {isZh ? '打开页面' : 'Open Page'}
+              </a>
+            </>
+          ) : (
+            <div className="paper-card__empty">
+              {isZh ? '单击论文节点查看详情' : 'Click a paper node to view details'}
             </div>
-          </div>
-        )}
+          )}
+        </aside>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
 import type { ForceGraphMethods, LinkObject, NodeObject } from 'react-force-graph-2d';
 import type { PaperLink, PaperNode } from '../types';
@@ -34,6 +34,7 @@ export function PaperForceGraph({
   >(undefined);
   const clickTimerRef = useRef<number | null>(null);
   const lastClickRef = useRef<{ id: string; t: number }>({ id: '', t: 0 });
+  const labelBoxesRef = useRef<Array<{ x1: number; y1: number; x2: number; y2: number }>>([]);
 
   const hi = useMemo(
     () => computeHighlight(focusId, graphData.links),
@@ -41,15 +42,11 @@ export function PaperForceGraph({
   );
 
   const centerOn = useCallback((node: NodeObject<PaperNode>) => {
-    const id = String(node.id ?? '');
     window.setTimeout(() => {
       const fg = fgRef.current;
       if (!fg) return;
       if (node.x !== undefined && node.y !== undefined) {
         fg.centerAt(node.x, node.y, 500);
-        fg.zoom(3.2, 500);
-      } else {
-        fg.zoomToFit(500, 100, (n) => String(n.id) === id);
       }
     }, 0);
   }, []);
@@ -109,15 +106,6 @@ export function PaperForceGraph({
     [width, height],
   );
 
-  useEffect(() => {
-    if (!focusId) return;
-    const id = focusId;
-    const t = window.setTimeout(() => {
-      fgRef.current?.zoomToFit(500, 120, (n) => String(n.id) === id);
-    }, 60);
-    return () => clearTimeout(t);
-  }, [focusId]);
-
   const handleNodeClick = useCallback(
     (node: NodeObject<PaperNode>) => {
       const nid = String(node.id ?? '');
@@ -159,6 +147,9 @@ export function PaperForceGraph({
       maxZoom={16}
       nodeLabel={() => ''}
       nodeCanvasObjectMode={() => 'after'}
+      onRenderFramePre={() => {
+        labelBoxesRef.current = [];
+      }}
       nodeRelSize={1}
       nodeVal={(n: PaperNode) => nodeRadius(n)}
       nodeColor={(n: PaperNode) => nodeColorFor(n, focusId, hi)}
@@ -183,15 +174,32 @@ export function PaperForceGraph({
         }
         if (line) lines.push(line);
         const limited = lines.slice(0, 3);
-        const fontSize = Math.max(4.5, (radius * 0.5) / globalScale);
+        const fontSize = Math.max(4.8, (radius * 0.45) / globalScale);
         const lineHeight = fontSize * 1.03;
         const startY = (node.y ?? 0) - ((limited.length - 1) * lineHeight) / 2;
         ctx.font = `600 ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = '#0f172a';
+        const maxLineWidth = Math.max(
+          ...limited.map((ln) => ctx.measureText(ln).width),
+          0,
+        );
+        const x = node.x ?? 0;
+        const pad = 2;
+        const box = {
+          x1: x - maxLineWidth / 2 - pad,
+          y1: startY - lineHeight / 2 - pad,
+          x2: x + maxLineWidth / 2 + pad,
+          y2: startY + (limited.length - 1) * lineHeight + lineHeight / 2 + pad,
+        };
+        const overlap = labelBoxesRef.current.some(
+          (b) => !(box.x2 < b.x1 || box.x1 > b.x2 || box.y2 < b.y1 || box.y1 > b.y2),
+        );
+        if (overlap && n.role !== 'hub') return;
+        labelBoxesRef.current.push(box);
         limited.forEach((ln, idx) => {
-          ctx.fillText(ln, node.x ?? 0, startY + idx * lineHeight);
+          ctx.fillText(ln, x, startY + idx * lineHeight);
         });
       }}
       linkColor={(l: PaperLink) => linkColorFor(l, focusId, hi)}

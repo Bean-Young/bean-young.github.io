@@ -83,10 +83,10 @@ export function linkColorFor(
 
 export function nodeRadius(n: PaperNode): number {
   const c = Math.min(Math.max(n.citations, 0), 5000);
-  let r = 12 + Math.pow(c, 0.92) * 2.1;
+  let r = 18 + Math.pow(c, 0.96) * 2.8;
   if (n.role === 'hub') r *= 1.18;
   if (n.role === 'pillar') r *= 1.08;
-  return Math.min(62, r);
+  return Math.min(86, r);
 }
 
 function baseColor(n: PaperNode): string {

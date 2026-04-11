@@ -25,35 +25,54 @@ body {
   background: #ffffff;
 }
 
+.app__layout {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  height: 100%;
+}
+
 .app__canvas-wrap {
-  width: 100%;
+  flex: 1 1 auto;
   height: 100%;
   min-height: 210px;
   max-height: 210px;
   position: relative;
 }
 
-.paper-pop {
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
-  padding: 6px 9px;
+.paper-card {
+  width: 220px;
+  min-height: 210px;
+  max-height: 210px;
+  border: 1px solid #dbe3ee;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: #f8fafc;
+  padding: 8px;
+  overflow: auto;
   color: #0f172a;
-  backdrop-filter: blur(2px);
 }
 
-.paper-pop__title {
+.paper-card__title {
   font-size: 11px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
-.paper-pop__meta {
-  margin-top: 2px;
+.paper-card__meta {
+  margin-top: 4px;
   font-size: 10px;
   color: #334155;
+}
+
+.paper-card__link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 10px;
+  color: #0ea5e9;
+  text-decoration: none;
+}
+
+.paper-card__empty {
+  font-size: 10px;
+  color: #64748b;
 }
