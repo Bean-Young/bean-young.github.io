@@ -12,4 +12,12 @@
     <loc>https://bean-young.github.io/projects</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://bean-young.github.io/ahudataset/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bean-young.github.io/petahu/</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>

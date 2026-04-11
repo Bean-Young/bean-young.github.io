@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 修改网页标题 -->
+    <title>An annotated heterogeneous ultrasound database</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <!-- 修改主页链接 -->
+                <a class="navbar-item" href="https://bean-young.github.io">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More Research
+                    </a>
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item" href="https://bean-young.github.io/petahu/">
+                        PET-Project
+                      </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">An annotated heterogeneous ultrasound database</h1>
+                        <div class="is-size-4 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><strong><em>Scientific Data, 2025</em></strong></span>
+                        </div>
+                        <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block">Yuezhe Yang<sup>1*</sup>,</span>
+                            <span class="author-block">Yonglin Chen<sup>2*</sup>,</span>
+                            <span class="author-block">Xingbo Dong<sup>1†</sup>,</span>
+                            <span class="author-block">Junning Zhang<sup>3</sup>,</span>
+                            <span class="author-block">Chihui Long<sup>4</sup>,</span>
+                            <span class="author-block">Zhe Jin<sup>1</sup>,</span>
+                            <span class="author-block">Yong Dai<sup>3</sup></span>
+                        </div>
+                        <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+                            <span class="author-block"><sup>†</sup>Corresponding author</span>
+                        </div>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Anhui University,</span>
+                            <span class="author-block"><sup>2</sup>Anhui Jianzhu University,</span>
+                            <span class="author-block"><sup>3</sup>Anhui University of Science and Technology,</span>
+                            <span class="author-block"><sup>4</sup>Tongren Hospital of Wuhan University</span>
+                           
+                        </div>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- Paper Link. -->
+                                <span class="link-block">
+                                    <a href="https://www.nature.com/articles/s41597-025-04464-4"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <!-- Data Link. -->
+                                <span class="link-block">
+                                    <a href="https://springernature.figshare.com/articles/dataset/An_annotated_heterogeneous_ultrasound_database/26889334"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="far fa-images"></i>
+                                        </span>
+                                        <span>Data</span>
+                                    </a>
+                                </span>
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/Bean-Young/AHU-Database"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                          Ultrasound is a primary diagnostic tool commonly used to evaluate internal body structures, including organs, blood vessels, the musculoskeletal system, and fetal development. Due to challenges such as operator dependence, noise, limited field of view, difficulty in imaging through bone and air, and variability across different systems, diagnosing abnormalities in ultrasound images is particularly challenging for less experienced clinicians. 
+                        <p>
+                          The development of artificial intelligence (AI) technology could assist in the diagnosis of ultrasound images. However, many databases are created using a single device type and collection site, limiting the generalizability of machine learning models. 
+                          Therefore, we have collected a large, publicly accessible ultrasound challenge database that is intended to significantly enhance the performance of AI-assisted ultrasound diagnosis. This database is derived from publicly available data on the Internet and comprises a total of 1,833 distinct ultrasound data. It includes 13 different ultrasound image anomalies, and all data have been anonymized. 
+                        </p>
+                        <p>
+                          Our data-sharing program aims to support benchmark testing of ultrasound disease diagnosis in multi-center environments.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Highlight. -->
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                  <h2 class="title is-3">Highlights</h2>
+                  <div class="content has-text-justified">
+                      <ul>
+                          <li style="font-weight: bold; font-size: 1.3em;">First to use public media to obtain valuable medical video data.</li>
+                          <li style="font-weight: bold; font-size: 1.3em;">Build a large and annotated ultrasound video diagnostic dataset.</li>
+                          <li style="font-weight: bold; font-size: 1.3em;">Introduce a new benchmark for ultrasound video classification.</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+    </section>
+
+    <section class="section">
+        <!-- Method -->
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Method</h2>
+                    <div class="content has-text-justified">
+                        <img src="./static/images/Method.png" alt="Method illustration" width="100%">
+                        <p>Flowcharts of the annotation process and data preprocessing.</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Data Demo</h2>
+                </div>
+            </div>
+    </section>
+    <section class="hero is-light is-small">
+        <div class="hero-body">
+          <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/1.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Vascular</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/2.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Tumor</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/3.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Nodule</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/4.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Cyst</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/5.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Anomalies</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/6.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Injury</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/7.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Stone</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/8.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Hernia</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/9.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Occupancy</p>
+              </div>
+              <div class="item">
+                <video poster="" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/images/10.mp4" type="video/mp4">
+                </video>
+                <p class="video-label">Polyp</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">Citation</h2>
+            <pre><code>@article{yang2025annotated,
+  title={An annotated heterogeneous ultrasound database},
+  author={Yang, Yuezhe and Chen, Yonglin and Dong, Xingbo and Zhang, Junning and Long, Chihui and Jin, Zhe and Dai, Yong},
+  journal={Scientific Data},
+  volume={12},
+  number={1},
+  pages={148},
+  year={2025},
+  publisher={Nature Publishing Group UK London}
+}</code></pre>
+        </div>
+    </section>
+
+</body>
+
+</html>
