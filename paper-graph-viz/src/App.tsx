@@ -94,7 +94,15 @@ export default function App() {
             graphData={graph}
             focusId={focusId}
             onFocus={setFocusId}
-            onSelectNode={setSelectedNode}
+            onSelectNode={(node, pos) => {
+              setSelectedNode(node);
+              if (!node || !pos) return;
+              const cardW = 220;
+              const gap = 10;
+              const x = Math.max(6, Math.min(pos.x + gap, size.w - cardW - 6));
+              const y = Math.max(6, Math.min(pos.y - 20, size.h - 130));
+              setCardPos({ x, y });
+            }}
             onOpenNode={(node) => {
               if (node.role !== 'paper') return;
               if (!node.url) return;

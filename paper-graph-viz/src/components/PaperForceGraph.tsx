@@ -14,7 +14,7 @@ type Props = {
   graphData: { nodes: PaperNode[]; links: PaperLink[] };
   focusId: string | null;
   onFocus: (id: string | null) => void;
-  onSelectNode: (node: PaperNode | null) => void;
+  onSelectNode: (node: PaperNode | null, pos?: { x: number; y: number }) => void;
   onOpenNode: (node: PaperNode) => void;
   resetTick: number;
   width: number;
@@ -42,16 +42,6 @@ export function PaperForceGraph({
     () => computeHighlight(focusId, graphData.links),
     [focusId, graphData.links],
   );
-
-  const centerOn = useCallback((node: NodeObject<PaperNode>) => {
-    window.setTimeout(() => {
-      const fg = fgRef.current;
-      if (!fg) return;
-      if (node.x !== undefined && node.y !== undefined) {
-        fg.centerAt(node.x, node.y, 500);
-      }
-    }, 0);
-  }, []);
 
   const clampNodeToViewport = useCallback(
     (node: NodeObject<PaperNode>, mode: 'soft' | 'hard') => {
@@ -125,11 +115,16 @@ export function PaperForceGraph({
       if (clickTimerRef.current) window.clearTimeout(clickTimerRef.current);
       clickTimerRef.current = window.setTimeout(() => {
         onFocus(nid);
-        onSelectNode(node as PaperNode);
-        centerOn(node);
+        const fg = fgRef.current;
+        if (fg && node.x !== undefined && node.y !== undefined) {
+          const p = fg.graph2ScreenCoords(node.x, node.y);
+          onSelectNode(node as PaperNode, { x: p.x, y: p.y });
+        } else {
+          onSelectNode(node as PaperNode);
+        }
       }, 220);
     },
-    [onFocus, onSelectNode, onOpenNode, centerOn],
+    [onFocus, onSelectNode, onOpenNode],
   );
 
   // RESET: restore overview view without forcing node zoom on single click.
@@ -175,7 +170,7 @@ export function PaperForceGraph({
         let line = '';
         for (const w of words) {
           const next = line ? `${line} ${w}` : w;
-          const testSize = Math.max(3.7, (radius * 0.36) / globalScale);
+          const testSize = Math.max(3.6, 5.8 / globalScale);
           ctx.font = `600 ${testSize}px sans-serif`;
           if (ctx.measureText(next).width <= maxWidth || !line) {
             line = next;
@@ -186,7 +181,7 @@ export function PaperForceGraph({
         }
         if (line) lines.push(line);
         const limited = lines.slice(0, 2);
-        const fontSize = Math.max(3.9, (radius * 0.34) / globalScale);
+        const fontSize = Math.max(3.6, 5.8 / globalScale);
         const lineHeight = fontSize * 1.03;
         const startY = (node.y ?? 0) - ((limited.length - 1) * lineHeight) / 2;
         ctx.font = `600 ${fontSize}px sans-serif`;
