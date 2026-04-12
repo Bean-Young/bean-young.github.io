@@ -90,7 +90,7 @@ export default function App() {
               setResetTick((t) => t + 1);
             }}
           >
-            RESET
+            {isZh ? '重置' : 'RESET'}
           </button>
           <PaperForceGraph
             graphData={graph}
