@@ -6,8 +6,10 @@ export type PaperRole = 'hub' | 'pillar' | 'paper';
 export interface PaperNode {
   id: string;
   title: string;
+  titleZh?: string;
   shortLabel?: string;
   summary?: string;
+  summaryZh?: string;
   year: number;
   venue: string;
   url: string;

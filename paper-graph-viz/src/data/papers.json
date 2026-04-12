@@ -54,6 +54,7 @@
       "url": "https://www.nature.com/articles/s41597-025-04464-4",
       "citations": 7,
       "summary": "Collect a large-scale public ultrasound database to improve AI-assisted ultrasound diagnosis performance.",
+      "summaryZh": "构建大规模异构超声公开数据库，提升 AI 辅助超声诊断性能。",
       "field": "Ultrasound · Dataset",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -68,6 +69,7 @@
       "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904",
       "citations": 8,
       "summary": "Propose a high-precision model for skin lesion segmentation in dermoscopic images.",
+      "summaryZh": "提出用于皮肤镜图像病灶分割的高精度形态感知模型。",
       "field": "Dermoscopy · Segmentation",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -82,6 +84,7 @@
       "url": "https://arxiv.org/abs/2511.07743",
       "citations": 2,
       "summary": "The first to apply 3DGS to generate new ultrasound perspectives.",
+      "summaryZh": "首次将 3DGS 应用于超声新视角生成。",
       "field": "3DGS · Ultrasound",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -96,6 +99,7 @@
       "url": "https://arxiv.org/abs/2504.11349",
       "citations": 11,
       "summary": "Considering 3D radiological image reconstruction from explicit and implicit representations.",
+      "summaryZh": "从显式与隐式表征角度系统综述放射影像三维重建。",
       "field": "3D Reconstruction · Survey",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -110,6 +114,7 @@
       "url": "https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570",
       "citations": 2,
       "summary": "Introduces a federated learning framework for low-cost virtual DECT image generation to support accurate gout diagnosis.",
+      "summaryZh": "提出联邦学习框架进行低成本虚拟双能 CT 生成，支持痛风精准诊断。",
       "field": "Federated Learning · CT",
       "role": "paper",
       "pillarId": "cat-trust"
@@ -124,6 +129,7 @@
       "url": "https://arxiv.org/abs/2511.07748",
       "citations": 1,
       "summary": "The first multimodal ultrasound video diagnostic agent.",
+      "summaryZh": "提出首个用于超声视频诊断的多模态智能体。",
       "field": "LLM · Ultrasound Agent",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -138,6 +144,7 @@
       "url": "https://arxiv.org/abs/2601.13919",
       "citations": 0,
       "summary": "The first dynamic hypergraph-based deep diagnosis architecture for multimodal medical VLMs.",
+      "summaryZh": "提出首个面向多模态医学 VLM 的动态超图深度诊断架构。",
       "field": "Medical VLM · Diagnosis",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -145,12 +152,14 @@
     {
       "id": "pat-petnerf",
       "title": "PET image reconstruction method based on prior image and PET image 3D perception method",
+      "titleZh": "基于先验图像的PET图像重建方法及PET图像3D感知方法",
       "shortLabel": "PET-NeRF Patent",
       "year": 2024,
       "venue": "Patent",
       "url": "https://patents.google.com/patent/CN118411435A/",
       "citations": 0,
       "summary": "Deep learning based PET reconstruction and 3D perception with prior images and NeRF.",
+      "summaryZh": "基于先验图像与 NeRF 提升 PET 重建与 3D 感知质量。",
       "field": "PET · NeRF · 3D",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -158,12 +167,14 @@
     {
       "id": "pat-petgs",
       "title": "3D Gaussian model generation and rendering for low-dose PET image processing",
+      "titleZh": "一种用于低剂量PET图像处理的3D高斯模型生成和渲染方法",
       "shortLabel": "PET-3DGS Patent",
       "year": 2025,
       "venue": "Patent",
       "url": "https://patents.google.com/patent/CN119625190A",
       "citations": 0,
       "summary": "3D Gaussian model generation and rendering for low-dose brain PET image quality enhancement.",
+      "summaryZh": "提出用于低剂量脑 PET 处理的 3D 高斯生成与渲染方法，提升成像质量。",
       "field": "PET · 3D Gaussian Splatting",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -171,12 +182,14 @@
     {
       "id": "proj-deeppet",
       "title": "DeepPET: An Intelligent Brain PET Device with Low Radiation and High Imaging Quality",
+      "titleZh": "DeepPET：低放射高成像质量的智能脑PET设备",
       "shortLabel": "DeepPET",
       "year": 2024,
       "venue": "Innovation Project",
       "url": "https://bean-young.github.io/petahu/",
       "citations": 0,
       "summary": "Integrate physical models with deep learning for efficient high-quality low-dose PET reconstruction.",
+      "summaryZh": "融合物理模型与深度学习，实现高质量低剂量 PET 高效重建。",
       "field": "PET · Low-dose reconstruction",
       "role": "paper",
       "pillarId": "cat-3d"
