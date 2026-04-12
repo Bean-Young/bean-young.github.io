@@ -143,7 +143,7 @@ export default function App() {
                   window.addEventListener('mouseup', up);
                 }}
               >
-                {isZh ? '论文详情' : 'Paper Details'}
+                {isZh ? '详情' : 'Detail'}
               </div>
               <div className="paper-card__title">{selectedNode.title}</div>
               <div className="paper-card__badges">

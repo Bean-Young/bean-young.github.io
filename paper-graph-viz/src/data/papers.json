@@ -145,7 +145,7 @@
     {
       "id": "pat-petnerf",
       "title": "PET image reconstruction method based on prior image and PET image 3D perception method",
-      "shortLabel": "PET image reconstruction and PET image 3D perception (prior-image NeRF)",
+      "shortLabel": "PET-NeRF Patent",
       "year": 2024,
       "venue": "Patent",
       "url": "https://patents.google.com/patent/CN118411435A/",
