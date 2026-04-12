@@ -183,7 +183,10 @@ export function PaperForceGraph({
         const limited = lines.slice(0, 2);
         let fontSize = Math.max(3.6, 5.8 / globalScale);
         if (n.id === 'hub-medical') {
-          fontSize += 2 / globalScale;
+          fontSize += 4.6 / globalScale;
+          // Medical AI 使用单行，避免被换行稀释视觉大小
+          limited.length = 0;
+          limited.push(label);
         }
         const lineHeight = fontSize * 1.03;
         const startY = (node.y ?? 0) - ((limited.length - 1) * lineHeight) / 2;

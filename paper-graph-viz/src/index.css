@@ -112,9 +112,9 @@ body {
 }
 
 .paper-badge--venue {
-  background: #e0ecff;
-  color: #1e3a8a;
-  border: 1px solid #bfdbfe;
+  background: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
 }
 
 .paper-badge--year {
@@ -134,11 +134,11 @@ body {
   display: inline-block;
   margin-top: 9px;
   font-size: 10px;
-  color: #0b3b76;
+  color: #ffffff;
   text-decoration: none;
-  background: #dbeafe;
-  border: 1px solid #93c5fd;
-  padding: 3px 7px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: 1px solid #1d4ed8;
+  padding: 4px 10px;
   border-radius: 999px;
 }
 
