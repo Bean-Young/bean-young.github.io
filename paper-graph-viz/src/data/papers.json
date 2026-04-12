@@ -147,7 +147,7 @@
       "title": "PET image reconstruction and PET image 3D perception (prior-image NeRF)",
       "shortLabel": "PET-NeRF Patent",
       "year": 2024,
-      "venue": "Patent CN118411435A",
+      "venue": "Patent",
       "url": "https://patents.google.com/patent/CN118411435A/",
       "citations": 0,
       "summary": "Deep learning based PET reconstruction and 3D perception with prior images and NeRF.",
@@ -160,7 +160,7 @@
       "title": "3D Gaussian model generation and rendering for low-dose PET image processing",
       "shortLabel": "PET-3DGS Patent",
       "year": 2025,
-      "venue": "Patent CN119625190A",
+      "venue": "Patent",
       "url": "https://patents.google.com/patent/CN119625190A",
       "citations": 0,
       "summary": "3D Gaussian model generation and rendering for low-dose brain PET image quality enhancement.",
@@ -173,7 +173,7 @@
       "title": "DeepPET: An Intelligent Brain PET Device with Low Radiation and High Imaging Quality",
       "shortLabel": "DeepPET",
       "year": 2024,
-      "venue": "National Innovation Project",
+      "venue": "Innovation Project",
       "url": "https://bean-young.github.io/petahu/",
       "citations": 0,
       "summary": "Integrate physical models with deep learning for efficient high-quality low-dose PET reconstruction.",
@@ -200,16 +200,13 @@
 
     {"source": "cat-trust", "target": "p-vdect", "type": "similar"},
 
-    {"source": "p-ultrags", "target": "p-3dreview", "type": "extends"},
-    {"source": "p-ultrags", "target": "p-ahu", "type": "similar"},
-    {"source": "p-3dreview", "target": "pat-petnerf", "type": "similar"},
-    {"source": "pat-petgs", "target": "pat-petnerf", "type": "extends"},
-    {"source": "proj-deeppet", "target": "pat-petgs", "type": "similar"},
-    {"source": "proj-deeppet", "target": "p-vdect", "type": "similar"},
-
-    {"source": "p-ahu", "target": "p-autous", "type": "similar"},
+    {"source": "p-3dreview", "target": "p-ultrags", "type": "similar"},
+    {"source": "p-ultrags", "target": "p-3dreview", "type": "similar"},
+    {"source": "p-hyper", "target": "p-autous", "type": "similar"},
     {"source": "p-autous", "target": "p-hyper", "type": "similar"},
-
-    {"source": "p-vdect", "target": "p-hyper", "type": "similar"}
+    {"source": "p-ahu", "target": "p-autous", "type": "extends"},
+    {"source": "p-ahu", "target": "p-ultrags", "type": "extends"},
+    {"source": "proj-deeppet", "target": "pat-petnerf", "type": "extends"},
+    {"source": "proj-deeppet", "target": "pat-petgs", "type": "extends"}
   ]
 }
