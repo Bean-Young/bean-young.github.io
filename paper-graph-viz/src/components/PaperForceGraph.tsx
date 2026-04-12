@@ -224,10 +224,13 @@ export function PaperForceGraph({
       linkDirectionalArrowRelPos={1}
       linkDirectionalParticles={(l: PaperLink) => {
         const k = linkKey(l);
-        return focusId && hi.highlightLinkKeys.has(k) ? 1 : 0;
+        return focusId && hi.highlightLinkKeys.has(k) ? 4 : 0;
       }}
-      linkDirectionalParticleWidth={1.2}
-      linkDirectionalParticleSpeed={() => 0.008}
+      linkDirectionalParticleWidth={2.2}
+      linkDirectionalParticleSpeed={(l: PaperLink) => {
+        const k = linkKey(l);
+        return focusId && hi.highlightLinkKeys.has(k) ? 0.02 : 0.006;
+      }}
       onNodeClick={handleNodeClick}
       onNodeDrag={(node) => {
         clampNodeToViewport(node as NodeObject<PaperNode>, 'soft');
