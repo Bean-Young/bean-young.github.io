@@ -53,6 +53,7 @@
       "venue": "Scientific Data",
       "url": "https://www.nature.com/articles/s41597-025-04464-4",
       "citations": 7,
+      "summary": "Collect a large-scale public ultrasound database to improve AI-assisted ultrasound diagnosis performance.",
       "field": "Ultrasound · Dataset",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -66,6 +67,7 @@
       "venue": "ESWA",
       "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904",
       "citations": 8,
+      "summary": "Propose a high-precision model for skin lesion segmentation in dermoscopic images.",
       "field": "Dermoscopy · Segmentation",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -79,6 +81,7 @@
       "venue": "ICME",
       "url": "https://arxiv.org/abs/2511.07743",
       "citations": 2,
+      "summary": "The first to apply 3DGS to generate new ultrasound perspectives.",
       "field": "3DGS · Ultrasound",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -92,6 +95,7 @@
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2504.11349",
       "citations": 11,
+      "summary": "Considering 3D radiological image reconstruction from explicit and implicit representations.",
       "field": "3D Reconstruction · Survey",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -105,6 +109,7 @@
       "venue": "Digital Health",
       "url": "https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570",
       "citations": 2,
+      "summary": "Introduces a federated learning framework for low-cost virtual DECT image generation to support accurate gout diagnosis.",
       "field": "Federated Learning · CT",
       "role": "paper",
       "pillarId": "cat-trust"
@@ -118,6 +123,7 @@
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2511.07748",
       "citations": 1,
+      "summary": "The first multimodal ultrasound video diagnostic agent.",
       "field": "LLM · Ultrasound Agent",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -131,6 +137,7 @@
       "venue": "arXiv",
       "url": "https://arxiv.org/abs/2601.13919",
       "citations": 0,
+      "summary": "The first dynamic hypergraph-based deep diagnosis architecture for multimodal medical VLMs.",
       "field": "Medical VLM · Diagnosis",
       "role": "paper",
       "pillarId": "cat-diag"
@@ -143,6 +150,7 @@
       "venue": "Patent CN118411435A",
       "url": "https://patents.google.com/patent/CN118411435A/",
       "citations": 0,
+      "summary": "Deep learning based PET reconstruction and 3D perception with prior images and NeRF.",
       "field": "PET · NeRF · 3D",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -155,6 +163,7 @@
       "venue": "Patent CN119625190A",
       "url": "https://patents.google.com/patent/CN119625190A",
       "citations": 0,
+      "summary": "3D Gaussian model generation and rendering for low-dose brain PET image quality enhancement.",
       "field": "PET · 3D Gaussian Splatting",
       "role": "paper",
       "pillarId": "cat-3d"
@@ -167,6 +176,7 @@
       "venue": "National Innovation Project",
       "url": "https://bean-young.github.io/petahu/",
       "citations": 0,
+      "summary": "Integrate physical models with deep learning for efficient high-quality low-dose PET reconstruction.",
       "field": "PET · Low-dose reconstruction",
       "role": "paper",
       "pillarId": "cat-3d"

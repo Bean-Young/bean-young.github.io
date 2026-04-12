@@ -181,7 +181,10 @@ export function PaperForceGraph({
         }
         if (line) lines.push(line);
         const limited = lines.slice(0, 2);
-        const fontSize = Math.max(3.6, 5.8 / globalScale);
+        let fontSize = Math.max(3.6, 5.8 / globalScale);
+        if (n.id === 'hub-medical') {
+          fontSize += 2 / globalScale;
+        }
         const lineHeight = fontSize * 1.03;
         const startY = (node.y ?? 0) - ((limited.length - 1) * lineHeight) / 2;
         ctx.font = `600 ${fontSize}px sans-serif`;

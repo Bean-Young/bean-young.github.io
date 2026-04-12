@@ -7,6 +7,7 @@ export interface PaperNode {
   id: string;
   title: string;
   shortLabel?: string;
+  summary?: string;
   year: number;
   venue: string;
   url: string;
