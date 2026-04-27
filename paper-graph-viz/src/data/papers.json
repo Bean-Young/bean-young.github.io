@@ -66,7 +66,7 @@
       "scholarTitle": "EM-Net: Effective and morphology-aware network for skin lesion segmentation",
       "year": 2025,
       "venue": "ESWA",
-      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904",
+      "url": "https://bean-young.github.io/emnet/",
       "citations": 8,
       "summary": "Propose a high-precision model for skin lesion segmentation in dermoscopic images.",
       "summaryZh": "提出用于皮肤镜图像病灶分割的高精度形态感知模型。",

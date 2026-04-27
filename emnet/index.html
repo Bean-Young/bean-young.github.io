@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="EM-Net is an effective and morphology-aware network for skin lesion segmentation in dermoscopic images.">
+    <meta name="keywords" content="EM-Net, skin lesion segmentation, dermoscopy, morphology-aware, domain generalization">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EM-Net: Effective and Morphology-aware Network for Skin Lesion Segmentation</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="https://bean-young.github.io">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More Research
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://bean-young.github.io/ahudataset/">
+                            AHU-Database
+                        </a>
+                        <a class="navbar-item" href="https://bean-young.github.io/petahu/">
+                            PET-Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">EM-Net: Effective and Morphology-aware Network for Skin Lesion Segmentation</h1>
+                        <div class="is-size-4 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><strong><em>Expert Systems with Applications, 2025</em></strong></span>
+                        </div>
+                        <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block">Kaiwen Zhu<sup>1,2,3*</sup>,</span>
+                            <span class="author-block">Yuezhe Yang<sup>3,4*</sup>,</span>
+                            <span class="author-block">Yonglin Chen<sup>1,3*†</sup>,</span>
+                            <span class="author-block">Ruixi Feng<sup>5</sup>,</span>
+                            <span class="author-block">Dongping Chen<sup>4</sup>,</span>
+                            <span class="author-block">Bingzhi Fan<sup>4</sup>,</span>
+                            <span class="author-block">Nan Liu<sup>4</sup>,</span>
+                            <span class="author-block">Ying Li<sup>6</sup>,</span>
+                            <span class="author-block">Xuewen Wang<sup>6</sup></span>
+                        </div>
+                        <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+                            <span class="author-block"><sup>†</sup>Corresponding author</span>
+                        </div>
+                        <div class="is-size-6 publication-authors">
+                            <span class="author-block"><sup>1</sup>Anhui Jianzhu University,</span>
+                            <span class="author-block"><sup>2</sup>Southeast University,</span>
+                            <span class="author-block"><sup>3</sup>Anhui Provincial International Joint Research Center for Advanced Technology in Medical Imaging,</span>
+                            <span class="author-block"><sup>4</sup>Anhui University,</span>
+                            <span class="author-block"><sup>5</sup>Stony Brook Institute at Anhui University,</span>
+                            <span class="author-block"><sup>6</sup>Zhejiang University School of Medicine</span>
+                        </div>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://doi.org/10.1016/j.eswa.2025.127668"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-doi"></i>
+                                        </span>
+                                        <span>DOI</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://github.com/Bean-Young/EM-Net"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Dermoscopic images are essential for diagnosing various skin diseases, as they enable physicians to observe subepidermal structures, dermal papillae, and deeper tissues otherwise invisible to the naked eye. However, segmenting lesions in these images is challenging due to their irregular boundaries and significant variability in lesion characteristics.
+                        </p>
+                        <p>
+                            We propose an effective and morphology-aware network that utilizes a hybrid feature extractor combining CNN and ViT architectures. EM-Net introduces a boundary delineation component based on non-convex optimization to learn general representations and accurately delineate lesion boundaries, enhancing detail extraction.
+                        </p>
+                        <p>
+                            The model also integrates a few-shot domain generalization module to improve adaptability across datasets. Validation on publicly available dermoscopic image datasets, including ISIC, PH², PAD-UFES-20, and the University of Waterloo skin cancer database, demonstrates state-of-the-art performance in Dice, Acc, Pre, IoU, and Re.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Highlights</h2>
+                    <div class="content has-text-justified">
+                        <ul>
+                            <li style="font-weight: bold; font-size: 1.3em;">Propose a Morphology-aware Module to capture lesion contours, corners, and boundary details.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Integrate few-shot domain generalization to improve cross-dataset robustness.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Combine CNN and Vision Transformer features in a hybrid encoder-decoder segmentation framework.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Provide additional segmentation masks for PAD-UFES-20 cellphone dermatology images.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Method</h2>
+                    <div class="content has-text-justified">
+                        <img src="./static/images/Method_1.png" alt="EM-Net framework" width="100%">
+                        <p>The EM-Net framework includes the Morphology-aware Module, Global Attention Module, Bridge Fusion Module, and the main segmentation network.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Morphology-aware Module</h2>
+                    <div class="content has-text-justified">
+                        <img src="./static/images/Introduction_2.png" alt="Morphology-aware module illustration" width="100%">
+                        <p>The Morphology-aware Module captures structural details in dermoscopic images and helps EM-Net better preserve lesion boundaries during segmentation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Results</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-light is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-multiline is-centered">
+                    <div class="column is-full">
+                        <img src="./static/images/Experiment_1.png" alt="ISIC segmentation comparison" width="100%">
+                        <p class="video-label">ISIC Dataset</p>
+                    </div>
+                    <div class="column is-half">
+                        <img src="./static/images/Experiment_2.png" alt="ISIC 2016 and PH2 segmentation comparison" width="100%">
+                        <p class="video-label">ISIC 2016 + PH²</p>
+                    </div>
+                    <div class="column is-half">
+                        <img src="./static/images/Experiment_3.png" alt="Mobile phone dataset segmentation comparison" width="100%">
+                        <p class="video-label">Mobile Phone Dataset</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">Citation</h2>
+            <pre><code>@article{zhu2025emnet,
+  title={EM-Net: Effective and morphology-aware network for skin lesion segmentation},
+  author={Zhu, Kaiwen and Yang, Yuezhe and Chen, Yonglin and Feng, Ruixi and Chen, Dongping and Fan, Bingzhi and Liu, Nan and Li, Ying and Wang, Xuewen},
+  journal={Expert Systems with Applications},
+  volume={285},
+  pages={127668},
+  year={2025},
+  doi={10.1016/j.eswa.2025.127668},
+  publisher={Elsevier}
+}</code></pre>
+        </div>
+    </section>
+
+</body>
+
+</html>
