@@ -82,14 +82,14 @@
                         </div>
                         <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
                             <span class="author-block">Kaiwen Zhu<sup>1,2,3*</sup>,</span>
-                            <span class="author-block">Yuezhe Yang<sup>3,4*</sup>,</span>
+                            <span class="author-block">Yuezhe Yang<sup>3*</sup>,</span>
                             <span class="author-block">Yonglin Chen<sup>1,3*†</sup>,</span>
-                            <span class="author-block">Ruixi Feng<sup>5</sup>,</span>
-                            <span class="author-block">Dongping Chen<sup>4</sup>,</span>
-                            <span class="author-block">Bingzhi Fan<sup>4</sup>,</span>
-                            <span class="author-block">Nan Liu<sup>4</sup>,</span>
-                            <span class="author-block">Ying Li<sup>6</sup>,</span>
-                            <span class="author-block">Xuewen Wang<sup>6</sup></span>
+                            <span class="author-block">Ruixi Feng<sup>3</sup>,</span>
+                            <span class="author-block">Dongping Chen<sup>3</sup>,</span>
+                            <span class="author-block">Bingzhi Fan<sup>3</sup>,</span>
+                            <span class="author-block">Nan Liu<sup>3</sup>,</span>
+                            <span class="author-block">Ying Li<sup>4</sup>,</span>
+                            <span class="author-block">Xuewen Wang<sup>4</sup></span>
                         </div>
                         <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
                             <span class="author-block"><sup>*</sup>Equal Contribution</span>
@@ -98,10 +98,8 @@
                         <div class="is-size-6 publication-authors">
                             <span class="author-block"><sup>1</sup>Anhui Jianzhu University,</span>
                             <span class="author-block"><sup>2</sup>Southeast University,</span>
-                            <span class="author-block"><sup>3</sup>Anhui Provincial International Joint Research Center for Advanced Technology in Medical Imaging,</span>
-                            <span class="author-block"><sup>4</sup>Anhui University,</span>
-                            <span class="author-block"><sup>5</sup>Stony Brook Institute at Anhui University,</span>
-                            <span class="author-block"><sup>6</sup>Zhejiang University School of Medicine</span>
+                            <span class="author-block"><sup>3</sup>Anhui University,</span>
+                            <span class="author-block"><sup>4</sup>Zhejiang University</span>
                         </div>
                         <div class="column has-text-centered">
                             <div class="publication-links">
@@ -112,15 +110,6 @@
                                             <i class="fas fa-file-pdf"></i>
                                         </span>
                                         <span>Paper</span>
-                                    </a>
-                                </span>
-                                <span class="link-block">
-                                    <a href="https://doi.org/10.1016/j.eswa.2025.127668"
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="ai ai-doi"></i>
-                                        </span>
-                                        <span>DOI</span>
                                     </a>
                                 </span>
                                 <span class="link-block">
@@ -150,10 +139,10 @@
                             Dermoscopic images are essential for diagnosing various skin diseases, as they enable physicians to observe subepidermal structures, dermal papillae, and deeper tissues otherwise invisible to the naked eye. However, segmenting lesions in these images is challenging due to their irregular boundaries and significant variability in lesion characteristics.
                         </p>
                         <p>
-                            We propose an effective and morphology-aware network that utilizes a hybrid feature extractor combining CNN and ViT architectures. EM-Net introduces a boundary delineation component based on non-convex optimization to learn general representations and accurately delineate lesion boundaries, enhancing detail extraction.
+                            To address these challenges, we propose a effective and morphology-aware network that utilizes a hybrid feature extractor combining CNN and ViT architectures. At the same time, we enhanced the proposed segmentation model. Specifically, we propose a boundary delineation component that uses a non-convex optimization function for learning general representations and accurately delineates lesion boundaries, thus enhancing the extraction of details.
                         </p>
                         <p>
-                            The model also integrates a few-shot domain generalization module to improve adaptability across datasets. Validation on publicly available dermoscopic image datasets, including ISIC, PH², PAD-UFES-20, and the University of Waterloo skin cancer database, demonstrates state-of-the-art performance in Dice, Acc, Pre, IoU, and Re.
+                            Additionally, we also introduce an adaptive segmentation strategy through the integration of the few-shot domain generalization module to improve the model's generalization across different datasets. Validation on multiple publicly available dermoscopic image datasets, including ISIC, PH², PAD-UFES-20, and the University of Waterloo skin cancer database, demonstrates that our method achieves state-of-the-art performance with significant improvements in Dice, Acc, Pre, IoU, and Re. These results confirm the robustness and adaptability of our model. The code is available at: <a href="https://github.com/Bean-Young/EM-Net">https://github.com/Bean-Young/EM-Net</a>.
                         </p>
                     </div>
                 </div>
@@ -164,10 +153,9 @@
                     <h2 class="title is-3">Highlights</h2>
                     <div class="content has-text-justified">
                         <ul>
-                            <li style="font-weight: bold; font-size: 1.3em;">Propose a Morphology-aware Module to capture lesion contours, corners, and boundary details.</li>
-                            <li style="font-weight: bold; font-size: 1.3em;">Integrate few-shot domain generalization to improve cross-dataset robustness.</li>
-                            <li style="font-weight: bold; font-size: 1.3em;">Combine CNN and Vision Transformer features in a hybrid encoder-decoder segmentation framework.</li>
-                            <li style="font-weight: bold; font-size: 1.3em;">Provide additional segmentation masks for PAD-UFES-20 cellphone dermatology images.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Develop a Morphology-aware Module that captures lesion contours, edges, and corner structures.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Introduce a Few-shot Domain Generalization module for stronger cross-dataset robustness.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Build a CNN-ViT hybrid encoder-decoder framework for precise skin lesion segmentation.</li>
                         </ul>
                     </div>
                 </div>
