@@ -192,78 +192,168 @@
                     <h2 class="title is-3">Results</h2>
 
                     <h3 class="title is-4">Quantitative Results</h3>
-                    <div class="table-container" style="margin-bottom: 3rem;">
-                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered">
+                    <div class="table-container" style="margin-bottom: 2.5rem;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
                             <thead>
                                 <tr>
-                                    <th>Dataset</th>
-                                    <th>Dice</th>
-                                    <th>IoU</th>
-                                    <th>Acc</th>
-                                    <th>Pre / Se</th>
-                                    <th>Re / Sp</th>
+                                    <th rowspan="2">Method</th>
+                                    <th colspan="5">test-ISIC 2016</th>
+                                    <th colspan="5">test-ISIC 2017</th>
+                                    <th colspan="5">validation-ISIC 2018</th>
+                                </tr>
+                                <tr>
+                                    <th>Dice</th><th>IoU</th><th>Acc</th><th>Pre</th><th>Re</th>
+                                    <th>Dice</th><th>IoU</th><th>Acc</th><th>Pre</th><th>Re</th>
+                                    <th>Dice</th><th>IoU</th><th>Acc</th><th>Pre</th><th>Re</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>test-ISIC 2016</td>
-                                    <td><strong>91.89</strong></td>
-                                    <td><strong>85.57</strong></td>
-                                    <td><strong>96.25</strong></td>
-                                    <td><strong>95.65</strong></td>
-                                    <td>89.66</td>
+                                    <td>U-Net</td>
+                                    <td>90.29</td><td>82.58</td><td>94.76</td><td>91.29</td><td>87.72</td>
+                                    <td>82.80</td><td>73.30</td><td>92.30</td><td>89.07</td><td>79.30</td>
+                                    <td>88.43</td><td>79.71</td><td>93.16</td><td>89.46</td><td>85.89</td>
                                 </tr>
                                 <tr>
-                                    <td>test-ISIC 2017</td>
-                                    <td><strong>86.42</strong></td>
-                                    <td><strong>78.37</strong></td>
-                                    <td><strong>93.97</strong></td>
-                                    <td><strong>92.17</strong></td>
-                                    <td><strong>85.33</strong></td>
+                                    <td>Att-UNet</td>
+                                    <td>90.83</td><td>83.43</td><td>94.43</td><td>92.12</td><td>88.42</td>
+                                    <td>83.20</td><td>74.40</td><td>92.50</td><td>87.29</td><td>84.11</td>
+                                    <td>88.32</td><td>79.52</td><td>93.17</td><td>87.73</td><td>87.11</td>
                                 </tr>
                                 <tr>
-                                    <td>validation-ISIC 2018</td>
-                                    <td><strong>91.47</strong></td>
-                                    <td><strong>84.78</strong></td>
-                                    <td><strong>95.35</strong></td>
-                                    <td><strong>91.28</strong></td>
-                                    <td><strong>93.15</strong></td>
+                                    <td>CE-Net</td>
+                                    <td>91.80</td><td>85.01</td><td>95.30</td><td>91.84</td><td>90.32</td>
+                                    <td>85.61</td><td>77.54</td><td>93.51</td><td>89.91</td><td>84.52</td>
+                                    <td>89.45</td><td>81.32</td><td>94.03</td><td>89.18</td><td>87.60</td>
                                 </tr>
                                 <tr>
-                                    <td>test-ISIC 2018</td>
-                                    <td><strong>90.30</strong></td>
-                                    <td>83.60</td>
-                                    <td><strong>94.70</strong></td>
-                                    <td>92.40</td>
-                                    <td><strong>93.90</strong></td>
+                                    <td>CPF-Net</td>
+                                    <td>91.34</td><td>84.24</td><td>95.18</td><td>91.34</td><td>89.78</td>
+                                    <td>84.70</td><td>76.20</td><td>93.00</td><td>86.67</td><td>83.33</td>
+                                    <td>88.86</td><td>80.45</td><td>94.68</td><td>88.44</td><td>87.57</td>
                                 </tr>
                                 <tr>
-                                    <td>test-PH²</td>
-                                    <td><strong>94.03</strong></td>
-                                    <td><strong>88.92</strong></td>
-                                    <td><strong>96.34</strong></td>
-                                    <td><strong>94.06</strong></td>
-                                    <td>94.57</td>
+                                    <td>MS RED</td>
+                                    <td>91.43</td><td>84.43</td><td>95.67</td><td>91.60</td><td>89.53</td>
+                                    <td>84.83</td><td>76.32</td><td>93.10</td><td>87.07</td><td>83.74</td>
+                                    <td>89.18</td><td>80.92</td><td>95.03</td><td>89.14</td><td>87.36</td>
                                 </tr>
                                 <tr>
-                                    <td>test-Waterloo</td>
-                                    <td><strong>90.03</strong></td>
-                                    <td><strong>82.47</strong></td>
-                                    <td><strong>98.42</strong></td>
-                                    <td><strong>94.69</strong></td>
-                                    <td>87.14</td>
+                                    <td>FAT-Net</td>
+                                    <td>91.49</td><td>84.49</td><td>96.07</td><td>91.11</td><td><strong>90.41</strong></td>
+                                    <td>85.01</td><td>76.92</td><td>93.64</td><td>87.77</td><td>84.52</td>
+                                    <td>89.18</td><td>80.92</td><td>95.18</td><td>88.52</td><td>87.88</td>
                                 </tr>
                                 <tr>
-                                    <td>test-PAD</td>
-                                    <td><strong>91.88</strong></td>
-                                    <td><strong>85.37</strong></td>
-                                    <td><strong>97.41</strong></td>
-                                    <td><strong>95.69</strong></td>
-                                    <td>89.02</td>
+                                    <td>TransUNet</td>
+                                    <td>91.32</td><td>84.89</td><td>96.21</td><td>92.28</td><td>89.63</td>
+                                    <td>85.51</td><td>77.34</td><td>93.47</td><td>88.56</td><td>84.22</td>
+                                    <td>89.50</td><td>82.61</td><td>93.67</td><td>88.12</td><td>89.50</td>
+                                </tr>
+                                <tr>
+                                    <td>Swin-UNet</td>
+                                    <td>91.27</td><td>84.14</td><td>96.18</td><td>91.39</td><td>89.45</td>
+                                    <td>83.50</td><td>72.28</td><td>93.20</td><td>84.27</td><td>83.14</td>
+                                    <td>88.46</td><td>79.86</td><td>94.45</td><td>88.24</td><td>87.43</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ours</strong></td>
+                                    <td><strong>91.89</strong></td><td><strong>85.57</strong></td><td><strong>96.25</strong></td><td><strong>95.65</strong></td><td>89.66</td>
+                                    <td><strong>86.42</strong></td><td><strong>78.37</strong></td><td><strong>93.97</strong></td><td><strong>92.17</strong></td><td><strong>85.33</strong></td>
+                                    <td><strong>91.47</strong></td><td><strong>84.78</strong></td><td><strong>95.35</strong></td><td><strong>91.28</strong></td><td><strong>93.15</strong></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p class="video-label">Quantitative performance of EM-Net across public dermoscopic image datasets.</p>
+                        <p class="video-label">Comparison with alternative approaches on ISIC datasets.</p>
+                    </div>
+
+                    <div class="columns is-multiline">
+                        <div class="column is-half">
+                            <div class="table-container" style="margin-bottom: 2.5rem;">
+                                <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">Method</th>
+                                            <th colspan="5">test-ISIC 2018</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Dice</th><th>IoU</th><th>Acc</th><th>Se</th><th>Sp</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>SCDC</td><td>88.50</td><td>82.40</td><td>92.90</td><td>95.30</td><td>91.10</td></tr>
+                                        <tr><td>ACA-Net</td><td>89.10</td><td>81.90</td><td>-</td><td>94.30</td><td>93.20</td></tr>
+                                        <tr><td>Deeplabv3+</td><td>89.60</td><td>82.50</td><td>94.20</td><td><strong>96.20</strong></td><td>92.10</td></tr>
+                                        <tr><td>SESV-DLab</td><td>90.20</td><td>83.30</td><td>94.60</td><td><strong>96.20</strong></td><td>92.50</td></tr>
+                                        <tr><td>ICL-Net</td><td><strong>90.30</strong></td><td><strong>83.90</strong></td><td>94.40</td><td>94.10</td><td>92.90</td></tr>
+                                        <tr><td><strong>Ours</strong></td><td><strong>90.30</strong></td><td>83.60</td><td><strong>94.70</strong></td><td>92.40</td><td><strong>93.90</strong></td></tr>
+                                    </tbody>
+                                </table>
+                                <p class="video-label">Comparison on the ISIC 2018 Challenge ranking list.</p>
+                            </div>
+                        </div>
+                        <div class="column is-half">
+                            <div class="table-container" style="margin-bottom: 2.5rem;">
+                                <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">Method</th>
+                                            <th colspan="5">test-PH²</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Dice</th><th>IoU</th><th>Acc</th><th>Pre</th><th>Re</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>U-Net</td><td>90.56</td><td>83.56</td><td>94.86</td><td>90.30</td><td>93.47</td></tr>
+                                        <tr><td>Att-UNet</td><td>90.29</td><td>82.70</td><td>94.68</td><td>91.35</td><td>93.26</td></tr>
+                                        <tr><td>CE-Net</td><td>90.87</td><td>83.90</td><td>95.38</td><td>93.21</td><td>96.01</td></tr>
+                                        <tr><td>CPF-Net</td><td>91.67</td><td>85.48</td><td>95.59</td><td>91.81</td><td>95.90</td></tr>
+                                        <tr><td>MS RED</td><td>92.65</td><td>85.29</td><td>95.46</td><td>90.38</td><td>95.52</td></tr>
+                                        <tr><td>FAT-Net</td><td>92.21</td><td>85.18</td><td>95.43</td><td>92.85</td><td><strong>96.33</strong></td></tr>
+                                        <tr><td>TransUNet</td><td>90.96</td><td>83.99</td><td>95.42</td><td>91.18</td><td>95.68</td></tr>
+                                        <tr><td>Swin-UNet</td><td>92.69</td><td>87.08</td><td>96.03</td><td>91.42</td><td>94.87</td></tr>
+                                        <tr><td>ICL-Net</td><td>92.80</td><td>87.25</td><td>96.32</td><td>-</td><td>95.46</td></tr>
+                                        <tr><td><strong>Ours</strong></td><td><strong>94.03</strong></td><td><strong>88.92</strong></td><td><strong>96.34</strong></td><td><strong>94.06</strong></td><td>94.57</td></tr>
+                                    </tbody>
+                                </table>
+                                <p class="video-label">Quantitative evaluation on the PH² dataset.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container" style="margin-bottom: 3rem;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">Method</th>
+                                    <th colspan="5">test-Waterloo</th>
+                                    <th colspan="5">test-PAD</th>
+                                </tr>
+                                <tr>
+                                    <th>Dice</th><th>IoU</th><th>Acc</th><th>Pre</th><th>Re</th>
+                                    <th>Dice</th><th>IoU</th><th>Acc</th><th>Pre</th><th>Re</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>U-Net</td>
+                                    <td>82.71</td><td>72.41</td><td>96.03</td><td>74.78</td><td>96.47</td>
+                                    <td>87.71</td><td>79.45</td><td>94.85</td><td>82.47</td><td><strong>95.69</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>TransUNet</td>
+                                    <td>86.51</td><td>77.21</td><td>97.68</td><td>80.12</td><td><strong>96.49</strong></td>
+                                    <td>90.82</td><td>83.80</td><td>96.98</td><td>90.76</td><td>92.06</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ours</strong></td>
+                                    <td><strong>90.03</strong></td><td><strong>82.47</strong></td><td><strong>98.42</strong></td><td><strong>94.69</strong></td><td>87.14</td>
+                                    <td><strong>91.88</strong></td><td><strong>85.37</strong></td><td><strong>97.41</strong></td><td><strong>95.69</strong></td><td>89.02</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="video-label">Comparison on datasets imaged by mobile phones.</p>
                     </div>
 
                     <h3 class="title is-4">Qualitative Results</h3>
