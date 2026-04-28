@@ -208,6 +208,39 @@
                         <p class="video-label">Quantitative comparison on Wild Dataset and Phantom Dataset.</p>
                     </div>
 
+                    <div class="table-container" style="margin-bottom: 2.5rem; overflow-x: auto;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">Method</th>
+                                    <th colspan="2">Case1</th>
+                                    <th colspan="2">Case2</th>
+                                    <th colspan="2">Case3</th>
+                                    <th colspan="2">Case4</th>
+                                    <th colspan="2">Case5</th>
+                                    <th colspan="2">Case6</th>
+                                </tr>
+                                <tr>
+                                    <th>PSNR</th><th>SSIM</th>
+                                    <th>PSNR</th><th>SSIM</th>
+                                    <th>PSNR</th><th>SSIM</th>
+                                    <th>PSNR</th><th>SSIM</th>
+                                    <th>PSNR</th><th>SSIM</th>
+                                    <th>PSNR</th><th>SSIM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>NeRF</td><td>18.282</td><td>0.3388</td><td>21.880</td><td>0.5363</td><td>17.329</td><td>0.3835</td><td>23.119</td><td>0.5985</td><td>21.634</td><td>0.5980</td><td>25.376</td><td>0.6660</td></tr>
+                                <tr><td>TensoRF</td><td>17.206</td><td>0.3593</td><td>22.787</td><td>0.6378</td><td>19.999</td><td>0.5124</td><td>22.681</td><td>0.5692</td><td>22.252</td><td>0.6816</td><td>26.158</td><td>0.7389</td></tr>
+                                <tr><td>Ultra-NeRF</td><td>17.661</td><td>0.2404</td><td>18.194</td><td>0.3994</td><td>19.030</td><td>0.3335</td><td>19.053</td><td>0.4331</td><td>20.648</td><td>0.4971</td><td>22.450</td><td>0.7030</td></tr>
+                                <tr><td>3DGS</td><td>17.280</td><td>0.4270</td><td>20.367</td><td>0.5510</td><td>18.524</td><td>0.4420</td><td>21.807</td><td>0.6673</td><td>22.110</td><td>0.6773</td><td>25.927</td><td>0.7333</td></tr>
+                                <tr><td>SuGaR</td><td>18.170</td><td>0.4601</td><td>23.831</td><td>0.7085</td><td>20.902</td><td>0.5128</td><td>23.541</td><td>0.6381</td><td>20.135</td><td>0.5923</td><td>27.264</td><td>0.7721</td></tr>
+                                <tr><td><strong>Ours</strong></td><td><strong>18.846</strong></td><td><strong>0.4978</strong></td><td><strong>24.644</strong></td><td><strong>0.7380</strong></td><td><strong>21.570</strong></td><td><strong>0.5493</strong></td><td><strong>24.030</strong></td><td><strong>0.6719</strong></td><td><strong>22.723</strong></td><td><strong>0.6911</strong></td><td><strong>28.181</strong></td><td><strong>0.7888</strong></td></tr>
+                            </tbody>
+                        </table>
+                        <p class="video-label">Quantitative comparison on Clinical Dataset.</p>
+                    </div>
+
                     <h3 class="title is-4">Qualitative Results</h3>
                     <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
                         <img src="./static/images/Experiment1.png" alt="Visual reconstruction comparison on Wild and Clinical Dataset" width="100%">
