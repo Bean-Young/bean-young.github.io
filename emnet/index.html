@@ -194,11 +194,80 @@
                     <h3 class="title is-4">Quantitative Results</h3>
                     <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
                         <img src="./static/images/Experiment_5.png" alt="Quantitative analysis on ISIC 2016 and PH2 datasets" width="100%">
-                        <p class="video-label">Quantitative analysis on ISIC 2016 and PH² datasets.</p>
+                        <p class="video-label">Distribution analysis on ISIC 2016 and PH² datasets.</p>
                     </div>
-                    <div class="content has-text-centered" style="margin: 0 auto 3rem; max-width: 720px;">
-                        <img src="./static/images/Experiment_4.png" alt="Ablation study results" width="100%">
-                        <p class="video-label">Ablation study on ISIC 2016 and PH² datasets.</p>
+                    <div class="table-container" style="margin-bottom: 3rem;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered">
+                            <thead>
+                                <tr>
+                                    <th>Dataset</th>
+                                    <th>Dice</th>
+                                    <th>IoU</th>
+                                    <th>Acc</th>
+                                    <th>Pre / Se</th>
+                                    <th>Re / Sp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test-ISIC 2016</td>
+                                    <td><strong>91.89</strong></td>
+                                    <td><strong>85.57</strong></td>
+                                    <td><strong>96.25</strong></td>
+                                    <td><strong>95.65</strong></td>
+                                    <td>89.66</td>
+                                </tr>
+                                <tr>
+                                    <td>test-ISIC 2017</td>
+                                    <td><strong>86.42</strong></td>
+                                    <td><strong>78.37</strong></td>
+                                    <td><strong>93.97</strong></td>
+                                    <td><strong>92.17</strong></td>
+                                    <td><strong>85.33</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>validation-ISIC 2018</td>
+                                    <td><strong>91.47</strong></td>
+                                    <td><strong>84.78</strong></td>
+                                    <td><strong>95.35</strong></td>
+                                    <td><strong>91.28</strong></td>
+                                    <td><strong>93.15</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>test-ISIC 2018</td>
+                                    <td><strong>90.30</strong></td>
+                                    <td>83.60</td>
+                                    <td><strong>94.70</strong></td>
+                                    <td>92.40</td>
+                                    <td><strong>93.90</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>test-PH²</td>
+                                    <td><strong>94.03</strong></td>
+                                    <td><strong>88.92</strong></td>
+                                    <td><strong>96.34</strong></td>
+                                    <td><strong>94.06</strong></td>
+                                    <td>94.57</td>
+                                </tr>
+                                <tr>
+                                    <td>test-Waterloo</td>
+                                    <td><strong>90.03</strong></td>
+                                    <td><strong>82.47</strong></td>
+                                    <td><strong>98.42</strong></td>
+                                    <td><strong>94.69</strong></td>
+                                    <td>87.14</td>
+                                </tr>
+                                <tr>
+                                    <td>test-PAD</td>
+                                    <td><strong>91.88</strong></td>
+                                    <td><strong>85.37</strong></td>
+                                    <td><strong>97.41</strong></td>
+                                    <td><strong>95.69</strong></td>
+                                    <td>89.02</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="video-label">Quantitative performance of EM-Net across public dermoscopic image datasets.</p>
                     </div>
 
                     <h3 class="title is-4">Qualitative Results</h3>
