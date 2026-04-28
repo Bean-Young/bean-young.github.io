@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="OneGout is a federated learning-based framework for virtual dual-energy CT generation from single-energy CT for gout detection.">
+    <meta name="keywords" content="OneGout, gout detection, federated learning, virtual DECT, single-energy CT">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OneGout</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="https://bean-young.github.io">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More Research
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://bean-young.github.io/ahudataset/">
+                            AHU-Database
+                        </a>
+                        <a class="navbar-item" href="https://bean-young.github.io/petahu/">
+                            PET-Project
+                        </a>
+                        <a class="navbar-item" href="https://bean-young.github.io/emnet/">
+                            EM-Net
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">OneGout</h1>
+                        <h2 class="subtitle is-3 publication-title">Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection</h2>
+                        <div class="is-size-4 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><strong><em>Digital Health, 2025</em></strong></span>
+                        </div>
+                        <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block">Yufang Dong<sup>1,2†</sup>,</span>
+                            <span class="author-block">Min Liu<sup>2†</sup>,</span>
+                            <span class="author-block">Jiajun Feng<sup>3†</sup>,</span>
+                            <span class="author-block">Yuezhe Yang<sup>2†</sup>,</span>
+                            <span class="author-block">Yong Dai<sup>4</sup>,</span>
+                            <span class="author-block">Zhe Jin<sup>2*</sup></span>
+                        </div>
+                        <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><sup>†</sup>Equal Contribution</span>
+                            <span class="author-block"><sup>*</sup>Corresponding author</span>
+                        </div>
+                        <div class="is-size-6 publication-authors">
+                            <span class="author-block"><sup>1</sup>Nankai University,</span>
+                            <span class="author-block"><sup>2</sup>Anhui University,</span>
+                            <span class="author-block"><sup>3</sup>Guangzhou First People's Hospital, South China University of Technology,</span>
+                            <span class="author-block"><sup>4</sup>Anhui University of Science and Technology</span>
+                        </div>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            <strong>Objective:</strong> This study aims to develop and validate OneGout, a federated learning (FL)-based framework for early and accurate gout diagnosis to address the limitations of current diagnostic methods, specifically the invasiveness of joint aspiration and the accessibility, cost, and radiation exposure associated with advanced imaging techniques like dual-energy computed tomography (DECT).
+                        </p>
+                        <p>
+                            <strong>Methods:</strong> We introduce OneGout, which pioneers a deep learning-based method for generating virtual DECT images. This approach offers a low-cost and low-radiation alternative for gout diagnosis. Furthermore, OneGout integrates federated learning (OneGout-FL) to enable collaborative model training across multiple medical institutions while ensuring patient data privacy is preserved.
+                        </p>
+                        <p>
+                            <strong>Results:</strong> Experiments demonstrate that our method successfully generates high-quality virtual DECT images. The framework based on U-Net achieves a PSNR of 22.44 dB and an SSIM of 0.92 for the generation of 140kV from 80kV images. It also shows strong diagnostic performance, with an IoU of 46.66 and a Dice score of 63.20, indicating promising accuracy comparable to diagnoses made with real DECT scans.
+                        </p>
+                        <p>
+                            <strong>Conclusion:</strong> OneGout presents an efficient, scalable, and privacy-preserving diagnostic solution for gout, particularly beneficial for resource-limited medical institutions. This framework has the potential to significantly enhance global gout management by providing a more accessible and safer diagnostic alternative.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Highlights</h2>
+                    <div class="content has-text-justified">
+                        <ul>
+                            <li style="font-weight: bold; font-size: 1.3em;">Generate virtual DECT images from single-energy CT scans.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Enable privacy-preserving multi-institution training with FL.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Support low-cost and low-radiation gout diagnosis.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Method</h2>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/Overview.png" alt="OneGout overview" width="100%">
+                        <p class="video-label">Overview of the proposed OneGout framework.</p>
+                    </div>
+                    <div class="content has-text-centered">
+                        <img src="./static/images/Fed.png" alt="Federated learning workflow" width="100%">
+                        <p class="video-label">Federated learning workflow of OneGout-FL.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Results</h2>
+
+                    <h3 class="title is-4">Quantitative Results</h3>
+                    <div class="table-container" style="max-width: 760px; margin: 0 auto 2.5rem;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Metric</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>140kV generation from 80kV images</td>
+                                    <td>PSNR</td>
+                                    <td><strong>22.44 dB</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>140kV generation from 80kV images</td>
+                                    <td>SSIM</td>
+                                    <td><strong>0.92</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Gout detection</td>
+                                    <td>IoU</td>
+                                    <td><strong>46.66</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Gout detection</td>
+                                    <td>Dice</td>
+                                    <td><strong>63.20</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="video-label">Quantitative performance reported by OneGout.</p>
+                    </div>
+
+                    <h3 class="title is-4">Qualitative Results</h3>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/demo1.png" alt="Virtual DECT generation results" width="100%">
+                        <p class="video-label">Virtual DECT generation examples.</p>
+                    </div>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/demo2.png" alt="Gout detection results" width="100%">
+                        <p class="video-label">Gout detection visualization.</p>
+                    </div>
+                    <div class="content has-text-centered">
+                        <img src="./static/images/Quadruple_Comparative_Analysis.png" alt="Comparative analysis" width="100%">
+                        <p class="video-label">Comparative analysis of generated and reference images.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">Citation</h2>
+            <pre><code>@article{dong2025federated,
+  title={Federated learning-based virtual dual-energy CT generation from single-energy CT for gout detection},
+  author={Dong, Yufang and Liu, Min and Feng, Jiajun and Yang, Yuezhe and Dai, Yong and Jin, Zhe},
+  journal={Digital Health},
+  volume={11},
+  pages={20552076251375570},
+  year={2025},
+  publisher={SAGE Publications Sage UK: London, England}
+}</code></pre>
+        </div>
+    </section>
+
+</body>
+
+</html>

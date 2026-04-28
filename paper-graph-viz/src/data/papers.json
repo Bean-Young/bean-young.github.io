@@ -107,11 +107,11 @@
     {
       "id": "p-vdect",
       "title": "Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection",
-      "shortLabel": "OneGout-FL",
+      "shortLabel": "OneGout",
       "scholarTitle": "Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection",
       "year": 2025,
       "venue": "Digital Health",
-      "url": "https://journals.sagepub.com/doi/pdf/10.1177/20552076251375570",
+      "url": "https://bean-young.github.io/onegout/",
       "citations": 2,
       "summary": "Introduces a federated learning framework for low-cost virtual DECT image generation to support accurate gout diagnosis.",
       "summaryZh": "提出联邦学习框架进行低成本虚拟双能 CT 生成，支持痛风精准诊断。",
