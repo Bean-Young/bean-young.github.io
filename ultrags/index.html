@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="UltraGS is a real-time physically-decoupled Gaussian Splatting framework for ultrasound novel view synthesis.">
+    <meta name="keywords" content="UltraGS, ultrasound, Gaussian Splatting, novel view synthesis, ICME 2026">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="https://bean-young.github.io">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More Research
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://bean-young.github.io/ahudataset/">
+                            AHU-Database
+                        </a>
+                        <a class="navbar-item" href="https://bean-young.github.io/petahu/">
+                            PET-Project
+                        </a>
+                        <a class="navbar-item" href="https://bean-young.github.io/emnet/">
+                            EM-Net
+                        </a>
+                        <a class="navbar-item" href="https://bean-young.github.io/onegout/">
+                            OneGout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis</h1>
+                        <div class="is-size-4 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><strong><em>ICME 2026</em></strong></span>
+                        </div>
+                        <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block">Yuezhe Yang<sup>1</sup>,</span>
+                            <span class="author-block">Qingqing Ruan<sup>2</sup>,</span>
+                            <span class="author-block">Wenjie Cai<sup>1</sup>,</span>
+                            <span class="author-block">Yufang Dong<sup>3</sup>,</span>
+                            <span class="author-block">Dexin Yang<sup>1</sup>,</span>
+                            <span class="author-block">Xingbo Dong<sup>1†</sup>,</span>
+                            <span class="author-block">Zhe Jin<sup>1</sup>,</span>
+                            <span class="author-block">Yong Dai<sup>4</sup></span>
+                        </div>
+                        <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><sup>†</sup>Corresponding author</span>
+                        </div>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Anhui University,</span>
+                            <span class="author-block"><sup>2</sup>Xinhua Hospital Affiliated to Shanghai Jiao Tong University School of Medicine,</span>
+                            <span class="author-block"><sup>3</sup>Nankai University,</span>
+                            <span class="author-block"><sup>4</sup>Anhui University of Science &amp; Technology</span>
+                        </div>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2511.07743"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://github.com/Bean-Young/UltraGS"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>Ultrasound imaging is a cornerstone of non-invasive clinical diagnostics, yet its limited field of view poses challenges for novel view synthesis. We present UltraGS, a real-time framework that adapts Gaussian Splatting to sensorless ultrasound imaging by integrating explicit radiance fields with lightweight, physics-inspired acoustic modeling. UltraGS employs depth-aware Gaussian primitives with learnable fields of view to improve geometric consistency under unconstrained probe motion, and introduces PD Rendering, a differentiable acoustic operator that combines low-order spherical harmonics with first-order wave effects for efficient intensity synthesis. We further present a clinical ultrasound dataset acquired under real-world scanning protocols. Extensive evaluations across three datasets demonstrate that UltraGS establishes a new performance-efficiency frontier, achieving state-of-the-art results in PSNR (up to 29.55) and SSIM (up to 0.89) while achieving real-time synthesis at 64.69 fps on a single GPU. The code and dataset are open-sourced at: <a href="https://github.com/Bean-Young/UltraGS">https://github.com/Bean-Young/UltraGS</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Highlights</h2>
+                    <div class="content has-text-justified">
+                        <ul>
+                            <li style="font-weight: bold; font-size: 1.3em;">Real-time ultrasound novel view synthesis at 64.69 FPS.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Physically-decoupled rendering models attenuation, reflection, and scattering.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Open-sourced code and clinical ultrasound dataset for research reuse.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Method</h2>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/UltraGS.jpg" alt="UltraGS poster overview" width="100%">
+                        <p class="video-label">Overview of UltraGS for sensorless ultrasound novel view synthesis.</p>
+                    </div>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/Method1.png" alt="UltraGS pipeline" width="100%">
+                        <p class="video-label">Pipeline of UltraGS with dynamic aperture rectification and PD Rendering.</p>
+                    </div>
+                    <div class="content has-text-centered">
+                        <img src="./static/images/Method2.png" alt="Primitive representation comparison" width="100%">
+                        <p class="video-label">Comparison of Gaussian primitive representations for ultrasound scenes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Results</h2>
+
+                    <h3 class="title is-4">Quantitative Results</h3>
+                    <div class="table-container" style="margin-bottom: 2.5rem;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">Method</th>
+                                    <th colspan="3">Wild Dataset</th>
+                                    <th colspan="3">Phantom Dataset</th>
+                                    <th rowspan="2">Speed (fps)</th>
+                                </tr>
+                                <tr>
+                                    <th>PSNR</th>
+                                    <th>SSIM</th>
+                                    <th>MSE</th>
+                                    <th>PSNR</th>
+                                    <th>SSIM</th>
+                                    <th>MSE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>NeRF</td><td>20.176</td><td>0.6834</td><td>0.0066</td><td>20.359</td><td>0.6301</td><td>0.0058</td><td>0.28</td></tr>
+                                <tr><td>TensoRF</td><td>24.058</td><td>0.7528</td><td>0.0051</td><td>27.260</td><td>0.7178</td><td>0.0029</td><td>1.61</td></tr>
+                                <tr><td>Ultra-NeRF</td><td>19.140</td><td>0.6218</td><td>0.0109</td><td>25.115</td><td>0.6814</td><td>0.0042</td><td>0.43</td></tr>
+                                <tr><td>3DGS</td><td>22.327</td><td>0.7745</td><td>0.0057</td><td>27.115</td><td>0.7142</td><td>0.0031</td><td>52.56</td></tr>
+                                <tr><td>SuGaR</td><td>21.392</td><td>0.6291</td><td>0.0159</td><td>28.899</td><td>0.8843</td><td>0.0024</td><td>9.81</td></tr>
+                                <tr><td><strong>Ours</strong></td><td><strong>25.454</strong></td><td><strong>0.7969</strong></td><td><strong>0.0043</strong></td><td><strong>29.550</strong></td><td><strong>0.8966</strong></td><td><strong>0.0020</strong></td><td><strong>64.69</strong></td></tr>
+                            </tbody>
+                        </table>
+                        <p class="video-label">Quantitative comparison on Wild Dataset and Phantom Dataset.</p>
+                    </div>
+
+                    <h3 class="title is-4">Qualitative Results</h3>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/Experiment1.png" alt="Visual reconstruction comparison on Wild and Clinical Dataset" width="100%">
+                        <p class="video-label">Visual reconstruction comparison on Wild and Clinical Dataset.</p>
+                    </div>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/Experiment2.png" alt="Kidney visualization comparison" width="100%">
+                        <p class="video-label">Comparison of kidney visualization results from Clinical Dataset.</p>
+                    </div>
+
+                    <h3 class="title is-4">Ablation Study</h3>
+                    <div class="content has-text-centered">
+                        <img src="./static/images/Experiment3.png" alt="Ablation study visualization" width="100%">
+                        <p class="video-label">Visual reconstruction comparison on ablation study.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">Citation</h2>
+            <pre><code>@inproceedings{yang2026ultrags,
+  title={UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis},
+  author={Yang, Yuezhe and Ruan, Qingqing and Cai, Wenjie and Dong, Yufang and Yang, Dexin and Dong, Xingbo and Jin, Zhe and Dai, Yong},
+  booktitle={2026 IEEE International Conference on Multimedia and Expo (ICME)},
+  year={2026}
+}</code></pre>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -81,7 +81,7 @@
       "scholarTitle": "UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis",
       "year": 2026,
       "venue": "ICME",
-      "url": "https://arxiv.org/abs/2511.07743",
+      "url": "https://bean-young.github.io/ultrags/",
       "citations": 2,
       "summary": "The first to apply 3DGS to generate new ultrasound perspectives.",
       "summaryZh": "首次将 3DGS 应用于超声新视角生成。",

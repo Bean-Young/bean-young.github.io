@@ -28,4 +28,8 @@
     <loc>https://bean-young.github.io/onegout/</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://bean-young.github.io/ultrags/</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>
