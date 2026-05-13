@@ -58,10 +58,40 @@ layout: null
     .profile-stat-badges a:hover {
       opacity: 0.88;
     }
-    .profile-stat-badges img {
-      display: inline-block;
-      vertical-align: middle;
-      height: auto;
+    .profile-stat-badge {
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
+      height: 20px;
+      border-radius: 3px;
+      font-family: Verdana, Geneva, DejaVu Sans, sans-serif;
+      font-size: 11px;
+      line-height: 20px;
+      color: #333;
+      background: #f6f6f6;
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+    }
+    .profile-stat-label,
+    .profile-stat-value {
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      padding: 0 7px;
+    }
+    .profile-stat-label .icon {
+      width: 13px;
+      margin-right: 4px;
+    }
+    .profile-stat-value {
+      color: #fff;
+      font-weight: 600;
+    }
+    .profile-stat-value.citations {
+      background: #99ccff;
+      color: #333;
+    }
+    .profile-stat-value.stars {
+      background: #181717;
     }
     
     /* Navigation bar styles */
@@ -644,13 +674,19 @@ layout: null
                 <span>Email</span>
               </a>
             </div>
-            <!-- GitHub: total stars in JSON (CI); shields style=social like rayeren.github.io -->
+            <!-- Citation and GitHub star counts are rendered locally to avoid shields endpoint fallback errors. -->
             <div class="profile-stat-badges mt-3" aria-label="Google Scholar citations and GitHub stars">
               <a href="https://scholar.google.com/citations?user=SBZ_9bAAAAAJ&amp;hl=en" target="_blank" rel="noopener">
-                <img src="https://img.shields.io/endpoint?logo=Google%20Scholar&amp;url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBean-Young%2Fbean-young.github.io%40google-scholar-stats%2Fgs_data_shieldsio.json&amp;labelColor=f6f6f6&amp;color=9cf&amp;style=flat&amp;label=Citations" alt="Google Scholar citations" loading="lazy">
+                <span class="profile-stat-badge" data-stat-url="https://cdn.jsdelivr.net/gh/Bean-Young/bean-young.github.io@google-scholar-stats/gs_data_shieldsio.json" data-stat-fallback="37">
+                  <span class="profile-stat-label"><span class="icon"><i class="ai ai-google-scholar"></i></span>Citations</span>
+                  <span class="profile-stat-value citations">37</span>
+                </span>
               </a>
               <a href="https://github.com/Bean-Young?tab=repositories" target="_blank" rel="noopener">
-                <img src="https://img.shields.io/endpoint?logo=github&amp;logoColor=181717&amp;url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBean-Young%2Fbean-young.github.io%40google-scholar-stats%2Fgithub_stars_shieldsio.json&amp;labelColor=f6f6f6&amp;color=181717&amp;style=flat&amp;label=Stars" alt="Total GitHub stars (all public repos)" loading="lazy">
+                <span class="profile-stat-badge" data-stat-url="https://cdn.jsdelivr.net/gh/Bean-Young/bean-young.github.io@google-scholar-stats/github_stars_shieldsio.json" data-stat-fallback="56">
+                  <span class="profile-stat-label"><span class="icon"><i class="fab fa-github"></i></span>Stars</span>
+                  <span class="profile-stat-value stars">56</span>
+                </span>
               </a>
             </div>
           </div>
@@ -2765,8 +2801,24 @@ layout: null
   <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   
   <script>
+    function updateProfileStatBadges() {
+      document.querySelectorAll('.profile-stat-badge[data-stat-url]').forEach(async (badge) => {
+        const value = badge.querySelector('.profile-stat-value');
+        if (!value) return;
+        try {
+          const response = await fetch(badge.dataset.statUrl, { cache: 'no-store' });
+          if (!response.ok) throw new Error('stat request failed');
+          const data = await response.json();
+          if (data && data.message) value.textContent = data.message;
+        } catch (error) {
+          value.textContent = badge.dataset.statFallback || value.textContent;
+        }
+      });
+    }
+
     // Git last commit date update
     document.addEventListener('DOMContentLoaded', function() {
+      updateProfileStatBadges();
       // Function to get git last commit date
       async function getGitLastCommitDate() {
         try {
