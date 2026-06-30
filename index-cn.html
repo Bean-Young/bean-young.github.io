@@ -44,6 +44,46 @@ layout: null
       display: flex;
     }
 
+    .profile-action-buttons {
+      align-items: center;
+      flex-wrap: nowrap !important;
+      gap: 0.35rem;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .profile-action-buttons .button,
+    .profile-action-buttons .dropdown {
+      flex: 1 1 0;
+      min-width: 0;
+      margin: 0 !important;
+    }
+
+    .profile-action-buttons .button {
+      width: 100%;
+      padding-left: 0.55rem;
+      padding-right: 0.55rem;
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .profile-action-buttons .dropdown-trigger {
+      width: 100%;
+    }
+
+    .profile-action-buttons .button span:not(.icon) {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .profile-action-buttons .button .icon img {
+      width: 1em;
+      height: 1em;
+      object-fit: contain;
+      display: block;
+    }
+
     .profile-stat-badges {
       display: flex;
       flex-wrap: wrap;
@@ -657,6 +697,96 @@ layout: null
       min-width: 150px !important;
       max-width: 150px !important;
     }
+
+    .publication-block.columns,
+    .award-item > .columns {
+      display: grid !important;
+      grid-template-columns: 150px minmax(0, 1fr);
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+
+    .award-item {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .publication-block.columns > .column,
+    .award-item > .columns > .column {
+      width: auto !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      min-width: 0;
+    }
+
+    .publication-block .column.is-2,
+    .award-item .column.is-2 {
+      width: 150px !important;
+    }
+
+    .publication-block .publication-image-container,
+    .award-item .unified-image-container {
+      width: 150px !important;
+      height: 150px !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #ffffff;
+      line-height: normal;
+    }
+
+    .publication-block .publication-image-container img,
+    .award-item .unified-image-container img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center;
+    }
+
+    @media (max-width: 768px) {
+      .profile-action-buttons {
+        justify-content: center;
+        gap: 0.25rem;
+      }
+
+      .profile-action-buttons .button {
+        padding: 0.45rem 0.52rem;
+        font-size: 0.8rem;
+      }
+
+      .profile-action-buttons .button span:not(.icon),
+      .profile-action-buttons button.button span:not(.icon):not(.is-small) {
+        display: none;
+      }
+
+      .profile-action-buttons .dropdown .icon.is-small {
+        display: inline-flex;
+      }
+
+      .publication-block.columns,
+      .award-item > .columns {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 0.75rem;
+      }
+
+      .publication-block .publication-image-container,
+      .award-item .unified-image-container {
+        width: min(200px, 100%) !important;
+        height: 150px !important;
+      }
+
+      .publication-block.columns > .column:not(.is-2),
+      .award-item > .columns > .column:not(.is-2) {
+        width: 100% !important;
+      }
+    }
     
 
   </style>
@@ -704,7 +834,7 @@ layout: null
           </h1>
           <div class="content has-text-justified">
             <p>我目前是悉尼大学计算机学院的博士生，同时也是上海交通大学转化医学研究院的研究实习生。我在安徽大学完成了人工智能专业工学学士学位。此前，我曾在阿尔伯塔大学视觉与学习实验室和安徽大学医学影像技术国际联合研究中心实习。我的研究致力于人工智能在医学中的应用。</p> <p><b>我正在积极寻求医学人工智能方向的实习与合作机会。我们与多家医院、公司和高校合作，致力于推动医学转化研究。我对所有想法都保持开放，如果你对我的项目感兴趣，欢迎随时联系我。</b></p>
-            <div class="buttons">
+            <div class="buttons profile-action-buttons">
               <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                   <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu-cv">
@@ -729,6 +859,12 @@ layout: null
               <a class="external-link button is-light" href="https://github.com/Bean-Young">
                 <span class="icon"><i class="fab fa-github"></i></span>
                 <span>GitHub</span>
+              </a>
+              <a class="external-link button is-light" href="/document/wechat-qr.jpg" target="_blank">
+                <span class="icon">
+                  <img src="/document/wechat.png" alt="WeChat">
+                </span>
+                <span>微信</span>
               </a>
               <a class="external-link button is-light" href="https://www.xiaohongshu.com/user/profile/62c7d04b000000000e00fe86">
                 <span class="icon" style="width: 1em; height: 1em; display: inline-flex; align-items: center; justify-content: center;">
@@ -1741,9 +1877,9 @@ layout: null
       // Show publications based on limit
       visiblePublications.forEach((pub, index) => {
         if (index < ITEMS_TO_SHOW) {
-          pub.style.display = 'flex';
+          pub.style.display = 'grid';
         } else {
-          pub.style.display = publicationsShowAll ? 'flex' : 'none';
+          pub.style.display = publicationsShowAll ? 'grid' : 'none';
         }
       });
       
