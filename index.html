@@ -558,6 +558,112 @@ layout: null
     .modal-card-body img {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
+
+    .partner-carousel {
+      position: relative;
+      margin: 1rem 0 2rem;
+    }
+
+    .partner-carousel-viewport {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      cursor: grab;
+      padding: 0.25rem 0.125rem 0.75rem;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .partner-carousel-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .partner-carousel-viewport.is-dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
+    }
+
+    .partner-carousel-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(2, 104px);
+      grid-auto-columns: 104px;
+      gap: 1rem;
+      width: max-content;
+    }
+
+    .partner-logo-card {
+      width: 104px;
+      height: 104px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      user-select: none;
+    }
+
+    .partner-logo-card img {
+      width: 86px;
+      height: 86px;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+
+    .partner-carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border: 1px solid #e8e8e8;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #333333;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .partner-carousel-control:hover {
+      background: #ffffff;
+    }
+
+    .partner-carousel-control.is-prev {
+      left: -16px;
+    }
+
+    .partner-carousel-control.is-next {
+      right: -16px;
+    }
+
+    @media (max-width: 768px) {
+      .partner-carousel-track {
+        grid-template-rows: repeat(2, 88px);
+        grid-auto-columns: 88px;
+        gap: 0.75rem;
+      }
+
+      .partner-logo-card {
+        width: 88px;
+        height: 88px;
+      }
+
+      .partner-logo-card img {
+        width: 72px;
+        height: 72px;
+      }
+
+      .partner-carousel-control {
+        display: none;
+      }
+    }
     
     /* Education block styles */
     .education-block {
@@ -1431,6 +1537,56 @@ layout: null
         <p><strong>Chinese:</strong> Mother tongue, fluent in all aspects of communication</p>
         <p><strong>English:</strong> Proficient in academic listening, speaking, reading, and writing</p>
         <p><strong>Japanese:</strong> A little bit, interest in learning</p>
+
+        <h3 class="title is-4">Collaboration Partners</h3>
+        <div class="partner-carousel" data-partner-carousel>
+          <button class="partner-carousel-control is-prev" type="button" data-partner-prev aria-label="Previous partners">
+            <span class="icon"><i class="fas fa-chevron-left"></i></span>
+          </button>
+          <div class="partner-carousel-viewport" data-partner-viewport tabindex="0">
+            <div class="partner-carousel-track">
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-01-anhui-university.png" alt="Anhui University"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-02-sjtu.png" alt="Shanghai Jiao Tong University"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-03-xinhua-hospital.png" alt="Xinhua Hospital"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-04-anhui-jianzhu-university.png" alt="Anhui Jianzhu University"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-05-aust.png" alt="Anhui University of Science and Technology"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-06-ahu-ai.png" alt="School of Artificial Intelligence, Anhui University"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-07-nankai-university.png" alt="Nankai University"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-08-scut.png" alt="South China University of Technology"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-09-guangzhou-first-hospital.png" alt="Guangzhou First People's Hospital"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-10-ibsec.png" alt="International Brain Science and Engineering Center, Anhui University"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-11-nftm-shanghai.png" alt="National Facility for Translational Medicine (Shanghai)"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-12-wuhan-third-hospital.png" alt="Wuhan Third Hospital"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-13-southeast-university.png" alt="Southeast University"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-14-sir-run-run-shaw-hospital.png" alt="Sir Run Run Shaw Hospital"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-15-sbiahua.png" alt="Stony Brook Institute at Anhui University"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-16-first-hospital-aust.png" alt="The First Hospital of Anhui University of Science and Technology"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-17-university-of-sydney.png" alt="The University of Sydney"></div>
+              <div class="partner-logo-card"><img src="/document/collaborators/collab-18-university-of-alberta.png" alt="University of Alberta"></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-01-anhui-university.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-02-sjtu.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-03-xinhua-hospital.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-04-anhui-jianzhu-university.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-05-aust.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-06-ahu-ai.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-07-nankai-university.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-08-scut.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-09-guangzhou-first-hospital.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-10-ibsec.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-11-nftm-shanghai.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-12-wuhan-third-hospital.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-13-southeast-university.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-14-sir-run-run-shaw-hospital.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-15-sbiahua.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-16-first-hospital-aust.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-17-university-of-sydney.png" alt=""></div>
+              <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-18-university-of-alberta.png" alt=""></div>
+            </div>
+          </div>
+          <button class="partner-carousel-control is-next" type="button" data-partner-next aria-label="Next partners">
+            <span class="icon"><i class="fas fa-chevron-right"></i></span>
+          </button>
+        </div>
         
         <h3 class="title is-4">Hobbies</h3>
         <p>I enjoy traveling and exploring new places. Traveling allows me to experience different cultures, meet new people, enjoy life, and gain fresh perspectives that often inspire my creative thinking.</p>
@@ -1557,6 +1713,7 @@ layout: null
       
       // Initialize display with limited items
       initializeLimitedDisplay();
+      initializePartnerCarousels();
     });
     
     // Initialize limited display for both sections
@@ -1751,6 +1908,90 @@ layout: null
       awardsShowAll = false;
       applyAwardsDisplayLimit();
       updateShowMoreButtonText();
+    }
+
+    function initializePartnerCarousels() {
+      document.querySelectorAll('[data-partner-carousel]').forEach(carousel => {
+        const viewport = carousel.querySelector('[data-partner-viewport]');
+        const track = carousel.querySelector('.partner-carousel-track');
+        const prev = carousel.querySelector('[data-partner-prev]');
+        const next = carousel.querySelector('[data-partner-next]');
+        if (!viewport || !track) return;
+
+        let paused = false;
+        let dragging = false;
+        let startX = 0;
+        let startScrollLeft = 0;
+        const speed = 0.35;
+
+        const getLoopWidth = () => track.scrollWidth / 2;
+        const normalizeScroll = () => {
+          const loopWidth = getLoopWidth();
+          if (!loopWidth) return;
+          if (viewport.scrollLeft >= loopWidth) viewport.scrollLeft -= loopWidth;
+          if (viewport.scrollLeft < 0) viewport.scrollLeft += loopWidth;
+        };
+
+        const animate = () => {
+          if (!paused && !dragging) {
+            viewport.scrollLeft += speed;
+            normalizeScroll();
+          }
+          requestAnimationFrame(animate);
+        };
+
+        const scrollByCards = direction => {
+          const card = carousel.querySelector('.partner-logo-card');
+          const step = card ? card.offsetWidth * 3 : 300;
+          const loopWidth = getLoopWidth();
+          if (direction < 0 && viewport.scrollLeft < step && loopWidth) {
+            viewport.scrollLeft += loopWidth;
+          }
+          if (direction > 0 && viewport.scrollLeft > loopWidth - step && loopWidth) {
+            viewport.scrollLeft -= loopWidth;
+          }
+          viewport.scrollBy({ left: direction * step, behavior: 'smooth' });
+          setTimeout(normalizeScroll, 350);
+        };
+
+        carousel.addEventListener('mouseenter', () => { paused = true; });
+        carousel.addEventListener('mouseleave', () => { paused = false; });
+        viewport.addEventListener('focusin', () => { paused = true; });
+        viewport.addEventListener('focusout', () => { paused = false; });
+        prev && prev.addEventListener('click', () => scrollByCards(-1));
+        next && next.addEventListener('click', () => scrollByCards(1));
+
+        viewport.addEventListener('pointerdown', event => {
+          dragging = true;
+          paused = true;
+          startX = event.clientX;
+          startScrollLeft = viewport.scrollLeft;
+          viewport.classList.add('is-dragging');
+          viewport.setPointerCapture(event.pointerId);
+        });
+
+        viewport.addEventListener('pointermove', event => {
+          if (!dragging) return;
+          viewport.scrollLeft = startScrollLeft - (event.clientX - startX);
+          normalizeScroll();
+        });
+
+        const stopDragging = event => {
+          if (!dragging) return;
+          dragging = false;
+          paused = false;
+          viewport.classList.remove('is-dragging');
+          if (viewport.hasPointerCapture(event.pointerId)) {
+            viewport.releasePointerCapture(event.pointerId);
+          }
+          normalizeScroll();
+        };
+
+        viewport.addEventListener('pointerup', stopDragging);
+        viewport.addEventListener('pointercancel', stopDragging);
+        viewport.addEventListener('scroll', normalizeScroll);
+        requestAnimationFrame(animate);
+      });
     }
   </script>
 
