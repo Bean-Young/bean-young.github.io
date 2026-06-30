@@ -612,36 +612,6 @@ layout: null
       pointer-events: none;
     }
 
-    .partner-carousel-control {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
-      border: 1px solid #e8e8e8;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.92);
-      color: #333333;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 2;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .partner-carousel-control:hover {
-      background: #ffffff;
-    }
-
-    .partner-carousel-control.is-prev {
-      left: -16px;
-    }
-
-    .partner-carousel-control.is-next {
-      right: -16px;
-    }
-
     @media (max-width: 768px) {
       .partner-carousel-track {
         grid-template-rows: repeat(2, 88px);
@@ -657,10 +627,6 @@ layout: null
       .partner-logo-card img {
         width: 72px;
         height: 72px;
-      }
-
-      .partner-carousel-control {
-        display: none;
       }
     }
     
@@ -1538,9 +1504,6 @@ layout: null
 
         <h3 class="title is-4">合作单位</h3>
         <div class="partner-carousel" data-partner-carousel>
-          <button class="partner-carousel-control is-prev" type="button" data-partner-prev aria-label="上一组合作单位">
-            <span class="icon"><i class="fas fa-chevron-left"></i></span>
-          </button>
           <div class="partner-carousel-viewport" data-partner-viewport tabindex="0">
             <div class="partner-carousel-track">
               <div class="partner-logo-card"><img src="/document/collaborators/collab-01-anhui-university.png" alt="安徽大学"></div>
@@ -1581,9 +1544,6 @@ layout: null
               <div class="partner-logo-card" aria-hidden="true"><img src="/document/collaborators/collab-18-university-of-alberta.png" alt=""></div>
             </div>
           </div>
-          <button class="partner-carousel-control is-next" type="button" data-partner-next aria-label="下一组合作单位">
-            <span class="icon"><i class="fas fa-chevron-right"></i></span>
-          </button>
         </div>
         
         <h3 class="title is-4">兴趣爱好</h3>
@@ -1912,8 +1872,6 @@ layout: null
       document.querySelectorAll('[data-partner-carousel]').forEach(carousel => {
         const viewport = carousel.querySelector('[data-partner-viewport]');
         const track = carousel.querySelector('.partner-carousel-track');
-        const prev = carousel.querySelector('[data-partner-prev]');
-        const next = carousel.querySelector('[data-partner-next]');
         if (!viewport || !track) return;
 
         let paused = false;
@@ -1938,26 +1896,10 @@ layout: null
           requestAnimationFrame(animate);
         };
 
-        const scrollByCards = direction => {
-          const card = carousel.querySelector('.partner-logo-card');
-          const step = card ? card.offsetWidth * 3 : 300;
-          const loopWidth = getLoopWidth();
-          if (direction < 0 && viewport.scrollLeft < step && loopWidth) {
-            viewport.scrollLeft += loopWidth;
-          }
-          if (direction > 0 && viewport.scrollLeft > loopWidth - step && loopWidth) {
-            viewport.scrollLeft -= loopWidth;
-          }
-          viewport.scrollBy({ left: direction * step, behavior: 'smooth' });
-          setTimeout(normalizeScroll, 350);
-        };
-
         carousel.addEventListener('mouseenter', () => { paused = true; });
         carousel.addEventListener('mouseleave', () => { paused = false; });
         viewport.addEventListener('focusin', () => { paused = true; });
         viewport.addEventListener('focusout', () => { paused = false; });
-        prev && prev.addEventListener('click', () => scrollByCards(-1));
-        next && next.addEventListener('click', () => scrollByCards(1));
 
         viewport.addEventListener('pointerdown', event => {
           dragging = true;
