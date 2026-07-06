@@ -138,7 +138,7 @@ layout: null
     .author-collapse-toggle {
       border: 0;
       background: none;
-      color: #777;
+      color: #8a8a8a;
       cursor: pointer;
       font: inherit;
       line-height: inherit;
@@ -151,31 +151,17 @@ layout: null
     .author-expand-toggle:focus,
     .author-collapse-toggle:hover,
     .author-collapse-toggle:focus {
-      color: #555;
-      text-decoration: none;
-    }
-
-    .author-expand-toggle::after {
-      content: " \25be";
-      color: #999;
-      font-size: 0.8em;
+      color: #666;
+      text-decoration: underline;
     }
 
     .author-collapse-toggle {
-      color: #999;
-      margin-left: 0.25em;
+      color: #8a8a8a;
     }
 
-    .author-collapse-toggle::before {
-      content: "[";
-    }
-
-    .author-collapse-toggle::after {
-      content: "]";
-    }
-
-    .author-collapse-toggle:hover {
-      text-decoration: underline;
+    .author-expand-toggle,
+    .author-collapse-toggle {
+      border-bottom: 1px dashed #b5b5b5;
     }
 
     .author-collapsible [hidden] {
@@ -1109,8 +1095,8 @@ layout: null
     </h3>
     <p class="publication-description">
       <span class="author-collapsible">
-        <span class="author-short">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, and <button type="button" class="author-expand-toggle" aria-expanded="false">et al.</button></span>
-        <span class="author-full" hidden>Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang <button type="button" class="author-collapse-toggle" aria-label="Collapse author list">less</button></span>
+        <span class="author-short">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, and <button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">et al.</button></span>
+        <span class="author-full" hidden>Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, <button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="Collapse author list">Ying Li, and Xuewen Wang</button></span>
       </span><br>
       ESWA, 2025<br>
       <small>Propose a high-precision model for skin lesion segmentation in dermoscopic images.</small>
@@ -1406,8 +1392,8 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              <span class="author-short"><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, and <button type="button" class="author-expand-toggle" aria-expanded="false">et al.</button></span>
-              <span class="author-full" hidden><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Xingbo Dong<sup>†</sup>, Siyi Song<sup>†</sup>, Huabin Wang<sup>†</sup>, and Zhe Jin<sup>†</sup> <button type="button" class="author-collapse-toggle" aria-label="Collapse author list">less</button></span>
+              <span class="author-short"><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, and <button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">et al.</button></span>
+              <span class="author-full" hidden><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, <button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="Collapse author list">Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Xingbo Dong<sup>†</sup>, Siyi Song<sup>†</sup>, Huabin Wang<sup>†</sup>, and Zhe Jin<sup>†</sup></button></span>
             </span><br>
             Chinese College Students' Innovation and Entrepreneurship Program, 2024<br>
             <small>Integrate physical models with deep learning to achieve efficient high-quality low-dose PET image reconstruction.</small>

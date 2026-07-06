@@ -137,7 +137,7 @@ layout: null
     .author-collapse-toggle {
       border: 0;
       background: none;
-      color: #777;
+      color: #8a8a8a;
       cursor: pointer;
       font: inherit;
       line-height: inherit;
@@ -150,31 +150,17 @@ layout: null
     .author-expand-toggle:focus,
     .author-collapse-toggle:hover,
     .author-collapse-toggle:focus {
-      color: #555;
-      text-decoration: none;
-    }
-
-    .author-expand-toggle::after {
-      content: " \25be";
-      color: #999;
-      font-size: 0.8em;
+      color: #666;
+      text-decoration: underline;
     }
 
     .author-collapse-toggle {
-      color: #999;
-      margin-left: 0.25em;
+      color: #8a8a8a;
     }
 
-    .author-collapse-toggle::before {
-      content: "[";
-    }
-
-    .author-collapse-toggle::after {
-      content: "]";
-    }
-
-    .author-collapse-toggle:hover {
-      text-decoration: underline;
+    .author-expand-toggle,
+    .author-collapse-toggle {
+      border-bottom: 1px dashed #b5b5b5;
     }
 
     .author-collapsible [hidden] {
@@ -1108,8 +1094,8 @@ layout: null
     </h3>
     <p class="publication-description">
       <span class="author-collapsible">
-        <span class="author-short">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, and <button type="button" class="author-expand-toggle" aria-expanded="false">et al.</button></span>
-        <span class="author-full" hidden>Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang <button type="button" class="author-collapse-toggle" aria-label="折叠作者列表">收起</button></span>
+        <span class="author-short">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, and <button type="button" class="author-expand-toggle" aria-expanded="false" title="展开完整作者列表">et al.</button></span>
+        <span class="author-full" hidden>Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, <button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="折叠作者列表">Ying Li, and Xuewen Wang</button></span>
       </span><br>
       ESWA, 2025<br>
       <small>提出了一种用于皮肤镜图像中皮肤病变分割的高精度模型。</small>
@@ -1404,8 +1390,8 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              <span class="author-short"><b>杨跃浙</b>、周卿高原、周思彤、严盛、蔡文杰、冯瑞晞、赵金阳<button type="button" class="author-expand-toggle" aria-expanded="false">等</button></span>
-              <span class="author-full" hidden><b>杨跃浙</b>、周卿高原、周思彤、严盛、蔡文杰、冯瑞晞、赵金阳、陈诺、杨博宇、赵翔卓、魏然、朱凯文、段皓亮、杨德鑫、何阳、王雅倩、杨华涛、王立文、周莹、吕兴国、张权、张辉、陈永林、张岱磊、董兴波<sup>†</sup>、宋思懿<sup>†</sup>、王华斌<sup>†</sup>、金哲<sup>†</sup> <button type="button" class="author-collapse-toggle" aria-label="折叠作者列表">收起</button></span>
+              <span class="author-short"><b>杨跃浙</b>、周卿高原、周思彤、严盛、蔡文杰、冯瑞晞、赵金阳<button type="button" class="author-expand-toggle" aria-expanded="false" title="展开完整作者列表">等</button></span>
+              <span class="author-full" hidden><b>杨跃浙</b>、周卿高原、周思彤、严盛、蔡文杰、冯瑞晞、赵金阳<button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="折叠作者列表">、陈诺、杨博宇、赵翔卓、魏然、朱凯文、段皓亮、杨德鑫、何阳、王雅倩、杨华涛、王立文、周莹、吕兴国、张权、张辉、陈永林、张岱磊、董兴波<sup>†</sup>、宋思懿<sup>†</sup>、王华斌<sup>†</sup>、金哲<sup>†</sup></button></span>
             </span><br>
             国家级大学生创新创业训练计划，2024<br>
             <small>将物理模型与深度学习相结合，实现高效的高质量低剂量PET图像重建。</small>
