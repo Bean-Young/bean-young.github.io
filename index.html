@@ -136,6 +136,7 @@ layout: null
 
     .author-expand-toggle,
     .author-collapse-toggle {
+      appearance: none;
       border: 0;
       background: none;
       color: #8a8a8a;
@@ -166,6 +167,19 @@ layout: null
 
     .author-collapsible [hidden] {
       display: none !important;
+    }
+
+    .author-collapse-toggle:not([hidden]) {
+      animation: authorReveal 180ms ease-out;
+    }
+
+    @keyframes authorReveal {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
     
     /* Navigation bar styles */
@@ -1095,8 +1109,7 @@ layout: null
     </h3>
     <p class="publication-description">
       <span class="author-collapsible">
-        <span class="author-short">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, and <button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">et al.</button></span>
-        <span class="author-full" hidden>Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, <button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="Collapse author list">Ying Li, and Xuewen Wang</button></span>
+        <span class="author-prefix">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, and </span><button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">et al.</button><button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="Collapse author list" hidden>Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang</button>
       </span><br>
       ESWA, 2025<br>
       <small>Propose a high-precision model for skin lesion segmentation in dermoscopic images.</small>
@@ -1392,8 +1405,7 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              <span class="author-short"><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, and <button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">et al.</button></span>
-              <span class="author-full" hidden><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, <button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="Collapse author list">Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Xingbo Dong<sup>†</sup>, Siyi Song<sup>†</sup>, Huabin Wang<sup>†</sup>, and Zhe Jin<sup>†</sup></button></span>
+              <span class="author-prefix"><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, and </span><button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">et al.</button><button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="Collapse author list" hidden>Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Xingbo Dong<sup>†</sup>, Siyi Song<sup>†</sup>, Huabin Wang<sup>†</sup>, and Zhe Jin<sup>†</sup></button>
             </span><br>
             Chinese College Students' Innovation and Entrepreneurship Program, 2024<br>
             <small>Integrate physical models with deep learning to achieve efficient high-quality low-dose PET image reconstruction.</small>
@@ -1869,14 +1881,14 @@ layout: null
 
     function initializeAuthorExpanders() {
       function setAuthorExpanded(group, expanded) {
-        const shortList = group.querySelector('.author-short');
-        const fullList = group.querySelector('.author-full');
         const expandButton = group.querySelector('.author-expand-toggle');
-        if (!shortList || !fullList || !expandButton) return;
+        const collapseButton = group.querySelector('.author-collapse-toggle');
+        if (!expandButton || !collapseButton) return;
 
-        shortList.hidden = expanded;
-        fullList.hidden = !expanded;
+        expandButton.hidden = expanded;
+        collapseButton.hidden = !expanded;
         expandButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        collapseButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       }
 
       document.querySelectorAll('.author-expand-toggle, .author-collapse-toggle').forEach(button => {

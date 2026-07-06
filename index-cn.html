@@ -135,6 +135,7 @@ layout: null
 
     .author-expand-toggle,
     .author-collapse-toggle {
+      appearance: none;
       border: 0;
       background: none;
       color: #8a8a8a;
@@ -165,6 +166,19 @@ layout: null
 
     .author-collapsible [hidden] {
       display: none !important;
+    }
+
+    .author-collapse-toggle:not([hidden]) {
+      animation: authorReveal 180ms ease-out;
+    }
+
+    @keyframes authorReveal {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
     
     /* Navigation bar styles */
@@ -1094,8 +1108,7 @@ layout: null
     </h3>
     <p class="publication-description">
       <span class="author-collapsible">
-        <span class="author-short">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, and <button type="button" class="author-expand-toggle" aria-expanded="false" title="展开完整作者列表">et al.</button></span>
-        <span class="author-full" hidden>Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, <button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="折叠作者列表">Ying Li, and Xuewen Wang</button></span>
+        <span class="author-prefix">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, and </span><button type="button" class="author-expand-toggle" aria-expanded="false" title="展开完整作者列表">et al.</button><button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="折叠作者列表" hidden>Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang</button>
       </span><br>
       ESWA, 2025<br>
       <small>提出了一种用于皮肤镜图像中皮肤病变分割的高精度模型。</small>
@@ -1390,8 +1403,7 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              <span class="author-short"><b>杨跃浙</b>、周卿高原、周思彤、严盛、蔡文杰、冯瑞晞、赵金阳<button type="button" class="author-expand-toggle" aria-expanded="false" title="展开完整作者列表">等</button></span>
-              <span class="author-full" hidden><b>杨跃浙</b>、周卿高原、周思彤、严盛、蔡文杰、冯瑞晞、赵金阳<button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="折叠作者列表">、陈诺、杨博宇、赵翔卓、魏然、朱凯文、段皓亮、杨德鑫、何阳、王雅倩、杨华涛、王立文、周莹、吕兴国、张权、张辉、陈永林、张岱磊、董兴波<sup>†</sup>、宋思懿<sup>†</sup>、王华斌<sup>†</sup>、金哲<sup>†</sup></button></span>
+              <span class="author-prefix"><b>杨跃浙</b>、周卿高原、周思彤</span><button type="button" class="author-expand-toggle" aria-expanded="false" title="展开完整作者列表">等</button><button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="折叠作者列表" hidden>、严盛、蔡文杰、冯瑞晞、赵金阳、陈诺、杨博宇、赵翔卓、魏然、朱凯文、段皓亮、杨德鑫、何阳、王雅倩、杨华涛、王立文、周莹、吕兴国、张权、张辉、陈永林、张岱磊、董兴波<sup>†</sup>、宋思懿<sup>†</sup>、王华斌<sup>†</sup>、金哲<sup>†</sup></button>
             </span><br>
             国家级大学生创新创业训练计划，2024<br>
             <small>将物理模型与深度学习相结合，实现高效的高质量低剂量PET图像重建。</small>
@@ -1867,14 +1879,14 @@ layout: null
 
     function initializeAuthorExpanders() {
       function setAuthorExpanded(group, expanded) {
-        const shortList = group.querySelector('.author-short');
-        const fullList = group.querySelector('.author-full');
         const expandButton = group.querySelector('.author-expand-toggle');
-        if (!shortList || !fullList || !expandButton) return;
+        const collapseButton = group.querySelector('.author-collapse-toggle');
+        if (!expandButton || !collapseButton) return;
 
-        shortList.hidden = expanded;
-        fullList.hidden = !expanded;
+        expandButton.hidden = expanded;
+        collapseButton.hidden = !expanded;
         expandButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        collapseButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       }
 
       document.querySelectorAll('.author-expand-toggle, .author-collapse-toggle').forEach(button => {
