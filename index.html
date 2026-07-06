@@ -133,6 +133,27 @@ layout: null
     .profile-stat-value.stars {
       background: #181717;
     }
+
+    .author-expand-toggle,
+    .author-collapse-toggle {
+      border: 0;
+      background: none;
+      color: #3273dc;
+      cursor: pointer;
+      font: inherit;
+      line-height: inherit;
+      margin: 0;
+      padding: 0;
+    }
+
+    .author-expand-toggle:hover,
+    .author-collapse-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .author-collapsible [hidden] {
+      display: none !important;
+    }
     
     /* Navigation bar styles */
     .navbar {
@@ -1060,7 +1081,10 @@ layout: null
       <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904">EM-Net: Effective and morphology-aware network for skin lesion segmentation</a>
     </h3>
     <p class="publication-description">
-      Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, et al.<br>
+      <span class="author-collapsible">
+        <span class="author-short">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, and <button type="button" class="author-expand-toggle" aria-expanded="false">et al.</button></span>
+        <span class="author-full" hidden>Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang <button type="button" class="author-collapse-toggle" aria-label="Collapse author list">less</button></span>
+      </span><br>
       ESWA, 2025<br>
       <small>Propose a high-precision model for skin lesion segmentation in dermoscopic images.</small>
     </p>
@@ -1354,7 +1378,10 @@ layout: null
             <i class="fas fa-language translate-icon" onclick="toggleTranslation(this)"></i>
           </h3>
           <p class="publication-description">
-            <b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, et al.<br>
+            <span class="author-collapsible">
+              <span class="author-short"><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, and <button type="button" class="author-expand-toggle" aria-expanded="false">et al.</button></span>
+              <span class="author-full" hidden><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Xingbo Dong<sup>†</sup>, Siyi Song<sup>†</sup>, Huabin Wang<sup>†</sup>, and Zhe Jin<sup>†</sup> <button type="button" class="author-collapse-toggle" aria-label="Collapse author list">less</button></span>
+            </span><br>
             Chinese College Students' Innovation and Entrepreneurship Program, 2024<br>
             <small>Integrate physical models with deep learning to achieve efficient high-quality low-dose PET image reconstruction.</small>
           </p>
@@ -1823,8 +1850,30 @@ layout: null
       
       // Initialize display with limited items
       initializeLimitedDisplay();
+      initializeAuthorExpanders();
       initializePartnerCarousels();
     });
+
+    function initializeAuthorExpanders() {
+      function setAuthorExpanded(group, expanded) {
+        const shortList = group.querySelector('.author-short');
+        const fullList = group.querySelector('.author-full');
+        const expandButton = group.querySelector('.author-expand-toggle');
+        if (!shortList || !fullList || !expandButton) return;
+
+        shortList.hidden = expanded;
+        fullList.hidden = !expanded;
+        expandButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      }
+
+      document.querySelectorAll('.author-expand-toggle, .author-collapse-toggle').forEach(button => {
+        button.addEventListener('click', function() {
+          const group = this.closest('.author-collapsible');
+          if (!group) return;
+          setAuthorExpanded(group, this.classList.contains('author-expand-toggle'));
+        });
+      });
+    }
     
     // Initialize limited display for both sections
     function initializeLimitedDisplay() {
