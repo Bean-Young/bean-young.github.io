@@ -177,20 +177,23 @@ layout: null
 
     .author-collapse-toggle {
       display: inline-block;
+      max-height: 1.4em;
       max-width: 0;
       opacity: 0;
       overflow: hidden;
       pointer-events: none;
       text-align: left;
-      transition: max-width 420ms ease, opacity 320ms ease;
+      transition: max-width 420ms ease, max-height 420ms ease, opacity 320ms ease;
       vertical-align: baseline;
-      white-space: normal;
+      white-space: nowrap;
     }
 
     .author-collapse-toggle.is-expanded {
+      max-height: 8em;
       max-width: var(--author-overflow-width, 1200px);
       opacity: 1;
       pointer-events: auto;
+      white-space: normal;
     }
     
     /* Navigation bar styles */
