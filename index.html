@@ -148,6 +148,10 @@ layout: null
       text-decoration: none;
     }
 
+    .author-expand-toggle {
+      margin-left: 0.2em;
+    }
+
     .author-expand-toggle:hover,
     .author-expand-toggle:focus,
     .author-collapse-toggle:hover,
@@ -162,24 +166,32 @@ layout: null
 
     .author-expand-toggle,
     .author-collapse-toggle {
-      border-bottom: 1px dashed #b5b5b5;
+      text-decoration-line: underline;
+      text-decoration-style: dashed;
+      text-decoration-color: #b5b5b5;
+      text-underline-offset: 0.15em;
     }
 
     .author-collapsible [hidden] {
       display: none !important;
     }
 
-    .author-collapse-toggle:not([hidden]) {
-      animation: authorReveal 180ms ease-out;
+    .author-collapse-toggle {
+      display: inline-block;
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      text-align: left;
+      transition: max-width 420ms ease, opacity 320ms ease;
+      vertical-align: baseline;
+      white-space: normal;
     }
 
-    @keyframes authorReveal {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    .author-collapse-toggle.is-expanded {
+      max-width: var(--author-overflow-width, 1200px);
+      opacity: 1;
+      pointer-events: auto;
     }
     
     /* Navigation bar styles */
@@ -1108,8 +1120,9 @@ layout: null
       <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904">EM-Net: Effective and morphology-aware network for skin lesion segmentation</a>
     </h3>
     <p class="publication-description">
-      <span class="author-collapsible">
-        <span class="author-prefix">Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, and </span><button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">et al.</button><button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="Collapse author list" hidden>Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang</button>
+      <span class="author-collapsible" data-more-label="and et al.">
+        <span class="author-visible"></span><button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">and et al.</button><button type="button" class="author-collapse-toggle" aria-expanded="false" aria-label="Collapse author list"></button>
+        <span class="author-template" hidden><span class="author-token">Kaiwen Zhu<sup>*</sup>, </span><span class="author-token"><b>Yuezhe Yang</b><sup>*</sup>, </span><span class="author-token">Yonglin Chen<sup>*</sup><sup>†</sup>, </span><span class="author-token">Ruixi Feng, </span><span class="author-token">Dongping Chen, </span><span class="author-token">Bingzhi Fan, </span><span class="author-token">Nan Liu, </span><span class="author-token">Ying Li, </span><span class="author-token">and Xuewen Wang</span></span>
       </span><br>
       ESWA, 2025<br>
       <small>Propose a high-precision model for skin lesion segmentation in dermoscopic images.</small>
@@ -1404,8 +1417,9 @@ layout: null
             <i class="fas fa-language translate-icon" onclick="toggleTranslation(this)"></i>
           </h3>
           <p class="publication-description">
-            <span class="author-collapsible">
-              <span class="author-prefix"><b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, and </span><button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">et al.</button><button type="button" class="author-collapse-toggle" aria-expanded="true" aria-label="Collapse author list" hidden>Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Xingbo Dong<sup>†</sup>, Siyi Song<sup>†</sup>, Huabin Wang<sup>†</sup>, and Zhe Jin<sup>†</sup></button>
+            <span class="author-collapsible" data-more-label="and et al.">
+              <span class="author-visible"></span><button type="button" class="author-expand-toggle" aria-expanded="false" title="Click to view all authors">and et al.</button><button type="button" class="author-collapse-toggle" aria-expanded="false" aria-label="Collapse author list"></button>
+              <span class="author-template" hidden><span class="author-token"><b>Yuezhe Yang</b>, </span><span class="author-token">Qinggaoyuan Zhou, </span><span class="author-token">Sitong Zhou, </span><span class="author-token">Sheng Yan, </span><span class="author-token">Wenjie Cai, </span><span class="author-token">Ruixi Feng, </span><span class="author-token">Jinyang Zhao, </span><span class="author-token">Nuo Chen, </span><span class="author-token">Boyu Yang, </span><span class="author-token">Xiangzhuo Zhao, </span><span class="author-token">Ran Wei, </span><span class="author-token">Kaiwen Zhu, </span><span class="author-token">Haoliang Duan, </span><span class="author-token">Dexin Yang, </span><span class="author-token">Yang He, </span><span class="author-token">Yaqian Wang, </span><span class="author-token">Huatao Yang, </span><span class="author-token">Liwen Wang, </span><span class="author-token">Ying Zhou, </span><span class="author-token">Xingguo Lv, </span><span class="author-token">Quan Zhang, </span><span class="author-token">Hui Zhang, </span><span class="author-token">Yonglin Chen, </span><span class="author-token">Dailei Zhang, </span><span class="author-token">Xingbo Dong<sup>†</sup>, </span><span class="author-token">Siyi Song<sup>†</sup>, </span><span class="author-token">Huabin Wang<sup>†</sup>, </span><span class="author-token">and Zhe Jin<sup>†</sup></span></span>
             </span><br>
             Chinese College Students' Innovation and Entrepreneurship Program, 2024<br>
             <small>Integrate physical models with deep learning to achieve efficient high-quality low-dose PET image reconstruction.</small>
@@ -1880,24 +1894,84 @@ layout: null
     });
 
     function initializeAuthorExpanders() {
-      function setAuthorExpanded(group, expanded) {
+      const authorGroups = Array.from(document.querySelectorAll('.author-collapsible'));
+
+      function getAuthorTokens(group) {
+        const template = group.querySelector('.author-template');
+        return template ? Array.from(template.querySelectorAll('.author-token')).map(token => token.innerHTML) : [];
+      }
+
+      function renderAuthorGroup(group, keepCount, expanded) {
+        const tokens = getAuthorTokens(group);
+        const visible = group.querySelector('.author-visible');
         const expandButton = group.querySelector('.author-expand-toggle');
         const collapseButton = group.querySelector('.author-collapse-toggle');
-        if (!expandButton || !collapseButton) return;
+        if (!visible || !expandButton || !collapseButton || !tokens.length) return;
 
-        expandButton.hidden = expanded;
-        collapseButton.hidden = !expanded;
+        const overflowTokens = tokens.slice(keepCount);
+        visible.innerHTML = tokens.slice(0, keepCount).join('');
+        collapseButton.innerHTML = overflowTokens.join('');
+        collapseButton.style.setProperty('--author-overflow-width', `${Math.max(collapseButton.scrollWidth, 900)}px`);
+
+        expandButton.hidden = expanded || overflowTokens.length === 0;
+        collapseButton.classList.toggle('is-expanded', expanded && overflowTokens.length > 0);
         expandButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
         collapseButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       }
+
+      function authorFitsOneLine(group) {
+        const rects = Array.from(group.getClientRects()).filter(rect => rect.width > 1 && rect.height > 1);
+        return rects.length <= 1;
+      }
+
+      function fitAuthorGroup(group) {
+        const tokens = getAuthorTokens(group);
+        if (!tokens.length || group.offsetParent === null) return;
+
+        const expanded = group.classList.contains('is-expanded');
+
+        renderAuthorGroup(group, tokens.length, false);
+        if (authorFitsOneLine(group)) {
+          group.dataset.keepCount = String(tokens.length);
+          renderAuthorGroup(group, tokens.length, false);
+          return;
+        }
+
+        let keepCount = 1;
+        for (let count = tokens.length - 1; count >= 1; count -= 1) {
+          renderAuthorGroup(group, count, false);
+          if (authorFitsOneLine(group)) {
+            keepCount = count;
+            break;
+          }
+        }
+
+        group.dataset.keepCount = String(keepCount);
+        renderAuthorGroup(group, keepCount, expanded);
+      }
+
+      function fitAuthorExpanders() {
+        authorGroups.forEach(fitAuthorGroup);
+      }
+
+      window.fitAuthorExpanders = fitAuthorExpanders;
 
       document.querySelectorAll('.author-expand-toggle, .author-collapse-toggle').forEach(button => {
         button.addEventListener('click', function() {
           const group = this.closest('.author-collapsible');
           if (!group) return;
-          setAuthorExpanded(group, this.classList.contains('author-expand-toggle'));
+          const expanded = this.classList.contains('author-expand-toggle');
+          group.classList.toggle('is-expanded', expanded);
+          renderAuthorGroup(group, Number(group.dataset.keepCount || 1), expanded);
         });
       });
+
+      window.addEventListener('resize', () => {
+        window.clearTimeout(window.authorFitResizeTimer);
+        window.authorFitResizeTimer = window.setTimeout(fitAuthorExpanders, 120);
+      });
+
+      fitAuthorExpanders();
     }
     
     // Initialize limited display for both sections
@@ -1972,6 +2046,10 @@ layout: null
         }
       } else if (showMoreContainer) {
         showMoreContainer.style.display = 'none';
+      }
+
+      if (window.fitAuthorExpanders) {
+        requestAnimationFrame(window.fitAuthorExpanders);
       }
     }
     
