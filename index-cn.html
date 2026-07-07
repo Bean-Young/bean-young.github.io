@@ -133,67 +133,16 @@ layout: null
       background: #181717;
     }
 
-    .author-expand-toggle,
-    .author-collapse-toggle {
-      appearance: none;
-      border: 0;
-      background: none;
+    .more-authors {
       color: #8a8a8a;
       cursor: pointer;
-      font: inherit;
-      line-height: inherit;
-      margin: 0;
-      padding: 0;
-      text-decoration: none;
+      border-bottom: 1px dashed #8a8a8a;
     }
 
-    .author-expand-toggle {
-      margin-left: 0.2em;
-    }
-
-    .author-expand-toggle:hover,
-    .author-expand-toggle:focus,
-    .author-collapse-toggle:hover,
-    .author-collapse-toggle:focus {
+    .more-authors:hover,
+    .more-authors:focus {
       color: #666;
-      text-decoration: underline;
-    }
-
-    .author-collapse-toggle {
-      color: #8a8a8a;
-    }
-
-    .author-expand-toggle,
-    .author-collapse-toggle {
-      text-decoration-line: underline;
-      text-decoration-style: dashed;
-      text-decoration-color: #b5b5b5;
-      text-underline-offset: 0.15em;
-    }
-
-    .author-collapsible [hidden] {
-      display: none !important;
-    }
-
-    .author-collapse-toggle {
-      display: inline-block;
-      max-height: 1.4em;
-      max-width: 0;
-      opacity: 0;
-      overflow: hidden;
-      pointer-events: none;
-      text-align: left;
-      transition: max-width 900ms ease, max-height 900ms ease, opacity 700ms ease;
-      vertical-align: baseline;
-      white-space: nowrap;
-    }
-
-    .author-collapse-toggle.is-expanded {
-      max-height: 8em;
-      max-width: var(--author-overflow-width, 1200px);
-      opacity: 1;
-      pointer-events: auto;
-      white-space: normal;
+      border-bottom-color: #666;
     }
     
     /* Navigation bar styles */
@@ -1122,9 +1071,8 @@ layout: null
       <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417425012904">EM-Net: Effective and morphology-aware network for skin lesion segmentation</a>
     </h3>
     <p class="publication-description">
-      <span class="author-collapsible" data-more-label="and et al.">
-        <span class="author-visible"></span><button type="button" class="author-expand-toggle" aria-expanded="false" title="展开完整作者列表">and et al.</button><button type="button" class="author-collapse-toggle" aria-expanded="false" aria-label="折叠作者列表"></button>
-        <span class="author-template" hidden><span class="author-token">Kaiwen Zhu<sup>*</sup>, </span><span class="author-token"><b>Yuezhe Yang</b><sup>*</sup>, </span><span class="author-token">Yonglin Chen<sup>*</sup><sup>†</sup>, </span><span class="author-token">Ruixi Feng, </span><span class="author-token">Dongping Chen, </span><span class="author-token">Bingzhi Fan, </span><span class="author-token">Nan Liu, </span><span class="author-token">Ying Li, </span><span class="author-token">and Xuewen Wang</span></span>
+      <span class="author-collapsible">
+        Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, and <span class="more-authors" tabindex="0" role="button" title="展开完整作者列表" data-collapsed="et al." data-expanded="Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang">et al.</span>
       </span><br>
       ESWA, 2025<br>
       <small>提出了一种用于皮肤镜图像中皮肤病变分割的高精度模型。</small>
@@ -1418,9 +1366,8 @@ layout: null
             </div>
           </h3>
           <p class="publication-description">
-            <span class="author-collapsible" data-more-label="等">
-              <span class="author-visible"></span><button type="button" class="author-expand-toggle" aria-expanded="false" title="展开完整作者列表">等</button><button type="button" class="author-collapse-toggle" aria-expanded="false" aria-label="折叠作者列表"></button>
-              <span class="author-template" hidden><span class="author-token"><b>杨跃浙</b>、</span><span class="author-token">周卿高原、</span><span class="author-token">周思彤、</span><span class="author-token">严盛、</span><span class="author-token">蔡文杰、</span><span class="author-token">冯瑞晞、</span><span class="author-token">赵金阳、</span><span class="author-token">陈诺、</span><span class="author-token">杨博宇、</span><span class="author-token">赵翔卓、</span><span class="author-token">魏然、</span><span class="author-token">朱凯文、</span><span class="author-token">段皓亮、</span><span class="author-token">杨德鑫、</span><span class="author-token">何阳、</span><span class="author-token">王雅倩、</span><span class="author-token">杨华涛、</span><span class="author-token">王立文、</span><span class="author-token">周莹、</span><span class="author-token">吕兴国、</span><span class="author-token">张权、</span><span class="author-token">张辉、</span><span class="author-token">陈永林、</span><span class="author-token">张岱磊、</span><span class="author-token">董兴波<sup>†</sup>、</span><span class="author-token">宋思懿<sup>†</sup>、</span><span class="author-token">王华斌<sup>†</sup>、</span><span class="author-token">金哲<sup>†</sup></span></span>
+            <span class="author-collapsible">
+              <b>杨跃浙</b>、周卿高原、周思彤<span class="more-authors" tabindex="0" role="button" title="展开完整作者列表" data-collapsed="等" data-expanded="、严盛、蔡文杰、冯瑞晞、赵金阳、陈诺、杨博宇、赵翔卓、魏然、朱凯文、段皓亮、杨德鑫、何阳、王雅倩、杨华涛、王立文、周莹、吕兴国、张权、张辉、陈永林、张岱磊、董兴波†、宋思懿†、王华斌†、金哲†">等</span>
             </span><br>
             国家级大学生创新创业训练计划，2024<br>
             <small>将物理模型与深度学习相结合，实现高效的高质量低剂量PET图像重建。</small>
@@ -1895,84 +1842,42 @@ layout: null
     });
 
     function initializeAuthorExpanders() {
-      const authorGroups = Array.from(document.querySelectorAll('.author-collapsible'));
+      const delay = 16;
 
-      function getAuthorTokens(group) {
-        const template = group.querySelector('.author-template');
-        return template ? Array.from(template.querySelectorAll('.author-token')).map(token => token.innerHTML) : [];
-      }
+      function animateAuthorText(element) {
+        if (element.dataset.animating === 'true') return;
 
-      function renderAuthorGroup(group, keepCount, expanded) {
-        const tokens = getAuthorTokens(group);
-        const visible = group.querySelector('.author-visible');
-        const expandButton = group.querySelector('.author-expand-toggle');
-        const collapseButton = group.querySelector('.author-collapse-toggle');
-        if (!visible || !expandButton || !collapseButton || !tokens.length) return;
+        const collapsedText = element.dataset.collapsed || 'et al.';
+        const expandedText = element.dataset.expanded || '';
+        const targetText = element.textContent === collapsedText ? expandedText : collapsedText;
+        let cursorPosition = 0;
 
-        const overflowTokens = tokens.slice(keepCount);
-        visible.innerHTML = tokens.slice(0, keepCount).join('');
-        collapseButton.innerHTML = overflowTokens.join('');
-        collapseButton.style.setProperty('--author-overflow-width', `${Math.max(collapseButton.scrollWidth, 900)}px`);
+        element.dataset.animating = 'true';
+        element.textContent = '';
 
-        expandButton.hidden = expanded || overflowTokens.length === 0;
-        collapseButton.classList.toggle('is-expanded', expanded && overflowTokens.length > 0);
-        expandButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        collapseButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-      }
+        const textAdder = setInterval(function() {
+          element.textContent = targetText.substring(0, cursorPosition + 1);
+          cursorPosition += 1;
 
-      function authorFitsOneLine(group) {
-        const rects = Array.from(group.getClientRects()).filter(rect => rect.width > 1 && rect.height > 1);
-        return rects.length <= 1;
-      }
-
-      function fitAuthorGroup(group) {
-        const tokens = getAuthorTokens(group);
-        if (!tokens.length || group.offsetParent === null) return;
-
-        const expanded = group.classList.contains('is-expanded');
-
-        renderAuthorGroup(group, tokens.length, false);
-        if (authorFitsOneLine(group)) {
-          group.dataset.keepCount = String(tokens.length);
-          renderAuthorGroup(group, tokens.length, false);
-          return;
-        }
-
-        let keepCount = 1;
-        for (let count = tokens.length - 1; count >= 1; count -= 1) {
-          renderAuthorGroup(group, count, false);
-          if (authorFitsOneLine(group)) {
-            keepCount = count;
-            break;
+          if (cursorPosition === targetText.length) {
+            clearInterval(textAdder);
+            element.dataset.animating = 'false';
           }
-        }
-
-        group.dataset.keepCount = String(keepCount);
-        renderAuthorGroup(group, keepCount, expanded);
+        }, delay);
       }
 
-      function fitAuthorExpanders() {
-        authorGroups.forEach(fitAuthorGroup);
-      }
+      document.querySelectorAll('.more-authors').forEach(element => {
+        element.addEventListener('click', function() {
+          animateAuthorText(this);
+        });
 
-      window.fitAuthorExpanders = fitAuthorExpanders;
-
-      document.querySelectorAll('.author-expand-toggle, .author-collapse-toggle').forEach(button => {
-        button.addEventListener('click', function() {
-          const group = this.closest('.author-collapsible');
-          if (!group) return;
-          const expanded = this.classList.contains('author-expand-toggle');
-          group.classList.toggle('is-expanded', expanded);
-          renderAuthorGroup(group, Number(group.dataset.keepCount || 1), expanded);
+        element.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            animateAuthorText(this);
+          }
         });
       });
-
-      window.addEventListener('resize', () => {
-        window.clearTimeout(window.authorFitResizeTimer);
-        window.authorFitResizeTimer = window.setTimeout(fitAuthorExpanders, 120);
-      });
-
-      fitAuthorExpanders();
     }
     
     // Initialize limited display for both sections
@@ -2049,9 +1954,6 @@ layout: null
         showMoreContainer.style.display = 'none';
       }
 
-      if (window.fitAuthorExpanders) {
-        requestAnimationFrame(window.fitAuthorExpanders);
-      }
     }
     
     // Apply display limit to awards
