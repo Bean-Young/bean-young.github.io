@@ -21,6 +21,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://bean-young.github.io/honors/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bean-young.github.io/honors-cn/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://bean-young.github.io/emnet/</loc>
     <priority>0.7</priority>
   </url>
