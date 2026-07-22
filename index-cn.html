@@ -618,7 +618,7 @@ layout: null
     .partner-carousel-viewport {
       overflow-x: auto;
       overflow-y: hidden;
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
       cursor: grab;
       padding: 0.25rem 0.125rem 0.75rem;
       scrollbar-width: none;
@@ -2085,19 +2085,26 @@ layout: null
         let dragging = false;
         let startX = 0;
         let startScrollLeft = 0;
-        const speed = 0.35;
+        let currentScrollLeft = viewport.scrollLeft;
+        let lastFrameTime = null;
+        const pixelsPerSecond = 28;
 
         const getLoopWidth = () => track.scrollWidth / 2;
         const normalizeScroll = () => {
           const loopWidth = getLoopWidth();
           if (!loopWidth) return;
-          if (viewport.scrollLeft >= loopWidth) viewport.scrollLeft -= loopWidth;
-          if (viewport.scrollLeft < 0) viewport.scrollLeft += loopWidth;
+          while (currentScrollLeft >= loopWidth) currentScrollLeft -= loopWidth;
+          while (currentScrollLeft < 0) currentScrollLeft += loopWidth;
+          viewport.scrollLeft = currentScrollLeft;
         };
 
-        const animate = () => {
+        const animate = timestamp => {
+          if (lastFrameTime === null) lastFrameTime = timestamp;
+          const elapsedSeconds = Math.min((timestamp - lastFrameTime) / 1000, 0.05);
+          lastFrameTime = timestamp;
+
           if (!paused && !dragging) {
-            viewport.scrollLeft += speed;
+            currentScrollLeft += pixelsPerSecond * elapsedSeconds;
             normalizeScroll();
           }
           requestAnimationFrame(animate);
@@ -2113,13 +2120,14 @@ layout: null
           paused = true;
           startX = event.clientX;
           startScrollLeft = viewport.scrollLeft;
+          currentScrollLeft = viewport.scrollLeft;
           viewport.classList.add('is-dragging');
           viewport.setPointerCapture(event.pointerId);
         });
 
         viewport.addEventListener('pointermove', event => {
           if (!dragging) return;
-          viewport.scrollLeft = startScrollLeft - (event.clientX - startX);
+          currentScrollLeft = startScrollLeft - (event.clientX - startX);
           normalizeScroll();
         });
 
@@ -2136,7 +2144,10 @@ layout: null
 
         viewport.addEventListener('pointerup', stopDragging);
         viewport.addEventListener('pointercancel', stopDragging);
-        viewport.addEventListener('scroll', normalizeScroll);
+        viewport.addEventListener('scroll', () => {
+          if (dragging) return;
+          currentScrollLeft = viewport.scrollLeft;
+        });
         requestAnimationFrame(animate);
       });
     }
