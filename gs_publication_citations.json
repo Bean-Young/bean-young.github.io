@@ -1,0 +1,47 @@
+{
+  "updated_count": 6,
+  "updated": [
+    {
+      "id": "p-ahu",
+      "title": "An annotated heterogeneous ultrasound database",
+      "old": 7,
+      "new": 8
+    },
+    {
+      "id": "p-emnet",
+      "title": "EM-Net: Effective and morphology-aware network for skin lesion segmentation",
+      "old": 8,
+      "new": 12
+    },
+    {
+      "id": "p-ultrags",
+      "title": "UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis",
+      "old": 2,
+      "new": 2
+    },
+    {
+      "id": "p-3dreview",
+      "title": "Explicit and Implicit Representations in AI-based 3D Reconstruction for Radiology: A Systematic Review",
+      "old": 11,
+      "new": 16
+    },
+    {
+      "id": "p-vdect",
+      "title": "Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection",
+      "old": 2,
+      "new": 2
+    },
+    {
+      "id": "p-hyper",
+      "title": "HyperWalker: Dynamic Hypergraph-Based Deep Diagnosis for Multi-Hop Clinical Modeling across EHR and X-Ray in Medical VLMs",
+      "old": 0,
+      "new": 0
+    }
+  ],
+  "unmatched": [
+    {
+      "id": "p-autous",
+      "title": "Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs"
+    }
+  ]
+}
