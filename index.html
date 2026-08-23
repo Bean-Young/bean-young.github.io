@@ -802,6 +802,162 @@ layout: null
     }
     
 
+    /* Lightweight navigation and scroll polish. */
+    html {
+      scroll-padding-top: 82px;
+    }
+
+    .navbar {
+      border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+      transition: background-color 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .navbar.is-scrolled {
+      background-color: rgba(255, 255, 255, 0.985);
+      box-shadow: 0 5px 18px rgba(15, 23, 42, 0.09);
+      border-bottom-color: rgba(17, 24, 39, 0.1);
+    }
+
+    .navbar-end .button {
+      border: 1px solid transparent;
+      border-radius: 6px;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .navbar-end .button.nav-active {
+      background: #eef6ff;
+      border-color: #bfdcff;
+      color: #174ea6;
+      font-weight: 600;
+    }
+
+    .button:focus-visible,
+    .partner-carousel-viewport:focus-visible,
+    .scroll-top:focus-visible {
+      outline: 3px solid rgba(50, 115, 220, 0.3);
+      outline-offset: 2px;
+    }
+
+    .section > .container > .title.is-3 {
+      border-left: 3px solid #3273dc;
+      padding-left: 0.7rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .filter-section {
+      padding: 0.8rem 1rem;
+      border: 1px solid #e8eef7;
+      border-radius: 8px;
+      background: #fbfdff;
+    }
+
+    .publication-block.columns,
+    .award-item > .columns,
+    .education-block {
+      border-bottom: 1px solid #edf0f4;
+      transition: background-color 160ms ease, border-color 160ms ease;
+    }
+
+    @media (hover: hover) {
+      .publication-block.columns:hover,
+      .award-item > .columns:hover,
+      .education-block:hover {
+        background: #fbfdff;
+        border-bottom-color: #bfdcff;
+      }
+
+      .partner-logo-card {
+        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      }
+
+      .partner-logo-card:hover {
+        border-color: #bfdcff;
+        box-shadow: 0 5px 14px rgba(15, 23, 42, 0.08);
+        transform: translateY(-2px);
+      }
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 500ms ease, transform 500ms ease;
+    }
+
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-top {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #c9d7ea;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.96);
+      color: #174ea6;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 160ms ease, transform 160ms ease, background-color 160ms ease;
+      z-index: 1000;
+    }
+
+    .scroll-top.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      background: #eef6ff;
+    }
+
+    @media (max-width: 768px) {
+      html {
+        scroll-padding-top: 62px;
+      }
+
+      .section > .container > .title.is-3 {
+        padding-left: 0.55rem;
+      }
+
+      .filter-section {
+        padding: 0.65rem;
+      }
+
+      .scroll-top {
+        right: 0.85rem;
+        bottom: 0.85rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .scroll-reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
   </style>
 </head>
 
@@ -820,11 +976,11 @@ layout: null
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a href="#home" class="button is-light is-small">Home</a>
-          <a href="#publications" class="button is-light is-small">Publications & Projects</a>
-          <a href="#education" class="button is-light is-small">Education & Experiences</a>
-          <a href="#honors-awards" class="button is-light is-small">Scholarships & Funding</a>
-          <a href="#others" class="button is-light is-small">Others</a>
+          <a href="#home" class="button is-light is-small" data-nav-link>Home</a>
+          <a href="#publications" class="button is-light is-small" data-nav-link>Publications & Projects</a>
+          <a href="#education" class="button is-light is-small" data-nav-link>Education & Experiences</a>
+          <a href="#honors-awards" class="button is-light is-small" data-nav-link>Scholarships & Funding</a>
+          <a href="#others" class="button is-light is-small" data-nav-link>Others</a>
           <a href="index-cn.html" class="button is-light is-small" title="中文版">
             <span class="icon"><i class="fas fa-language"></i></span>
           </a>
@@ -2111,6 +2267,7 @@ layout: null
 
         let paused = false;
         let dragging = false;
+        let visible = true;
         let startX = 0;
         let startScrollLeft = 0;
         let currentScrollLeft = viewport.scrollLeft;
@@ -2131,7 +2288,7 @@ layout: null
           const elapsedSeconds = Math.min((timestamp - lastFrameTime) / 1000, 0.05);
           lastFrameTime = timestamp;
 
-          if (!paused && !dragging) {
+          if (visible && !paused && !dragging) {
             currentScrollLeft += pixelsPerSecond * elapsedSeconds;
             normalizeScroll();
           }
@@ -2142,6 +2299,13 @@ layout: null
         carousel.addEventListener('mouseleave', () => { paused = false; });
         viewport.addEventListener('focusin', () => { paused = true; });
         viewport.addEventListener('focusout', () => { paused = false; });
+
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(entries => {
+            visible = entries.some(entry => entry.isIntersecting);
+            lastFrameTime = null;
+          }, { threshold: 0.05 }).observe(carousel);
+        }
 
         viewport.addEventListener('pointerdown', event => {
           dragging = true;
@@ -3186,6 +3350,92 @@ layout: null
       
       startBtn.addEventListener('click', initGame);
       restartBtn.addEventListener('click', initGame);
+    });
+  </script>
+
+
+  <button id="scroll-top" class="scroll-top" type="button" aria-label="Back to top" title="Back to top">
+    <span class="icon"><i class="fas fa-arrow-up" aria-hidden="true"></i></span>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbar = document.querySelector('.navbar');
+      const scrollTop = document.getElementById('scroll-top');
+      const navLinks = Array.from(document.querySelectorAll('[data-nav-link]'));
+      const sections = navLinks
+        .map(link => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+        .filter(item => item.section);
+
+      const updateScrollUI = function() {
+        const offset = 96;
+        let active = sections[0];
+
+        sections.forEach(item => {
+          if (item.section.getBoundingClientRect().top <= offset) active = item;
+        });
+
+        navLinks.forEach(link => {
+          const isActive = active && link === active.link;
+          link.classList.toggle('nav-active', isActive);
+          if (isActive) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+
+        if (navbar) navbar.classList.toggle('is-scrolled', window.scrollY > 12);
+        if (scrollTop) scrollTop.classList.toggle('is-visible', window.scrollY > 520);
+      };
+
+      if (scrollTop && document.documentElement.lang.startsWith('zh')) {
+        scrollTop.setAttribute('aria-label', '返回顶部');
+        scrollTop.setAttribute('title', '返回顶部');
+      }
+
+      updateScrollUI();
+      window.addEventListener('scroll', updateScrollUI, { passive: true });
+
+      if (scrollTop) {
+        scrollTop.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      document.querySelectorAll('[data-partner-viewport]').forEach(viewport => {
+        viewport.addEventListener('keydown', function(event) {
+          if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+          event.preventDefault();
+          viewport.scrollBy({
+            left: event.key === 'ArrowRight' ? 160 : -160,
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealTargets = document.querySelectorAll(
+        '#research-interests .column, #paper-graph .container, #publications .container, #education .education-block, #honors-awards .container, #others .content'
+      );
+
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealTargets.forEach(target => target.classList.add('is-visible'));
+        return;
+      }
+
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+
+      revealTargets.forEach((target, index) => {
+        target.classList.add('scroll-reveal');
+        if (target.matches('#research-interests .column')) {
+          target.style.transitionDelay = `${Math.min(index, 2) * 70}ms`;
+        }
+        revealObserver.observe(target);
+      });
     });
   </script>
 
