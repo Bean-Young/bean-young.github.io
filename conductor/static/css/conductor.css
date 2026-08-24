@@ -14,22 +14,47 @@
 .conductor-figure--wide { width: 100%; }
 .conductor-figure--narrow { max-width: 860px; width: 100%; }
 
-/* The scheduling figures use square PDF artboards with blank lower margins. */
-.conductor-crop {
-  line-height: 0;
-  margin: 0 auto;
-  max-width: 100%;
-  overflow: hidden;
+.conductor-figure-group {
+  margin: 0 auto 2.5rem;
+  max-width: 1080px;
 }
 
-.conductor-crop img { display: block; height: auto; width: 100%; }
-.conductor-crop--schedule { aspect-ratio: 1.75 / 1; }
-.conductor-crop--schedule img { transform: translateY(-1%); }
-.conductor-crop--performance { aspect-ratio: 1.8 / 1; }
-.conductor-crop--performance img { transform: translateY(-4%); }
+.conductor-figure-panel {
+  margin: 0;
+  text-align: center;
+}
+
+.conductor-figure-panel figcaption,
+.conductor-table caption {
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding-top: 0.55rem;
+}
+
+.conductor-table-container {
+  margin: 0 auto 2.5rem;
+  max-width: 1000px;
+}
+
+.conductor-table {
+  margin: 0 auto;
+}
+
+.conductor-table caption {
+  caption-side: bottom;
+  text-align: center;
+}
+
+.conductor-table th,
+.conductor-table td {
+  vertical-align: middle;
+}
 
 @media screen and (max-width: 768px) {
   .conductor-highlights li { font-size: 1em; }
-  .conductor-crop--schedule { aspect-ratio: 1.25 / 1; }
-  .conductor-crop--performance { aspect-ratio: 1.35 / 1; }
+  .conductor-figure-group { margin-bottom: 2rem; }
+  .conductor-table { font-size: 0.78rem; }
+  .conductor-table th,
+  .conductor-table td { white-space: nowrap; }
 }

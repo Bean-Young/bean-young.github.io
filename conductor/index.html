@@ -66,21 +66,21 @@
                     <div class="column has-text-centered">
                         <h1 class="title is-1 publication-title">Conductor: Dynamically Orchestrating Pipeline Parallelism with Multi-Granularity Control</h1>
                         <div class="is-size-4 publication-authors" style="margin-bottom: 10px;">
-                            <span class="author-block"><strong><em>FGCS, 2027</em></strong></span>
+                            <span class="author-block"><strong><em>Future Generation Computer Systems, 2027</em></strong></span>
                         </div>
                         <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
-                            <span class="author-block">Xingbo Dong<sup>1*</sup>,</span>
+                            <span class="author-block">Xingbo Dong<sup>1&#8224;</sup>,</span>
                             <span class="author-block">Ziyuan Liu<sup>1</sup>,</span>
                             <span class="author-block">Yuezhe Yang<sup>1</sup>,</span>
                             <span class="author-block">Yen-Lung Lai<sup>2</sup>,</span>
                             <span class="author-block">Zhe Jin<sup>1</sup></span>
                         </div>
                         <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
-                            <span class="author-block"><sup>*</sup>Corresponding author</span>
+                            <span class="author-block"><sup>&#8224;</sup>Corresponding author</span>
                         </div>
                         <div class="is-size-5 publication-authors">
-                            <span class="author-block"><sup>1</sup>Anhui Provincial International Joint Research Center for Advanced Technology in Medical Imaging, Anhui University,</span>
-                            <span class="author-block"><sup>2</sup>Universiti Tunku Abdul Rahman</span>
+                            <span class="author-block"><sup>1</sup>Anhui Provincial International Joint Research Center for Advanced Technology in Medical Imaging, Anhui University, Hefei, Anhui, China</span><br>
+                            <span class="author-block"><sup>2</sup>Department of Computing, Lee Kong Chian Faculty of Engineering and Science, Universiti Tunku Abdul Rahman, Kajang, Selangor, Malaysia</span>
                         </div>
                         <div class="column has-text-centered">
                             <div class="publication-links">
@@ -132,15 +132,41 @@
             <div class="columns is-centered">
                 <div class="column is-full-width">
                     <h2 class="title is-3">Method</h2>
+                    <div class="content has-text-justified">
+                        <p>Conductor separates long-horizon operation ordering from short-horizon workload balancing, so each control layer addresses the source of pipeline idle time at its own timescale.</p>
+                    </div>
+                    <div class="table-container conductor-table-container">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth conductor-table">
+                            <caption>Conductor's two-tier control design.</caption>
+                            <thead>
+                                <tr><th>Control layer</th><th>Mechanism</th><th>Objective</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Global scheduling</td><td>Heuristic-guided PPO policy</td><td>Adapt the feasible operation order to runtime variation.</td></tr>
+                                <tr><td>Local balancing</td><td>Fine-grained computation migration</td><td>Offload eligible sub-computations from transiently slower workers.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
                         <img class="conductor-figure conductor-figure--wide" src="./static/images/straggler-problem.png" alt="Pipeline slots illustrating stragglers across four devices">
                         <p class="video-label">A straggler sets the pace of a pipeline slot and leaves faster devices idle.</p>
                     </div>
-                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
-                        <div class="conductor-crop conductor-crop--schedule">
-                            <img src="./static/images/rl-scheduling.png" alt="Comparison between ZBPP-based and reinforcement-learning based scheduling">
+                    <div class="conductor-figure-group">
+                        <div class="columns is-centered is-variable is-5">
+                            <div class="column is-5">
+                                <figure class="conductor-figure-panel">
+                                    <img class="conductor-figure" src="./static/images/rl-scheduling.png" alt="Comparison between ZBPP-based and reinforcement-learning based scheduling">
+                                    <figcaption>Pass-time imbalance</figcaption>
+                                </figure>
+                            </div>
+                            <div class="column is-5">
+                                <figure class="conductor-figure-panel">
+                                    <img class="conductor-figure" src="./static/images/network-jitter.png" alt="Scheduling under an unexpected transmission congestion event">
+                                    <figcaption>Bursty network congestion</figcaption>
+                                </figure>
+                            </div>
                         </div>
-                        <p class="video-label">The learned global policy reorders feasible operations to better utilize pipeline slots.</p>
+                        <p class="video-label">Representative runtime perturbations: the learned policy reorders feasible operations to reduce idle time and adapt to transmission congestion.</p>
                     </div>
                 </div>
             </div>
@@ -169,17 +195,37 @@
                     <div class="content has-text-justified">
                         <p>Across the evaluated large-scale language model training configurations, Conductor improves throughput by 5% to 14% over the reported static scheduling baselines and remains resilient to injected system noise and execution variance.</p>
                     </div>
+                    <div class="table-container conductor-table-container">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth conductor-table">
+                            <caption>Ablation study under 10% runtime noise.</caption>
+                            <thead>
+                                <tr><th>Algorithm</th><th>Completion time (ms)</th><th>Throughput improvement</th><th>Bubble ratio</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>ZB-2p</td><td>342.2315</td><td>0.00%</td><td>25.15%</td></tr>
+                                <tr><td>ZB-2p + RL</td><td>321.2232</td><td>6.54%</td><td>20.26%</td></tr>
+                                <tr><td>ZB-2p + Migration</td><td>258.8029</td><td>32.24%</td><td>1.02%</td></tr>
+                                <tr><td><strong>Conductor</strong></td><td><strong>242.7314</strong></td><td><strong>40.99%</strong></td><td><strong>0.79%</strong></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
-                        <div class="conductor-crop conductor-crop--performance">
-                            <img src="./static/images/throughput-comparison.png" alt="Pipeline schedules comparing pure ZBPP ordering and RL-driven dynamic scheduling">
-                        </div>
+                        <img class="conductor-figure conductor-figure--wide" src="./static/images/throughput-comparison.png" alt="Pipeline schedules comparing pure ZBPP ordering and RL-driven dynamic scheduling">
                         <p class="video-label">Illustrative schedules for pure ZBPP ordering and RL-driven dynamic scheduling under the same pipeline configuration.</p>
                     </div>
-                    <div class="content has-text-centered">
-                        <div class="conductor-crop conductor-crop--schedule">
-                            <img src="./static/images/network-jitter.png" alt="Scheduling under an unexpected transmission congestion event">
-                        </div>
-                        <p class="video-label">The policy adapts the ordering when an unexpected transmission congestion event affects an active slot.</p>
+                    <div class="table-container conductor-table-container">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth conductor-table">
+                            <caption>Megatron-LM throughput for computation balancing (samples/GPU/s).</caption>
+                            <thead>
+                                <tr><th>Schedule</th><th>GPT-3 1.5B</th><th>GPT-3 6.2B</th><th>GPT-3 14.6B</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>ZB-2p / Conductor migration</td><td>14.5 / 15.1</td><td>4.32 / 4.51</td><td>1.81 / 1.90</td></tr>
+                                <tr><td>ZB-1p / Conductor migration</td><td>12.9 / 13.4</td><td>3.88 / 4.02</td><td>1.61 / 1.66</td></tr>
+                                <tr><td>1F1B-I / Conductor migration</td><td>13.1 / 13.6</td><td>4.01 / 4.16</td><td>1.54 / 1.62</td></tr>
+                                <tr><td>1F1B / Conductor migration</td><td>11.8 / 13.0</td><td>3.50 / 3.78</td><td>1.40 / 1.57</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
