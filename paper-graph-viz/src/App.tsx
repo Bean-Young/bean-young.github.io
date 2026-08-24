@@ -140,7 +140,7 @@ export default function App() {
               onChange={(event) => focusNode(event.target.value)}
               aria-label={isZh ? '选择论文或项目' : 'Select a paper or project'}
             >
-              <option value="">{isZh ? `浏览 ${paperNodes.length} 项成果` : `Browse ${paperNodes.length} works`}</option>
+              <option value="">{isZh ? '浏览成果' : 'Browse works'}</option>
               {paperNodes.map((node) => (
                 <option key={node.id} value={node.id}>
                   {node.shortLabel ?? node.title}
