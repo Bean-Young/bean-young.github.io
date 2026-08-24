@@ -163,51 +163,6 @@
       "field": "Pipeline Parallelism · Scheduling",
       "role": "paper",
       "pillarId": "cat-diag"
-    },
-    {
-      "id": "pat-petnerf",
-      "title": "PET image reconstruction method based on prior image and PET image 3D perception method",
-      "titleZh": "基于先验图像的PET图像重建方法及PET图像3D感知方法",
-      "shortLabel": "PET-NeRF Patent",
-      "year": 2024,
-      "venue": "Patent",
-      "url": "https://patents.google.com/patent/CN118411435A/",
-      "citations": 0,
-      "summary": "Deep learning based PET reconstruction and 3D perception with prior images and NeRF.",
-      "summaryZh": "基于先验图像与 NeRF 提升 PET 重建与 3D 感知质量。",
-      "field": "PET · NeRF · 3D",
-      "role": "paper",
-      "pillarId": "cat-3d"
-    },
-    {
-      "id": "pat-petgs",
-      "title": "3D Gaussian model generation and rendering for low-dose PET image processing",
-      "titleZh": "一种用于低剂量PET图像处理的3D高斯模型生成和渲染方法",
-      "shortLabel": "PET-3DGS Patent",
-      "year": 2025,
-      "venue": "Patent",
-      "url": "https://patents.google.com/patent/CN119625190A",
-      "citations": 0,
-      "summary": "3D Gaussian model generation and rendering for low-dose brain PET image quality enhancement.",
-      "summaryZh": "提出用于低剂量脑 PET 处理的 3D 高斯生成与渲染方法，提升成像质量。",
-      "field": "PET · 3D Gaussian Splatting",
-      "role": "paper",
-      "pillarId": "cat-3d"
-    },
-    {
-      "id": "proj-deeppet",
-      "title": "DeepPET: An Intelligent Brain PET Device with Low Radiation and High Imaging Quality",
-      "titleZh": "DeepPET：低放射高成像质量的智能脑PET设备",
-      "shortLabel": "DeepPET",
-      "year": 2024,
-      "venue": "Innovation Project",
-      "url": "https://bean-young.github.io/petahu/",
-      "citations": 0,
-      "summary": "Integrate physical models with deep learning for efficient high-quality low-dose PET reconstruction.",
-      "summaryZh": "融合物理模型与深度学习，实现高质量低剂量 PET 高效重建。",
-      "field": "PET · Low-dose reconstruction",
-      "role": "paper",
-      "pillarId": "cat-3d"
     }
   ],
   "links": [
@@ -217,9 +172,6 @@
 
     {"source": "cat-3d", "target": "p-ultrags", "type": "similar"},
     {"source": "cat-3d", "target": "p-3dreview", "type": "similar"},
-    {"source": "cat-3d", "target": "pat-petnerf", "type": "similar"},
-    {"source": "cat-3d", "target": "pat-petgs", "type": "similar"},
-    {"source": "cat-3d", "target": "proj-deeppet", "type": "similar"},
 
     {"source": "cat-diag", "target": "p-ahu", "type": "similar"},
     {"source": "cat-diag", "target": "p-emnet", "type": "similar"},
@@ -234,8 +186,6 @@
     {"source": "p-hyper", "target": "p-autous", "type": "similar"},
     {"source": "p-autous", "target": "p-hyper", "type": "similar"},
     {"source": "p-ahu", "target": "p-autous", "type": "extends"},
-    {"source": "p-ahu", "target": "p-ultrags", "type": "extends"},
-    {"source": "proj-deeppet", "target": "pat-petnerf", "type": "extends"},
-    {"source": "proj-deeppet", "target": "pat-petgs", "type": "extends"}
+    {"source": "p-ahu", "target": "p-ultrags", "type": "extends"}
   ]
 }
