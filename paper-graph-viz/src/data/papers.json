@@ -156,6 +156,7 @@
       "year": 2027,
       "venue": "FGCS",
       "url": "https://doi.org/10.1016/j.future.2026.108762",
+      "projectUrl": "https://bean-young.github.io/conductor/",
       "citations": 0,
       "summary": "Proposes a dynamic two-tier scheduling framework to mitigate straggler-induced bubbles and improve pipeline-parallel training throughput.",
       "summaryZh": "提出动态双层调度框架，缓解由慢节点引发的流水线气泡并提升流水线并行训练吞吐量。",

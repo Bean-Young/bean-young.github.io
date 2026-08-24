@@ -13,6 +13,7 @@ export interface PaperNode {
   year: number;
   venue: string;
   url: string;
+  projectUrl?: string;
   citations: number;
   field: string;
   scholarTitle?: string;

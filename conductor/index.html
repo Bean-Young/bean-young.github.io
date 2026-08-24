@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conductor dynamically orchestrates pipeline parallelism with multi-granularity control.">
+  <meta name="keywords" content="Conductor, pipeline parallelism, reinforcement learning, distributed training, FGCS">
+  <title>Conductor: Dynamically Orchestrating Pipeline Parallelism with Multi-Granularity Control</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/conductor.css">
+</head>
+<body>
+  <nav class="navbar site-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bean-young.github.io/" aria-label="Yuezhe Yang homepage">
+        <span class="icon"><i class="fas fa-home" aria-hidden="true"></i></span>
+      </a>
+    </div>
+    <div class="navbar-menu is-active">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://bean-young.github.io/">Home</a>
+        <a class="navbar-item" href="#abstract">Abstract</a>
+        <a class="navbar-item" href="#method">Method</a>
+        <a class="navbar-item" href="#results">Results</a>
+        <a class="navbar-item" href="#citation">Citation</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero conductor-hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop has-text-centered">
+        <h1 class="title is-1 publication-title">Conductor: Dynamically Orchestrating Pipeline Parallelism with Multi-Granularity Control</h1>
+        <div class="is-size-4 publication-authors publication-venue"><strong><em>FGCS, 2027</em></strong></div>
+        <div class="is-size-5 publication-authors">
+          <span class="author-block">Xingbo Dong<sup>&dagger;</sup>,</span>
+          <span class="author-block">Ziyuan Liu,</span>
+          <span class="author-block"><strong>Yuezhe Yang</strong>,</span>
+          <span class="author-block">Yen-Lung Lai,</span>
+          <span class="author-block">Zhe Jin</span>
+        </div>
+        <div class="is-size-6 publication-authors affiliation-block">
+          <span class="author-block">Anhui University, China</span>
+          <span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
+          <span class="author-block">Universiti Tunku Abdul Rahman, Malaysia</span>
+        </div>
+        <div class="publication-links" style="margin-top: 1.15rem;">
+          <a class="button is-normal is-rounded is-dark" href="https://doi.org/10.1016/j.future.2026.108762" target="_blank" rel="noopener noreferrer">
+            <span class="icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></span><span>Paper</span>
+          </a>
+          <a class="button is-normal is-rounded is-dark" href="https://github.com/Bean-Young/Conductor" target="_blank" rel="noopener noreferrer">
+            <span class="icon"><i class="fab fa-github" aria-hidden="true"></i></span><span>Code</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>Pipeline parallelism is a fundamental pillar of large scale model training yet its efficiency is frequently constrained by straggler induced pipeline bubbles. This issue is exacerbated by static scheduling approaches including handcrafted heuristics and Integer Linear Programming which are inherently brittle when facing real world execution time variance. In this work we introduce Conductor which is a dynamic and two tiered scheduling framework designed to virtually eliminate straggler induced bubbles under realistic stochastic conditions. The key technical insight is to decouple global and long horizon scheduling from local and instantaneous load balancing. At a coarse grain a reinforcement learning agent leverages millisecond scale inference to generate robust global schedules and adapts to runtime dynamics in scenarios where traditional static solvers are computationally intractable. At a fine grain we introduce a dynamic computation migration mechanism that resolves residual micro bubbles by offloading sub computations such as attention heads from transiently slower workers to faster ones within a single timestep. Evaluated on large scale language model training configurations our framework outperforms state of the art static scheduling baselines by 5% to 14% in throughput and demonstrates superior resilience to injected system noise and execution variance.</p>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Highlights</h2>
+          <div class="content has-text-justified project-highlights">
+            <ul>
+              <li>Introduce a dynamic two-tier framework that separates global scheduling from local load balancing.</li>
+              <li>Use reinforcement learning for fast, adaptive global scheduling under execution-time variation.</li>
+              <li>Mitigate residual micro-bubbles through fine-grained computation migration.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-section" id="method">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Method</h2>
+          <div class="content has-text-justified">
+            <p>Conductor responds to pipeline bubbles at two complementary scales: a learned global scheduler decides the ordering of feasible operations, while a local migration mechanism addresses residual imbalance within a slot.</p>
+          </div>
+          <div class="figure-wrap is-narrow">
+            <img src="./static/images/straggler-problem.png" alt="Pipeline slots illustrating stragglers across four devices">
+            <p class="figure-caption">A straggler sets the pace of a pipeline slot and leaves faster devices idle.</p>
+          </div>
+          <div class="figure-crop figure-crop--schedule">
+            <img src="./static/images/rl-scheduling.png" alt="Comparison between ZBPP-based and reinforcement-learning based scheduling">
+          </div>
+          <p class="figure-caption">The learned global policy reorders feasible operations to better utilize pipeline slots.</p>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Fine-grained Computation Migration</h2>
+          <div class="figure-wrap is-narrow">
+            <img src="./static/images/computation-migration.png" alt="Fine-grained migration of MLP computation between devices">
+            <p class="figure-caption">Fine-grained migration balances a temporarily slower worker by redistributing an eligible MLP sub-computation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-section" id="results">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Results</h2>
+          <div class="content has-text-justified">
+            <p>Across the evaluated large-scale language model training configurations, Conductor improves throughput by 5% to 14% over the reported static scheduling baselines and remains resilient to injected system noise and execution variance.</p>
+          </div>
+          <div class="figure-crop figure-crop--performance">
+            <img src="./static/images/throughput-comparison.png" alt="Pipeline schedules comparing pure ZBPP ordering and RL-driven dynamic scheduling">
+          </div>
+          <p class="figure-caption">Illustrative schedules for pure ZBPP ordering and RL-driven dynamic scheduling under the same pipeline configuration.</p>
+          <div class="figure-crop figure-crop--schedule">
+            <img src="./static/images/network-jitter.png" alt="Scheduling under an unexpected transmission congestion event">
+          </div>
+          <p class="figure-caption">The policy adapts the ordering when an unexpected transmission congestion event affects an active slot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-section" id="citation">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Citation</h2>
+          <pre class="citation-code"><code>@article{dong2027conductor,
+  title={Conductor: Dynamically Orchestrating Pipeline Parallelism with Multi-Granularity Control},
+  author={Dong, Xingbo and Liu, Ziyuan and Yang, Yuezhe and Lai, Yen-Lung and Jin, Zhe},
+  journal={Future Generation Computer Systems},
+  year={2027},
+  doi={10.1016/j.future.2026.108762}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="project-footer">Conductor project page &middot; <a href="https://bean-young.github.io/">Yuezhe Yang</a></footer>
+</body>
+</html>

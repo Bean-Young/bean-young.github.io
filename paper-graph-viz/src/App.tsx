@@ -188,8 +188,7 @@ export default function App() {
             }}
             onOpenNode={(node) => {
               if (node.role !== 'paper') return;
-              if (!node.url) return;
-              window.open(node.url, '_blank', 'noopener,noreferrer');
+              window.open(node.projectUrl ?? node.url, '_blank', 'noopener,noreferrer');
             }}
             resetTick={resetTick}
             zoomRequest={zoomRequest}
@@ -222,11 +221,13 @@ export default function App() {
               <div className="paper-card__summary">{oneLineSummary(selectedNode, isZh)}</div>
               <a
                 className="paper-card__link"
-                href={selectedNode.url}
+                href={selectedNode.projectUrl ?? selectedNode.url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {isZh ? '查看成果' : 'View work'}
+                {isZh
+                  ? selectedNode.projectUrl ? '查看项目页面' : '查看成果'
+                  : selectedNode.projectUrl ? 'View project page' : 'View work'}
               </a>
             </aside>
           )}
