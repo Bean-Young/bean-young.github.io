@@ -42,17 +42,9 @@ export default function App() {
     [],
   );
   const graph = initialGraph;
-  const [focusId, setFocusId] = useState<string | null>('hub-medical');
+  const [focusId, setFocusId] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<PaperNode | null>(null);
   const [resetTick, setResetTick] = useState(0);
-  const [cardPos, setCardPos] = useState({ x: 16, y: 16 });
-  const draggingRef = useRef<{
-    dragging: boolean;
-    startX: number;
-    startY: number;
-    baseX: number;
-    baseY: number;
-  }>({ dragging: false, startX: 0, startY: 0, baseX: 16, baseY: 16 });
 
   const wrapRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 800, h: 600 });
@@ -73,37 +65,97 @@ export default function App() {
     return () => ro.disconnect();
   }, [onResize]);
 
-  useEffect(() => {
-    setFocusId('hub-medical');
+  const paperNodes = useMemo(
+    () => graph.nodes.filter((node) => node.role === 'paper'),
+    [graph.nodes],
+  );
+
+  const directions = useMemo(
+    () => [
+      { id: 'cat-3d', label: isZh ? '三维重建' : '3D Reconstruction', tone: 'cyan' },
+      { id: 'cat-diag', label: isZh ? '智能诊断' : 'Diagnosis', tone: 'green' },
+      { id: 'cat-trust', label: isZh ? '可信智能' : 'Trustworthy AI', tone: 'violet' },
+    ],
+    [isZh],
+  );
+
+  const resetView = useCallback(() => {
+    setFocusId(null);
+    setSelectedNode(null);
+    setResetTick((tick) => tick + 1);
   }, []);
+
+  const focusNode = useCallback(
+    (id: string) => {
+      if (!id) {
+        resetView();
+        return;
+      }
+      const node = graph.nodes.find((candidate) => candidate.id === id) ?? null;
+      setFocusId(id);
+      setSelectedNode(node?.role === 'paper' ? node : null);
+    },
+    [graph.nodes, resetView],
+  );
 
   return (
     <div className="app">
       <div className="app__layout">
+        <header className="map-toolbar">
+          <div className="map-toolbar__directions" role="group" aria-label={isZh ? '研究方向' : 'Research directions'}>
+            <button
+              type="button"
+              className={`direction-btn ${focusId === null ? 'is-active' : ''}`}
+              aria-pressed={focusId === null}
+              onClick={resetView}
+            >
+              {isZh ? '总览' : 'Overview'}
+            </button>
+            {directions.map((direction) => (
+              <button
+                key={direction.id}
+                type="button"
+                className={`direction-btn direction-btn--${direction.tone} ${focusId === direction.id ? 'is-active' : ''}`}
+                aria-pressed={focusId === direction.id}
+                onClick={() => focusNode(direction.id)}
+              >
+                <span className="direction-btn__dot" aria-hidden="true" />
+                {direction.label}
+              </button>
+            ))}
+          </div>
+          <label className="paper-picker">
+            <span className="sr-only">{isZh ? '选择论文或项目' : 'Select a paper or project'}</span>
+            <select
+              value={selectedNode?.id ?? ''}
+              onChange={(event) => focusNode(event.target.value)}
+              aria-label={isZh ? '选择论文或项目' : 'Select a paper or project'}
+            >
+              <option value="">{isZh ? `浏览 ${paperNodes.length} 项成果` : `Browse ${paperNodes.length} works`}</option>
+              {paperNodes.map((node) => (
+                <option key={node.id} value={node.id}>
+                  {node.shortLabel ?? node.title}
+                </option>
+              ))}
+            </select>
+          </label>
+        </header>
         <div className="app__canvas-wrap" ref={wrapRef}>
           <button
             type="button"
             className="reset-btn"
-            onClick={() => {
-              setFocusId('hub-medical');
-              setSelectedNode(null);
-              setResetTick((t) => t + 1);
-            }}
+            onClick={resetView}
+            aria-label={isZh ? '重置关系图' : 'Reset research map'}
+            title={isZh ? '重置关系图' : 'Reset research map'}
           >
-            {isZh ? '重置' : 'RESET'}
+            <span aria-hidden="true">&#8634;</span>
           </button>
           <PaperForceGraph
             graphData={graph}
             focusId={focusId}
             onFocus={setFocusId}
-            onSelectNode={(node, pos) => {
+            onSelectNode={(node) => {
               setSelectedNode(node);
-              if (!node || !pos) return;
-              const cardW = 220;
-              const gap = 10;
-              const x = Math.max(6, Math.min(pos.x + gap, size.w - cardW - 6));
-              const y = Math.max(6, Math.min(pos.y - 20, size.h - 130));
-              setCardPos({ x, y });
             }}
             onOpenNode={(node) => {
               if (node.role !== 'paper') return;
@@ -115,36 +167,20 @@ export default function App() {
             height={size.h}
           />
           {selectedNode?.role === 'paper' && (
-            <aside className="paper-card" style={{ left: `${cardPos.x}px`, top: `${cardPos.y}px` }}>
-              <div
-                className="paper-card__drag"
-                onMouseDown={(e) => {
-                  draggingRef.current = {
-                    dragging: true,
-                    startX: e.clientX,
-                    startY: e.clientY,
-                    baseX: cardPos.x,
-                    baseY: cardPos.y,
-                  };
-                  const move = (ev: MouseEvent) => {
-                    if (!draggingRef.current.dragging) return;
-                    const nx = draggingRef.current.baseX + (ev.clientX - draggingRef.current.startX);
-                    const ny = draggingRef.current.baseY + (ev.clientY - draggingRef.current.startY);
-                    setCardPos({
-                      x: Math.max(6, Math.min(nx, size.w - 245)),
-                      y: Math.max(6, Math.min(ny, size.h - 130)),
-                    });
-                  };
-                  const up = () => {
-                    draggingRef.current.dragging = false;
-                    window.removeEventListener('mousemove', move);
-                    window.removeEventListener('mouseup', up);
-                  };
-                  window.addEventListener('mousemove', move);
-                  window.addEventListener('mouseup', up);
-                }}
-              >
-                {isZh ? '详情' : 'Detail'}
+            <aside className="paper-card" aria-live="polite">
+              <div className="paper-card__header">
+                <span>{isZh ? '成果详情' : 'Work detail'}</span>
+                <button
+                  type="button"
+                  className="paper-card__close"
+                  aria-label={isZh ? '关闭详情' : 'Close detail'}
+                  onClick={() => {
+                    setSelectedNode(null);
+                    setFocusId(null);
+                  }}
+                >
+                  &times;
+                </button>
               </div>
               <div className="paper-card__title">
                 {isZh && selectedNode.titleZh ? selectedNode.titleZh : selectedNode.title}
@@ -160,7 +196,7 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {isZh ? '打开页面' : 'Open Page'}
+                {isZh ? '查看成果' : 'View work'}
               </a>
             </aside>
           )}

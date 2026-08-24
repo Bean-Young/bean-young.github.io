@@ -803,9 +803,27 @@ layout: null
 
     /* Lightweight navigation and scroll polish. */
     #research-interests,
-    #research-interests .box,
-    #research-interests video {
+    #research-interests .box {
       background-color: #fff;
+    }
+
+    .research-interest-visual {
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .research-interest-media {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: transparent;
     }
 
     html {
@@ -964,6 +982,7 @@ layout: null
       }
     }
   </style>
+  <link href="{{ '/css/interactive-polish.css' | relative_url }}" rel="stylesheet">
 </head>
 
 <body>
@@ -1086,9 +1105,9 @@ layout: null
       <div class="columns" style="margin-top: 1.5rem;">
         <div class="column is-4">
           <div class="box" style="height: 100%; border: 1px solid #e8e8e8; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
-            <div style="margin-bottom: 1rem; width: 100%; overflow: hidden; border-radius: 4px; background-color: white;">
-              <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
-                <source src="/document/1.mp4" type="video/mp4">
+            <div class="research-interest-visual">
+              <video class="research-interest-media" autoplay loop muted playsinline preload="metadata" poster="/document/research-3d-reconstruction.png" aria-label="三维医学重建流程动画">
+                <source src="/document/research-3d-reconstruction.mp4" type="video/mp4">
               </video>
             </div>
             <h3 class="subtitle is-5" style="margin-bottom: 0;">三维重建</h3>
@@ -1096,9 +1115,9 @@ layout: null
         </div>
         <div class="column is-4">
           <div class="box" style="height: 100%; border: 1px solid #e8e8e8; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
-            <div style="margin-bottom: 1rem; width: 100%; overflow: hidden; border-radius: 4px; background-color: white;">
-              <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
-                <source src="/document/2.mp4" type="video/mp4">
+            <div class="research-interest-visual">
+              <video class="research-interest-media" autoplay loop muted playsinline preload="metadata" poster="/document/research-intelligent-diagnosis.png" aria-label="智能医学诊断流程动画">
+                <source src="/document/research-intelligent-diagnosis.mp4" type="video/mp4">
               </video>
             </div>
             <h3 class="subtitle is-5" style="margin-bottom: 0;">智能诊断</h3>
@@ -1106,8 +1125,10 @@ layout: null
         </div>
         <div class="column is-4">
           <div class="box" style="height: 100%; border: 1px solid #e8e8e8; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
-            <div style="margin-bottom: 1rem; width: 100%; overflow: hidden; border-radius: 4px; background-color: white;">
-              <img src="/document/trustworthy-ai.webp" alt="可信赖医疗人工智能插图" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block; background: transparent;">
+            <div class="research-interest-visual">
+              <video class="research-interest-media" autoplay loop muted playsinline preload="metadata" poster="/document/research-trustworthy-ai.png" aria-label="可信赖医疗人工智能流程动画">
+                <source src="/document/research-trustworthy-ai.mp4" type="video/mp4">
+              </video>
             </div>
             <h3 class="subtitle is-5" style="margin-bottom: 0;">可信智能</h3>
           </div>
@@ -1120,9 +1141,10 @@ layout: null
   <section class="section py-0" id="paper-graph" style="padding-top: 0; padding-bottom: 0;">
     <div class="container is-max-desktop">
       <iframe
+        class="paper-graph-frame"
         title="论文关系图谱"
-        src="{{ '/paper-graph/index.html?v=20260412-3&lang=zh' | relative_url }}"
-        style="display:block;width:100%;height:210px;border:1px solid #e8e8e8;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.05);background:#ffffff;margin:0;"
+        src="{{ '/paper-graph/index.html?v=20260824-2&lang=zh' | relative_url }}"
+        style="display:block;width:100%;height:340px;border:1px solid #e1e6ec;border-radius:8px;box-shadow:0 6px 18px rgba(15,23,42,0.06);background:#ffffff;margin:0;"
         loading="lazy"></iframe>
     </div>
   </section>
@@ -1935,67 +1957,50 @@ layout: null
   </section>
 
   <!-- Mini Game Section -->
-  <section class="section" style="background-color: white;">
+  <section class="section game-section" id="code-defense">
     <div class="container is-max-desktop">
+      <div class="game-shell">
+        <div class="game-container">
+          <canvas id="gameCanvas" class="game-canvas" tabindex="0" aria-label="代码防御战。使用指针或方向键移动，点击或按空格键射击。"></canvas>
 
-      
-      <!-- Game Container -->
-      <div class="game-container" style="max-width: 800px; margin: 0 auto; background: #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative;">
-        <!-- Game Canvas -->
-        <canvas id="gameCanvas" style="width: 100%; height: 400px; display: block;"></canvas>
-        
-        <!-- Start Screen -->
-        <div id="startScreen" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(4px); z-index: 10;">
-          <h2 style="font-size: 2.5rem; font-weight: bold; color: #4f46e5; margin-bottom: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🎮 小游戏：代码防御战</h2>
-          
-          <div style="color: white; text-align: center; max-width: 500px; margin-bottom: 2rem; line-height: 1.8;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">控制光标防御来袭的错误代码！</p>
-            <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem;"><strong style="color: rgb(255, 107, 107) !important;">控制:</strong> 鼠标或方向键 | <strong style="color: rgb(255, 107, 107) !important;">射击:</strong> 空格或点击</p>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.8rem;"><strong style="color: rgb(255, 107, 107) !important;">提示:</strong> 摧毁特殊代码可获得临时护盾或超级武器！</p>
+          <div id="startScreen" class="game-overlay game-overlay--start">
+            <span class="game-kicker">互动休息区</span>
+            <h2>代码防御战</h2>
+            <p>守护系统，清除来袭的错误代码。</p>
+            <button id="startBtn" class="game-primary-btn" type="button">开始游戏</button>
           </div>
-          
-          <button id="startBtn" style="background: #4f46e5; color: white; border: none; padding: 12px 32px; border-radius: 25px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; transform: scale(1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-            🚀 开始游戏
-          </button>
-        </div>
-        
-        <!-- Game Over Screen -->
-        <div id="endScreen" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: none; flex-direction: column; align-items: center; justify-content: center; background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(4px); z-index: 10;">
-          <h2 style="font-size: 2.5rem; font-weight: bold; color: #ef4444; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">系统崩溃！</h2>
-          <p style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #e2e8f0;">最终得分: <span id="finalScore" style="color: #10b981; font-weight: bold;">0</span></p>
-          <p style="color: #94a3b8; margin-bottom: 2rem;">你摧毁了 <span id="enemiesDestroyed" style="color: #10b981; font-weight: bold;">0</span> 个错误代码</p>
-          <button id="restartBtn" style="background: #4f46e5; color: white; border: none; padding: 12px 32px; border-radius: 25px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; transform: scale(1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-            🔄 再玩一次
-          </button>
-        </div>
-        
-        <!-- Game HUD -->
-        <div id="hud" style="position: absolute; top: 0; left: 0; right: 0; padding: 1rem; display: none; justify-content: space-between; align-items: center; z-index: 5;">
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <div style="display: flex; align-items: center; color: #10b981;">
-              <span style="font-size: 1.2rem; margin-right: 0.5rem;">🛡️</span>
-              <span id="lives" style="font-size: 1.2rem; font-weight: bold;">3</span>
+
+          <div id="pauseScreen" class="game-overlay game-overlay--pause" hidden>
+            <span class="game-kicker">游戏已暂停</span>
+            <h2>准备好后继续</h2>
+            <button id="resumeBtn" class="game-primary-btn" type="button">继续</button>
+          </div>
+
+          <div id="endScreen" class="game-overlay game-overlay--end" hidden>
+            <span class="game-kicker">本局结束</span>
+            <h2>系统崩溃</h2>
+            <div class="game-results">
+              <span>得分 <strong id="finalScore">0</strong></span>
+              <span>已清除 <strong id="enemiesDestroyed">0</strong></span>
             </div>
-            <div style="display: flex; align-items: center; color: #4f46e5;">
-              <span style="font-size: 1.2rem; margin-right: 0.5rem;">💻</span>
-              <span id="score" style="font-size: 1.2rem; font-weight: bold;">0</span>
+            <button id="restartBtn" class="game-primary-btn" type="button">再玩一次</button>
+          </div>
+
+          <div id="hud" class="game-hud" hidden>
+            <div class="game-hud__group">
+              <span class="game-stat game-stat--lives">生命 <strong id="lives">3</strong></span>
+              <span class="game-stat game-stat--score">得分 <strong id="score">0</strong></span>
+            </div>
+            <div class="game-hud__group">
+              <span class="game-stat">时间 <strong id="time">0秒</strong></span>
+              <button id="pauseBtn" class="game-icon-btn" type="button" aria-label="暂停游戏" title="暂停游戏"><span aria-hidden="true">&#8545;</span></button>
             </div>
           </div>
-          <div style="color: #94a3b8;">
-            <span style="font-size: 1.2rem; margin-right: 0.5rem;">⏱️</span>
-            <span id="time" style="color: #94a3b8;">0s</span>
-          </div>
+          <div id="gameMessage" class="game-message" role="status" aria-live="polite"></div>
         </div>
       </div>
-      
 
-      
-      <!-- Game Art Description -->
-      <div style="margin-top: 2rem; text-align: left; color: #4a5568; font-size: 1rem; line-height: 1.6;">
-        <p style="margin: 0;">
-          游戏，作为第九艺术，以其互动性和视觉效果吸引着我，成为我选择的消遣方式。
-        </p>
-      </div>
+      <p class="game-caption">游戏作为第九艺术，以互动与视觉叙事吸引着我，也成为我最喜欢的消遣方式之一。</p>
     </div>
   </section>
 
@@ -2510,22 +2515,32 @@ layout: null
       // Get DOM elements
       const canvas = document.getElementById('gameCanvas');
       const ctx = canvas.getContext('2d');
+      const isZh = document.documentElement.lang.startsWith('zh');
       const startScreen = document.getElementById('startScreen');
+      const pauseScreen = document.getElementById('pauseScreen');
       const endScreen = document.getElementById('endScreen');
       const hud = document.getElementById('hud');
       const startBtn = document.getElementById('startBtn');
+      const pauseBtn = document.getElementById('pauseBtn');
+      const resumeBtn = document.getElementById('resumeBtn');
       const restartBtn = document.getElementById('restartBtn');
       const scoreDisplay = document.getElementById('score');
       const livesDisplay = document.getElementById('lives');
       const timeDisplay = document.getElementById('time');
       const finalScoreDisplay = document.getElementById('finalScore');
       const enemiesDestroyedDisplay = document.getElementById('enemiesDestroyed');
+      const gameMessage = document.getElementById('gameMessage');
+      let messageTimer = null;
       
       // Set canvas size
       function resizeCanvas() {
         const container = canvas.parentElement;
-        canvas.width = container.clientWidth;
-        canvas.height = 400;
+        const width = Math.floor(container.clientWidth);
+        canvas.width = width;
+        if (width <= 430) canvas.height = Math.max(320, width);
+        else if (width <= 768) canvas.height = Math.max(300, Math.round(width * 0.75));
+        else canvas.height = Math.min(400, Math.round(width / 2));
+        canvas.style.setProperty('height', `${canvas.height}px`, 'important');
       }
       
       // Initialize canvas size
@@ -2546,7 +2561,8 @@ layout: null
         difficultyInterval: 25000,
         powerUpTimer: 0,
         powerUpDuration: 5000,
-        isPoweredUp: false
+        isPoweredUp: false,
+        paused: false
       };
       
       // Player
@@ -2675,14 +2691,15 @@ layout: null
           lives: 3,
           time: 0,
           enemiesDestroyed: 0,
-          lastTime: Date.now(),
+          lastTime: performance.now(),
           spawnTimer: 0,
           spawnInterval: 1000,
           difficultyTimer: 0,
           difficultyInterval: 15000,
           powerUpTimer: 0,
           powerUpDuration: 5000,
-          isPoweredUp: false
+          isPoweredUp: false,
+          paused: false
         };
         
         bullets = [];
@@ -2694,9 +2711,11 @@ layout: null
         player.reset();
         updateHUD();
         
-        startScreen.style.display = 'none';
-        endScreen.style.display = 'none';
-        hud.style.display = 'flex';
+        startScreen.hidden = true;
+        pauseScreen.hidden = true;
+        endScreen.hidden = true;
+        hud.hidden = false;
+        canvas.focus({ preventScroll: true });
         
         requestAnimationFrame(gameLoop);
       }
@@ -2705,12 +2724,18 @@ layout: null
       function gameLoop(timestamp) {
         if (!gameState.running) return;
         
-        const now = Date.now();
-        const deltaTime = now - gameState.lastTime;
+        if (gameState.paused) {
+          gameState.lastTime = timestamp;
+          requestAnimationFrame(gameLoop);
+          return;
+        }
+
+        const now = timestamp || performance.now();
+        const deltaTime = Math.min(50, now - gameState.lastTime);
         gameState.lastTime = now;
         
         gameState.time += deltaTime / 1000;
-        timeDisplay.textContent = Math.floor(gameState.time) + 's';
+        timeDisplay.textContent = Math.floor(gameState.time) + (isZh ? '秒' : 's');
         
         ctx.fillStyle = '#0F172A';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -2788,6 +2813,7 @@ layout: null
               height: 30,
               speed: 0.8 + Math.random() * 1.5,
               health: 1,
+              maxHealth: 1,
               color: '#EF4444',
               type: 'error',
               shootTimer: 0,
@@ -2801,6 +2827,7 @@ layout: null
               height: 25,
               speed: 1.5 + Math.random() * 2,
               health: 1,
+              maxHealth: 1,
               color: '#F59E0B',
               type: 'warning',
               shootTimer: 0,
@@ -2814,6 +2841,7 @@ layout: null
               height: 40,
               speed: 0.6 + Math.random() * 1.2,
               health: 2,
+              maxHealth: 2,
               color: '#7C3AED',
               type: 'complex',
               shootTimer: 0,
@@ -2871,8 +2899,9 @@ layout: null
           const bullet = enemyBullets[i];
           
           bullet.y += bullet.speed;
+          bullet.x += bullet.dx || 0;
           
-          if (bullet.y > canvas.height) {
+          if (bullet.y > canvas.height || bullet.x < 0 || bullet.x > canvas.width) {
             enemyBullets.splice(i, 1);
             continue;
           }
@@ -2974,7 +3003,7 @@ layout: null
           const barWidth = enemy.width - 10;
           const barHeight = 5;
           ctx.fillRect(-barWidth/2, enemy.height/2 - 5, 
-                      (barWidth / enemy.health) * enemy.health, barHeight);
+                      barWidth * (enemy.health / enemy.maxHealth), barHeight);
         }
         
         ctx.restore();
@@ -3230,7 +3259,7 @@ layout: null
             gameState.spawnInterval -= 50;
           }
           
-          showMessage('System pressure increased!', 2000, '#F59E0B');
+          showMessage(isZh ? '系统压力上升！' : 'System pressure increased!', 2000, '#F59E0B');
         }
       }
       
@@ -3241,10 +3270,10 @@ layout: null
           
           if (gameState.powerUpTimer >= gameState.powerUpDuration) {
             gameState.isPoweredUp = false;
-            showMessage('Power-up ended', 1000, '#F59E0B');
+            showMessage(isZh ? '强化效果结束' : 'Power-up ended', 1000, '#F59E0B');
           } else {
             const remaining = Math.ceil((gameState.powerUpDuration - gameState.powerUpTimer) / 1000);
-            showMessage(`Power-up: ${remaining}s`, 100, '#F59E0B', true);
+            showMessage(isZh ? `强化：${remaining}秒` : `Power-up: ${remaining}s`, 100, '#F59E0B', true);
           }
         }
       }
@@ -3256,41 +3285,40 @@ layout: null
           
           if (player.shieldTimer >= player.shieldDuration) {
             player.isShielded = false;
-            showMessage('Shield disappeared', 1000, '#10B981');
+            showMessage(isZh ? '护盾消失' : 'Shield disappeared', 1000, '#10B981');
           } else {
             const remaining = Math.ceil((player.shieldDuration - player.shieldTimer) / 1000);
-            showMessage(`Shield: ${remaining}s`, 100, '#10B981', true);
+            showMessage(isZh ? `护盾：${remaining}秒` : `Shield: ${remaining}s`, 100, '#10B981', true);
           }
         }
       }
       
       // Show message
       function showMessage(text, duration, color = '#FFFFFF', temporary = false) {
-        const message = document.createElement('div');
-        message.textContent = text;
-        message.style.cssText = `
-          position: absolute;
-          top: 80px;
-          left: 50%;
-          transform: translateX(-50%);
-          padding: 8px 16px;
-          border-radius: 8px;
-          font-weight: bold;
-          z-index: 10;
-          transition: opacity 0.3s;
-          background-color: ${color}80;
-          color: #0F172A;
-          backdrop-filter: blur(2px);
-        `;
-        
-        canvas.parentElement.appendChild(message);
-        
-        setTimeout(() => {
-          message.style.opacity = '0';
-          setTimeout(() => {
-            canvas.parentElement.removeChild(message);
-          }, 300);
-        }, temporary ? 100 : duration);
+        if (temporary && gameMessage.textContent === text && gameMessage.classList.contains('is-visible')) return;
+        window.clearTimeout(messageTimer);
+        gameMessage.textContent = text;
+        gameMessage.style.borderColor = `${color}66`;
+        gameMessage.classList.add('is-visible');
+        if (!temporary) {
+          messageTimer = window.setTimeout(() => {
+            gameMessage.classList.remove('is-visible');
+          }, duration);
+        }
+      }
+
+      function setPaused(paused) {
+        if (!gameState.running || gameState.paused === paused) return;
+        gameState.paused = paused;
+        pauseScreen.hidden = !paused;
+        pauseBtn.setAttribute('aria-pressed', String(paused));
+        Object.keys(keys).forEach(key => { keys[key] = false; });
+        if (!paused) {
+          gameState.lastTime = performance.now();
+          canvas.focus({ preventScroll: true });
+        } else {
+          resumeBtn.focus({ preventScroll: true });
+        }
       }
       
       // End game
@@ -3300,17 +3328,27 @@ layout: null
         finalScoreDisplay.textContent = gameState.score;
         enemiesDestroyedDisplay.textContent = gameState.enemiesDestroyed;
         
-        endScreen.style.display = 'flex';
-        hud.style.display = 'none';
+        pauseScreen.hidden = true;
+        endScreen.hidden = false;
+        hud.hidden = true;
+        gameMessage.classList.remove('is-visible');
+        restartBtn.focus({ preventScroll: true });
       }
       
       // Event listeners
       window.addEventListener('keydown', (e) => {
+        if (!gameState.running) return;
+        if (e.key === 'Escape' || e.key.toLowerCase() === 'p') {
+          e.preventDefault();
+          setPaused(!gameState.paused);
+          return;
+        }
+        if (gameState.paused) return;
         switch(e.key) {
-          case 'ArrowUp': keys.up = true; break;
-          case 'ArrowDown': keys.down = true; break;
-          case 'ArrowLeft': keys.left = true; break;
-          case 'ArrowRight': keys.right = true; break;
+          case 'ArrowUp': keys.up = true; e.preventDefault(); break;
+          case 'ArrowDown': keys.down = true; e.preventDefault(); break;
+          case 'ArrowLeft': keys.left = true; e.preventDefault(); break;
+          case 'ArrowRight': keys.right = true; e.preventDefault(); break;
           case ' ': keys.space = true; e.preventDefault(); break;
         }
       });
@@ -3325,7 +3363,8 @@ layout: null
         }
       });
       
-      canvas.addEventListener('mousemove', (e) => {
+      canvas.addEventListener('pointermove', (e) => {
+        if (!gameState.running || gameState.paused) return;
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
         const scaleY = canvas.height / rect.height;
@@ -3337,37 +3376,18 @@ layout: null
         player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
       });
       
-      canvas.addEventListener('mousedown', () => {
-        if (gameState.running) {
-          player.shoot();
-        }
-      });
-      
-      canvas.addEventListener('touchmove', (e) => {
+      canvas.addEventListener('pointerdown', (e) => {
         e.preventDefault();
-        if (!gameState.running) return;
-        
-        const rect = canvas.getBoundingClientRect();
-        const scaleX = canvas.width / rect.width;
-        const scaleY = canvas.height / rect.height;
-        
-        const touch = e.touches[0];
-        player.x = (touch.clientX - rect.left) * scaleX - player.width / 2;
-        player.y = (touch.clientY - rect.top) * scaleY - player.height / 2;
-        
-        player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
-        player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
-      });
-      
-      canvas.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        if (gameState.running) {
-          player.shoot();
-        }
+        if (gameState.running && !gameState.paused) player.shoot();
       });
       
       startBtn.addEventListener('click', initGame);
       restartBtn.addEventListener('click', initGame);
+      pauseBtn.addEventListener('click', () => setPaused(true));
+      resumeBtn.addEventListener('click', () => setPaused(false));
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && gameState.running && !gameState.paused) setPaused(true);
+      });
     });
   </script>
 

@@ -137,6 +137,29 @@ export function PaperForceGraph({
     }, 20);
   }, [resetTick]);
 
+  useEffect(() => {
+    if (!focusId) return;
+    const fg = fgRef.current;
+    const node = graphData.nodes.find((candidate) => candidate.id === focusId);
+    if (!fg || node?.x === undefined || node.y === undefined) return;
+    const timer = window.setTimeout(() => {
+      fg.centerAt(node.x, node.y, 420);
+      fg.zoom(node.role === 'paper' ? 1.65 : 1.35, 420);
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [focusId, graphData.nodes]);
+
+  useEffect(() => {
+    if (focusId) return;
+    const fitGraph = () => fgRef.current?.zoomToFit(360, width <= 680 ? 16 : 22);
+    const firstFit = window.setTimeout(fitGraph, 240);
+    const settledFit = window.setTimeout(fitGraph, 1050);
+    return () => {
+      window.clearTimeout(firstFit);
+      window.clearTimeout(settledFit);
+    };
+  }, [focusId, width, height]);
+
   return (
     <ForceGraph2D
       ref={fgRef}
@@ -181,9 +204,9 @@ export function PaperForceGraph({
         }
         if (line) lines.push(line);
         const limited = lines.slice(0, 2);
-        let fontSize = Math.max(3.6, 5.8 / globalScale);
+        let fontSize = Math.max(4.2, 6.4 / globalScale);
         if (n.id === 'hub-medical') {
-          fontSize += 4.6 / globalScale;
+          fontSize += 3.8 / globalScale;
           // Medical AI 使用单行，避免被换行稀释视觉大小
           limited.length = 0;
           limited.push(label);
@@ -193,7 +216,14 @@ export function PaperForceGraph({
         ctx.font = `600 ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#0f172a';
+        ctx.fillStyle = '#172033';
+        if (n.id === focusId) {
+          ctx.beginPath();
+          ctx.arc(node.x ?? 0, node.y ?? 0, radius + 3 / globalScale, 0, Math.PI * 2);
+          ctx.strokeStyle = '#b7791f';
+          ctx.lineWidth = Math.max(1.2 / globalScale, 0.7);
+          ctx.stroke();
+        }
         const maxLineWidth = Math.max(
           ...limited.map((ln) => ctx.measureText(ln).width),
           0,

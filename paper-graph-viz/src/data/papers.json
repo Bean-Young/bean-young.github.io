@@ -150,6 +150,20 @@
       "pillarId": "cat-diag"
     },
     {
+      "id": "p-conductor",
+      "title": "Conductor: Dynamically orchestrating pipeline parallelism with multi-granularity control",
+      "shortLabel": "Conductor",
+      "year": 2027,
+      "venue": "FGCS",
+      "url": "https://doi.org/10.1016/j.future.2026.108762",
+      "citations": 0,
+      "summary": "Proposes a dynamic two-tier scheduling framework to mitigate straggler-induced bubbles and improve pipeline-parallel training throughput.",
+      "summaryZh": "提出动态双层调度框架，缓解由慢节点引发的流水线气泡并提升流水线并行训练吞吐量。",
+      "field": "Pipeline Parallelism · Scheduling",
+      "role": "paper",
+      "pillarId": "cat-diag"
+    },
+    {
       "id": "pat-petnerf",
       "title": "PET image reconstruction method based on prior image and PET image 3D perception method",
       "titleZh": "基于先验图像的PET图像重建方法及PET图像3D感知方法",
@@ -210,6 +224,7 @@
     {"source": "cat-diag", "target": "p-emnet", "type": "similar"},
     {"source": "cat-diag", "target": "p-autous", "type": "similar"},
     {"source": "cat-diag", "target": "p-hyper", "type": "similar"},
+    {"source": "cat-diag", "target": "p-conductor", "type": "similar"},
 
     {"source": "cat-trust", "target": "p-vdect", "type": "similar"},
 

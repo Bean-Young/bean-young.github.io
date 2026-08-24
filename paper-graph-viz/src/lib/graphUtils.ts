@@ -82,21 +82,23 @@ export function linkColorFor(
 }
 
 export function nodeRadius(n: PaperNode): number {
-  const c = Math.min(Math.max(n.citations, 0), 5000);
-  let r = 18 + Math.pow(c, 0.96) * 2.8;
-  if (n.role === 'hub') r *= 1.18;
-  if (n.role === 'pillar') r *= 1.08;
-  return Math.min(86, r);
+  if (n.role === 'hub') return 45;
+  if (n.role === 'pillar') return 32;
+  const citations = Math.min(Math.max(n.citations, 0), 100);
+  return Math.min(24, 15 + Math.sqrt(citations) * 2.1);
 }
 
 function baseColor(n: PaperNode): string {
-  if (n.role === 'hub') return '#fbbf24';
+  if (n.role === 'hub') return '#f4c95d';
   if (n.role === 'pillar') {
-    if (n.id === 'cat-3d') return '#38bdf8';
-    if (n.id === 'cat-diag') return '#4ade80';
-    if (n.id === 'cat-trust') return '#c084fc';
+    if (n.id === 'cat-3d') return '#56b4c8';
+    if (n.id === 'cat-diag') return '#70b889';
+    if (n.id === 'cat-trust') return '#a98ac7';
   }
-  return 'rgba(148,163,184,0.92)';
+  if (n.pillarId === 'cat-3d') return '#c5e7ed';
+  if (n.pillarId === 'cat-diag') return '#d2ebda';
+  if (n.pillarId === 'cat-trust') return '#e3d7ee';
+  return '#d9e0e8';
 }
 
 export function nodeColorFor(
@@ -105,7 +107,7 @@ export function nodeColorFor(
   hi: HighlightSets,
 ): string {
   if (!focusId) return baseColor(n);
-  if (n.id === focusId) return '#fbbf24';
-  if (hi.neighborIds.has(n.id)) return 'rgba(34,211,238,0.95)';
-  return 'rgba(71,85,105,0.42)';
+  if (n.id === focusId) return '#f4c95d';
+  if (hi.neighborIds.has(n.id)) return baseColor(n);
+  return 'rgba(203,213,225,0.58)';
 }
