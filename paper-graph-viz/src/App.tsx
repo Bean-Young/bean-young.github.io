@@ -73,7 +73,7 @@ export default function App() {
   const directions = useMemo(
     () => [
       { id: 'cat-3d', label: isZh ? '三维重建' : '3D Reconstruction', tone: 'cyan' },
-      { id: 'cat-diag', label: isZh ? '智能诊断' : 'Diagnosis', tone: 'green' },
+      { id: 'cat-diag', label: isZh ? '智能诊断' : 'Intelligent Diagnosis', tone: 'green' },
       { id: 'cat-trust', label: isZh ? '可信智能' : 'Trustworthy AI', tone: 'violet' },
     ],
     [isZh],
