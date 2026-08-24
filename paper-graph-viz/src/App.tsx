@@ -4,6 +4,7 @@ import rawPayload from './data/papers.json';
 import type { PaperGraphPayload, PaperNode } from './types';
 
 const payload = rawPayload as PaperGraphPayload;
+type ZoomDirection = 'in' | 'out';
 
 function withAggregatedCitations(nodes: PaperNode[]): PaperNode[] {
   const paperNodes = nodes.filter((n) => n.role === 'paper');
@@ -45,6 +46,10 @@ export default function App() {
   const [focusId, setFocusId] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<PaperNode | null>(null);
   const [resetTick, setResetTick] = useState(0);
+  const [zoomRequest, setZoomRequest] = useState<{ direction: ZoomDirection; sequence: number }>({
+    direction: 'in',
+    sequence: 0,
+  });
 
   const wrapRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 800, h: 600 });
@@ -83,6 +88,10 @@ export default function App() {
     setFocusId(null);
     setSelectedNode(null);
     setResetTick((tick) => tick + 1);
+  }, []);
+
+  const requestZoom = useCallback((direction: ZoomDirection) => {
+    setZoomRequest((previous) => ({ direction, sequence: previous.sequence + 1 }));
   }, []);
 
   const focusNode = useCallback(
@@ -141,15 +150,35 @@ export default function App() {
           </label>
         </header>
         <div className="app__canvas-wrap" ref={wrapRef}>
-          <button
-            type="button"
-            className="reset-btn"
-            onClick={resetView}
-            aria-label={isZh ? '重置关系图' : 'Reset research map'}
-            title={isZh ? '重置关系图' : 'Reset research map'}
-          >
-            <span aria-hidden="true">&#8634;</span>
-          </button>
+          <div className="map-zoom-controls" role="group" aria-label={isZh ? '关系图缩放控制' : 'Research map zoom controls'}>
+            <button
+              type="button"
+              className="graph-control-btn"
+              onClick={() => requestZoom('in')}
+              aria-label={isZh ? '放大关系图' : 'Zoom in'}
+              title={isZh ? '放大' : 'Zoom in'}
+            >
+              <span aria-hidden="true">+</span>
+            </button>
+            <button
+              type="button"
+              className="graph-control-btn"
+              onClick={() => requestZoom('out')}
+              aria-label={isZh ? '缩小关系图' : 'Zoom out'}
+              title={isZh ? '缩小' : 'Zoom out'}
+            >
+              <span aria-hidden="true">&#8722;</span>
+            </button>
+            <button
+              type="button"
+              className="graph-control-btn"
+              onClick={resetView}
+              aria-label={isZh ? '恢复总览' : 'Reset research map'}
+              title={isZh ? '恢复总览' : 'Reset overview'}
+            >
+              <span aria-hidden="true">&#8634;</span>
+            </button>
+          </div>
           <PaperForceGraph
             graphData={graph}
             focusId={focusId}
@@ -163,6 +192,7 @@ export default function App() {
               window.open(node.url, '_blank', 'noopener,noreferrer');
             }}
             resetTick={resetTick}
+            zoomRequest={zoomRequest}
             width={size.w}
             height={size.h}
           />

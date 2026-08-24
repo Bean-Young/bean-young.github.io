@@ -17,6 +17,7 @@ type Props = {
   onSelectNode: (node: PaperNode | null, pos?: { x: number; y: number }) => void;
   onOpenNode: (node: PaperNode) => void;
   resetTick: number;
+  zoomRequest: { direction: 'in' | 'out'; sequence: number };
   width: number;
   height: number;
 };
@@ -28,6 +29,7 @@ export function PaperForceGraph({
   onSelectNode,
   onOpenNode,
   resetTick,
+  zoomRequest,
   width,
   height,
 }: Props) {
@@ -37,11 +39,28 @@ export function PaperForceGraph({
   const clickTimerRef = useRef<number | null>(null);
   const lastClickRef = useRef<{ id: string; t: number }>({ id: '', t: 0 });
   const labelBoxesRef = useRef<Array<{ x1: number; y1: number; x2: number; y2: number }>>([]);
+  const interactionRef = useRef<HTMLDivElement>(null);
 
   const hi = useMemo(
     () => computeHighlight(focusId, graphData.links),
     [focusId, graphData.links],
   );
+  const focusedNode = useMemo(
+    () => graphData.nodes.find((node) => node.id === focusId) ?? null,
+    [focusId, graphData.nodes],
+  );
+  const isolateFocusedPillar = focusedNode?.role === 'pillar';
+
+  useEffect(() => {
+    const surface = interactionRef.current;
+    if (!surface) return;
+    const allowPinchOnly = (event: WheelEvent) => {
+      // Trackpad pinch emits ctrl+wheel; plain scroll should reach the parent page.
+      if (!event.ctrlKey) event.stopImmediatePropagation();
+    };
+    surface.addEventListener('wheel', allowPinchOnly, { capture: true, passive: true });
+    return () => surface.removeEventListener('wheel', allowPinchOnly, true);
+  }, []);
 
   const clampNodeToViewport = useCallback(
     (node: NodeObject<PaperNode>, mode: 'soft' | 'hard') => {
@@ -143,11 +162,21 @@ export function PaperForceGraph({
     const node = graphData.nodes.find((candidate) => candidate.id === focusId);
     if (!fg || node?.x === undefined || node.y === undefined) return;
     const timer = window.setTimeout(() => {
-      fg.centerAt(node.x, node.y, 420);
-      fg.zoom(node.role === 'paper' ? 1.65 : 1.35, 420);
+      const duration = 460;
+      fg.centerAt(node.x, node.y, duration);
+      fg.zoom(node.role === 'paper' ? 1.75 : width <= 680 ? 1.65 : 2.15, duration);
     }, 80);
     return () => window.clearTimeout(timer);
   }, [focusId, graphData.nodes]);
+
+  useEffect(() => {
+    if (!zoomRequest.sequence) return;
+    const fg = fgRef.current;
+    if (!fg) return;
+    const multiplier = zoomRequest.direction === 'in' ? 1.24 : 0.8;
+    const nextZoom = Math.min(3.1, Math.max(0.72, fg.zoom() * multiplier));
+    fg.zoom(nextZoom, 220);
+  }, [zoomRequest]);
 
   useEffect(() => {
     if (focusId) return;
@@ -161,6 +190,7 @@ export function PaperForceGraph({
   }, [focusId, width, height]);
 
   return (
+    <div className="force-graph" ref={interactionRef}>
     <ForceGraph2D
       ref={fgRef}
       graphData={graphData}
@@ -182,9 +212,13 @@ export function PaperForceGraph({
       }}
       nodeRelSize={1}
       nodeVal={(n: PaperNode) => nodeRadius(n)}
-      nodeColor={(n: PaperNode) => nodeColorFor(n, focusId, hi)}
+      nodeColor={(n: PaperNode) => {
+        if (isolateFocusedPillar && !hi.neighborIds.has(n.id)) return 'rgba(255,255,255,0)';
+        return nodeColorFor(n, focusId, hi);
+      }}
       nodeCanvasObject={(node, ctx, globalScale) => {
         const n = node as PaperNode;
+        if (isolateFocusedPillar && !hi.neighborIds.has(n.id)) return;
         const label = n.shortLabel ?? n.title;
         const radius = nodeRadius(n);
         const maxWidth = radius * 1.55;
@@ -245,7 +279,10 @@ export function PaperForceGraph({
           ctx.fillText(ln, x, startY + idx * lineHeight);
         });
       }}
-      linkColor={(l: PaperLink) => linkColorFor(l, focusId, hi)}
+      linkColor={(l: PaperLink) => {
+        if (isolateFocusedPillar && !hi.highlightLinkKeys.has(linkKey(l))) return 'rgba(255,255,255,0)';
+        return linkColorFor(l, focusId, hi);
+      }}
       linkWidth={(l: PaperLink) => {
         const k = linkKey(l);
         return focusId && hi.highlightLinkKeys.has(k) ? 2.8 : 1.05;
@@ -280,5 +317,6 @@ export function PaperForceGraph({
       enableZoomInteraction
       enablePanInteraction
     />
+    </div>
   );
 }
