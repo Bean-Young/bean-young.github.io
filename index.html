@@ -809,6 +809,7 @@ layout: null
     }
 
     .research-interest-visual {
+      position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       margin-bottom: 1rem;
@@ -820,11 +821,36 @@ layout: null
     }
 
     .research-interest-media {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
       display: block;
       object-fit: contain;
-      background: transparent;
+      background: #fff;
+      opacity: 0;
+      transition: opacity 180ms ease;
+    }
+
+    .research-interest-poster {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+      pointer-events: none;
+      transition: opacity 180ms ease;
+    }
+
+    .research-interest-visual.is-video-ready .research-interest-media {
+      opacity: 1;
+    }
+
+    .research-interest-visual.is-video-ready .research-interest-poster {
+      opacity: 0;
     }
 
     html {
@@ -1107,6 +1133,7 @@ layout: null
         <div class="column is-4">
           <div class="box" style="height: 100%; border: 1px solid #e8e8e8; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
             <div class="research-interest-visual">
+              <img class="research-interest-poster" src="/document/research-3d-reconstruction-poster.jpg" alt="" aria-hidden="true" decoding="async">
               <video class="research-interest-media" autoplay loop muted playsinline preload="none" poster="/document/research-3d-reconstruction-poster.jpg" data-lazy-video aria-label="Animated illustration of multimodal 3D medical reconstruction">
                 <source data-src="/document/research-3d-reconstruction.webm" type="video/webm">
                 <source data-src="/document/research-3d-reconstruction.mp4" type="video/mp4">
@@ -1118,6 +1145,7 @@ layout: null
         <div class="column is-4">
           <div class="box" style="height: 100%; border: 1px solid #e8e8e8; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
             <div class="research-interest-visual">
+              <img class="research-interest-poster" src="/document/research-intelligent-diagnosis-poster.jpg" alt="" aria-hidden="true" decoding="async">
               <video class="research-interest-media" autoplay loop muted playsinline preload="none" poster="/document/research-intelligent-diagnosis-poster.jpg" data-lazy-video aria-label="Animated illustration of intelligent medical diagnosis with Dataset, LLM, and RL">
                 <source data-src="/document/research-intelligent-diagnosis.webm" type="video/webm">
                 <source data-src="/document/research-intelligent-diagnosis.mp4" type="video/mp4">
@@ -1129,6 +1157,7 @@ layout: null
         <div class="column is-4">
           <div class="box" style="height: 100%; border: 1px solid #e8e8e8; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
             <div class="research-interest-visual">
+              <img class="research-interest-poster" src="/document/research-trustworthy-ai-poster.jpg" alt="" aria-hidden="true" decoding="async">
               <video class="research-interest-media" autoplay loop muted playsinline preload="none" poster="/document/research-trustworthy-ai-poster.jpg" data-lazy-video aria-label="Animated illustration of trustworthy medical AI from Shift through Safety to Clinic">
                 <source data-src="/document/research-trustworthy-ai.webm" type="video/webm">
                 <source data-src="/document/research-trustworthy-ai.mp4" type="video/mp4">
@@ -1363,7 +1392,7 @@ layout: null
     </h3>
     <p class="publication-description">
       Xingbo Dong<sup>†</sup>, Ziyuan Liu, <b>Yuezhe Yang</b>, Yen-Lung Lai, Zhe Jin<br>
-      Future Generation Computer Systems, 2027<br>
+      FGCS, 2027<br>
       <small>Proposes a dynamic two-tier scheduling framework to mitigate straggler-induced bubbles and improve pipeline-parallel training throughput.</small>
     </p>
     <div class="publication-links buttons field has-addons">
@@ -1398,7 +1427,7 @@ layout: null
     </h3>
     <p class="publication-description">
       <b>Yuezhe Yang</b>, Xingbo Dong, Wenjie Cai, Dexin Yang, Zhe Jin <br>
-      ZL202510166550.9 <br>
+      National Invention Patent, 2025 <br>
       <small>Proposes a 3D Gaussian model generation and rendering method for low-dose brain PET imaging to reduce noise and enhance resolution.</small>
     </p>
          <!-- Publication Links. -->
@@ -1588,7 +1617,7 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              <b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, and <span class="more-authors" tabindex="0" role="button" title="click to view all authors" data-collapsed="et al." data-expanded="Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Xingbo Dong†, Siyi Song†, Huabin Wang†, and Zhe Jin†">et al.</span>
+              <b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, <span class="more-authors" tabindex="0" role="button" title="click to view all authors" data-collapsed="et al." data-expanded="Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Xingbo Dong†, Siyi Song†, Huabin Wang†, and Zhe Jin†">et al.</span>
             </span><br>
             Chinese College Students' Innovation and Entrepreneurship Program, 2024<br>
             <small>Integrate physical models with deep learning to achieve efficient high-quality low-dose PET image reconstruction.</small>
@@ -2047,13 +2076,116 @@ layout: null
 
     function initializeAuthorExpanders() {
       const delay = 16;
+      const expanders = Array.from(document.querySelectorAll('.more-authors'));
+
+      function parseAuthorList(rawAuthors) {
+        return (rawAuthors || '')
+          .replace(/\s*,?\s+and\s+/g, ', ')
+          .split(',')
+          .map(author => author.trim())
+          .filter(Boolean);
+      }
+
+      function formatAuthorList(authors) {
+        if (authors.length <= 1) return authors[0] || '';
+        if (authors.length === 2) return `${authors[0]} and ${authors[1]}`;
+        return `${authors.slice(0, -1).join(', ')}, and ${authors[authors.length - 1]}`;
+      }
+
+      function prepareAuthorSummary(element) {
+        if (element.dataset.summaryReady === 'true') {
+          return element.previousElementSibling;
+        }
+
+        const precedingText = element.previousSibling;
+        if (precedingText && precedingText.nodeType === Node.TEXT_NODE) {
+          precedingText.textContent = precedingText.textContent.replace(/,\s*and\s*$/, ', ');
+        }
+
+        const summary = document.createElement('span');
+        summary.className = 'author-summary';
+        element.parentNode.insertBefore(summary, element);
+        element.dataset.allAuthors = element.dataset.expanded || '';
+        element.dataset.summaryReady = 'true';
+        return summary;
+      }
+
+      function fitsOnFirstLine(element, summary, lineTop) {
+        const textRange = document.createRange();
+        textRange.selectNodeContents(summary);
+        const summaryWraps = Array.from(textRange.getClientRects()).some(rect => rect.top > lineTop + 1);
+        return !summaryWraps && element.getBoundingClientRect().top <= lineTop + 1;
+      }
+
+      function getVisibleAuthors(element) {
+        try {
+          return JSON.parse(element.dataset.visibleAuthors || '[]');
+        } catch (error) {
+          return [];
+        }
+      }
+
+      function formatCollapsedSummary(visibleAuthors) {
+        return visibleAuthors.length ? `${formatAuthorList(visibleAuthors)}, and ` : 'and ';
+      }
+
+      function formatExpandedSummary(visibleAuthors) {
+        return visibleAuthors.length ? `${formatAuthorList(visibleAuthors)}, ` : '';
+      }
+
+      function fitCollapsedAuthors(element) {
+        if (element.dataset.isExpanded === 'true') return;
+        if (!element.getClientRects().length) return;
+
+        const summary = prepareAuthorSummary(element);
+        const allAuthors = parseAuthorList(element.dataset.allAuthors);
+        const collapsedText = 'et al.';
+
+        element.hidden = false;
+        element.style.display = 'inline';
+        summary.textContent = '';
+        element.textContent = collapsedText;
+        const lineTop = element.getBoundingClientRect().top;
+        let visibleCount = 0;
+
+        for (let count = 1; count <= allAuthors.length; count += 1) {
+          summary.textContent = formatCollapsedSummary(allAuthors.slice(0, count));
+          element.textContent = collapsedText;
+          if (!fitsOnFirstLine(element, summary, lineTop)) break;
+          visibleCount = count;
+        }
+
+        const visibleAuthors = allAuthors.slice(0, visibleCount);
+        const hiddenAuthors = allAuthors.slice(visibleCount);
+        summary.textContent = hiddenAuthors.length
+          ? formatCollapsedSummary(visibleAuthors)
+          : formatAuthorList(visibleAuthors);
+        element.dataset.visibleAuthors = JSON.stringify(visibleAuthors);
+
+        if (!hiddenAuthors.length) {
+          element.hidden = true;
+          return;
+        }
+
+        element.dataset.collapsed = collapsedText;
+        element.dataset.expanded = formatAuthorList(hiddenAuthors);
+        element.dataset.isExpanded = 'false';
+        element.textContent = collapsedText;
+      }
 
       function animateAuthorText(element) {
         if (element.dataset.animating === 'true') return;
 
         const collapsedText = element.dataset.collapsed || 'et al.';
-        const expandedText = element.dataset.expanded || '';
-        const targetText = element.textContent === collapsedText ? expandedText : collapsedText;
+        const expandedText = (element.dataset.expanded || '').replace(/,\s*and\s*$/, '');
+        const isExpanded = element.dataset.isExpanded === 'true';
+        const summary = element.previousElementSibling;
+        if (summary && summary.classList.contains('author-summary')) {
+          summary.textContent = isExpanded
+            ? formatCollapsedSummary(getVisibleAuthors(element))
+            : formatExpandedSummary(getVisibleAuthors(element));
+        }
+        const targetText = isExpanded ? collapsedText : expandedText;
         let cursorPosition = 0;
 
         element.dataset.animating = 'true';
@@ -2065,12 +2197,14 @@ layout: null
 
           if (cursorPosition === targetText.length) {
             clearInterval(textAdder);
+            element.textContent = targetText.replace(/,\s*and\s*$/, '');
             element.dataset.animating = 'false';
+            element.dataset.isExpanded = String(!isExpanded);
           }
         }, delay);
       }
 
-      document.querySelectorAll('.more-authors').forEach(element => {
+      expanders.forEach(element => {
         element.addEventListener('click', function() {
           animateAuthorText(this);
         });
@@ -2080,6 +2214,28 @@ layout: null
             event.preventDefault();
             animateAuthorText(this);
           }
+        });
+      });
+
+      const fitAllCollapsedAuthors = function() {
+        expanders.forEach(fitCollapsedAuthors);
+      };
+
+      requestAnimationFrame(fitAllCollapsedAuthors);
+      document.addEventListener('author-layout:refresh', function() {
+        requestAnimationFrame(fitAllCollapsedAuthors);
+      });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fitAllCollapsedAuthors);
+      }
+
+      let resizeQueued = false;
+      window.addEventListener('resize', function() {
+        if (resizeQueued) return;
+        resizeQueued = true;
+        requestAnimationFrame(function() {
+          resizeQueued = false;
+          fitAllCollapsedAuthors();
         });
       });
     }
@@ -2157,6 +2313,10 @@ layout: null
       } else if (showMoreContainer) {
         showMoreContainer.style.display = 'none';
       }
+
+      requestAnimationFrame(function() {
+        document.dispatchEvent(new Event('author-layout:refresh'));
+      });
 
     }
     
@@ -3448,6 +3608,18 @@ layout: null
 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const researchVideos = document.querySelectorAll('[data-lazy-video]');
+
+      const setResearchVideoReady = function(video, isReady) {
+        const visual = video.closest('.research-interest-visual');
+        if (visual) visual.classList.toggle('is-video-ready', isReady);
+      };
+
+      researchVideos.forEach(video => {
+        video.addEventListener('playing', () => setResearchVideoReady(video, true));
+        ['loadstart', 'emptied', 'waiting', 'stalled', 'error'].forEach(eventName => {
+          video.addEventListener(eventName, () => setResearchVideoReady(video, false));
+        });
+      });
 
       const loadResearchVideo = function(video) {
         if (video.dataset.loaded === 'true') return;
