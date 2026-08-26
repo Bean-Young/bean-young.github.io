@@ -184,18 +184,26 @@ body {
 .credential-rail,
 .media-rail {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  scroll-padding: 0.25rem;
-  padding: 0.25rem 0.25rem 1rem;
+  scroll-padding: 0.5rem;
+  padding: 0.5rem 0.5rem 1.25rem;
+  touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
+}
+
+.credential-rail.is-dragging,
+.media-rail.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
 }
 
 .credential-card {
   display: flex;
-  flex: 0 0 min(390px, calc(100vw - 4rem));
+  flex: 0 0 min(480px, calc(100vw - 4rem));
   flex-direction: column;
   min-width: 0;
   overflow: hidden;
@@ -203,19 +211,20 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
 }
 
 .credential-card > a {
   display: block;
-  padding: 0.75rem;
+  padding: 0.9rem;
   background: #fff;
 }
 
 .credential-card img {
   display: block;
   width: 100%;
-  height: 260px;
+  height: 330px;
+  cursor: zoom-in;
   object-fit: contain;
 }
 
@@ -223,7 +232,7 @@ body {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 0 1rem 1rem;
+  padding: 0 1.15rem 1.15rem;
 }
 
 .credential-body > a {
@@ -237,78 +246,151 @@ body {
 }
 
 .credential-body p {
-  margin: 0.5rem 0;
-  color: #6b7280;
-  font-size: 0.9rem;
+  margin: 0.55rem 0 0.45rem;
+  color: #111827;
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.35;
 }
 
 .credential-body span {
-  display: inline-block;
-  margin-right: 0.45rem;
-  padding: 0.12rem 0.45rem;
-  border-radius: 4px;
-  background: #f3f4f6;
-  color: #4b5563;
-  font-size: 0.78rem;
+  display: none;
 }
 
 .credential-body em {
-  color: #6b7280;
-  font-size: 0.94rem;
-  line-height: 1.45;
+  color: #4b5563;
+  font-size: 0.98rem;
+  line-height: 1.5;
 }
 
 .media-rail-item {
-  flex: 0 0 min(720px, calc(100vw - 4rem));
+  flex: 0 0 min(780px, calc(100vw - 4rem));
   margin: 0;
-  padding: 0.75rem;
+  padding: 0.85rem;
   overflow: hidden;
   scroll-snap-align: start;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
 }
 
 .media-rail-item img {
   display: block;
   width: 100%;
-  height: 440px;
+  height: 500px;
+  cursor: zoom-in;
   object-fit: contain;
 }
 
-.patent-rail .media-rail-item {
+.media-rail-item figcaption {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.9rem 0.35rem 0.2rem;
+}
+
+.media-rail-item figcaption strong {
+  color: #1f2937;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.media-rail-item figcaption time {
+  color: #111827;
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.media-rail-item figcaption span {
+  color: #4b5563;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.patent-card {
   flex-basis: min(620px, calc(100vw - 4rem));
 }
 
-.patent-rail .media-rail-item img {
-  height: 400px;
+.patent-card img {
+  height: 420px;
+}
+
+.credential-lightbox {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.82);
+}
+
+.credential-lightbox[hidden] {
+  display: none;
+}
+
+.credential-lightbox img {
+  max-width: min(1100px, 92vw);
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.credential-lightbox-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #111827;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
   .credential-rail,
   .media-rail {
-    gap: 0.85rem;
-    padding-bottom: 0.75rem;
+    gap: 1rem;
+    padding: 0.25rem 0.25rem 1rem;
   }
 
   .credential-card,
+  .patent-card,
   .media-rail-item,
   .patent-rail .media-rail-item {
     flex-basis: calc(100vw - 2.5rem);
   }
 
   .credential-card img {
-    height: 250px;
+    height: 290px;
   }
 
   .media-rail-item {
     padding: 0.5rem;
   }
 
-  .media-rail-item img,
-  .patent-rail .media-rail-item img {
+  .media-rail-item img {
     height: auto;
     max-height: 420px;
+  }
+
+  .patent-card img {
+    height: 340px;
+  }
+
+  .credential-lightbox {
+    padding: 1rem;
+  }
+
+  .credential-lightbox img {
+    max-width: 94vw;
+    max-height: 86vh;
   }
 }
