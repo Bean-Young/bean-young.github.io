@@ -40,7 +40,7 @@ $(document).ready(function() {
     };
 
     // 初始化指定ID的轮播图
-    var carousels = bulmaCarousel.attach('#results-carousel', carouselOptions);
+    var carousels = document.querySelector('#results-carousel') ? bulmaCarousel.attach('#results-carousel', carouselOptions) : [];
 
     // Loop on each carousel initialized
     for(var i = 0; i < carousels.length; i++) {
