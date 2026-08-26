@@ -82,6 +82,23 @@ layout: null
       text-overflow: ellipsis;
     }
 
+    @media screen and (min-width: 769px) {
+      .profile-action-buttons .button,
+      .profile-action-buttons .dropdown {
+        flex: 0 0 auto;
+        min-width: auto;
+      }
+
+      .profile-action-buttons .button {
+        width: auto;
+      }
+
+      .profile-action-buttons .button span:not(.icon) {
+        overflow: visible;
+        text-overflow: clip;
+      }
+    }
+
     .profile-action-buttons .button .icon img {
       width: 1em;
       height: 1em;
