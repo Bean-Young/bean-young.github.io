@@ -2312,6 +2312,9 @@ layout: null
         showMoreContainer.style.display = 'none';
       }
 
+      requestAnimationFrame(function() {
+        document.dispatchEvent(new Event('author-layout:refresh'));
+      });
     }
     
     // Apply display limit to awards
