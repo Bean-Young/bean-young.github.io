@@ -49,7 +49,7 @@ layout: null
       flex-wrap: nowrap !important;
       gap: 0.35rem;
       max-width: 100%;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .profile-action-buttons .button,
@@ -69,6 +69,11 @@ layout: null
 
     .profile-action-buttons .dropdown-trigger {
       width: 100%;
+    }
+
+    .profile-action-buttons .dropdown-menu {
+      min-width: max-content;
+      z-index: 1100;
     }
 
     .profile-action-buttons .button span:not(.icon) {
@@ -1055,9 +1060,9 @@ layout: null
           <div class="content has-text-justified">
             <p>I am currently a PhD student at the School of Computer Science, The University of Sydney. I am also a research intern at the Institute of Translational Medicine, SJTU. I received my B.Eng. in Artificial Intelligence from Anhui University. I was previously an intern at the Vision and Learning Lab at the University of Alberta and at the Anhui Provincial International Joint Research Center for Advanced Technology in Medical Imaging. My research is dedicated to the application of artificial intelligence in medicine.</p> <p><b>I am actively seeking internship and collaboration opportunities in medical AI. We collaborate with hospitals, companies, and universities to advance translational medical research. I am open to all ideas, so please feel free to contact me if you are interested in my projects.</b></p>
             <div class="buttons profile-action-buttons">
-              <div class="dropdown is-hoverable">
+              <div class="dropdown is-hoverable cv-dropdown" data-cv-dropdown>
                 <div class="dropdown-trigger">
-                  <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu-cv">
+                  <button type="button" class="button is-light" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu-cv">
                     <span class="icon"><i class="fas fa-file"></i></span>
                     <span>CV</span>
                     <span class="icon is-small">
@@ -1067,8 +1072,8 @@ layout: null
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu-cv" role="menu">
                   <div class="dropdown-content">
-                    <a href="/document/CV-E.pdf" class="dropdown-item">English</a>
-                    <a href="/document/CV-C.pdf" class="dropdown-item">Chinese</a>
+                    <a href="/document/CV-E.pdf" class="dropdown-item" target="_blank" rel="noopener">English</a>
+                    <a href="/document/CV-C.pdf?rev=20260826" class="dropdown-item" target="_blank" rel="noopener">Chinese</a>
                   </div>
                 </div>
               </div>
@@ -1080,11 +1085,9 @@ layout: null
                 <span class="icon"><i class="fab fa-github"></i></span>
                 <span>Github</span>
               </a>
-              <a class="external-link button is-light" href="/document/wechat-qr.jpg" target="_blank">
-                <span class="icon">
-                  <img src="/document/wechat.png" alt="WeChat">
-                </span>
-                <span>WeChat</span>
+              <a class="external-link button is-light" href="https://www.linkedin.com/in/yuezhe-yang" target="_blank" rel="noopener noreferrer">
+                <span class="icon"><i class="fab fa-linkedin"></i></span>
+                <span>LinkedIn</span>
               </a>
               <a class="external-link button is-light" href="https://www.xiaohongshu.com/user/profile/62c7d04b000000000e00fe86">
                 <span class="icon" style="width: 1em; height: 1em; display: inline-flex; align-items: center; justify-content: center;">
@@ -3719,6 +3722,35 @@ layout: null
   <script data-goatcounter="https://youngbean.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   
   <script>
+    function setupCvDropdowns() {
+      document.querySelectorAll('[data-cv-dropdown]').forEach((dropdown) => {
+        const trigger = dropdown.querySelector('.dropdown-trigger button');
+        if (!trigger) return;
+
+        const close = () => {
+          dropdown.classList.remove('is-active');
+          trigger.setAttribute('aria-expanded', 'false');
+        };
+
+        trigger.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const isOpen = dropdown.classList.toggle('is-active');
+          trigger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        dropdown.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            close();
+            trigger.focus();
+          }
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!dropdown.contains(event.target)) close();
+        });
+      });
+    }
+
     function updateProfileStatBadges() {
       document.querySelectorAll('.profile-stat-badge[data-stat-url]').forEach(async (badge) => {
         const value = badge.querySelector('.profile-stat-value');
@@ -3736,6 +3768,7 @@ layout: null
 
     // Git last commit date update
     document.addEventListener('DOMContentLoaded', function() {
+      setupCvDropdowns();
       updateProfileStatBadges();
       // Function to get git last commit date
       async function getGitLastCommitDate() {
