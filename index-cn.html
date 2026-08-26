@@ -85,12 +85,15 @@ layout: null
     @media screen and (min-width: 769px) {
       .profile-action-buttons .button,
       .profile-action-buttons .dropdown {
-        flex: 0 0 auto;
-        min-width: auto;
+        flex: 1 1 0;
+        min-width: 0;
       }
 
       .profile-action-buttons .button {
-        width: auto;
+        width: 100%;
+        padding-left: 0.35rem;
+        padding-right: 0.35rem;
+        font-size: 0.78rem;
       }
 
       .profile-action-buttons .button span:not(.icon) {
