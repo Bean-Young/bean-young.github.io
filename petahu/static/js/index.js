@@ -81,27 +81,49 @@ $(document).ready(function() {
 
 function setupAutoScrollingRails() {
   document.querySelectorAll('[data-auto-scroll]').forEach(function(rail) {
-    var direction = 1;
+    rail.classList.add('is-auto-scrolling');
+    var sourceItems = Array.prototype.slice.call(rail.children);
+    if (sourceItems.length < 2) return;
+
+    sourceItems.forEach(function(item) {
+      var clone = item.cloneNode(true);
+      clone.classList.add('rail-loop-clone');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('inert', '');
+      rail.appendChild(clone);
+    });
+
     var paused = false;
     var lastTime = 0;
+    var loopWidth = 0;
     var drag = { active: false, scrolling: false, startX: 0, startY: 0, scrollLeft: 0, pointerId: null };
 
-    function maxScroll() {
-      return Math.max(0, rail.scrollWidth - rail.clientWidth);
+    function measureLoop() {
+      var firstSource = sourceItems[0];
+      var firstClone = rail.querySelector('.rail-loop-clone');
+      loopWidth = firstClone ? firstClone.offsetLeft - firstSource.offsetLeft : 0;
+    }
+
+    function wrapPosition() {
+      if (loopWidth > 0 && rail.scrollLeft >= loopWidth) {
+        rail.scrollLeft -= loopWidth;
+      }
     }
 
     function animate(time) {
       if (!lastTime) lastTime = time;
       var elapsed = Math.min(time - lastTime, 80);
       lastTime = time;
-      var max = maxScroll();
-      if (!paused && !drag.active && max > 0) {
-        rail.scrollLeft += direction * elapsed * 0.02;
-        if (rail.scrollLeft >= max - 1) direction = -1;
-        if (rail.scrollLeft <= 1) direction = 1;
+      if (!paused && !drag.active && loopWidth > 0) {
+        rail.scrollLeft += elapsed * 0.02;
+        wrapPosition();
       }
       window.requestAnimationFrame(animate);
     }
+
+    measureLoop();
+    if (window.ResizeObserver) new ResizeObserver(measureLoop).observe(rail);
+    else window.addEventListener('resize', measureLoop);
 
     rail.addEventListener('pointerenter', function() { paused = true; });
     rail.addEventListener('pointerleave', function() { if (!drag.active) paused = false; });
@@ -137,6 +159,7 @@ function setupAutoScrollingRails() {
       rail.classList.remove('is-dragging');
       drag.active = false;
       drag.scrolling = false;
+      wrapPosition();
       paused = false;
     }
     rail.addEventListener('pointerup', stopDragging);
@@ -161,7 +184,16 @@ function setupCredentialLightbox() {
     image.addEventListener('dblclick', function(event) {
       event.preventDefault();
       event.stopPropagation();
-      lightboxImage.src = image.currentSrc || image.src;
+      var originalSource = imageLink && imageLink.getAttribute('href');
+      if (image.closest('.credential-card') && originalSource && /\.pdf(?:[?#]|$)/i.test(originalSource)) {
+        window.open(originalSource, '_blank', 'noopener');
+        return;
+      }
+      if (originalSource && /\.(?:avif|gif|jpe?g|png|webp)(?:[?#]|$)/i.test(originalSource)) {
+        lightboxImage.src = originalSource;
+      } else {
+        lightboxImage.src = image.currentSrc || image.src;
+      }
       lightboxImage.alt = image.alt;
       lightbox.hidden = false;
     });

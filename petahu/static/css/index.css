@@ -194,6 +194,11 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.credential-rail.is-auto-scrolling,
+.media-rail.is-auto-scrolling {
+  scroll-snap-type: none;
+}
+
 .credential-rail.is-dragging,
 .media-rail.is-dragging {
   cursor: grabbing;
