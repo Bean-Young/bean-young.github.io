@@ -83,6 +83,7 @@ function setupAutoScrollingRails() {
   document.querySelectorAll('[data-auto-scroll]').forEach(function(rail) {
     rail.classList.add('is-auto-scrolling');
     var paused = false;
+    var hovering = false;
     var lastTime = 0;
     var loopDistance = 0;
     var drag = { active: false, scrolling: false, startX: 0, startY: 0, scrollLeft: 0, pointerId: null };
@@ -112,6 +113,15 @@ function setupAutoScrollingRails() {
     window.requestAnimationFrame(measureLoop);
     if (window.ResizeObserver) new ResizeObserver(measureLoop).observe(rail);
     else window.addEventListener('resize', measureLoop);
+
+    rail.addEventListener('mouseenter', function() {
+      hovering = true;
+      paused = true;
+    });
+    rail.addEventListener('mouseleave', function() {
+      hovering = false;
+      if (!drag.active) paused = false;
+    });
 
     rail.addEventListener('pointerdown', function(event) {
       if (event.button !== undefined && event.button !== 0) return;
@@ -144,7 +154,7 @@ function setupAutoScrollingRails() {
       drag.active = false;
       drag.scrolling = false;
       wrapPosition();
-      paused = false;
+      paused = hovering;
     }
     rail.addEventListener('pointerup', stopDragging);
     rail.addEventListener('pointercancel', stopDragging);
