@@ -115,7 +115,7 @@ function setupAutoScrollingRails() {
       var elapsed = Math.min(time - lastTime, 80);
       lastTime = time;
       if (!paused && !drag.active && loopWidth > 0) {
-        rail.scrollLeft += elapsed * 0.02;
+        rail.scrollLeft += elapsed * 0.06;
         wrapPosition();
       }
       window.requestAnimationFrame(animate);
@@ -125,10 +125,6 @@ function setupAutoScrollingRails() {
     if (window.ResizeObserver) new ResizeObserver(measureLoop).observe(rail);
     else window.addEventListener('resize', measureLoop);
 
-    rail.addEventListener('pointerenter', function() { paused = true; });
-    rail.addEventListener('pointerleave', function() { if (!drag.active) paused = false; });
-    rail.addEventListener('focusin', function() { paused = true; });
-    rail.addEventListener('focusout', function() { paused = false; });
     rail.addEventListener('pointerdown', function(event) {
       if (event.button !== undefined && event.button !== 0) return;
       drag.active = true;
