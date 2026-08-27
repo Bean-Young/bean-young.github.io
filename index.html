@@ -2029,7 +2029,23 @@ layout: null
   <section class="section game-section" id="code-defense">
     <div class="container is-max-desktop">
       <div class="game-shell">
-        <div class="game-container">
+        <div class="game-arcade-header">
+          <div>
+            <span class="game-kicker">Interactive break</span>
+            <h2 class="game-arcade-title">Mini Arcade</h2>
+          </div>
+          <div class="game-picker" role="tablist" aria-label="Choose a game">
+            <button class="game-choice is-active" id="game-choice-defense" type="button" role="tab" aria-selected="true" aria-controls="codeDefensePanel" data-game-choice="defense">
+              <i class="fas fa-shield-alt" aria-hidden="true"></i><span>Code Defense</span>
+            </button>
+            <button class="game-choice" id="game-choice-signal" type="button" role="tab" aria-selected="false" aria-controls="signalDropPanel" data-game-choice="signal">
+              <i class="fas fa-bullseye" aria-hidden="true"></i><span>Signal Drop</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="game-stage-panel" id="codeDefensePanel" role="tabpanel" aria-labelledby="game-choice-defense">
+          <div class="game-container">
           <canvas id="gameCanvas" class="game-canvas" tabindex="0" aria-label="Code Defense Battle. Move with the pointer or arrow keys and fire with click or space."></canvas>
 
           <div id="startScreen" class="game-overlay game-overlay--start">
@@ -2066,6 +2082,48 @@ layout: null
             </div>
           </div>
           <div id="gameMessage" class="game-message" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="game-stage-panel" id="signalDropPanel" role="tabpanel" aria-labelledby="game-choice-signal" hidden>
+          <div class="game-container signal-drop-container">
+            <canvas id="signalDropCanvas" class="game-canvas" tabindex="0" aria-label="Signal Drop. Move the guidance field with the pointer or arrow keys and click or press space to release a signal."></canvas>
+
+            <div id="signalStartScreen" class="game-overlay game-overlay--start">
+              <span class="game-kicker">Interactive break</span>
+              <h2>Signal Drop</h2>
+              <p>Guide the signal through the adaptive gates.</p>
+              <button id="signalStartBtn" class="game-primary-btn" type="button">Release signal</button>
+            </div>
+
+            <div id="signalPauseScreen" class="game-overlay game-overlay--pause" hidden>
+              <span class="game-kicker">Session paused</span>
+              <h2>Route on hold</h2>
+              <button id="signalResumeBtn" class="game-primary-btn" type="button">Resume</button>
+            </div>
+
+            <div id="signalEndScreen" class="game-overlay game-overlay--end" hidden>
+              <span class="game-kicker">Run complete</span>
+              <h2>Signal routed</h2>
+              <div class="game-results">
+                <span>Score <strong id="signalFinalScore">0</strong></span>
+                <span>Gates passed <strong id="signalGatesPassed">0</strong></span>
+              </div>
+              <button id="signalRestartBtn" class="game-primary-btn" type="button">Play again</button>
+            </div>
+
+            <div id="signalHud" class="game-hud" hidden>
+              <div class="game-hud__group">
+                <span class="game-stat game-stat--score">Score <strong id="signalScore">0</strong></span>
+                <span class="game-stat">Gates <strong id="signalGates">0/3</strong></span>
+              </div>
+              <div class="game-hud__group">
+                <span class="game-stat">Time <strong id="signalTime">0s</strong></span>
+                <button id="signalPauseBtn" class="game-icon-btn" type="button" aria-label="Pause Signal Drop" title="Pause Signal Drop"><span aria-hidden="true">&#8545;</span></button>
+              </div>
+            </div>
+            <div id="signalMessage" class="game-message" role="status" aria-live="polite"></div>
+          </div>
         </div>
       </div>
 
@@ -3572,8 +3630,15 @@ layout: null
       document.addEventListener('visibilitychange', () => {
         if (document.hidden && gameState.running && !gameState.paused) setPaused(true);
       });
+
+      window.codeDefenseBattle = {
+        pause: () => setPaused(true),
+        resize: resizeCanvas
+      };
     });
   </script>
+
+  <script src="js/mini-arcade.js"></script>
 
 
   <button id="scroll-top" class="scroll-top" type="button" aria-label="Back to top" title="Back to top">

@@ -1993,7 +1993,23 @@ layout: null
   <section class="section game-section" id="code-defense">
     <div class="container is-max-desktop">
       <div class="game-shell">
-        <div class="game-container">
+        <div class="game-arcade-header">
+          <div>
+            <span class="game-kicker">互动休息区</span>
+            <h2 class="game-arcade-title">小游戏</h2>
+          </div>
+          <div class="game-picker" role="tablist" aria-label="选择游戏">
+            <button class="game-choice is-active" id="game-choice-defense" type="button" role="tab" aria-selected="true" aria-controls="codeDefensePanel" data-game-choice="defense">
+              <i class="fas fa-shield-alt" aria-hidden="true"></i><span>代码防御战</span>
+            </button>
+            <button class="game-choice" id="game-choice-signal" type="button" role="tab" aria-selected="false" aria-controls="signalDropPanel" data-game-choice="signal">
+              <i class="fas fa-bullseye" aria-hidden="true"></i><span>信号落点</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="game-stage-panel" id="codeDefensePanel" role="tabpanel" aria-labelledby="game-choice-defense">
+          <div class="game-container">
           <canvas id="gameCanvas" class="game-canvas" tabindex="0" aria-label="代码防御战。使用指针或方向键移动，点击或按空格键射击。"></canvas>
 
           <div id="startScreen" class="game-overlay game-overlay--start">
@@ -2030,6 +2046,48 @@ layout: null
             </div>
           </div>
           <div id="gameMessage" class="game-message" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="game-stage-panel" id="signalDropPanel" role="tabpanel" aria-labelledby="game-choice-signal" hidden>
+          <div class="game-container signal-drop-container">
+            <canvas id="signalDropCanvas" class="game-canvas" tabindex="0" aria-label="信号落点。使用指针或方向键移动引导场，点击或按空格键释放信号。"></canvas>
+
+            <div id="signalStartScreen" class="game-overlay game-overlay--start">
+              <span class="game-kicker">互动休息区</span>
+              <h2>信号落点</h2>
+              <p>引导信号穿过自适应门。</p>
+              <button id="signalStartBtn" class="game-primary-btn" type="button">释放信号</button>
+            </div>
+
+            <div id="signalPauseScreen" class="game-overlay game-overlay--pause" hidden>
+              <span class="game-kicker">游戏已暂停</span>
+              <h2>路线已暂停</h2>
+              <button id="signalResumeBtn" class="game-primary-btn" type="button">继续</button>
+            </div>
+
+            <div id="signalEndScreen" class="game-overlay game-overlay--end" hidden>
+              <span class="game-kicker">本局结束</span>
+              <h2>信号已抵达</h2>
+              <div class="game-results">
+                <span>得分 <strong id="signalFinalScore">0</strong></span>
+                <span>通过门数 <strong id="signalGatesPassed">0</strong></span>
+              </div>
+              <button id="signalRestartBtn" class="game-primary-btn" type="button">再玩一次</button>
+            </div>
+
+            <div id="signalHud" class="game-hud" hidden>
+              <div class="game-hud__group">
+                <span class="game-stat game-stat--score">得分 <strong id="signalScore">0</strong></span>
+                <span class="game-stat">门 <strong id="signalGates">0/3</strong></span>
+              </div>
+              <div class="game-hud__group">
+                <span class="game-stat">时间 <strong id="signalTime">0秒</strong></span>
+                <button id="signalPauseBtn" class="game-icon-btn" type="button" aria-label="暂停信号落点" title="暂停信号落点"><span aria-hidden="true">&#8545;</span></button>
+              </div>
+            </div>
+            <div id="signalMessage" class="game-message" role="status" aria-live="polite"></div>
+          </div>
         </div>
       </div>
 
@@ -3558,8 +3616,15 @@ layout: null
       document.addEventListener('visibilitychange', () => {
         if (document.hidden && gameState.running && !gameState.paused) setPaused(true);
       });
+
+      window.codeDefenseBattle = {
+        pause: () => setPaused(true),
+        resize: resizeCanvas
+      };
     });
   </script>
+
+  <script src="js/mini-arcade.js"></script>
 
 
   <button id="scroll-top" class="scroll-top" type="button" aria-label="Back to top" title="Back to top">
