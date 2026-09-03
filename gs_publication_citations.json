@@ -1,0 +1,30 @@
+{
+  "updated_count": 4,
+  "updated": [
+    {
+      "id": "p-ahu",
+      "title": "An annotated heterogeneous ultrasound database",
+      "old": 7,
+      "new": 10
+    },
+    {
+      "id": "p-emnet",
+      "title": "EM-Net: Effective and morphology-aware network for skin lesion segmentation",
+      "old": 8,
+      "new": 14
+    },
+    {
+      "id": "p-ultrags",
+      "title": "UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis",
+      "old": 2,
+      "new": 5
+    },
+    {
+      "id": "p-vdect",
+      "title": "Federated Learning-Based Virtual Dual-Energy CT Generation from Single-Energy CT for Gout Detection",
+      "old": 2,
+      "new": 3
+    }
+  ],
+  "unmatched": []
+}
