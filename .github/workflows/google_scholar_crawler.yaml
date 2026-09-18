@@ -25,6 +25,18 @@ jobs:
       - name: Install Reqs
         run: pip install -r google_scholar_crawler/requirements.txt
 
+      - name: Restore Last Successful Data
+        run: |
+          git fetch origin google-scholar-stats
+          mkdir -p google_scholar_crawler/results
+          for file in gs_data.json gs_data_shieldsio.json gs_publication_citations.json; do
+            if git show "origin/google-scholar-stats:${file}" > "google_scholar_crawler/results/${file}.tmp"; then
+              mv "google_scholar_crawler/results/${file}.tmp" "google_scholar_crawler/results/${file}"
+            else
+              rm -f "google_scholar_crawler/results/${file}.tmp"
+            fi
+          done
+
       - name: Run
         env:
           GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}

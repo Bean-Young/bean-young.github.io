@@ -2,8 +2,11 @@ import json
 import os
 import re
 from pathlib import Path
+import time
 
 from scholarly import scholarly
+
+RETRY_DELAYS = (10, 30)
 
 
 def normalize_title(text: str) -> str:
@@ -13,18 +16,33 @@ def normalize_title(text: str) -> str:
 
 
 def load_author_publications(author_id: str) -> dict[str, int]:
-    author = scholarly.search_author_id(author_id)
-    scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
+    last_error = None
+    for attempt in range(len(RETRY_DELAYS) + 1):
+        try:
+            author = scholarly.search_author_id(author_id)
+            scholarly.fill(author, sections=["publications"])
+            break
+        except Exception as exc:
+            last_error = exc
+            if attempt < len(RETRY_DELAYS):
+                delay = RETRY_DELAYS[attempt]
+                print(
+                    f"Google Scholar publication request failed ({exc!r}); "
+                    f"retrying in {delay}s.",
+                    flush=True,
+                )
+                time.sleep(delay)
+    else:
+        raise RuntimeError(
+            "Google Scholar publication data is temporarily unavailable."
+        ) from last_error
+
     pubs = author.get("publications") or []
 
     by_title: dict[str, int] = {}
     for pub in pubs:
-        try:
-            detailed = scholarly.fill(pub)
-        except Exception:
-            continue
-        title = (detailed.get("bib") or {}).get("title") or ""
-        citedby = int(detailed.get("num_citations") or detailed.get("citedby") or 0)
+        title = (pub.get("bib") or {}).get("title") or ""
+        citedby = int(pub.get("num_citations") or pub.get("citedby") or 0)
         key = normalize_title(title)
         if key:
             by_title[key] = max(by_title.get(key, 0), citedby)
@@ -44,7 +62,17 @@ def main() -> None:
     with papers_path.open("r", encoding="utf-8") as f:
         payload = json.load(f)
 
-    scholar_map = load_author_publications(author_id)
+    result_path = out_dir / "gs_publication_citations.json"
+    try:
+        scholar_map = load_author_publications(author_id)
+    except Exception as exc:
+        if result_path.is_file():
+            print(
+                f"::warning::Google Scholar publication data is temporarily "
+                f"unavailable; keeping the last successful paper citation data. ({exc})"
+            )
+            return
+        raise
     updated = []
     unmatched = []
 
@@ -69,7 +97,7 @@ def main() -> None:
         else:
             unmatched.append({"id": node.get("id"), "title": scholar_title})
 
-    with (out_dir / "gs_publication_citations.json").open("w", encoding="utf-8") as f:
+    with result_path.open("w", encoding="utf-8") as f:
         json.dump(
             {
                 "updated_count": len(updated),
