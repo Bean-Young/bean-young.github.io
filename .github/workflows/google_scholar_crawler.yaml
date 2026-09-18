@@ -44,9 +44,13 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           cd ./google_scholar_crawler
-          python main.py
+          if ! timeout 120s python main.py; then
+            echo "::warning::Scholar profile update timed out; keeping the last successful data."
+          fi
           python github_stars.py
-          python update_paper_graph_citations.py
+          if ! timeout 180s python update_paper_graph_citations.py; then
+            echo "::warning::Paper citation update timed out; keeping the last successful data."
+          fi
           cd ./results
           git init
           git config --local user.name "${GITHUB_ACTOR}"

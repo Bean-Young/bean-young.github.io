@@ -10,6 +10,7 @@ import time
 
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 RETRY_DELAYS = (10, 30)
+scholarly.set_timeout(20)
 
 
 def fetch_author(author_id: str) -> dict:

@@ -7,6 +7,7 @@ import time
 from scholarly import scholarly
 
 RETRY_DELAYS = (10, 30)
+scholarly.set_timeout(20)
 
 
 def normalize_title(text: str) -> str:
