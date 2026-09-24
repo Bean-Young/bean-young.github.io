@@ -1280,7 +1280,7 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              Hao Wang<sup>*</sup>, Qiwei Zeng<sup>*</sup>, Jinghao Lin<sup>*</sup>, Shuchang Ye, <b>Yuezhe Yang</b>, and <span class="more-authors" tabindex="0" role="button" title="展开完整作者列表" data-collapsed="et al." data-expanded="Yige Peng, Haoyuan Che†, Jinman Kim†, and Lei Bi†">et al.</span>
+              Hao Wang<sup>*</sup>, Qiwei Zeng<sup>*</sup>, Jinghao Lin<sup>*</sup>, Shuchang Ye, <b>Yuezhe Yang</b>, <span class="more-authors" tabindex="0" role="button" title="展开完整作者列表" data-fixed-summary="true" data-collapsed="et al." data-expanded="Yige Peng, Haoyuan Che†, Jinman Kim†, and Lei Bi†">et al.</span>
             </span><br>
             NeurIPS, 2026<br>
             <small>通过免训练的病灶表征增强，提高医学视觉语言模型对细微病灶的识别能力。</small>
@@ -2246,6 +2246,7 @@ layout: null
       }
 
       function fitCollapsedAuthors(element) {
+        if (element.dataset.fixedSummary === 'true') return;
         if (element.dataset.isExpanded === 'true' || !element.getClientRects().length) return;
 
         const summary = prepareAuthorSummary(element);
