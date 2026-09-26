@@ -1,44 +1,193 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="EasyLens amplifies subtle lesion representations in frozen medical vision-language models without training.">
-  <title>EasyLens | Project Page</title>
-  <link rel="stylesheet" href="../css/research-project.css">
+    <meta charset="utf-8">
+    <meta name="description" content="EasyLens amplifies subtle-lesion representations in frozen medical vision-language models without training.">
+    <meta name="keywords" content="EasyLens, medical vision-language models, subtle lesions, NeurIPS, 2026">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EasyLens: A Training-Free Plug-and-Play Subtle-Lesion Representation Amplifier for Medical Vision-Language Models</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
 </head>
+
 <body>
-  <nav class="site-nav" aria-label="Project navigation"><div class="nav-inner">
-    <a href="../">Yuezhe Yang</a>
-    <div class="nav-links"><a href="../#publications">All research</a><a href="../dard/">DARD</a><a href="#method">Method</a><a href="#results">Results</a></div>
-  </div></nav>
-  <header class="project-hero">
-    <p class="eyebrow">Research project / Medical vision-language models</p>
-    <h1>EasyLens: A Training-Free Plug-and-Play Subtle-Lesion Representation Amplifier for Medical Vision-Language Models</h1>
-    <p class="venue">NeurIPS 2026</p>
-    <p class="authors">Hao Wang<sup>*</sup>, Qiwei Zeng<sup>*</sup>, Jinghao Lin<sup>*</sup>, Shuchang Ye, <strong>Yuezhe Yang</strong>, Yige Peng, Haoyuan Che<sup>†</sup>, Jinman Kim<sup>†</sup>, Lei Bi<sup>†</sup></p>
-    <p class="affiliations">Jilin University · The University of Sydney · Northeastern University · Shanghai Jiao Tong University<br><sup>*</sup>Equal contribution · <sup>†</sup>Corresponding authors</p>
-    <div class="actions"><a class="action primary" href="https://arxiv.org/pdf/2606.06379" target="_blank" rel="noopener noreferrer">Read paper</a><a class="action" href="https://arxiv.org/abs/2606.06379" target="_blank" rel="noopener noreferrer">arXiv</a></div>
-  </header>
-  <main>
-    <figure class="lead-figure"><img src="assets/figure_overview.png" width="1790" height="595" alt="EasyLens identifies weak lesion cues, selects relevant patches, and amplifies their representation for a frozen medical vision-language model"><figcaption>EasyLens strengthens subtle lesion evidence before the frozen medical VLM produces its response.</figcaption></figure>
-    <section class="section" id="overview"><h2>Abstract</h2><p>Subtle lesions are easy to overlook when sparse, low-contrast visual evidence is compressed into a global image representation. EasyLens is a training-free, plug-and-play module for frozen medical vision-language models. It compares suspicious image patches with pathology and anatomy prototypes, selects lesion-relevant patches, and strengthens their morphological signal before the model generates an answer. Across multiple medical image datasets and frozen VLM backbones, it improves subtle-lesion recognition without fine-tuning the model.</p></section>
-    <section class="section" id="method"><h2>Method</h2>
-      <div class="method-grid"><article><h3>EasyBank</h3><p>Builds a pathology-anatomy prototype space from CT images and lesion masks, pairing lesion concepts with normal anatomical references.</p></article><article><h3>EasyTag</h3><p>Uses counterfactual prototype reasoning to select patches likely to contain lesion evidence instead of amplifying normal tissue indiscriminately.</p></article><article><h3>EasyAmplifier</h3><p>Applies morphology-guided residual enhancement to selected patch tokens while keeping the vision-language backbone frozen.</p></article></div>
-      <figure><img src="assets/figure_flow.png" width="2244" height="1235" loading="lazy" alt="EasyLens workflow showing prototype construction, patch selection, and visual-token amplification"><figcaption>The offline prototype bank and inference-time enhancement pipeline from the paper.</figcaption></figure>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="https://bean-young.github.io/" aria-label="Home" title="Home">
+                    <span class="icon"><i class="fas fa-home"></i></span>
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">More Research</a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://bean-young.github.io/ahudataset/">AHU-Database</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/petahu/">DeepPET</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/emnet/">EM-Net</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/onegout/">OneGout</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/ultrags/">UltraGS</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/conductor/">Conductor</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/dard/">DARD</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">EasyLens: A Training-Free Plug-and-Play Subtle-Lesion Representation Amplifier for Medical Vision-Language Models</h1>
+                        <div class="is-size-4 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><strong><em>NeurIPS, 2026</em></strong></span>
+                        </div>
+                        <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block">Hao Wang<sup>1,2*</sup>,</span>
+                            <span class="author-block">Qiwei Zeng<sup>1*</sup>,</span>
+                            <span class="author-block">Jinghao Lin<sup>3*</sup>,</span>
+                            <span class="author-block">Shuchang Ye<sup>2</sup>,</span>
+                            <span class="author-block">Yuezhe Yang<sup>4</sup>,</span>
+                            <span class="author-block">Yige Peng<sup>4</sup>,</span>
+                            <span class="author-block">Haoyuan Che<sup>1†</sup>,</span>
+                            <span class="author-block">Jinman Kim<sup>2†</sup>,</span>
+                            <span class="author-block">Lei Bi<sup>4†</sup></span>
+                        </div>
+                        <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+                            <span class="author-block"><sup>†</sup>Corresponding author</span>
+                        </div>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Jilin University,</span>
+                            <span class="author-block"><sup>2</sup>The University of Sydney,</span>
+                            <span class="author-block"><sup>3</sup>Northeastern University,</span>
+                            <span class="author-block"><sup>4</sup>Shanghai Jiao Tong University</span>
+                        </div>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2606.06379" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <section class="section" id="results"><h2>Results</h2><p>The paper evaluates lesion status recognition, region selection, and lesion-aware report generation on ReX, LIDC, and Abdomen. EasyLens reports the best result across all nine dataset-task combinations in its comparison, and the module transfers across multiple frozen medical VLM backbones.</p>
-      <div class="result-list"><div><strong>9 / 9</strong><span>Best reported dataset-task results in the main subtle-lesion comparison.</span></div><div><strong>66.67</strong><span>ReX lesion-status score with MedGemma1.5 + EasyLens, versus 42.86 without it.</span></div><div><strong>No fine-tuning</strong><span>The visual encoder, projector, and language decoder remain frozen.</span></div></div>
-      <figure><img src="assets/figure_cs1.png" width="1653" height="636" loading="lazy" alt="Case study of a small pulmonary nodule showing token selection, enhanced response, and lesion-aware report"><figcaption>Case study: selected tokens align with a small pulmonary nodule, and the enhanced model reports the finding.</figcaption></figure>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>Medical vision-language models can miss subtle lesions because sparse, low-contrast cues are underrepresented when local visual tokens are aggregated. EasyLens is a training-free, plug-and-play representation amplifier for frozen medical VLMs. It constructs a pathology-anatomy prototype space, selects lesion-relevant patches using counterfactual prototype reasoning, and strengthens their representations through morphology-guided residual enhancement. Experiments on multiple medical image datasets and frozen VLM backbones show improved subtle-lesion detection without model fine-tuning.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Highlights</h2>
+                    <div class="content has-text-justified">
+                        <ul>
+                            <li style="font-weight: bold; font-size: 1.3em;">Build pathology-anatomy prototypes for comparing suspicious image patches.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Select lesion-relevant patches and amplify subtle morphological cues.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Improve subtle-lesion recognition without fine-tuning frozen medical VLMs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <section class="section"><h2>Citation</h2><pre class="citation">@article{wang2026easylens,
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Method</h2>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/figure_overview.png" alt="Overview of subtle-lesion amplification with EasyLens" width="100%">
+                        <p class="video-label">EasyLens brings weak subtle-lesion cues into focus in frozen medical VLMs.</p>
+                    </div>
+                    <div class="content has-text-centered">
+                        <img src="./static/images/figure_flow.png" alt="EasyBank, EasyTag, and EasyAmplifier workflow" width="100%">
+                        <p class="video-label">EasyBank construction and inference with EasyTag and EasyAmplifier.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Results</h2>
+                    <h3 class="title is-4">Quantitative Results</h3>
+                    <div class="table-container" style="margin-bottom: 2.5rem;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                            <thead>
+                                <tr><th rowspan="2">Model</th><th colspan="3">ReX</th><th colspan="3">LIDC</th><th colspan="3">Abdomen</th></tr>
+                                <tr><th>Stat.</th><th>Sel.</th><th>Gen.</th><th>Stat.</th><th>Sel.</th><th>Gen.</th><th>Stat.</th><th>Sel.</th><th>Gen.</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>MedGemma1.5</td><td>42.86</td><td>23.33</td><td>4.41</td><td>20.45</td><td>27.82</td><td>41.93</td><td>15.12</td><td>49.04</td><td>38.18</td></tr>
+                                <tr><td><strong>EasyLens</strong></td><td><strong>66.67</strong></td><td><strong>31.11</strong></td><td><strong>5.15</strong></td><td><strong>30.30</strong></td><td><strong>36.09</strong></td><td><strong>45.86</strong></td><td><strong>52.33</strong></td><td><strong>55.77</strong></td><td><strong>40.67</strong></td></tr>
+                            </tbody>
+                        </table>
+                        <p class="video-label">Comparison on subtle-lesion status recognition, region selection, and report generation.</p>
+                    </div>
+                    <h3 class="title is-4">Qualitative Results</h3>
+                    <div class="content has-text-centered">
+                        <img src="./static/images/figure_cs1.png" alt="EasyLens case study on a small pulmonary nodule" width="100%">
+                        <p class="video-label">Case study of subtle-lesion perception and lesion-aware report generation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">Citation</h2>
+            <pre><code>@article{wang2026easylens,
   title={EasyLens: A Training-Free Plug-and-Play Subtle-Lesion Representation Amplifier for Medical Vision-Language Models},
   author={Wang, Hao and Zeng, Qiwei and Lin, Jinghao and Ye, Shuchang and Yang, Yuezhe and Peng, Yige and Che, Haoyuan and Kim, Jinman and Bi, Lei},
   journal={Advances in Neural Information Processing Systems},
   year={2026},
   url={https://arxiv.org/abs/2606.06379}
-}</pre></section>
-  </main>
-  <footer class="footer">EasyLens · <a href="../">Yuezhe Yang</a></footer>
+}</code></pre>
+        </div>
+    </section>
 </body>
 </html>

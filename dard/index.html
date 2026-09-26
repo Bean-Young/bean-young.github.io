@@ -1,44 +1,199 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="DARD combines degradation-aware Retinex priors and zero-shot diffusion for low-light image enhancement.">
-  <title>DARD | Project Page</title>
-  <link rel="stylesheet" href="../css/research-project.css">
+    <meta charset="utf-8">
+    <meta name="description" content="DARD combines degradation-aware Retinex priors and zero-shot diffusion for low-light image enhancement.">
+    <meta name="keywords" content="DARD, low-light image enhancement, Retinex, diffusion, TCSVT, 2026">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DARD: Zero-Shot Degradation-Aware Retinex-Guided Diffusion for Low-Light Image Enhancement</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
 </head>
+
 <body>
-  <nav class="site-nav" aria-label="Project navigation"><div class="nav-inner">
-    <a href="../">Yuezhe Yang</a>
-    <div class="nav-links"><a href="../#publications">All research</a><a href="../easylens/">EasyLens</a><a href="#method">Method</a><a href="#results">Results</a></div>
-  </div></nav>
-  <header class="project-hero">
-    <p class="eyebrow">Research project / Image restoration</p>
-    <h1>DARD: Zero-Shot Degradation-Aware Retinex-Guided Diffusion for Low-Light Image Enhancement</h1>
-    <p class="venue">IEEE Transactions on Circuits and Systems for Video Technology, 2026</p>
-    <p class="authors">Wenjie Cai, <strong>Yuezhe Yang</strong>, Jianyang Xia, Xingbo Dong<sup>†</sup>, Zhe Jin<sup>†</sup></p>
-    <p class="affiliations">Anhui University · <sup>†</sup>Corresponding authors</p>
-    <div class="actions"><a class="action primary" href="https://ieeexplore.ieee.org/abstract/document/11701592" target="_blank" rel="noopener noreferrer">Read paper</a><a class="action" href="https://arxiv.org/abs/2608.29243" target="_blank" rel="noopener noreferrer">arXiv</a></div>
-  </header>
-  <main>
-    <figure class="lead-figure"><img src="assets/figure1.png" width="1663" height="832" alt="Before-and-after low-light image enhancement examples across outdoor scenes, buildings, objects, faces, and animals"><figcaption>Representative low-light inputs and enhanced outputs across diverse real-world scenes.</figcaption></figure>
-    <section class="section" id="overview"><h2>Abstract</h2><p>Low-light images often combine underexposure with noise, color distortion, and uneven illumination. Diffusion-based enhancement can restore detail, but zero-shot methods may drift away from the scene structure or original color. DARD uses image-specific, degradation-aware Retinex priors to guide reverse diffusion. It adapts the balance between physical structure and generated detail over time, then refines each step with physical-consistency and semantic guidance. The result is more reliable low-light restoration without paired training data.</p></section>
-    <section class="section" id="method"><h2>Method</h2>
-      <div class="method-grid"><article><h3>Retinex prior calibration</h3><p>Test-time decomposition estimates image-specific illumination, reflectance, degradation, and the reliability of the physical prior.</p></article><article><h3>Adaptive frequency fusion</h3><p>Timestep-adaptive fusion injects the Retinex prior into diffusion, balancing structure at one stage and generated detail at another.</p></article><article><h3>Guided reverse refinement</h3><p>Physical consistency and CLIP-based semantic guidance constrain the denoising trajectory to reduce artifacts and semantic drift.</p></article></div>
-      <figure><img src="assets/DARD.png" width="2026" height="1202" loading="lazy" alt="DARD architecture with test-time Retinex decomposition, timestep-adaptive frequency fusion, and guided reverse diffusion"><figcaption>The three-part DARD architecture from the paper.</figcaption></figure>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="https://bean-young.github.io/" aria-label="Home" title="Home">
+                    <span class="icon"><i class="fas fa-home"></i></span>
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">More Research</a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://bean-young.github.io/ahudataset/">AHU-Database</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/petahu/">DeepPET</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/emnet/">EM-Net</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/onegout/">OneGout</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/ultrags/">UltraGS</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/conductor/">Conductor</a>
+                        <a class="navbar-item" href="https://bean-young.github.io/easylens/">EasyLens</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">DARD: Zero-Shot Degradation-Aware Retinex-Guided Diffusion for Low-Light Image Enhancement</h1>
+                        <div class="is-size-4 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><strong><em>IEEE Transactions on Circuits and Systems for Video Technology, 2026</em></strong></span>
+                        </div>
+                        <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block">Wenjie Cai<sup>1</sup>,</span>
+                            <span class="author-block">Yuezhe Yang<sup>1</sup>,</span>
+                            <span class="author-block">Jianyang Xia<sup>1</sup>,</span>
+                            <span class="author-block">Xingbo Dong<sup>1†</sup>,</span>
+                            <span class="author-block">Zhe Jin<sup>1†</sup></span>
+                        </div>
+                        <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
+                            <span class="author-block"><sup>†</sup>Corresponding author</span>
+                        </div>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Anhui University</span>
+                        </div>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://ieeexplore.ieee.org/abstract/document/11701592" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <section class="section" id="results"><h2>Results</h2><p>The paper evaluates DARD on paired and unpaired low-light benchmarks and compares restored images with other enhancement methods. It also tests whether the enhanced images improve a downstream semantic-segmentation model.</p>
-      <div class="result-list"><div><strong>+28.10%</strong><span>Relative mIoU gain over AGLLDiff for downstream segmentation on LOLv1.</span></div><div><strong>+25.06%</strong><span>Relative mIoU gain over AGLLDiff on LOLv2-real.</span></div><div><strong>Zero-shot</strong><span>Image-specific guidance is calibrated at test time without paired enhancement training.</span></div></div>
-      <div class="figure-pair"><figure><img src="assets/LOL.png" width="2201" height="1250" loading="lazy" alt="Visual comparison of low-light image enhancement methods on LOLv1 and LOLv2-real"><figcaption>Visual comparisons on LOLv1 and LOLv2-real.</figcaption></figure><figure><img src="assets/seg.png" width="1653" height="917" loading="lazy" alt="Downstream semantic segmentation comparison on low-light input and DARD-enhanced input"><figcaption>Downstream semantic segmentation on low-light scenes.</figcaption></figure></div>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>Existing diffusion-based low-light image enhancement methods often require paired training data or lack reliable scene constraints in zero-shot settings, leading to structural inconsistencies and color drift. We present DARD, a zero-shot degradation-aware Retinex-guided diffusion framework. DARD extracts image-specific physical priors with test-time Retinex decomposition, combines them with diffusion predictions using timestep-adaptive frequency fusion, and refines the reverse process with physical-consistency and CLIP-based semantic guidance. Evaluations on real-world low-light benchmarks show strong restoration performance. Enhanced images also improve downstream semantic segmentation, including a 28.10% relative mIoU gain over AGLLDiff on LOLv1.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Highlights</h2>
+                    <div class="content has-text-justified">
+                        <ul>
+                            <li style="font-weight: bold; font-size: 1.3em;">Calibrate degradation-aware Retinex priors for each low-light input.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Fuse physical priors with diffusion predictions across timesteps.</li>
+                            <li style="font-weight: bold; font-size: 1.3em;">Improve restoration and downstream segmentation without paired training.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <section class="section"><h2>Citation</h2><pre class="citation">@article{cai2026dard,
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Method</h2>
+                    <div class="content has-text-centered">
+                        <img src="./static/images/DARD.png" alt="DARD architecture with Retinex decomposition, frequency fusion, and reverse refinement" width="100%">
+                        <p class="video-label">Overview of the test-time decomposer, timestep-adaptive frequency fusion, and guided reverse diffusion refinement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Results</h2>
+                    <h3 class="title is-4">Quantitative Results</h3>
+                    <div class="table-container" style="margin-bottom: 2.5rem;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                            <thead>
+                                <tr><th rowspan="2">Method</th><th colspan="3">LOLv1</th><th colspan="3">LOLv2-real</th></tr>
+                                <tr><th>PSNR</th><th>SSIM</th><th>LPIPS</th><th>PSNR</th><th>SSIM</th><th>LPIPS</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>AGLLDiff</td><td>19.83</td><td>0.814</td><td>0.194</td><td>19.99</td><td>0.844</td><td>0.192</td></tr>
+                                <tr><td><strong>DARD</strong></td><td><strong>21.14</strong></td><td><strong>0.835</strong></td><td><strong>0.143</strong></td><td><strong>22.18</strong></td><td><strong>0.877</strong></td><td><strong>0.135</strong></td></tr>
+                            </tbody>
+                        </table>
+                        <p class="video-label">Zero-shot low-light enhancement comparison on LOLv1 and LOLv2-real.</p>
+                    </div>
+                    <div class="table-container" style="margin-bottom: 2.5rem;">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered is-size-7">
+                            <thead><tr><th>Dataset</th><th>SegFormer + AGLLDiff mIoU</th><th>SegFormer + DARD mIoU</th><th>Relative improvement</th></tr></thead>
+                            <tbody>
+                                <tr><td>LOLv1</td><td>21.32</td><td><strong>27.31</strong></td><td><strong>+28.10%</strong></td></tr>
+                                <tr><td>LOLv2-real</td><td>28.09</td><td><strong>35.13</strong></td><td><strong>+25.06%</strong></td></tr>
+                            </tbody>
+                        </table>
+                        <p class="video-label">Downstream semantic segmentation using enhanced images.</p>
+                    </div>
+                    <h3 class="title is-4">Qualitative Results</h3>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/figure1.png" alt="Representative low-light inputs and DARD outputs" width="100%">
+                        <p class="video-label">Representative enhancement results across real-world low-light scenes.</p>
+                    </div>
+                    <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
+                        <img src="./static/images/LOL.png" alt="Comparison with low-light image enhancement methods" width="100%">
+                        <p class="video-label">Visual comparison on the LOLv1 and LOLv2-real datasets.</p>
+                    </div>
+                    <div class="content has-text-centered">
+                        <img src="./static/images/seg.png" alt="Downstream semantic segmentation comparison" width="100%">
+                        <p class="video-label">Semantic segmentation results on low-light scenes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">Citation</h2>
+            <pre><code>@article{cai2026dard,
   title={DARD: Zero-Shot Degradation-Aware Retinex-Guided Diffusion for Low-Light Image Enhancement},
   author={Cai, Wenjie and Yang, Yuezhe and Xia, Jianyang and Dong, Xingbo and Jin, Zhe},
   journal={IEEE Transactions on Circuits and Systems for Video Technology},
   year={2026},
   url={https://ieeexplore.ieee.org/abstract/document/11701592}
-}</pre></section>
-  </main>
-  <footer class="footer">DARD · <a href="../">Yuezhe Yang</a></footer>
+}</code></pre>
+        </div>
+    </section>
 </body>
 </html>
