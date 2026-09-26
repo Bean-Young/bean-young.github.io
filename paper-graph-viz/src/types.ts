@@ -18,7 +18,7 @@ export interface PaperNode {
   field: string;
   scholarTitle?: string;
   role?: PaperRole;
-  /** 支柱 id：cat-3d | cat-diag | cat-trust */
+  /** 支柱 id：cat-3d | cat-diag | cat-trust | cat-general */
   pillarId?: string;
   /** 力导向仿真写入 */
   x?: number;

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="EasyLens amplifies subtle lesion representations in frozen medical vision-language models without training.">
+  <title>EasyLens | Project Page</title>
+  <link rel="stylesheet" href="../css/research-project.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Project navigation"><div class="nav-inner">
+    <a href="../">Yuezhe Yang</a>
+    <div class="nav-links"><a href="../#publications">All research</a><a href="../dard/">DARD</a><a href="#method">Method</a><a href="#results">Results</a></div>
+  </div></nav>
+  <header class="project-hero">
+    <p class="eyebrow">Research project / Medical vision-language models</p>
+    <h1>EasyLens: A Training-Free Plug-and-Play Subtle-Lesion Representation Amplifier for Medical Vision-Language Models</h1>
+    <p class="venue">NeurIPS 2026</p>
+    <p class="authors">Hao Wang<sup>*</sup>, Qiwei Zeng<sup>*</sup>, Jinghao Lin<sup>*</sup>, Shuchang Ye, <strong>Yuezhe Yang</strong>, Yige Peng, Haoyuan Che<sup>†</sup>, Jinman Kim<sup>†</sup>, Lei Bi<sup>†</sup></p>
+    <p class="affiliations">Jilin University · The University of Sydney · Northeastern University · Shanghai Jiao Tong University<br><sup>*</sup>Equal contribution · <sup>†</sup>Corresponding authors</p>
+    <div class="actions"><a class="action primary" href="https://arxiv.org/pdf/2606.06379" target="_blank" rel="noopener noreferrer">Read paper</a><a class="action" href="https://arxiv.org/abs/2606.06379" target="_blank" rel="noopener noreferrer">arXiv</a></div>
+  </header>
+  <main>
+    <figure class="lead-figure"><img src="assets/figure_overview.png" width="1790" height="595" alt="EasyLens identifies weak lesion cues, selects relevant patches, and amplifies their representation for a frozen medical vision-language model"><figcaption>EasyLens strengthens subtle lesion evidence before the frozen medical VLM produces its response.</figcaption></figure>
+    <section class="section" id="overview"><h2>Abstract</h2><p>Subtle lesions are easy to overlook when sparse, low-contrast visual evidence is compressed into a global image representation. EasyLens is a training-free, plug-and-play module for frozen medical vision-language models. It compares suspicious image patches with pathology and anatomy prototypes, selects lesion-relevant patches, and strengthens their morphological signal before the model generates an answer. Across multiple medical image datasets and frozen VLM backbones, it improves subtle-lesion recognition without fine-tuning the model.</p></section>
+    <section class="section" id="method"><h2>Method</h2>
+      <div class="method-grid"><article><h3>EasyBank</h3><p>Builds a pathology-anatomy prototype space from CT images and lesion masks, pairing lesion concepts with normal anatomical references.</p></article><article><h3>EasyTag</h3><p>Uses counterfactual prototype reasoning to select patches likely to contain lesion evidence instead of amplifying normal tissue indiscriminately.</p></article><article><h3>EasyAmplifier</h3><p>Applies morphology-guided residual enhancement to selected patch tokens while keeping the vision-language backbone frozen.</p></article></div>
+      <figure><img src="assets/figure_flow.png" width="2244" height="1235" loading="lazy" alt="EasyLens workflow showing prototype construction, patch selection, and visual-token amplification"><figcaption>The offline prototype bank and inference-time enhancement pipeline from the paper.</figcaption></figure>
+    </section>
+    <section class="section" id="results"><h2>Results</h2><p>The paper evaluates lesion status recognition, region selection, and lesion-aware report generation on ReX, LIDC, and Abdomen. EasyLens reports the best result across all nine dataset-task combinations in its comparison, and the module transfers across multiple frozen medical VLM backbones.</p>
+      <div class="result-list"><div><strong>9 / 9</strong><span>Best reported dataset-task results in the main subtle-lesion comparison.</span></div><div><strong>66.67</strong><span>ReX lesion-status score with MedGemma1.5 + EasyLens, versus 42.86 without it.</span></div><div><strong>No fine-tuning</strong><span>The visual encoder, projector, and language decoder remain frozen.</span></div></div>
+      <figure><img src="assets/figure_cs1.png" width="1653" height="636" loading="lazy" alt="Case study of a small pulmonary nodule showing token selection, enhanced response, and lesion-aware report"><figcaption>Case study: selected tokens align with a small pulmonary nodule, and the enhanced model reports the finding.</figcaption></figure>
+    </section>
+    <section class="section"><h2>Citation</h2><pre class="citation">@article{wang2026easylens,
+  title={EasyLens: A Training-Free Plug-and-Play Subtle-Lesion Representation Amplifier for Medical Vision-Language Models},
+  author={Wang, Hao and Zeng, Qiwei and Lin, Jinghao and Ye, Shuchang and Yang, Yuezhe and Peng, Yige and Che, Haoyuan and Kim, Jinman and Bi, Lei},
+  journal={Advances in Neural Information Processing Systems},
+  year={2026},
+  url={https://arxiv.org/abs/2606.06379}
+}</pre></section>
+  </main>
+  <footer class="footer">EasyLens · <a href="../">Yuezhe Yang</a></footer>
+</body>
+</html>

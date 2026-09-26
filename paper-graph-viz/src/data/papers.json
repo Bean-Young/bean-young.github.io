@@ -45,6 +45,17 @@
       "role": "pillar"
     },
     {
+      "id": "cat-general",
+      "title": "General AI",
+      "shortLabel": "General AI",
+      "year": 2026,
+      "venue": "Research Pillar",
+      "url": "https://bean-young.github.io/#research-interests",
+      "citations": 0,
+      "field": "General AI",
+      "role": "pillar"
+    },
+    {
       "id": "p-ahu",
       "title": "An annotated heterogeneous ultrasound database",
       "shortLabel": "AHU-Database",
@@ -83,6 +94,7 @@
       "year": 2026,
       "venue": "NeurIPS",
       "url": "https://arxiv.org/abs/2606.06379",
+      "projectUrl": "https://bean-young.github.io/easylens/",
       "citations": 0,
       "summary": "A training-free module amplifies subtle lesion cues in frozen medical vision-language models to improve detection.",
       "summaryZh": "通过免训练的病灶表征增强，提高医学视觉语言模型对细微病灶的识别能力。",
@@ -97,13 +109,14 @@
       "scholarTitle": "DARD: Zero-Shot Degradation-Aware Retinex-Guided Diffusion for Low-Light Image Enhancement",
       "year": 2026,
       "venue": "TCSVT",
-      "url": "https://arxiv.org/abs/2608.29243",
+      "url": "https://ieeexplore.ieee.org/abstract/document/11701592",
+      "projectUrl": "https://bean-young.github.io/dard/",
       "citations": 0,
       "summary": "Degradation-aware Retinex priors guide zero-shot diffusion to enhance low-light images and improve downstream segmentation.",
       "summaryZh": "利用退化感知 Retinex 先验引导零样本扩散，改善低照度图像增强及下游语义分割。",
       "field": "Low-Light Enhancement · Diffusion",
       "role": "paper",
-      "pillarId": "cat-diag"
+      "pillarId": "cat-general"
     },
     {
       "id": "p-ultrags",
@@ -148,7 +161,7 @@
       "summaryZh": "提出动态双层调度框架，缓解由慢节点引发的流水线气泡并提升流水线并行训练吞吐量。",
       "field": "Pipeline Parallelism · Scheduling",
       "role": "paper",
-      "pillarId": "cat-diag"
+      "pillarId": "cat-general"
     },
     {
       "id": "proj-deeppet",
@@ -170,6 +183,7 @@
     {"source": "hub-medical", "target": "cat-3d", "type": "similar"},
     {"source": "hub-medical", "target": "cat-diag", "type": "similar"},
     {"source": "hub-medical", "target": "cat-trust", "type": "similar"},
+    {"source": "hub-medical", "target": "cat-general", "type": "similar"},
 
     {"source": "cat-3d", "target": "p-ultrags", "type": "similar"},
     {"source": "cat-3d", "target": "proj-deeppet", "type": "similar"},
@@ -177,8 +191,8 @@
     {"source": "cat-diag", "target": "p-ahu", "type": "similar"},
     {"source": "cat-diag", "target": "p-emnet", "type": "similar"},
     {"source": "cat-diag", "target": "p-easylens", "type": "similar"},
-    {"source": "cat-diag", "target": "p-dard", "type": "similar"},
-    {"source": "cat-diag", "target": "p-conductor", "type": "similar"},
+    {"source": "cat-general", "target": "p-dard", "type": "similar"},
+    {"source": "cat-general", "target": "p-conductor", "type": "similar"},
 
     {"source": "cat-trust", "target": "p-vdect", "type": "similar"},
 

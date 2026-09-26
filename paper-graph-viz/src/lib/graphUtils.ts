@@ -94,10 +94,12 @@ function baseColor(n: PaperNode): string {
     if (n.id === 'cat-3d') return '#56b4c8';
     if (n.id === 'cat-diag') return '#70b889';
     if (n.id === 'cat-trust') return '#a98ac7';
+    if (n.id === 'cat-general') return '#d8a25c';
   }
   if (n.pillarId === 'cat-3d') return '#c5e7ed';
   if (n.pillarId === 'cat-diag') return '#d2ebda';
   if (n.pillarId === 'cat-trust') return '#e3d7ee';
+  if (n.pillarId === 'cat-general') return '#f4e4c9';
   return '#d9e0e8';
 }
 

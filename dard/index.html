@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="DARD combines degradation-aware Retinex priors and zero-shot diffusion for low-light image enhancement.">
+  <title>DARD | Project Page</title>
+  <link rel="stylesheet" href="../css/research-project.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Project navigation"><div class="nav-inner">
+    <a href="../">Yuezhe Yang</a>
+    <div class="nav-links"><a href="../#publications">All research</a><a href="../easylens/">EasyLens</a><a href="#method">Method</a><a href="#results">Results</a></div>
+  </div></nav>
+  <header class="project-hero">
+    <p class="eyebrow">Research project / Image restoration</p>
+    <h1>DARD: Zero-Shot Degradation-Aware Retinex-Guided Diffusion for Low-Light Image Enhancement</h1>
+    <p class="venue">IEEE Transactions on Circuits and Systems for Video Technology, 2026</p>
+    <p class="authors">Wenjie Cai, <strong>Yuezhe Yang</strong>, Jianyang Xia, Xingbo Dong<sup>†</sup>, Zhe Jin<sup>†</sup></p>
+    <p class="affiliations">Anhui University · <sup>†</sup>Corresponding authors</p>
+    <div class="actions"><a class="action primary" href="https://ieeexplore.ieee.org/abstract/document/11701592" target="_blank" rel="noopener noreferrer">Read paper</a><a class="action" href="https://arxiv.org/abs/2608.29243" target="_blank" rel="noopener noreferrer">arXiv</a></div>
+  </header>
+  <main>
+    <figure class="lead-figure"><img src="assets/figure1.png" width="1663" height="832" alt="Before-and-after low-light image enhancement examples across outdoor scenes, buildings, objects, faces, and animals"><figcaption>Representative low-light inputs and enhanced outputs across diverse real-world scenes.</figcaption></figure>
+    <section class="section" id="overview"><h2>Abstract</h2><p>Low-light images often combine underexposure with noise, color distortion, and uneven illumination. Diffusion-based enhancement can restore detail, but zero-shot methods may drift away from the scene structure or original color. DARD uses image-specific, degradation-aware Retinex priors to guide reverse diffusion. It adapts the balance between physical structure and generated detail over time, then refines each step with physical-consistency and semantic guidance. The result is more reliable low-light restoration without paired training data.</p></section>
+    <section class="section" id="method"><h2>Method</h2>
+      <div class="method-grid"><article><h3>Retinex prior calibration</h3><p>Test-time decomposition estimates image-specific illumination, reflectance, degradation, and the reliability of the physical prior.</p></article><article><h3>Adaptive frequency fusion</h3><p>Timestep-adaptive fusion injects the Retinex prior into diffusion, balancing structure at one stage and generated detail at another.</p></article><article><h3>Guided reverse refinement</h3><p>Physical consistency and CLIP-based semantic guidance constrain the denoising trajectory to reduce artifacts and semantic drift.</p></article></div>
+      <figure><img src="assets/DARD.png" width="2026" height="1202" loading="lazy" alt="DARD architecture with test-time Retinex decomposition, timestep-adaptive frequency fusion, and guided reverse diffusion"><figcaption>The three-part DARD architecture from the paper.</figcaption></figure>
+    </section>
+    <section class="section" id="results"><h2>Results</h2><p>The paper evaluates DARD on paired and unpaired low-light benchmarks and compares restored images with other enhancement methods. It also tests whether the enhanced images improve a downstream semantic-segmentation model.</p>
+      <div class="result-list"><div><strong>+28.10%</strong><span>Relative mIoU gain over AGLLDiff for downstream segmentation on LOLv1.</span></div><div><strong>+25.06%</strong><span>Relative mIoU gain over AGLLDiff on LOLv2-real.</span></div><div><strong>Zero-shot</strong><span>Image-specific guidance is calibrated at test time without paired enhancement training.</span></div></div>
+      <div class="figure-pair"><figure><img src="assets/LOL.png" width="2201" height="1250" loading="lazy" alt="Visual comparison of low-light image enhancement methods on LOLv1 and LOLv2-real"><figcaption>Visual comparisons on LOLv1 and LOLv2-real.</figcaption></figure><figure><img src="assets/seg.png" width="1653" height="917" loading="lazy" alt="Downstream semantic segmentation comparison on low-light input and DARD-enhanced input"><figcaption>Downstream semantic segmentation on low-light scenes.</figcaption></figure></div>
+    </section>
+    <section class="section"><h2>Citation</h2><pre class="citation">@article{cai2026dard,
+  title={DARD: Zero-Shot Degradation-Aware Retinex-Guided Diffusion for Low-Light Image Enhancement},
+  author={Cai, Wenjie and Yang, Yuezhe and Xia, Jianyang and Dong, Xingbo and Jin, Zhe},
+  journal={IEEE Transactions on Circuits and Systems for Video Technology},
+  year={2026},
+  url={https://ieeexplore.ieee.org/abstract/document/11701592}
+}</pre></section>
+  </main>
+  <footer class="footer">DARD · <a href="../">Yuezhe Yang</a></footer>
+</body>
+</html>

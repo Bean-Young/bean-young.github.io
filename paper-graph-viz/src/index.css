@@ -115,6 +115,7 @@ a:focus-visible {
 .direction-btn--cyan .direction-btn__dot { background: #56b4c8; }
 .direction-btn--green .direction-btn__dot { background: #70b889; }
 .direction-btn--violet .direction-btn__dot { background: #a98ac7; }
+.direction-btn--amber .direction-btn__dot { background: #d8a25c; }
 
 .paper-picker {
   flex: 0 1 210px;
@@ -285,7 +286,7 @@ a:focus-visible {
 
   .map-toolbar__directions {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 4px;
   }
 
