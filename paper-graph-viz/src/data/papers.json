@@ -49,11 +49,11 @@
       "title": "General AI",
       "shortLabel": "General AI",
       "year": 2026,
-      "venue": "Research Pillar",
+      "venue": "Research Center",
       "url": "https://bean-young.github.io/#research-interests",
       "citations": 0,
       "field": "General AI",
-      "role": "pillar"
+      "role": "hub"
     },
     {
       "id": "p-ahu",
@@ -183,7 +183,7 @@
     {"source": "hub-medical", "target": "cat-3d", "type": "similar"},
     {"source": "hub-medical", "target": "cat-diag", "type": "similar"},
     {"source": "hub-medical", "target": "cat-trust", "type": "similar"},
-    {"source": "hub-medical", "target": "cat-general", "type": "similar"},
+    {"source": "cat-general", "target": "hub-medical", "type": "similar"},
 
     {"source": "cat-3d", "target": "p-ultrags", "type": "similar"},
     {"source": "cat-3d", "target": "proj-deeppet", "type": "similar"},

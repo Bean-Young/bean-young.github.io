@@ -239,9 +239,8 @@ export function PaperForceGraph({
         if (line) lines.push(line);
         const limited = lines.slice(0, 2);
         let fontSize = Math.max(4.2, 6.4 / globalScale);
-        if (n.id === 'hub-medical') {
+        if (n.role === 'hub') {
           fontSize += 3.8 / globalScale;
-          // Medical AI 使用单行，避免被换行稀释视觉大小
           limited.length = 0;
           limited.push(label);
         }
@@ -284,7 +283,9 @@ export function PaperForceGraph({
         const k = linkKey(l);
         return focusId && hi.highlightLinkKeys.has(k) ? 2.8 : 1.05;
       }}
-      linkDirectionalArrowLength={3.6}
+      linkDirectionalArrowLength={(l: PaperLink) =>
+        linkKey(l) === 'cat-general|hub-medical|similar' ? 7 : 3.6
+      }
       linkDirectionalArrowRelPos={1}
       linkDirectionalParticles={(l: PaperLink) => {
         const k = linkKey(l);

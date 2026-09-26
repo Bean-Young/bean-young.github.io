@@ -8,14 +8,17 @@ type ZoomDirection = 'in' | 'out';
 
 function withAggregatedCitations(nodes: PaperNode[]): PaperNode[] {
   const paperNodes = nodes.filter((n) => n.role === 'paper');
-  const total = paperNodes.reduce((sum, n) => sum + Math.max(0, n.citations || 0), 0);
+  const medicalTotal = paperNodes
+    .filter((n) => n.pillarId !== 'cat-general')
+    .reduce((sum, n) => sum + Math.max(0, n.citations || 0), 0);
   const byPillar = new Map<string, number>();
   for (const n of paperNodes) {
     if (!n.pillarId) continue;
     byPillar.set(n.pillarId, (byPillar.get(n.pillarId) || 0) + Math.max(0, n.citations || 0));
   }
   return nodes.map((n) => {
-    if (n.role === 'hub') return { ...n, citations: total };
+    if (n.id === 'hub-medical') return { ...n, citations: medicalTotal };
+    if (n.id === 'cat-general') return { ...n, citations: byPillar.get(n.id) || 0 };
     if (n.role === 'pillar') return { ...n, citations: byPillar.get(n.id) || 0 };
     return n;
   });
@@ -112,7 +115,7 @@ export default function App() {
     <div className="app">
       <div className="app__layout">
         <header className="map-toolbar">
-          <div className="map-toolbar__directions" role="group" aria-label={isZh ? '研究方向' : 'Research directions'}>
+          <div className="map-toolbar__directions" role="group" aria-label={isZh ? '研究领域' : 'Research areas'}>
             <button
               type="button"
               className={`direction-btn ${focusId === null ? 'is-active' : ''}`}

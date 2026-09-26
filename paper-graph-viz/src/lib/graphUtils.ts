@@ -89,12 +89,12 @@ export function nodeRadius(n: PaperNode): number {
 }
 
 function baseColor(n: PaperNode): string {
+  if (n.id === 'cat-general') return '#d8a25c';
   if (n.role === 'hub') return '#f4c95d';
   if (n.role === 'pillar') {
     if (n.id === 'cat-3d') return '#56b4c8';
     if (n.id === 'cat-diag') return '#70b889';
     if (n.id === 'cat-trust') return '#a98ac7';
-    if (n.id === 'cat-general') return '#d8a25c';
   }
   if (n.pillarId === 'cat-3d') return '#c5e7ed';
   if (n.pillarId === 'cat-diag') return '#d2ebda';

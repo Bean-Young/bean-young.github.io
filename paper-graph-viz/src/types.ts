@@ -1,6 +1,6 @@
 export type LinkKind = 'cites' | 'extends' | 'similar';
 
-/** hub=医学 AI 中心；pillar=三大方向；paper=你的论文/项目 */
+/** hub=顶层研究领域；pillar=研究方向；paper=论文/项目 */
 export type PaperRole = 'hub' | 'pillar' | 'paper';
 
 export interface PaperNode {
@@ -18,7 +18,7 @@ export interface PaperNode {
   field: string;
   scholarTitle?: string;
   role?: PaperRole;
-  /** 支柱 id：cat-3d | cat-diag | cat-trust | cat-general */
+  /** 所属方向或领域 id：cat-3d | cat-diag | cat-trust | cat-general */
   pillarId?: string;
   /** 力导向仿真写入 */
   x?: number;
