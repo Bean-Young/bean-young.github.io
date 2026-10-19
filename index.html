@@ -1319,7 +1319,7 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              Hao Wang<sup>*</sup>, Qiwei Zeng<sup>*</sup>, Jinghao Lin<sup>*</sup>, Shuchang Ye, <b>Yuezhe Yang</b>, <span class="more-authors" tabindex="0" role="button" title="click to view all authors" data-collapsed="et al." data-expanded="Yige Peng, Haoyuan Che†, Jinman Kim†, and Lei Bi†">et al.</span>
+              Hao Wang<sup>*</sup>, Qiwei Zeng<sup>*</sup>, Jinghao Lin<sup>*</sup>, Shuchang Ye, <b>Yuezhe Yang</b>, <span class="more-authors" tabindex="0" role="button" title="click to view all authors" data-collapsed="et al." data-expanded="Yige Peng, Haoyuan Che†, Jinman Kim†, Lei Bi†">et al.</span>
             </span><br>
             NeurIPS, 2026<br>
             <small>A training-free module amplifies subtle lesion cues in frozen medical vision-language models to improve detection.</small>
@@ -1379,7 +1379,7 @@ layout: null
     </h3>
     <p class="publication-description">
       <span class="author-collapsible">
-        Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, and <span class="more-authors" tabindex="0" role="button" title="click to view all authors" data-collapsed="et al." data-expanded="Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang">et al.</span>
+        Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, <span class="more-authors" tabindex="0" role="button" title="click to view all authors" data-collapsed="et al." data-expanded="Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, Xuewen Wang">et al.</span>
       </span><br>
       ESWA, 2025<br>
       <small>Propose a high-precision model for skin lesion segmentation in dermoscopic images.</small>
@@ -1414,7 +1414,7 @@ layout: null
       <a href="https://arxiv.org/abs/2511.07743">UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis</a>
     </h3>
     <p class="publication-description">
-      <b>Yuezhe Yang</b>, Qingqing Ruan, Wenjie Cai, Yufang Dong, Dexin Yang, Xingbo Dong<sup>†</sup>, Zhe Jin and Yong Dai<br>
+      <b>Yuezhe Yang</b>, Qingqing Ruan, Wenjie Cai, Yufang Dong, Dexin Yang, Xingbo Dong<sup>†</sup>, Zhe Jin, Yong Dai<br>
       ICME, 2026<br>
       <small>The first to apply 3DGS to generate new ultrasound perspectives.</small>
     </p> 
@@ -1573,7 +1573,7 @@ layout: null
       <a href="https://arxiv.org/abs/2511.07748">Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs</a>
     </h3>
     <p class="publication-description">
-      <b>Yuezhe Yang</b>, Yiyue Guo, Wenjie Cai, Qingqing Ruan, Siying Wang, Xingbo Dong<sup>†</sup>, Zhe Jin and Yong Dai<br>
+      <b>Yuezhe Yang</b>, Yiyue Guo, Wenjie Cai, Qingqing Ruan, Siying Wang, Xingbo Dong<sup>†</sup>, Zhe Jin, Yong Dai<br>
       arXiv, 2025<br>
       <small>The first multimodal ultrasound video diagnostic agent.</small>
     </p>
@@ -1708,7 +1708,7 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              <b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, <span class="more-authors" tabindex="0" role="button" title="click to view all authors" data-collapsed="et al." data-expanded="Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Wenjing Ye, Siyun Yang, Jiesheng Que, Qingjie Feng, Siying Wang, Ran Tian, Wenbo Li, Xingbo Dong†, Siyi Song†, Huabin Wang†, and Zhe Jin†">et al.</span>
+              <b>Yuezhe Yang</b>, Qinggaoyuan Zhou, Sitong Zhou, <span class="more-authors" tabindex="0" role="button" title="click to view all authors" data-collapsed="et al." data-expanded="Sheng Yan, Wenjie Cai, Ruixi Feng, Jinyang Zhao, Nuo Chen, Boyu Yang, Xiangzhuo Zhao, Ran Wei, Kaiwen Zhu, Haoliang Duan, Dexin Yang, Yang He, Yaqian Wang, Huatao Yang, Liwen Wang, Ying Zhou, Xingguo Lv, Quan Zhang, Hui Zhang, Yonglin Chen, Dailei Zhang, Wenjing Ye, Siyun Yang, Jiesheng Que, Qingjie Feng, Siying Wang, Ran Tian, Wenbo Li, Xingbo Dong†, Siyi Song†, Huabin Wang†, Zhe Jin†">et al.</span>
             </span><br>
             China International College Students' Innovation Competition, 2024<br>
             <small>Integrate physical models with deep learning to achieve efficient high-quality low-dose PET image reconstruction.</small>
@@ -2236,9 +2236,7 @@ layout: null
       }
 
       function formatAuthorList(authors) {
-        if (authors.length <= 1) return authors[0] || '';
-        if (authors.length === 2) return `${authors[0]} and ${authors[1]}`;
-        return `${authors.slice(0, -1).join(', ')}, and ${authors[authors.length - 1]}`;
+        return authors.join(', ');
       }
 
       function prepareAuthorSummary(element) {
@@ -2275,7 +2273,7 @@ layout: null
       }
 
       function formatCollapsedSummary(visibleAuthors) {
-        return visibleAuthors.length ? `${formatAuthorList(visibleAuthors)}, and ` : 'and ';
+        return visibleAuthors.length ? `${formatAuthorList(visibleAuthors)}, ` : '';
       }
 
       function formatExpandedSummary(visibleAuthors) {

@@ -1284,7 +1284,7 @@ layout: null
           </h3>
           <p class="publication-description">
             <span class="author-collapsible">
-              Hao Wang<sup>*</sup>, Qiwei Zeng<sup>*</sup>, Jinghao Lin<sup>*</sup>, Shuchang Ye, <b>Yuezhe Yang</b>, <span class="more-authors" tabindex="0" role="button" title="展开完整作者列表" data-collapsed="et al." data-expanded="Yige Peng, Haoyuan Che†, Jinman Kim†, and Lei Bi†">et al.</span>
+              Hao Wang<sup>*</sup>, Qiwei Zeng<sup>*</sup>, Jinghao Lin<sup>*</sup>, Shuchang Ye, <b>Yuezhe Yang</b>, <span class="more-authors" tabindex="0" role="button" title="展开完整作者列表" data-collapsed="et al." data-expanded="Yige Peng, Haoyuan Che†, Jinman Kim†, Lei Bi†">et al.</span>
             </span><br>
             NeurIPS, 2026<br>
             <small>通过免训练的病灶表征增强，提高医学视觉语言模型对细微病灶的识别能力。</small>
@@ -1344,7 +1344,7 @@ layout: null
     </h3>
     <p class="publication-description">
       <span class="author-collapsible">
-        Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, and <span class="more-authors" tabindex="0" role="button" title="展开完整作者列表" data-collapsed="et al." data-expanded="Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, and Xuewen Wang">et al.</span>
+        Kaiwen Zhu<sup>*</sup>, <b>Yuezhe Yang</b><sup>*</sup>, Yonglin Chen<sup>*</sup><sup>†</sup>, <span class="more-authors" tabindex="0" role="button" title="展开完整作者列表" data-collapsed="et al." data-expanded="Ruixi Feng, Dongping Chen, Bingzhi Fan, Nan Liu, Ying Li, Xuewen Wang">et al.</span>
       </span><br>
       ESWA, 2025<br>
       <small>提出了一种用于皮肤镜图像中皮肤病变分割的高精度模型。</small>
@@ -1379,7 +1379,7 @@ layout: null
       <a href="https://arxiv.org/abs/2511.07743">UltraGS: Real-Time Physically-Decoupled Gaussian Splatting for Ultrasound Novel View Synthesis</a>
     </h3>
     <p class="publication-description">
-      <b>Yuezhe Yang</b>, Qingqing Ruan, Wenjie Cai, Yufang Dong, Dexin Yang, Xingbo Dong<sup>†</sup>, Zhe Jin and Yong Dai<br>
+      <b>Yuezhe Yang</b>, Qingqing Ruan, Wenjie Cai, Yufang Dong, Dexin Yang, Xingbo Dong<sup>†</sup>, Zhe Jin, Yong Dai<br>
       ICME, 2026<br>
       <small>首次将3DGS应用于生成新的超声视角。</small>
     </p> 
@@ -1536,7 +1536,7 @@ layout: null
       <a href="https://arxiv.org/abs/2511.07748">Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs</a>
     </h3>
     <p class="publication-description">
-      <b>Yuezhe Yang</b>, Yiyue Guo, Wenjie Cai, Qingqing Ruan, Siying Wang, Xingbo Dong<sup>†</sup>, Zhe Jin and Yong Dai<br>
+      <b>Yuezhe Yang</b>, Yiyue Guo, Wenjie Cai, Qingqing Ruan, Siying Wang, Xingbo Dong<sup>†</sup>, Zhe Jin, Yong Dai<br>
       arXiv, 2025<br>
       <small>首个多模态超声视频诊断智能体。</small>
     </p>
@@ -2205,9 +2205,7 @@ layout: null
 
       function formatAuthorList(authors, isChinese) {
         if (isChinese) return authors.join('、');
-        if (authors.length <= 1) return authors[0] || '';
-        if (authors.length === 2) return authors[0] + ' and ' + authors[1];
-        return authors.slice(0, -1).join(', ') + ', and ' + authors[authors.length - 1];
+        return authors.join(', ');
       }
 
       function isChineseList(element) {
@@ -2249,7 +2247,7 @@ layout: null
 
       function formatCollapsedSummary(visibleAuthors, chinese) {
         if (chinese) return visibleAuthors.length ? '、' + formatAuthorList(visibleAuthors, true) + '、' : '、';
-        return visibleAuthors.length ? formatAuthorList(visibleAuthors, false) + ', and ' : 'and ';
+        return visibleAuthors.length ? formatAuthorList(visibleAuthors, false) + ', ' : '';
       }
 
       function formatExpandedSummary(visibleAuthors, chinese) {
