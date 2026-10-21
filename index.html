@@ -1251,7 +1251,6 @@ layout: null
                     <option value="all">All Types</option>
                     <option value="paper">Paper</option>
                     <option value="conference">Conference</option>
-                    <option value="preprint">Preprint</option>
                     <option value="patent">Patent</option>
                     <option value="project">Project</option>
                   </select>
@@ -1512,18 +1511,18 @@ layout: null
   </div>
   <div class="column">
     <h3 class="publication-title">
-      <a href="https://patents.google.com/patent/CN119625190A">3D Gaussian model generation and rendering method for low-dose PET image processing</a>
+      <a href="https://patents.google.com/patent/CN119625190B">3D Gaussian model generation and rendering method for low-dose PET image processing</a>
       <span class="chinese-title" style="font-size: 0.8em; color: gray; display: none;">一种用于低剂量PET图像处理的3D高斯模型生成和渲染方法</span>
       <i class="fas fa-language translate-icon" onclick="toggleTranslation(this)"></i>
     </h3>
     <p class="publication-description">
       <b>Yuezhe Yang</b>, Xingbo Dong, Wenjie Cai, Dexin Yang, Zhe Jin <br>
-      National Invention Patent, 2025 <br>
+      National Invention Patent, 2025 (Granted; CN119625190B) <br>
       <small>Proposes a 3D Gaussian model generation and rendering method for low-dose brain PET imaging to reduce noise and enhance resolution.</small>
     </p>
          <!-- Publication Links. -->
          <div class="publication-links buttons field has-addons">
-          <a class="external-link button is-small is-ghost" href="https://patentimages.storage.googleapis.com/4c/f7/78/06d0b70b9c0c56/CN119625190A.pdf">
+          <a class="external-link button is-small is-ghost" href="https://patents.google.com/patent/CN119625190B">
             <span class="icon"><i class="fas fa-file-pdf"></i></span>
             <span>Patent</span>
           </a>
@@ -1532,7 +1531,7 @@ layout: null
 </div>
 
 <!--   Explicit and Implicit Representations in AI-based 3D Reconstruction for Radiology: A Systematic Review -->
-<div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="true">
+<div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="false" style="display: none;">
   <div class="column is-2">
     <div class="publication-image-container">
       <img src="/document/home-thumbs/Survey.jpg" loading="lazy" decoding="async">
@@ -1562,7 +1561,7 @@ layout: null
 </div>
 
 <!--   Auto-US: An Agent for Ultrasound Video Diagnosis Using Video Classification Framework and LLMs -->
-<div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="true">
+<div class="publication-block columns" data-year="2025" data-type="preprint" data-visible="false" style="display: none;">
   <div class="column is-2">
     <div class="publication-image-container">
       <img src="/document/home-thumbs/AutoUS.jpg" loading="lazy" decoding="async">
@@ -1592,7 +1591,7 @@ layout: null
 </div>
 
 <!--   HyperWalker: Dynamic Hypergraph-Based Deep Diagnosis for Multi-Hop Clinical Modeling across EHR and X-Ray in Medical VLMs -->
-<div class="publication-block columns" data-year="2026" data-type="preprint" data-visible="true">
+<div class="publication-block columns" data-year="2026" data-type="preprint" data-visible="false" style="display: none;">
   <div class="column is-2">
     <div class="publication-image-container">
       <img src="/document/home-thumbs/HyperWalker.jpg" loading="lazy" decoding="async">
@@ -1661,7 +1660,7 @@ layout: null
   </div>
 </div> -->
 <!--   PET image reconstruction method based on prior image and PET image 3D perception method -->
-<div class="publication-block columns" data-year="2024" data-type="patent">
+<div class="publication-block columns" data-year="2024" data-type="patent" data-visible="false" style="display: none;">
   <div class="column is-2">
     <div class="publication-image-container">
       <img src="/document/home-thumbs/NerfP.jpg" loading="lazy" decoding="async">
@@ -2725,21 +2724,7 @@ layout: null
       }
     ];
 
-    // Initialize map when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create map focused on China and surrounding areas
-      const map = L.map('world-map').setView([35, 105], 5);
-      
-      // Use a very simple base layer to show only province-level information
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '© CartoDB',
-        maxZoom: 5,
-        minZoom: 4
-      }).addTo(map);
-      
-      // Create province polygons
-      createProvincePolygons(map);
-    });
+    // Travel map temporarily disabled.
 
     // Create province markers function
     function createProvincePolygons(map) {
@@ -2813,7 +2798,6 @@ layout: null
     });
   </script>
 
-      if (document.getElementById('world-map-container').style.display === 'none') return;
   <!-- Game Script -->
   <script>
     // Game main logic
