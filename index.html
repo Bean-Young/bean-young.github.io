@@ -1754,7 +1754,7 @@ layout: null
         </div>
       </div>
       <!-- 博士教育经历 -->
-      <div class="education-block columns">
+      <div class="education-block columns" style="display: none;">
         <div class="column is-2">
           <div class="unified-image-container">
             <img src="/document/usyd.jpeg" loading="lazy" decoding="async">
@@ -2056,7 +2056,7 @@ layout: null
         <h3 class="title is-4">Hobbies</h3>
         <p>I enjoy traveling and exploring new places. Traveling allows me to experience different cultures, meet new people, enjoy life, and gain fresh perspectives that often inspire my creative thinking.</p>
         
-        <div id="world-map-container" style="width: 100%; height: 600px; margin: 20px 0; position: relative; z-index: 1;">
+        <div id="world-map-container" style="display: none; width: 100%; height: 600px; margin: 20px 0; position: relative; z-index: 1;">
           <div id="world-map" style="width: 100%; height: 100%;"></div>
         </div>
         
@@ -2092,7 +2092,7 @@ layout: null
   <!-- Mini Game Section -->
   <section class="section game-section" id="code-defense">
     <div class="container is-max-desktop">
-      <div class="game-shell">
+      <div class="game-shell" style="display: none;">
         <div class="game-arcade-header">
           <div>
             <span class="game-kicker">Interactive break</span>
@@ -2813,6 +2813,7 @@ layout: null
     });
   </script>
 
+      if (document.getElementById('world-map-container').style.display === 'none') return;
   <!-- Game Script -->
   <script>
     // Game main logic
