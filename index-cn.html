@@ -2258,9 +2258,31 @@ layout: null
         const expanded = element.dataset.isExpanded !== 'true';
         element.dataset.isExpanded = String(expanded);
         element.setAttribute('aria-expanded', String(expanded));
+        if (state.animationFrame) cancelAnimationFrame(state.animationFrame);
+        state.animationFrame = null;
+        element.dataset.animating = 'false';
         if (expanded) {
           summary.textContent = prefix(state, state.visible, true);
-          element.textContent = state.remaining.join(state.separator);
+          const text = state.remaining.join(state.separator);
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            element.textContent = text;
+            return;
+          }
+          const started = performance.now();
+          const duration = Math.min(text.length * 18, 2500);
+          element.dataset.animating = 'true';
+          element.textContent = text.slice(0, 1);
+          const reveal = now => {
+            const progress = Math.min((now - started) / duration, 1);
+            element.textContent = text.slice(0, Math.max(1, Math.floor(progress * text.length)));
+            if (progress < 1) {
+              state.animationFrame = requestAnimationFrame(reveal);
+            } else {
+              state.animationFrame = null;
+              element.dataset.animating = 'false';
+            }
+          };
+          state.animationFrame = requestAnimationFrame(reveal);
         } else {
           fit(state);
         }
