@@ -2223,168 +2223,112 @@ layout: null
     });
 
     function initializeAuthorExpanders() {
-      const delay = 16;
-      const expanders = Array.from(document.querySelectorAll('.more-authors'));
-
-      function parseAuthorList(rawAuthors) {
-        return (rawAuthors || '')
-          .replace(/\s*,?\s+and\s+/g, ', ')
-          .split(',')
-          .map(author => author.trim())
-          .filter(Boolean);
-      }
-
-      function formatAuthorList(authors) {
-        return authors.join(', ');
-      }
-
-      function prepareAuthorSummary(element) {
-        if (element.dataset.summaryReady === 'true') {
-          return element.previousElementSibling;
-        }
-
-        const precedingText = element.previousSibling;
-        if (precedingText && precedingText.nodeType === Node.TEXT_NODE) {
-          precedingText.textContent = precedingText.textContent.replace(/,\s*and\s*$/, ', ');
-        }
-
+      const states = Array.from(document.querySelectorAll('.more-authors')).map(element => {
+        const raw = element.dataset.expanded || '';
+        const chinese = raw.includes('、');
+        const separator = chinese ? '、' : ', ';
+        const authors = raw.replace(/^\s*、/, '').replace(/\s*,?\s+and\s+/g, ', ')
+          .split(chinese ? '、' : ',').map(author => author.trim()).filter(Boolean);
         const summary = document.createElement('span');
         summary.className = 'author-summary';
-        element.parentNode.insertBefore(summary, element);
-        element.dataset.allAuthors = element.dataset.expanded || '';
-        element.dataset.summaryReady = 'true';
-        return summary;
+        element.before(summary);
+        element.dataset.isExpanded = 'false';
+        element.setAttribute('aria-expanded', 'false');
+        return { element, summary, authors, chinese, separator,
+          collapsed: element.dataset.collapsed || (chinese ? '等' : 'et al.'),
+          visible: [], remaining: authors };
+      });
+
+      function prefix(state, authors, trailing) {
+        if (!authors.length) return state.chinese ? '、' : '';
+        return (state.chinese ? '、' : '') + authors.join(state.separator)
+          + (trailing ? state.separator : '');
       }
 
-      function fitsOnFirstLine(element, summary, lineTop) {
-        const textRange = document.createRange();
-        textRange.selectNodeContents(summary);
-        const summaryWraps = Array.from(textRange.getClientRects()).some(rect => rect.top > lineTop + 1);
-        return !summaryWraps && element.getBoundingClientRect().top <= lineTop + 1;
-      }
+      function fit(state) {
+        const { element, summary, authors } = state;
+        const container = element.parentElement;
+        if (!container.getClientRects().length || element.dataset.isExpanded === 'true') return;
 
-      function getVisibleAuthors(element) {
-        try {
-          return JSON.parse(element.dataset.visibleAuthors || '[]');
-        } catch (error) {
-          return [];
-        }
-      }
+        const style = getComputedStyle(container);
+        const lineHeight = parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.5;
+        const fits = () => {
+          const lineTop = container.getBoundingClientRect().top;
+          const range = document.createRange();
+          range.selectNodeContents(container);
+          return Array.from(range.getClientRects()).every(rect =>
+            rect.top < lineTop + lineHeight * 0.75);
+        };
 
-      function formatCollapsedSummary(visibleAuthors) {
-        return visibleAuthors.length ? `${formatAuthorList(visibleAuthors)}, ` : '';
-      }
-
-      function formatExpandedSummary(visibleAuthors) {
-        return visibleAuthors.length ? `${formatAuthorList(visibleAuthors)}, ` : '';
-      }
-
-      function fitCollapsedAuthors(element) {
-        if (element.dataset.fixedSummary === 'true') return;
-        if (element.dataset.isExpanded === 'true') return;
-        if (!element.getClientRects().length) return;
-
-        const summary = prepareAuthorSummary(element);
-        const allAuthors = parseAuthorList(element.dataset.allAuthors);
-        const collapsedText = 'et al.';
-
-        element.hidden = false;
-        element.style.display = 'inline';
-        summary.textContent = '';
-        element.textContent = collapsedText;
-        const lineTop = element.getBoundingClientRect().top;
-        let visibleCount = 0;
-
-        for (let count = 1; count <= allAuthors.length; count += 1) {
-          summary.textContent = formatCollapsedSummary(allAuthors.slice(0, count));
-          element.textContent = collapsedText;
-          if (!fitsOnFirstLine(element, summary, lineTop)) break;
-          visibleCount = count;
-        }
-
-        const visibleAuthors = allAuthors.slice(0, visibleCount);
-        const hiddenAuthors = allAuthors.slice(visibleCount);
-        summary.textContent = hiddenAuthors.length
-          ? formatCollapsedSummary(visibleAuthors)
-          : formatAuthorList(visibleAuthors);
-        element.dataset.visibleAuthors = JSON.stringify(visibleAuthors);
-
-        if (!hiddenAuthors.length) {
-          element.hidden = true;
+        // Try the complete list before reserving space for the expander.
+        element.hidden = true;
+        element.style.display = 'none';
+        element.textContent = '';
+        summary.textContent = prefix(state, authors, false);
+        element.setAttribute('aria-expanded', 'false');
+        if (fits()) {
+          state.visible = authors;
+          state.remaining = [];
+          element.dataset.expanded = '';
           return;
         }
 
-        element.dataset.collapsed = collapsedText;
-        element.dataset.expanded = formatAuthorList(hiddenAuthors);
-        element.dataset.isExpanded = 'false';
-        element.textContent = collapsedText;
-      }
-
-      function animateAuthorText(element) {
-        if (element.dataset.animating === 'true') return;
-
-        const collapsedText = element.dataset.collapsed || 'et al.';
-        const expandedText = (element.dataset.expanded || '').replace(/,\s*and\s*$/, '');
-        const isExpanded = element.dataset.isExpanded === 'true';
-        const summary = element.previousElementSibling;
-        if (summary && summary.classList.contains('author-summary')) {
-          summary.textContent = isExpanded
-            ? formatCollapsedSummary(getVisibleAuthors(element))
-            : formatExpandedSummary(getVisibleAuthors(element));
+        element.hidden = false;
+        element.style.display = 'inline';
+        element.textContent = state.collapsed;
+        let count = 0;
+        for (let candidate = 0; candidate < authors.length; candidate += 1) {
+          summary.textContent = prefix(state, authors.slice(0, candidate), true);
+          if (!fits()) break;
+          count = candidate;
         }
-        const targetText = isExpanded ? collapsedText : expandedText;
-        let cursorPosition = 0;
-
-        element.dataset.animating = 'true';
-        element.textContent = '';
-
-        const textAdder = setInterval(function() {
-          element.textContent = targetText.substring(0, cursorPosition + 1);
-          cursorPosition += 1;
-
-          if (cursorPosition === targetText.length) {
-            clearInterval(textAdder);
-            element.textContent = targetText.replace(/,\s*and\s*$/, '');
-            element.dataset.animating = 'false';
-            element.dataset.isExpanded = String(!isExpanded);
-          }
-        }, delay);
+        state.visible = authors.slice(0, count);
+        state.remaining = authors.slice(count);
+        summary.textContent = prefix(state, state.visible, true);
+        element.dataset.expanded = state.remaining.join(state.separator);
       }
 
-      expanders.forEach(element => {
-        element.addEventListener('click', function() {
-          animateAuthorText(this);
-        });
+      function toggle(state) {
+        const { element, summary } = state;
+        if (!state.remaining.length) return;
+        const expanded = element.dataset.isExpanded !== 'true';
+        element.dataset.isExpanded = String(expanded);
+        element.setAttribute('aria-expanded', String(expanded));
+        if (expanded) {
+          summary.textContent = prefix(state, state.visible, true);
+          element.textContent = state.remaining.join(state.separator);
+        } else {
+          fit(state);
+        }
+      }
 
-        element.addEventListener('keydown', function(event) {
+      states.forEach(state => {
+        state.element.addEventListener('click', event => {
+          event.stopPropagation();
+          toggle(state);
+        });
+        state.element.addEventListener('keydown', event => {
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            animateAuthorText(this);
+            event.stopPropagation();
+            toggle(state);
           }
         });
       });
 
-      const fitAllCollapsedAuthors = function() {
-        expanders.forEach(fitCollapsedAuthors);
-      };
-
-      requestAnimationFrame(fitAllCollapsedAuthors);
-      document.addEventListener('author-layout:refresh', function() {
-        requestAnimationFrame(fitAllCollapsedAuthors);
-      });
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(fitAllCollapsedAuthors);
-      }
-
-      let resizeQueued = false;
-      window.addEventListener('resize', function() {
-        if (resizeQueued) return;
-        resizeQueued = true;
-        requestAnimationFrame(function() {
-          resizeQueued = false;
-          fitAllCollapsedAuthors();
+      let queued = false;
+      const refresh = () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          states.forEach(fit);
         });
-      });
+      };
+      refresh();
+      document.addEventListener('author-layout:refresh', refresh);
+      window.addEventListener('resize', refresh);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
     }
     
     // Initialize limited display for both sections
