@@ -70,31 +70,36 @@
                             <span class="author-block"><strong><em>NeurIPS, 2026</em></strong></span>
                         </div>
                         <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
-                            <span class="author-block">Hao Wang<sup>1,2*</sup>,</span>
-                            <span class="author-block">Qiwei Zeng<sup>1*</sup>,</span>
-                            <span class="author-block">Jinghao Lin<sup>3*</sup>,</span>
+                            <span class="author-block">Hao Wang<sup>1,2,3*</sup>,</span>
+                            <span class="author-block">Qiwei Zeng<sup>1,3*</sup>,</span>
+                            <span class="author-block">Jinghao Lin<sup>4*</sup>,</span>
                             <span class="author-block">Shuchang Ye<sup>2</sup>,</span>
-                            <span class="author-block">Yuezhe Yang<sup>2,4</sup>,</span>
-                            <span class="author-block">Yige Peng<sup>4</sup>,</span>
-                            <span class="author-block">Haoyuan Che<sup>1†</sup>,</span>
+                            <span class="author-block">Yuezhe Yang<sup>1,2</sup>,</span>
+                            <span class="author-block">Yige Peng<sup>1</sup>,</span>
+                            <span class="author-block">Haoyuan Che<sup>3†</sup>,</span>
                             <span class="author-block">Jinman Kim<sup>2†</sup>,</span>
-                            <span class="author-block">Lei Bi<sup>4†</sup></span>
+                            <span class="author-block">Lei Bi<sup>1†</sup></span>
                         </div>
                         <div class="is-size-6 publication-authors" style="margin-bottom: 10px;">
                             <span class="author-block"><sup>*</sup>Equal Contribution</span>
                             <span class="author-block"><sup>†</sup>Corresponding author</span>
                         </div>
                         <div class="is-size-5 publication-authors">
-                            <span class="author-block"><sup>1</sup>Jilin University,</span>
+                            <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University,</span>
                             <span class="author-block"><sup>2</sup>The University of Sydney,</span>
-                            <span class="author-block"><sup>3</sup>Northeastern University,</span>
-                            <span class="author-block"><sup>4</sup>Shanghai Jiao Tong University</span>
+                            <span class="author-block"><sup>3</sup>Jilin University,</span>
+                            <span class="author-block"><sup>4</sup>Northeastern University</span>
                         </div>
                         <div class="column has-text-centered">
                             <div class="publication-links">
                                 <span class="link-block">
-                                    <a href="https://arxiv.org/pdf/2606.06379" class="external-link button is-normal is-rounded is-dark">
+                                    <a href="/document/EasyLens-NeurIPS-2026.pdf?rev=20261026" class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://github.com/wanghao1118/EasyLens" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
                                     </a>
                                 </span>
                             </div>
@@ -111,7 +116,7 @@
                 <div class="column is-four-fifths">
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
-                        <p>Medical vision-language models can miss subtle lesions because sparse, low-contrast cues are underrepresented when local visual tokens are aggregated. EasyLens is a training-free, plug-and-play representation amplifier for frozen medical VLMs. It constructs a pathology-anatomy prototype space, selects lesion-relevant patches using counterfactual prototype reasoning, and strengthens their representations through morphology-guided residual enhancement. Experiments on multiple medical image datasets and frozen VLM backbones show improved subtle-lesion detection without model fine-tuning.</p>
+                        <p id="paper-abstract">Medical vision-language models (VLMs) have shown increasing potential for clinical image interpretation, including lesion detection and report generation. However, their practical utility remains limited by insufficient sensitivity to subtle lesions, whose visual evidence is often sparse, low-contrast, and embedded within complex anatomical context. As local visual tokens are aggregated, these weak lesion cues can become underrepresented in global image representations, making them difficult for medical VLMs to recognize. Existing efforts to improve lesion sensitivity mainly rely on medical-domain vision-encoder pre-training, clinical-term-guided alignment, or trainable pathological representation enhancement. Although effective, these approaches usually require additional training or model-specific adaptation and may overfit to particular disease morphologies, limiting their applicability to frozen medical VLMs. To address these limitations, we propose EasyLens, a training-free plug-and-play subtle-lesion representation amplifier for medical VLMs. EasyLens first constructs EasyBank, a pathology-anatomy prototype space that provides lesion-related prototypes and anatomy-aware normal references for comparing suspicious patches against both pathological and normal anatomical patterns. To avoid blindly amplifying normal tissues, EasyTag selects lesion-relevant patches through counterfactual prototype reasoning. To counteract the dilution of subtle lesion cues in global image representations, EasyAmplifier strengthens the selected lesion-relevant patch representations through morphology-guided residual enhancement, thereby increasing their contribution to the global image embedding. Experiments on multiple medical image datasets and frozen medical VLM backbones show that EasyLens consistently improves subtle-lesion detection and outperforms existing encoder-enhancement baselines without model fine-tuning. Code is available at: <a href="https://github.com/wanghao1118/EasyLens">https://github.com/wanghao1118/EasyLens</a></p>
                     </div>
                 </div>
             </div>
@@ -136,11 +141,11 @@
                 <div class="column is-full-width">
                     <h2 class="title is-3">Method</h2>
                     <div class="content has-text-centered" style="margin-bottom: 2.5rem;">
-                        <img src="./static/images/figure_overview.png" alt="Overview of subtle-lesion amplification with EasyLens" width="100%">
+                        <img src="./static/images/figure_overview.png?rev=20261026" alt="Overview of subtle-lesion amplification with EasyLens" width="100%">
                         <p class="video-label">EasyLens brings weak subtle-lesion cues into focus in frozen medical VLMs.</p>
                     </div>
                     <div class="content has-text-centered">
-                        <img src="./static/images/figure_flow.png" alt="EasyBank, EasyTag, and EasyAmplifier workflow" width="100%">
+                        <img src="./static/images/figure_flow.png?rev=20261026" alt="EasyBank, EasyTag, and EasyAmplifier workflow" width="100%">
                         <p class="video-label">EasyBank construction and inference with EasyTag and EasyAmplifier.</p>
                     </div>
                 </div>
@@ -161,15 +166,22 @@
                                 <tr><th>Stat.</th><th>Sel.</th><th>Gen.</th><th>Stat.</th><th>Sel.</th><th>Gen.</th><th>Stat.</th><th>Sel.</th><th>Gen.</th></tr>
                             </thead>
                             <tbody>
+                                <tr><td>LLaVA-Med</td><td>0.00</td><td>1.11</td><td>3.93</td><td>0.00</td><td>31.58</td><td>33.92</td><td>1.16</td><td>14.42</td><td>36.60</td></tr>
+                                <tr><td>RadFM</td><td>46.94</td><td>7.78</td><td>2.96</td><td>0.00</td><td>21.05</td><td>13.75</td><td>10.47</td><td>11.54</td><td>9.60</td></tr>
+                                <tr><td>Lingshu</td><td>7.48</td><td>25.56</td><td>0.33</td><td>20.45</td><td>33.83</td><td>16.20</td><td>37.21</td><td>53.85</td><td>25.04</td></tr>
+                                <tr><td>Hulu-Med</td><td>64.63</td><td>27.78</td><td>0.88</td><td>28.79</td><td>30.83</td><td>23.87</td><td>51.16</td><td>52.88</td><td>39.89</td></tr>
+                                <tr><td>MedGemma</td><td>40.82</td><td>24.44</td><td>4.55</td><td>25.00</td><td>21.05</td><td>35.94</td><td>27.91</td><td>45.19</td><td>26.11</td></tr>
                                 <tr><td>MedGemma1.5</td><td>42.86</td><td>23.33</td><td>4.41</td><td>20.45</td><td>27.82</td><td>41.93</td><td>15.12</td><td>49.04</td><td>38.18</td></tr>
+                                <tr><td>MedKLIP</td><td>0.00</td><td>17.78</td><td>-</td><td>0.00</td><td>27.07</td><td>-</td><td>0.00</td><td>28.85</td><td>-</td></tr>
+                                <tr><td>KAD</td><td>0.00</td><td>13.33</td><td>-</td><td>0.00</td><td>16.54</td><td>-</td><td>0.00</td><td>5.77</td><td>-</td></tr>
                                 <tr><td><strong>EasyLens</strong></td><td><strong>66.67</strong></td><td><strong>31.11</strong></td><td><strong>5.15</strong></td><td><strong>30.30</strong></td><td><strong>36.09</strong></td><td><strong>45.86</strong></td><td><strong>52.33</strong></td><td><strong>55.77</strong></td><td><strong>40.67</strong></td></tr>
                             </tbody>
                         </table>
-                        <p class="video-label">Comparison on subtle-lesion status recognition, region selection, and report generation.</p>
+                        <p class="video-label">Comparison on ReX, LIDC, and Abdomen. Stat. denotes regional counting, Sel. denotes region selection, and Gen. denotes the lesion-token probability probe defined in Appendix B.2.</p>
                     </div>
                     <h3 class="title is-4">Qualitative Results</h3>
                     <div class="content has-text-centered">
-                        <img src="./static/images/figure_cs1.png" alt="EasyLens case study on a small pulmonary nodule" width="100%">
+                        <img src="./static/images/figure_cs1.png?rev=20261026" alt="EasyLens case study on a small pulmonary nodule" width="100%">
                         <p class="video-label">Case study of subtle-lesion perception and lesion-aware report generation.</p>
                     </div>
                 </div>
